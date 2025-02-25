@@ -303,7 +303,7 @@ export const { logout } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 export const selectUserEmail = (state) => state.user.verifyEmail;
-export const selectUserPassword = (state) => state.user.resetPassword;
+export const selectUserPassword = (state) => state.user?.resetPassword;
 export const selectAccessToken = (state) => state.user.storeAccessToken;
 export const selectNewPassword = (state) => state.user.newPassword;
 export const selectUserToken = (state) => state.user.userToken;
