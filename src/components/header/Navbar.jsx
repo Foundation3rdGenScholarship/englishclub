@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import ButtonLanguage from "../button/ButtonLanguage";
 import logolightmode from "../../../public/img/logo/logo-light-mode.png";
 import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
-import { NavLink } from "react-router"; // Fixed import
+import { NavLink,Link } from "react-router"; // Fixed import
 import ThemeToggle from "../button/ThemeToggle";
 import { theme } from "flowbite-react";
 
@@ -74,12 +74,12 @@ export default function Navbar() {
           <div className="hidden md:block">
             <ButtonLanguage />
           </div>
-          <a
+          <Link
             className="hidden md:flex rounded-md bg-secondary-500 px-4 py-1.5 text-heading-6 text-black transition font-semibold"
-            href="#"
+            to="/login"
           >
             {t("register")}
-          </a>
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
@@ -131,12 +131,12 @@ export default function Navbar() {
               <ButtonLanguage />
             </li>
             <li>
-              <a
+              <Link
                 className="rounded-md bg-secondary-500 px-5 py-2.5 text-sm font-medium text-white transition"
-                href="#"
+                to="/register"
               >
                 {t("register")}
-              </a>
+              </Link>
             </li>
           </div>
         </ul>

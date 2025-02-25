@@ -1,0 +1,16 @@
+{
+  "login": "ចូលគណនី",
+  "email": "អុីម៊ែល",
+  "password": "ពាក្យសម្ងាត់",
+  "enter your email": "បញ្ចូលអុីម៊ែលរបស់អ្នក",
+  "enter your password": "បញ្ចូលពាក្យសម្ងាត់របស់អ្នក",
+  "forgot password": "ភ្លេចពាក្យសម្ងាត់",
+  "or": "ឬ",
+  "sign in with google": "ចូលជាមួយ google",
+  "don't have an account?": "មិនមានគណនីមែនទេ?",
+  "register": "ចុះឈ្មោះ",
+  "logging in...": "កំពុងចូលគណនី...",
+  "sending...": "កំពុងផ្ញើ...",
+  "enter your email for the verification process, we will send 6 digits code to your email.":"បញ្ចូលអុីម៊ែលបស់អ្នកសម្រាប់ដំណើរការផ្ទៀងផ្ទាត់ យើងនឹងផ្ញើលេខកូដ 6 ខ្ទង់ទៅកាន់អុីម៊ែលរបស់អ្នក។",
+  "send":"ផ្ញើ"
+}

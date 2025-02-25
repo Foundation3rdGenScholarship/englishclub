@@ -40,7 +40,7 @@ export default {
       fontSize: {
         // font size for heading
         "heading-1": "40px",
-        "hading-2": "36px",
+        "heading-2": "36px",
         "heading-3": "32px",
         "heading-4": "24px",
         "heading-5": "20px",

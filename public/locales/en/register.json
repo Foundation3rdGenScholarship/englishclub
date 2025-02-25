@@ -1,0 +1,19 @@
+{
+  "login": "Login",
+  "email": "Email",
+  "password": "Password",
+  "enter your email": "Enter your email",
+  "enter your password": "Enter your password",
+  "enter your username": "Enter your username",
+  "forgot password": "Forgot Password",
+  "or": "Or",
+  "sign in with google": "Sign in with Google",
+  "don't have an account? ": "Don't have an account?",
+  "register": "Register",
+  "username":"Username",
+  "I agree to the":"I agree to the",
+  "privacy policy":"Privacy Policy",
+  "already have an account?":"Already have an account?",
+  "sign up":"Sign up",
+  "signing up...":"Signing up..."
+}

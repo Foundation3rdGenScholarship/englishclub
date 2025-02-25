@@ -8,16 +8,26 @@ import RootLayout from "./components/layout/RootLayout.jsx";
 import ProgressBar from "./components/progress/ProgressBar.jsx";
 import "./i18n.js";
 import CoursesMain from "./page/courses/CoursesMain.jsx";
+import Login from "./page/auth/Login.jsx";
+import { store } from "./app/store.js";
+import { Provider } from "react-redux";
+import Register from "./page/auth/Register.jsx";
+import ForgotPassword from "./page/auth/ForgotPassword.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ProgressBar />
-    <BrowserRouter>
-      <Routes>
-        <Route element={<RootLayout />}>
-          <Route path="/" element={<HomeMain />} />
-          <Route path="/courses" element={<CoursesMain />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <ProgressBar />
+      <BrowserRouter>
+        <Routes>
+          <Route element={<RootLayout />}>
+            <Route path="/" element={<HomeMain />} />
+            <Route path="/courses" element={<CoursesMain />} />
+          </Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   </StrictMode>
 );
