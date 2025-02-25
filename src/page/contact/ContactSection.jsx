@@ -27,22 +27,22 @@ const ContactSection = () => {
         {/* Right Contact Info */}
         <div className="w-full md:w-1/2 flex justify-center">
           <GlassCard className="rounded-[2em_0px_2em_0px] w-full max-w-lg px-8 py-20 flex flex-col items-center text-center">
-            <h2 className="dark:text-white text-heading-3 font-bold mb-4 text-center ">
+            <h2 className="text-black dark:text-white text-heading-3 font-bold mb-4 text-center ">
             {t("head-office")}
             </h2>
 
             <div className="space-y-4 text-des-3">
               <div className="flex items-center space-x-3">
                 <FaPhoneAlt className="text-primary-500 text-des-1 " />
-                <span className="dark:text-white">+855 93 990 910</span>
+                <span className="text-black dark:text-white">+855 93 990 910</span>
               </div>
               <div className="flex items-center space-x-3">
                 <FaEnvelope className="text-primary-500 text-des-1" />
-                <span className="dark:text-white">fluentflow@gmail.com</span>
+                <span className="text-black dark:text-white">fluentflow@gmail.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <FaMapMarkerAlt className="text-primary-500 text-des-1" />
-                <span className="dark:text-white">
+                <span className=" text-black dark:text-white">
                   {t("location-icon")}
                 </span>
               </div>

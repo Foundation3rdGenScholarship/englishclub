@@ -141,7 +141,7 @@ export function Contact() {
         <div className="container max-w-6xl flex flex-col md:flex-row items-center justify-between px-8 md:px-16">
           {/* Left Content */}
           <div className="w-full md:w-[45%] flex flex-col items-center md:items-start text-center md:text-left">
-            <h2 className="dark:text-white text-heading-3 font-bold mb-4 text-center">
+            <h2 className="text-black dark:text-white text-heading-3 font-bold mb-4 text-center">
               {t("ai-caption")}{" "}
               <span className="text-secondary-500">{t("ai-caption2")} </span>
               {t("ai-caption3")}
