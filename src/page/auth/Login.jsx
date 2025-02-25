@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { FaUser, FaLock, FaTimes, FaEye, FaEyeSlash } from "react-icons/fa";
-import {
-  fetchUserLogin
-} from "../../redux/features/user/userSlice";
+import { fetchUserLogin } from "../../redux/features/user/userSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
@@ -42,42 +40,42 @@ const Login = () => {
       .required(t("password is required")),
   });
 
-const handleSubmit = (values, { setSubmitting }) => {
-  setLoading(true); // Add this
-  dispatch(fetchUserLogin(values))
-    .unwrap()
-    .then(() => {
-      toast.success(t("login Successfully!"));
-      setTimeout(() => {
-        setLoading(false);
-        setSubmitting(false);
-         navigate("/");
-      }, 1500);
-    })
-    .catch((error) => {
-      console.log("Login error:", error);
-      setTimeout(() => {
-        setLoading(false);
-        setSubmitting(false);
-        if (error.message === (t("User is not verified"))) {
-          toast.error(t("please verify your email before logging in."));
-        } else {
-          toast.error(t("incorrect email or password."));
-        }
-      }, 500);
-    });
-};
+  const handleSubmit = (values, { setSubmitting }) => {
+    setLoading(true); // Add this
+    dispatch(fetchUserLogin(values))
+      .unwrap()
+      .then(() => {
+        toast.success(t("login Successfully!"));
+        setTimeout(() => {
+          setLoading(false);
+          setSubmitting(false);
+          navigate("/");
+        }, 1500);
+      })
+      .catch((error) => {
+        console.log("Login error:", error);
+        setTimeout(() => {
+          setLoading(false);
+          setSubmitting(false);
+          if (error.message === t("User is not verified")) {
+            toast.error(t("please verify your email before logging in."));
+          } else {
+            toast.error(t("incorrect email or password."));
+          }
+        }, 500);
+      });
+  };
 
   const handleGoogleLogin = () => {
     toast.info("Google Login Clicked");
   };
 
   const handleGoBack = () => {
-     navigate("/");
+    navigate("/");
   };
-    const toggleShowPassword = () => {
-      setShowPassword(!showPassword);
-    };
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <div className="flex flex-wrap h-screen items-center justify-center bg-white dark:bg-bg-dark-mode">
       {/* Container */}
