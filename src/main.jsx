@@ -8,6 +8,7 @@ import RootLayout from "./components/layout/RootLayout.jsx";
 import ProgressBar from "./components/progress/ProgressBar.jsx";
 import "./i18n.js";
 import CoursesMain from "./page/courses/CoursesMain.jsx";
+import Dashboard from "./page/dashboard/Dashboard.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ProgressBar />
@@ -16,6 +17,9 @@ createRoot(document.getElementById("root")).render(
         <Route element={<RootLayout />}>
           <Route path="/" element={<HomeMain />} />
           <Route path="/courses" element={<CoursesMain />} />
+        </Route>
+        <Route element={<Dashboard />}>
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>
