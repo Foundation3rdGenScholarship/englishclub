@@ -13,6 +13,8 @@ import { store } from "./app/store.js";
 import { Provider } from "react-redux";
 import Register from "./page/auth/Register.jsx";
 import ForgotPassword from "./page/auth/ForgotPassword.jsx";
+import Dashboard from "./page/dashboard/Dashboard.jsx";
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
@@ -26,6 +28,9 @@ createRoot(document.getElementById("root")).render(
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route element={<Dashboard />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </Provider>
