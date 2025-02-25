@@ -16,6 +16,8 @@ import ForgotPassword from "./page/auth/ForgotPassword.jsx";
 import Dashboard from "./page/dashboard/Dashboard.jsx";
 import Contact from "./page/contact/ContactMain.jsx";
 
+import VerifyOTP from "./page/auth/VertifyOTP.jsx";
+import NewPassword from "./page/auth/NewPassword.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
@@ -33,6 +35,8 @@ createRoot(document.getElementById("root")).render(
           <Route element={<Dashboard />}>
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>
+          <Route path="/vertifyotp" element={<VerifyOTP />} />
+          <Route path="/resetpassword" element={<NewPassword />} />
         </Routes>
       </BrowserRouter>
     </Provider>

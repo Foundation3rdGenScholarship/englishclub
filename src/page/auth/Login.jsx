@@ -6,12 +6,12 @@ import {
   fetchUserLogin
 } from "../../redux/features/user/userSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import loginimg from "../../../public/svg/login.svg";
-import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
+import { NavLink } from "react-router"; // Assuming you're using React Router for navigation
 import logolightmode from "../../../public/img/logo/logo-light-mode.png";
 import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
 import blob from "../../../public/svg/Blob.svg";
@@ -35,11 +35,11 @@ const Login = () => {
 
   const validationSchema = Yup.object({
     email: Yup.string()
-      .email("Invalid email format")
-      .required("Email is required"),
+      .email(t("invalid email format"))
+      .required(t("email is required")),
     password: Yup.string()
-      .min(6, "Minimum 6 characters")
-      .required("Password is required"),
+      .min(6, t("minimum 6 characters"))
+      .required(t("password is required")),
   });
 
 const handleSubmit = (values, { setSubmitting }) => {
@@ -47,7 +47,7 @@ const handleSubmit = (values, { setSubmitting }) => {
   dispatch(fetchUserLogin(values))
     .unwrap()
     .then(() => {
-      toast.success("Login Successfully!");
+      toast.success(t("login Successfully!"));
       setTimeout(() => {
         setLoading(false);
         setSubmitting(false);
@@ -59,10 +59,10 @@ const handleSubmit = (values, { setSubmitting }) => {
       setTimeout(() => {
         setLoading(false);
         setSubmitting(false);
-        if (error.message === "User is not verified 😏") {
-          toast.error("Please verify your email before logging in.");
+        if (error.message === (t("User is not verified"))) {
+          toast.error(t("please verify your email before logging in."));
         } else {
-          toast.error("Incorrect email or password.");
+          toast.error(t("incorrect email or password."));
         }
       }, 500);
     });
@@ -84,7 +84,7 @@ const handleSubmit = (values, { setSubmitting }) => {
       <div className="relative flex w-full max-w-8xl overflow-hidden rounded-2xl backdrop-blur-lg  transition-all min-w-[200px]">
         {/* Left - Image (Hidden on Small Screens) */}
         <div className="max-w-7xl w-full flex mx-auto flex-wrap">
-          <div className="flex w-full md:w-[40%] md:flex p-4 order-2 md:order-2 lg:order-1 mx-auto">
+          <div className="hidden w-full md:w-[40%] lg:flex p-4 order-2 md:order-2 lg:order-1 mx-auto">
             <img src={loginimg} alt="Login Illustration" className="w-full" />
           </div>
 
@@ -178,12 +178,12 @@ const handleSubmit = (values, { setSubmitting }) => {
 
                     {/* Forgot Password Link */}
                     <div className="text-right">
-                      <Link
+                      <NavLink
                         to="/forgotpassword" // Replace with your forgot password route
                         className="text-md text-primary-500 hover:text-primary-600 dark:text-primary-400 dark:hover:text-primary-300 underline"
                       >
                         {t("forgot password")}
-                      </Link>
+                      </NavLink>
                     </div>
 
                     {/* Login Button */}
@@ -220,12 +220,12 @@ const handleSubmit = (values, { setSubmitting }) => {
                       <span className="text-gray-600 dark:text-gray-400">
                         {t("don't have an account?")}{" "}
                       </span>
-                      <Link
+                      <NavLink
                         to="/register" // Replace with your register route
                         className="text-primary-500 hover:text-primary-600 dark:text-primary-400 dark:hover:text-primary-300 underline"
                       >
                         {t("register")}
-                      </Link>
+                      </NavLink>
                     </div>
                   </Form>
                 )}
@@ -240,7 +240,7 @@ const handleSubmit = (values, { setSubmitting }) => {
           <div className="absolute w-full md:flex items-center justify-center -z-30 top-[15%] right-[22%] lg:right-[-7%] lg:top-[27%] md:-right-[-30%] md:top-[18%]">
             <img src={ellipse} alt="blob" />
           </div>
-          <div className="absolute w-[100px] md:flex items-center justify-center -z-30 top-[54%] right-[-10%] lg:right-[11%] lg:top-[86%] md:-right-[-15%] md:top-[58%]">
+          <div className="absolute w-[100px] md:flex items-center justify-center -z-30 top-[54%] right-[-10%] lg:right-[10%] lg:top-[86%] md:-right-[-15%] md:top-[60%]">
             <img src={ellipse} alt="blob" />
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import userSlice from "./features/user/userSlice";
+import userSlice from "../redux/features/user/userSlice";
 // import skillSlice from "./features/skill/skillSlice";
 // import skillnamelevel from "./skillnamelevel/skillnamelevel";
 // import lessondetailSlice from "./features/lessondetail/lessondetailSlice";
@@ -13,7 +13,7 @@ import { verifyUserSlice } from "../verify/verifyUserSlice";
 // import exerciseSlice from "./features/exerciseSubmit/exerciseSubmitSlice";
 export const store = configureStore({
   reducer: {
-    // user: userSlice,
+    user: userSlice,
     // skill: skillSlice,
     // skillNameLevel: skillnamelevel,
     // excersice: lessondetailSlice,

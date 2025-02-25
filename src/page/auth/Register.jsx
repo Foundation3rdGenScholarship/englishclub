@@ -7,12 +7,12 @@ import {
   selectUser,
 } from "../../redux/features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import signupimg from "../../../public/svg/signup.svg";
-import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
+import { NavLink } from "react-router"; 
 import logolightmode from "../../../public/img/logo/logo-light-mode.png";
 import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
 import blob from "../../../public/svg/Blob.svg";
@@ -44,22 +44,22 @@ export default function Register() {
   };
 
   const validationSchema = Yup.object({
-    username: Yup.string().required("Username is required"),
+    username: Yup.string().required(t("username is required")),
     email: Yup.string()
-      .email("Invalid email format")
-      .required("Email is required"),
+      .email(t("invalid email format"))
+      .required(t("email is required")),
     password: Yup.string()
       .matches(
         strongPasswordRegex,
-        "Password must contain one uppercase letter, one lowercase letter, one special character, a number, and be at least 8 characters long."
+        t("password must contain one uppercase letter, one lowercase letter, one special character, a number, and be at least 8 characters long.")
       )
-      .required("Password is required"),
+      .required(t("password is required")),
     confirm_password: Yup.string()
       .oneOf(
         [Yup.ref("password"), null],
-        "Confirm Password need to be the same as Password!"
+        t("confirm Password need to be the same as Password!")
       )
-      .required("Confirm Password is required"),
+      .required(t("Confirm Password is required")),
   });
   //  const togglePasswordVisibility = () => {
   //    setShowPassword(!showPassword);
@@ -103,7 +103,7 @@ export default function Register() {
         <div className="relative flex w-full max-w-8xl overflow-hidden rounded-2xl backdrop-blur-lg  transition-all min-w-[200px]">
           {/* Left - Image (Hidden on Small Screens) */}
           <div className="max-w-7xl w-full flex mx-auto flex-wrap">
-            <div className="flex w-full md:w-[40%] md:flex p-4 order-2 md:order-2 lg:order-1 mx-auto">
+            <div className="hidden w-full md:w-[40%] lg:flex p-4 order-2 md:order-2 lg:order-1 mx-auto">
               <img
                 src={signupimg}
                 alt="Login Illustration"
@@ -112,7 +112,7 @@ export default function Register() {
             </div>
 
             {/* Right - Form */}
-            <div className="w-full h-screen lg:w-1/2 flex flex-col justify-center items-center p-4 md:p-8 order-1 md:order-1">
+            <div className="w-full lg:w-1/2 flex flex-col justify-center items-center p-4 md:p-8 order-1 md:order-1">
               <div className="w-full max-w-lg bg-white/20 backdrop-blur-md p-6 md:p-8 rounded-lg shadow-lg dark:bg-gray-800/60">
                 <div className="flex justify-between">
                   <a href="/">
@@ -308,12 +308,12 @@ export default function Register() {
                         <span className="text-gray-600 dark:text-gray-400">
                           {t("already have an account?")}{" "}
                         </span>
-                        <Link
+                        <NavLink
                           to="/login" // Replace with your register route
                           className="text-primary-500 hover:text-primary-600 dark:text-primary-400 dark:hover:text-primary-300 underline"
                         >
                           {t("login")}
-                        </Link>
+                        </NavLink>
                       </div>
                     </Form>
                   )}
@@ -322,13 +322,13 @@ export default function Register() {
             </div>
 
             {/* Blob Image (Hidden on Small Screens) */}
-            <div className="absolute w-full md:flex items-center justify-center -z-30 right-[-38%]">
+            <div className="absolute w-full md:flex items-center justify-center -z-30 right-[-38%] top-0 md:top-[3%] md:right-[-30%] lg:right-[-45%] lg:top-[1%]">
               <img src={blob} alt="blob" />
             </div>
             <div className="absolute w-full md:flex items-center justify-center -z-30 top-[15%] right-[22%] lg:right-[-7%] lg:top-[27%] md:-right-[-30%] md:top-[18%]">
               <img src={ellipse} alt="blob" />
             </div>
-            <div className="absolute w-[100px] md:flex items-center justify-center -z-30 top-[54%] right-[-10%] lg:right-[11%] lg:top-[86%] md:-right-[-15%] md:top-[58%]">
+            <div className="absolute w-[100px] md:flex items-center justify-center -z-30 top-[54%] right-[-10%] lg:right-[2%] lg:top-[90%] md:-right-[-15%] md:top-[58%] xl:right-[9%]">
               <img src={ellipse} alt="blob" />
             </div>
           </div>

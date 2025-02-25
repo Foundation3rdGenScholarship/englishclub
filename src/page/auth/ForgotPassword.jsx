@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { FaUser, FaTimes} from "react-icons/fa";
-import { fetchUserLogin } from "../../redux/features/user/userSlice";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { FaUser, FaTimes } from "react-icons/fa";
+import {
+  fetchVerifyEmail,
+  selectUserEmail,
+} from "../../redux/features/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { NavLink } from "react-router-dom"; // Assuming you're using React Router for navigation
+import { NavLink } from "react-router";
 import "react-toastify/dist/ReactToastify.css";
 import forgotpasswordimg from "../../../public/svg/forgotpassword.svg";
 import logolightmode from "../../../public/img/logo/logo-light-mode.png";
@@ -19,47 +22,32 @@ const ForgotPassword = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const userResponse = useSelector(selectUserEmail);
   const { t } = useTranslation("login");
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
   const initialValues = {
-    email: ""
+    email: "",
   };
 
   const validationSchema = Yup.object({
     email: Yup.string()
-      .email("Invalid email format")
-      .required("Email is required"),
+      .email(t("invalid email format"))
+      .required(t("email is required")),
   });
+  useEffect(() => {
+    if (userResponse?.status === 200) {
+      navigate("/otp-verify", { state: email });
+    }
+  }, [userResponse?.status, navigate, email]);
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    setLoading(true); // Add this
-    dispatch(fetchUserLogin(values))
-      .unwrap()
-      .then(() => {
-        toast.success("Waiting for your 6 digits code");
-        setTimeout(() => {
-          setLoading(false);
-          setSubmitting(false);
-          navigate("/");
-        }, 1500);
-      })
-      .catch((error) => {
-        console.log("Login error:", error);
-        setTimeout(() => {
-          setLoading(false);
-          setSubmitting(false);
-          if (error.message === "User is not verified 😏") {
-            toast.error("Please verify your email before logging in.");
-          } else {
-            toast.error("Incorrect email or password.");
-          }
-        }, 500);
-      });
+  const handleGetEmail = (e, setFieldValue) => {
+    setEmail(e.target.value);
+    setFieldValue("email", e.target.value);
   };
-
 
   const handleGoBack = () => {
     navigate("/");
@@ -70,7 +58,7 @@ const ForgotPassword = () => {
       <div className="relative flex w-full max-w-8xl overflow-hidden rounded-2xl backdrop-blur-lg  transition-all min-w-[200px]">
         {/* Left - Image (Hidden on Small Screens) */}
         <div className="max-w-7xl w-full flex mx-auto flex-wrap">
-          <div className="flex w-full md:w-[40%] md:flex p-4 order-2 md:order-2 lg:order-1 mx-auto">
+          <div className=" hidden w-full md:w-[40%] lg:flex p-4 order-2 md:order-2 lg:order-1 mx-auto">
             <img
               src={forgotpasswordimg}
               alt="Login Illustration"
@@ -108,9 +96,13 @@ const ForgotPassword = () => {
               <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
-                onSubmit={handleSubmit}
+                onSubmit={async (values, { resetForm }) => {
+                  console.log(values);
+                  await dispatch(fetchVerifyEmail(values));
+                  resetForm();
+                }}
               >
-                {({ isSubmitting }) => (
+                {({ isSubmitting, setFieldValue }) => (
                   <Form className="space-y-6">
                     {/* Email Field */}
                     <div className="relative">
@@ -129,6 +121,7 @@ const ForgotPassword = () => {
                           name="email"
                           className="w-full bg-white/30 dark:bg-gray-700 px-4 py-3 pl-10 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
                           placeholder={t("enter your email")}
+                          onChange={(e) => handleGetEmail(e, setFieldValue)}
                         />
                       </div>
                       <ErrorMessage
@@ -165,13 +158,13 @@ const ForgotPassword = () => {
           </div>
 
           {/* Blob Image (Hidden on Small Screens) */}
-          <div className="absolute w-full md:flex items-center justify-center -z-30 right-[-38%] top-[10%]">
+          <div className="absolute w-full md:flex items-center justify-center -z-30 right-[-38%] md:top-[20%] md:right-[-30%] lg:top-[10%] lg:right-[-40%]">
             <img src={blob} alt="blob" />
           </div>
-          <div className="absolute w-full md:flex items-center justify-center -z-30 top-[15%] right-[22%] lg:right-[-7%] lg:top-[27%] md:-right-[-30%] md:top-[18%]">
+          <div className="absolute w-full md:flex items-center justify-center -z-30 top-[15%] right-[22%] lg:right-[-7%] lg:top-[40%] md:-right-[-30%] md:top-[40%]">
             <img src={ellipse} alt="blob" />
           </div>
-          <div className="absolute w-[100px] md:flex items-center justify-center -z-30 top-[54%] right-[-10%] lg:right-[11%] lg:top-[86%] md:-right-[-15%] md:top-[58%]">
+          <div className="absolute w-[100px] md:flex items-center justify-center -z-30 top-[75%] right-[-10%] lg:top-[72%] md:-right-[-15%] md:top-[66%] lg:right-[9%]">
             <img src={ellipse} alt="blob" />
           </div>
         </div>
