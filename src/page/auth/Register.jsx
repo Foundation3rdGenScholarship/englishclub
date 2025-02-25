@@ -12,7 +12,7 @@ import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import signupimg from "../../../public/svg/signup.svg";
-import { NavLink } from "react-router"; 
+import { NavLink } from "react-router";
 import logolightmode from "../../../public/img/logo/logo-light-mode.png";
 import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
 import blob from "../../../public/svg/Blob.svg";
@@ -51,7 +51,9 @@ export default function Register() {
     password: Yup.string()
       .matches(
         strongPasswordRegex,
-        t("password must contain one uppercase letter, one lowercase letter, one special character, a number, and be at least 8 characters long.")
+        t(
+          "password must contain one uppercase letter, one lowercase letter, one special character, a number, and be at least 8 characters long."
+        )
       )
       .required(t("password is required")),
     confirm_password: Yup.string()
@@ -298,7 +300,7 @@ export default function Register() {
                         className="w-full flex items-center justify-center space-x-3 rounded-lg border border-gray-300 dark:border-gray-600 p-3 text-heading-6 font-semibold text-gray-700 dark:text-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition duration-300"
                       >
                         <FcGoogle className="text-2xl" />
-                        <span className="dark:text-white">
+                        <span className="text-gray-700 dark:text-white">
                           {t("sign in with google")}
                         </span>
                       </button>
