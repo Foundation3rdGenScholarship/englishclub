@@ -8,6 +8,7 @@ import RootLayout from "./components/layout/RootLayout.jsx";
 import ProgressBar from "./components/progress/ProgressBar.jsx";
 import "./i18n.js";
 import CoursesMain from "./page/courses/CoursesMain.jsx";
+<<<<<<< HEAD
 import Login from "./page/auth/Login.jsx";
 import { store } from "./app/store.js";
 import { Provider } from "react-redux";
@@ -34,5 +35,22 @@ createRoot(document.getElementById("root")).render(
         </Routes>
       </BrowserRouter>
     </Provider>
+=======
+import Contact from "./page/contact/ContactMain.jsx";
+
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <ProgressBar />
+    <BrowserRouter>
+      <Routes>
+        <Route element={<RootLayout />}>
+          <Route path="/" element={<HomeMain />} />
+          <Route path="/courses" element={<CoursesMain />} />
+          <Route path="/contact" element={<Contact />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+>>>>>>> contactPage
   </StrictMode>
 );
+
