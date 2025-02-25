@@ -54,7 +54,7 @@ const FAQSection = () => {
                 <span className="text-primary-950 dark:text-secondary-500 ">{t("title-faq")}</span>
               </h2>
             </div>
-            <div className="mt-4 dark:text-white text-des-2">
+            <div className="mt-4 text-black dark:text-white text-des-2">
               {faqs.map((faq, index) => (
                 <div
                   key={index}
@@ -89,7 +89,7 @@ const FAQSection = () => {
 
         {/* Contact Form */}
         <GlassCard className="rounded-[2em_0px_0px_2em]">
-          <div className="w-full md:w2/3 rounded-xl p-6 dark:text-white">
+          <div className="w-full md:w2/3 rounded-xl p-6 text-black dark:text-white">
             <div className="flex justify-center">
               <h2 className="text-heading-3 font-bold flex items-center gap-2">
                 <span className="text-primary-500">
