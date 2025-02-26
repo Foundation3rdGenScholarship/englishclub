@@ -35,7 +35,8 @@ export default {
         "bg-dark-mode": "#111828",
         "text-des-dark-mode": "#A3B1CD",
         black: "#000000",
-        //
+        //Accsents
+        "accents-color" : "#FBA518",
       },
       fontSize: {
         // font size for heading

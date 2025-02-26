@@ -15,6 +15,7 @@ import Register from "./page/auth/Register.jsx";
 import ForgotPassword from "./page/auth/ForgotPassword.jsx";
 import Dashboard from "./page/dashboard/Dashboard.jsx";
 import Contact from "./page/contact/ContactMain.jsx";
+import AboutUsMain from "./page/aboutus/AboutUsMain.jsx";
 import Reading from "./page/dashboard/content/skill/Reading.jsx";
 import Listening from "./page/dashboard/content/skill/Listening.jsx";
 import Writing from "./page/dashboard/content/skill/Writing.jsx";
@@ -38,6 +39,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/" element={<HomeMain />} />
             <Route path="/courses" element={<CoursesMain />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<AboutUsMain />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
