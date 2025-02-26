@@ -5,8 +5,10 @@ import { configureStore } from "@reduxjs/toolkit";
 // import lessondetailSlice from "./features/lessondetail/lessondetailSlice";
 // import submitsSlice from "../redux/features/submit/submitSlice";
 import { verifyUserSlice } from "../verify/verifyUserSlice";
-// import visibilityReducer from "../redux/features/user/visibilitySlice";
-import sidebarReducer from '../redux/features/user/sidebarSlice.js';
+import themeReducer from "../redux/features/button/themeSlice";
+//import visibilityReducer from "../redux/features/user/visibilitySlice"; // this is a visibil reducer for toggle theme
+
+import sidebarReducer from "../redux/features/user/sidebarSlice.js";
 // import grammarSllice from "./features/grammar/grammarSllice";
 // import LessonsSlice from "./features/lessons/LessonsSlice";
 // import vocabularySlice from "./features/vocabulary/vocabularySlice";
@@ -22,6 +24,8 @@ export const store = configureStore({
     // submits: submitsSlice,
     userVerify: verifyUserSlice,
     sidebar: sidebarReducer,
+    theme: themeReducer,
+    // visibility: visibilityReducer,
     // visibilitySkill: visibilityReducer,
     // visibilityGrammar: visibilityReducer,
     // sidebar: visibilityReducer,

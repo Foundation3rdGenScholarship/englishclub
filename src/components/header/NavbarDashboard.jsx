@@ -1,17 +1,19 @@
-import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
-import { MdOutlineClose } from "react-icons/md";
-import logoDarkMode from "./../../../public/img/logo/logo-light-mode.png";
-import ThemeToggle from "../button/ThemeToggle";
-import ButtonLanguage from "../button/ButtonLanguage";
+import logolightmode from "./../../../public/img/logo/logo-light-mode.png";
+import logoDarkMode from "./../../../public/img/logo/logo-dark-mode.png";
 import Profile from "../button/Profile";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
+import SearchBar from "../search/SearchBar";
+import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router";
+import { useSelector } from "react-redux";
+import ThemeToggle from "../button/ThemeToggle";
+import ButtonLanguage from "../button/ButtonLanguage";
 
 export default function Navbar() {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-
+  const theme = useSelector((state) => state.theme.theme); // Get theme from Redux store
+  const { t } = useTranslation("dashboard");
   return (
-    <nav className="fixed top-0 z-50 w-full bg-red-700 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+    <nav className="fixed top-0 z-50 w-full border-b border-gray-200 dark:border-gray-700 dark:bg-white/5 backdrop-blur-[18px]">
       <div className="px-3 py-3 lg:px-5 lg:pl-3 flex items-center justify-between">
         {/* Left Sidebar */}
         <div className="flex items-center w-64">
@@ -27,56 +29,26 @@ export default function Navbar() {
             <HiOutlineMenuAlt2 className="text-2xl" />
           </button>
           {/* Logo */}
-          <a href="#" className="ms-2">
-            <img src={logoDarkMode} className="h-12" alt="Logo" />
-          </a>
+          <NavLink to="/" className="ms-2 sm:w-64">
+            <img
+              src={theme === "dark" ? `${logoDarkMode}` : `${logolightmode}`}
+              alt="Logo"
+              className="w-40"
+            />
+          </NavLink>
         </div>
-
         {/* Right Sidebar */}
-        <div className="flex items-center space-x-4 justify-between">
-          {/* Search Bar */}
-          <div className="relative">
-            <button
-              className="p-2 rounded-md bg-secondary-600 sm:hidden"
-              onClick={() => setIsSearchOpen(true)}
-            >
-              <FaSearch className="w-6 h-6 text-gray-700 dark:text-white" />
-            </button>
-            <div className="hidden sm:block">
-              <input
-                type="text"
-                className="px-3 py-2 border rounded-md bg-white dark:bg-gray-700 dark:text-white"
-                placeholder="Search..."
-              />
+        <div className="flex items-center gap-5 w-full justify-between">
+          <SearchBar />
+          <div className="flex items-center gap-4">
+            <div className="sm:flex items-center gap-4 hidden">
+              <ButtonLanguage />
+              <ThemeToggle />
             </div>
+            <Profile />
           </div>
-
-          {/* Language & Theme Toggle */}
-          <ButtonLanguage />
-          <ThemeToggle />
-
-          {/* Profile */}
-          <Profile />
         </div>
       </div>
-
-      {/* Mobile Search Popup */}
-      {isSearchOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg w-3/4">
-            <div className="flex items-center justify-between">
-              <input
-                type="text"
-                className="w-full px-3 py-2 border rounded-md bg-white dark:bg-gray-700 dark:text-white"
-                placeholder="Search..."
-              />
-              <button onClick={() => setIsSearchOpen(false)} className="ml-2">
-                <MdOutlineClose className="w-6 h-6 text-gray-700 dark:text-white" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </nav>
   );
 }

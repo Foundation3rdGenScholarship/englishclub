@@ -6,25 +6,25 @@ export function skillForSidebar() {
   const menu = [
     {
       title: t("reading"),
-      path: "/reading",
+      path: "reading",
       active: () => "reading",
       text: "reading",
     },
     {
       title: t("listening"),
-      path: "#",
+      path: "listening",
       active: () => "listening",
       text: "listening",
     },
     {
       title: t("writing"),
-      path: "#",
+      path: "writing",
       active: () => "writing",
       text: "writing",
     },
     {
       title: t("speaking"),
-      paht: "#",
+      path: "speaking",
       active: () => "speaking",
       text: "speaking",
     },

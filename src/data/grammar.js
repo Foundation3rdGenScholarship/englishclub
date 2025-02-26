@@ -6,27 +6,27 @@ export function grammarForSidebar() {
   const grammar = [
     {
       title: t("a1a2grammar"),
-      path: "",
+      path: "/a1a2grammar",
       active: () => "a1a2grammar",
       text: "a1a2grammar",
     },
     {
       title: t("b1b2grammar"),
-      path: "",
+      path: "b1b2grammar",
       active: () => "b1b2grammar",
       text: "b1b2grammar",
     },
     {
       title: t("c1grammar"),
-      path: "",
+      path: "c1grammar",
       active: () => "c1grammar",
       text: "c1grammar",
     },
     {
       title: t("moreDoc"),
-      path: "",
-      active: () => "moreDoc",
-      text: "moreDoc",
+      path: "moredoc",
+      active: () => "moredoc",
+      text: "moredoc",
     },
   ];
 
