@@ -33,11 +33,11 @@ export default function Navbar() {
         </div>
 
         {/* Right Sidebar */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 justify-between">
           {/* Search Bar */}
           <div className="relative">
             <button
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 sm:hidden"
+              className="p-2 rounded-md bg-secondary-600 sm:hidden"
               onClick={() => setIsSearchOpen(true)}
             >
               <FaSearch className="w-6 h-6 text-gray-700 dark:text-white" />

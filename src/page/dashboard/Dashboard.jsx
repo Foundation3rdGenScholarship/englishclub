@@ -6,10 +6,11 @@ import NavbarDashboard from "../../components/header/NavbarDashboard";
 const Dashboard = () => {
   return (
     <div>
+      {/* Start Navbar */}
       <NavbarDashboard />
+
       {/* Start sidebar */}
       <Sidebar />
-      {/* End sidebar */}
 
       {/* Start Content */}
       <User />
