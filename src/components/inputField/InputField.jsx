@@ -22,30 +22,32 @@ const InputField = ({ label, name, type, placeholder, icon: Icon }) => {
 
       {/* Input Wrapper */}
       <div className="relative w-full">
-        {/* Left Icon */}
-        {Icon && (
-          <Icon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400" />
-        )}
+        <div className="flex items-center">
+          {/* Left Icon */}
+          {Icon && (
+            <Icon className="absolute text-gray-500 dark:text-gray-400 m-[1rem]" />
+          )}
 
-        {/* Input Field */}
-        <Field
-          type={type === "password" && showPassword ? "text" : type}
-          id={name}
-          name={name}
-          className="w-full bg-white/30 dark:bg-gray-700 px-4 py-3 pl-10 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
-          placeholder={placeholder}
-        />
+          {/* Input Field */}
+          <Field
+            type={type === "password" && showPassword ? "text" : type}
+            id={name}
+            name={name}
+            className="w-full bg-white/30 dark:bg-gray-700 px-4 py-3 pl-10 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+            placeholder={placeholder}
+          />
 
-        {/* Show/Hide Password Button (Only for Password Fields) */}
-        {(type.toLowerCase() === "password") && (
-          <button
-            type="button"
-            onClick={toggleShowPassword}
-            className="absolute inset-y-0 right-3 flex items-center text-xl leading-5 text-gray-500 dark:text-gray-400"
-          >
-            {showPassword ? <FaEye /> : <FaEyeSlash />}
-          </button>
-        )}
+          {/* Show/Hide Password Button (Only for Password Fields) */}
+          {type.toLowerCase() === "password" && (
+            <button
+              type="button"
+              onClick={toggleShowPassword}
+              className="absolute inset-y-0 right-3 flex items-center text-xl leading-5 text-gray-500 dark:text-gray-400"
+            >
+              {showPassword ? <FaEye /> : <FaEyeSlash />}
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Error Message */}
