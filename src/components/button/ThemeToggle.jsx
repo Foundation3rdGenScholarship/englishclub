@@ -1,12 +1,12 @@
-import { MdOutlineLightMode } from "react-icons/md";
-import { MdOutlineDarkMode } from "react-icons/md";
+import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
+import { useSelector, useDispatch } from "react-redux";
+import {toggleTheme} from "../../redux/features/button/themeSlice"
 
-
-import { useEffect, useState } from "react";
-// import { Sun, Moon } from "lucide-react";
+import { useEffect } from "react";
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const theme = useSelector((state) => state.theme.theme);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (theme === "dark") {
@@ -14,17 +14,12 @@ const ThemeToggle = () => {
     } else {
       document.documentElement.classList.remove("dark");
     }
-    localStorage.setItem("theme", theme);
   }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
 
   return (
     <button
-      onClick={toggleTheme}
-      className="text-2xl text-white transition rounded-md bg-secondary-600  p-2"
+      onClick={() => dispatch(toggleTheme())}
+      className="text-2xl text-white transition rounded-md bg-secondary-600 p-2"
     >
       {theme === "dark" ? (
         <MdOutlineLightMode className="text-black font-bold" />

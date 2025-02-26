@@ -1,42 +1,50 @@
 import React from "react";
+import { FaSearch } from "react-icons/fa";
+import { MdOutlineClose } from "react-icons/md";
+import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 const SearchBar = () => {
+  const { t } = useTranslation("dashboard");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   return (
-    <div>
-      <form className="w-96 ">
-        <label
-          for="default-search"
-          className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-        >
-          Search
-        </label>
-        <div className="relative">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <svg
-              className="w-4 h-4 text-gray-500 dark:text-gray-400"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 20"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-              />
-            </svg>
+    <div className="relative">
+      <button
+        className="p-2 rounded-md bg-secondary-600 sm:hidden mr-[-100px] absolute top-[-20px]"
+        onClick={() => setIsSearchOpen(true)}
+      >
+        <FaSearch className="w-6 h-6 text-gray-700 dark:text-white" />
+      </button>
+      <div className="hidden sm:block">
+        <input
+          type="text"
+          className="px-3 py-2 border rounded-md bg-white dark:bg-gray-700 dark:text-white w-[170px] md:w-[270px]"
+          placeholder={t("placeholder")}
+        />
+      </div>
+
+      {/* Mobile Search Popup */}
+      {isSearchOpen && (
+        <div className="">
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 mt-[100px]">
+            <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg w-3/4">
+              <div className="flex items-center justify-between">
+                <input
+                  type="text"
+                  className="w-full px-3 py-2 border rounded-md bg-white dark:bg-gray-700 dark:text-white"
+                  placeholder={t("placeholder")}
+                />
+                <button
+                  onClick={() => setIsSearchOpen(false)}
+                  className="ml-2 "
+                >
+                  <MdOutlineClose className="w-6 h-6 text-gray-700 dark:text-white" />
+                </button>
+              </div>
+            </div>
           </div>
-          <input
-            type="search"
-            id="default-search"
-            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search Mockups, Logos..."
-            required
-          />
         </div>
-      </form>
+      )}
     </div>
   );
 };

@@ -1,0 +1,18 @@
+{
+  "overview": "Dashboard",
+  "skill": "Skill",
+  "reading": "Reading",
+  "writing": "Writing",
+  "listening": "Listening",
+  "speaking": "Speaking",
+  "a1a2grammar": "A1 A2 grammar",
+  "b1b2grammar": "B1 B2 grammar",
+  "c1grammar": "C1 grammar",
+  "moreDoc": "English grammar reference",
+  "a1a2vocabulary": "A1 A2 vocabulary",
+  "b1b2vocabulary": "B1 B2 vocabulary",
+  "extraVideo": "Extra Video",
+  "grammar" : "Grammar",
+  "vocabulary" : "Vocabulary",
+  "placeholder" : "Search..."
+}

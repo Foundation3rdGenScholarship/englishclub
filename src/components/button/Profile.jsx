@@ -2,7 +2,7 @@ import React from "react";
 
 const Profile = () => {
   return (
-    <div className="flex items-center ms-3">
+    <div className="flex items-center">
       <div>
         <button
           type="button"
@@ -12,7 +12,7 @@ const Profile = () => {
         >
           <span className="sr-only">Open user menu</span>
           <img
-            className="w-12 h-12 rounded-full"
+            className="w-11 h-11 rounded-full"
             src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
             alt="user photo"
           />

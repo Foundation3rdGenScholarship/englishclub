@@ -3,11 +3,13 @@ import { useTranslation } from "react-i18next";
 import ButtonLanguage from "../button/ButtonLanguage";
 import logolightmode from "../../../public/img/logo/logo-light-mode.png";
 import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
-import { NavLink,Link } from "react-router"; // Fixed import
+import { NavLink, Link } from "react-router"; // Fixed import
 import ThemeToggle from "../button/ThemeToggle";
-import { theme } from "flowbite-react";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
+  const theme = useSelector((state) => state.theme.theme); // Get theme from Redux store
+
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation("navbar");
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,8 +27,7 @@ export default function Navbar() {
   }, []);
 
   const menu = [
-    { title: t("home"), path: "/" },
-    { title: t("courses"), path: "/courses" },
+    { title: t("courses"), path: "/dashboard" },
     { title: t("about"), path: "/about" },
     { title: t("contact"), path: "/contact" },
   ];
@@ -40,15 +41,13 @@ export default function Navbar() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4">
         {/* Left section */}
         <div className="flex items-center gap-5">
-          <a href="#">
+          <NavLink to="/">
             <img
-              src={
-                getTheme === "light" ? `${logolightmode}` : `${logodarkmode}`
-              }
+              src={theme === "dark" ? `${logodarkmode}` : `${logolightmode}`}
               alt="Logo"
               className="w-40"
             />
-          </a>
+          </NavLink>
 
           {/* Navigation for large screens */}
           <nav className="hidden md:flex gap-6 text-heading-5">
@@ -80,7 +79,6 @@ export default function Navbar() {
           >
             {t("register")}
           </Link>
-
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
