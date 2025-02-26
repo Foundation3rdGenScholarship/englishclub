@@ -1,4 +1,4 @@
-import { useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
 import { useTranslation } from "react-i18next";
 import { FcGoogle } from "react-icons/fc";
 const GoogleLoginButton = ({ onSuccess }) => {
@@ -23,6 +23,7 @@ const GoogleLoginButton = ({ onSuccess }) => {
 
       <button
         type="button"
+        onClick={login}
         className="w-full flex items-center justify-center space-x-3 rounded-lg border border-gray-300 dark:border-gray-600 p-3 text-heading-6 font-semibold text-gray-700 dark:text-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition duration-300"
       >
         <FcGoogle className="text-2xl" />

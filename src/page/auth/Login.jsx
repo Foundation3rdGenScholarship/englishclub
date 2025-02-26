@@ -27,6 +27,31 @@ const Login = () => {
   const handleGoogleLoginSuccess = (response) => {
     // You can send the response.tokenId to your backend to validate the login
     console.log("Login Success: ", response);
+    const tokenId = response.tokenId;
+
+    // Send the token to your existing /login endpoint for processing
+    fetch(`${import.meta.env.VITE_BASE_URL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ tokenId }), // Send tokenId instead of email/password
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          // Handle the success (e.g., store JWT token, redirect)
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("token", data.token); // Store JWT token
+          navigate("/"); // Redirect to homepage or dashboard
+        } else {
+          toast.error("Google login failed");
+        }
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+        toast.error("An error occurred during Google login.");
+      });
     // After successful login, you can redirect to the dashboard or wherever needed
   };
 
