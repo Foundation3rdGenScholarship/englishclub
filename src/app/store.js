@@ -1,5 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "../redux/features/user/userSlice";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import { apiSlice } from "../api/apiSlice.js";
 // import skillSlice from "./features/skill/skillSlice";
 // import skillnamelevel from "./skillnamelevel/skillnamelevel";
 // import lessondetailSlice from "./features/lessondetail/lessondetailSlice";
@@ -25,6 +27,7 @@ export const store = configureStore({
     userVerify: verifyUserSlice,
     sidebar: sidebarReducer,
     theme: themeReducer,
+    [apiSlice.reducerPath]: apiSlice.reducer, // use for RTK query about skill reading
     // visibility: visibilityReducer,
     // visibilitySkill: visibilityReducer,
     // visibilityGrammar: visibilityReducer,
@@ -37,4 +40,9 @@ export const store = configureStore({
     // exercise: exerciseSlice,
     // vocabulary : vocabularySlice
   },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
 });
+
+setupListeners(store.dispatch);

@@ -1,4 +1,5 @@
 import { StrictMode } from "react";
+import { Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import "./index.css";
@@ -30,37 +31,39 @@ import B1B2vocabulary from "./page/dashboard/content/vocabularies/B1B2vocabulary
 import VerifyOTP from "./page/auth/VertifyOTP.jsx";
 import NewPassword from "./page/auth/NewPassword.jsx";
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <Provider store={store}>
-      <ProgressBar />
-      <BrowserRouter>
-        <Routes>
-          <Route element={<RootLayout />}>
-            <Route path="/" element={<HomeMain />} />
-            <Route path="/courses" element={<CoursesMain />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/about" element={<AboutUsMain />} />
-          </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgotpassword" element={<ForgotPassword />} />
-          <Route element={<Dashboard />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/reading" element={<Reading />} />
-            <Route path="/listening" element={<Listening />} />
-            <Route path="/writing" element={<Writing />} />
-            <Route path="/speaking" element={<Speaking />} />
-            <Route path="/a1a2grammar" element={<A1A2grammar />} />
-            <Route path="/b1b2grammar" element={<B1B2grammar />} />
-            <Route path="/c1grammar" element={<C1grammar />} />
-            <Route path="/moredoc" element={<MoreDoc />} />
-            <Route path="/a1a2vocabulary" element={<A1A2vocabulary />} />
-            <Route path="/b1b2vocanulary" element={<B1B2vocabulary />} />
-          </Route>
-          <Route path="/vertifyotp" element={<VerifyOTP />} />
-          <Route path="/resetpassword" element={<NewPassword />} />
-        </Routes>
-      </BrowserRouter>
-    </Provider>
-  </StrictMode>
+  <Suspense>
+    <StrictMode>
+      <Provider store={store}>
+        <ProgressBar />
+        <BrowserRouter>
+          <Routes>
+            <Route element={<RootLayout />}>
+              <Route path="/" element={<HomeMain />} />
+              <Route path="/courses" element={<CoursesMain />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/about" element={<AboutUsMain />} />
+            </Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route element={<Dashboard />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/reading" element={<Reading />} />
+              <Route path="/listening" element={<Listening />} />
+              <Route path="/writing" element={<Writing />} />
+              <Route path="/speaking" element={<Speaking />} />
+              <Route path="/a1a2grammar" element={<A1A2grammar />} />
+              <Route path="/b1b2grammar" element={<B1B2grammar />} />
+              <Route path="/c1grammar" element={<C1grammar />} />
+              <Route path="/moredoc" element={<MoreDoc />} />
+              <Route path="/a1a2vocabulary" element={<A1A2vocabulary />} />
+              <Route path="/b1b2vocanulary" element={<B1B2vocabulary />} />
+            </Route>
+            <Route path="/vertifyotp" element={<VerifyOTP />} />
+            <Route path="/resetpassword" element={<NewPassword />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </StrictMode>
+  </Suspense>
 );
