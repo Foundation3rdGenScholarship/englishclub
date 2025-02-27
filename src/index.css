@@ -3,9 +3,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-::-webkit-scrollbar {
-  display: none; /* Hide the scrollbar */
-}
+/* Hide the scrollbar */
+/* ::-webkit-scrollbar {
+  display: none; 
+} */
 
 /* for dynamic font */
 .font-en {
