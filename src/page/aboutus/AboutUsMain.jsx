@@ -3,25 +3,28 @@ import GlassCard from "../../components/card/GlassCard";
 import { useTranslation } from "react-i18next";
 import vector1 from "../../../public/img/vextor/Vector19.svg";
 import vector2 from "../../../public/img/vextor/Vector20.svg";
-import cherPheng from "../../../public/img/image/cherPheng.png";
-import cherDavan from "../../../public/img/image/cherDavan.png";
+import MentorCard from "../../components/card/MentorCard";
+import Bubbles from "../../components/card/Bubble";
+import MissionCard from "../../components/card/MissionCard";
+import VissionCard from "../../components/card/VissionCard";
+
 const AboutUsMain = () => {
   const { t } = useTranslation("about");
   return (
     <>
-      <section className="">
+      <section>
         <div>
           <img
             src={vector2}
             alt=""
-            className="absolute mt-[54px] w-[445px] h-[762px]  right-0 "
+            className="absolute mt-[54px] w-[445px] h-[762px]  right-0 overflow-hidden -z-10"
           />
         </div>
         <div>
           <img
             src={vector1}
             alt=""
-            className="absolute mt-[147px] w-[755px] h-[581px] left-0 "
+            className="absolute mt-[147px] w-[755px] h-[581px] left-0 overflow-hidden -z-10"
           />
         </div>
         <div className="justify-items-center">
@@ -35,23 +38,25 @@ const AboutUsMain = () => {
           </GlassCard>
         </div>
       </section>
-      <section className="mt-[500px]">
+      <div className="mt-[500px]">
         <div>
           <p className="text-center text-blue-700  font-bold text-heading-4">
             {t("mentor")}
           </p>
         </div>
-        <div className="flex justify-center mt-12">
-          <div className="rounded-tl-[40px] rounded-br-[40px] bg-accents-color ">
-            <p className="pt-2 pb-2 py-16 px-16 text-center font-bold text-heading-5 text-white">
-              {t("cherPheng")}
-            </p>
-          </div>
+        <div>
+          <MentorCard></MentorCard>
         </div>
-        <div className="flex justify-center">
-          <img className="w-72" src={cherPheng} alt="" />
+      </div>
+      <div className="mt-36">
+        <div className="h-[900px] w-auto flex items-center justify-center">
+          <Bubbles />
         </div>
-      </section>
+        <div className="relative bottom-[900px] z-10 flex flex-col gap-14 justify-center items-center h-screen">
+            <MissionCard/>
+            <VissionCard/>
+        </div>
+      </div>
     </>
   );
 };
