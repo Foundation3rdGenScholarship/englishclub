@@ -26,11 +26,23 @@ import C1grammar from "./page/dashboard/content/grammars/C1grammar.jsx";
 import MoreDoc from "./page/dashboard/content/grammars/MoreDoc.jsx";
 import A1A2vocabulary from "./page/dashboard/content/vocabularies/A1A2vocabulary.jsx";
 import B1B2vocabulary from "./page/dashboard/content/vocabularies/B1B2vocabulary.jsx";
-
+import { ToastContainer } from "react-toastify";
 import VerifyOTP from "./page/auth/VertifyOTP.jsx";
 import NewPassword from "./page/auth/NewPassword.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <ToastContainer
+      position="top-right" // Position of the toast
+      autoClose={3000} // Time before auto close (3s)
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light" // Change to "dark" if needed
+    />
     <Provider store={store}>
       <ProgressBar />
       <BrowserRouter>
@@ -44,6 +56,8 @@ createRoot(document.getElementById("root")).render(
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/otp-verify" element={<VerifyOTP />} />
+          <Route path="/resetpassword" element={<NewPassword />} />
           <Route element={<Dashboard />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/reading" element={<Reading />} />
@@ -57,8 +71,6 @@ createRoot(document.getElementById("root")).render(
             <Route path="/a1a2vocabulary" element={<A1A2vocabulary />} />
             <Route path="/b1b2vocanulary" element={<B1B2vocabulary />} />
           </Route>
-          <Route path="/vertifyotp" element={<VerifyOTP />} />
-          <Route path="/resetpassword" element={<NewPassword />} />
         </Routes>
       </BrowserRouter>
     </Provider>
