@@ -22,7 +22,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("login");
   const [loginUser, { isLoading }] = useLoginUserMutation();
-
+  const clientId = import.meta.env.VITE_GOOGLE_OAUTH_CLIENT_ID;
   const handleSubmit = async (values) => {
     try {
       const response = await loginUser(values).unwrap();
@@ -34,11 +34,11 @@ const Login = () => {
     } catch (error) {
       console.error("Login Error:", error); // Log the error for debugging
       if (error.status === 401) {
-        toast.error("Invalid email or password.");
+        toast.error(t("invalid email or password."));
       } else if (error.data?.detail) {
         toast.error(error.data.detail); // Show server error message
       } else {
-        toast.error("Login failed. Please try again."); // Fallback error message
+        toast.error(t("login failed. Please try again.")); // Fallback error message
       }
     }
   };
@@ -53,13 +53,13 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Google Login Error:", error); // Log the error for debugging
-      toast.error("Google login failed. Please try again.");
+      toast.error(t("Google login failed. Please try again."));
     }
   };
 
   const handleGoogleLoginFailure = (error) => {
     console.log("Login Failed: ", error);
-    toast.error("Google login failed. Please try again.");
+    toast.error(t("Google login failed. Please try again."));
   };
 
   useEffect(() => {
@@ -76,7 +76,7 @@ const Login = () => {
       .email(t("invalid email format"))
       .required(t("email is required")),
     password: Yup.string()
-      .min(6, t("minimum 6 characters"))
+      .min(8, t("minimum 8 characters"))
       .required(t("password is required")),
   });
 
@@ -85,7 +85,7 @@ const Login = () => {
   };
 
   return (
-    <GoogleOAuthProvider clientId="886296695095-1j0sdqc2r8juug5f0f99gdoclir733vm.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={clientId}>
       <AuthLayout
         theme={theme}
         logoLightMode={logolightmode}

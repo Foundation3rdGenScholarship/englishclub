@@ -24,5 +24,7 @@
   "privacy policy": "គោលការណ៍ឯកជនភាព",
   "already have an account?": "មានគណនីរួចហើយ?",
   "sign up": "បង្កើតគណនី",
-  "signing up...": "កំពុងបង្កើតគណនី..."
+  "signing up...": "កំពុងបង្កើតគណនី...",
+  "sign up Successfully!":"ចុះឈ្មោះបានដោយជោគជ័យ!",
+  "sign up failed. Please try again.":"ការចុះឈ្មោះបរាជ័យ! សូមព្យាយាមម្តងទៀត។"
 }
