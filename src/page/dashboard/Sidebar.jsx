@@ -142,6 +142,7 @@ const Sidebar = () => {
               </ul>
             )}
           </li>
+          {/* Vocabulary */}
           <li>
             <button
               type="button"

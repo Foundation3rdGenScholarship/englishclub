@@ -17,7 +17,7 @@ const AuthLayout = ({
 }) => {
   return (
     <div className="flex flex-wrap h-screen items-center justify-center bg-white dark:bg-bg-dark-mode">
-      <div className="relative flex w-full max-w-8xl overflow-hidden rounded-2xl backdrop-blur-lg min-w-[200px]">
+      <div className="relative flex w-full max-w-9xl overflow-hidden rounded-2xl backdrop-blur-lg min-w-[200px]">
         <div className="max-w-7xl w-full flex mx-auto flex-wrap">
           {/* Left - Image (Hidden on Small Screens) */}
           <div className="hidden w-full md:w-[40%] lg:flex p-4 order-2 md:order-2 lg:order-1 mx-auto">

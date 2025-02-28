@@ -1,22 +1,11 @@
 import React from "react";
-import img from "../../../../public/svg/slideshowimg.svg";
-import dashboardUser from "../../../../public/svg/dashboardUser.svg";
 import { useTranslation } from "react-i18next";
-const User = () => {
+import dashboardUser from "../../../../../public/svg/dashboardUser.svg";
+export default function Section3() {
   const { t } = useTranslation("dashboard-overview");
   return (
-    <div className="p-4 sm:ml-64 mt-[88px] h-[3000px] max-w-screen-xl">
-      <div className="flex justify-center">
-        <img src={img} alt="" />
-      </div>
-      {/* for description */}
-      <div>
-        <p className="dark:text-text-des-dark-mode text-primary-800  lg:text-heading-4 md:text-heading-6 flex justify-center lg:py-16 sm:py-8 py-4 text-center">
-          {t("whatYouFindHere")}
-          {t("special")}
-          {t("by")}  
-        </p>
-      </div>
+    <>
+      {/* fhird section */}
       <div className="flex lg:flex-nowrap flex-wrap dark:bg-primary-600 bg-[#A6E2FA] lg:px-16 md:px-8 px-4 lg:justify-between md:justify-between justify-center lg:gap-5 gap-4 lg:py-0 py-4">
         <div className="justify-center items-center ">
           <img
@@ -37,16 +26,6 @@ const User = () => {
           </p>
         </div>
       </div>
-      <div className="flex justify-center py-16">
-        <div>
-          <h2 className="dark:text-text-des-dark-mode lg:text-heading-2 md:text-heading-3 text-heading-4 text-center">
-            {t("startWith")}
-            <span className="text-accents-color">{t("fluentflow")}</span>
-          </h2>
-        </div>
-      </div>
-    </div>
+    </>
   );
-};
-
-export default User;
+}

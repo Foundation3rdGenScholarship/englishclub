@@ -2,10 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchEmailOtp,
-  selectUserPassword,
-} from "../../redux/features/user/userSlice";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HiInformationCircle } from "react-icons/hi";
 import { Alert } from "flowbite-react";
@@ -20,9 +16,9 @@ import { useTranslation } from "react-i18next";
 import OtpInput from "../../components/inputField/OtpInput";
 import AuthLayout from "../../components/layout/AuthLayout";
 import SubmitButton from "../../components/button/SubmitButton";
-
+import { useVerifyOtpMutation } from "../../redux/features/user/userSlice";
 export default function VerifyOTP() {
-  const userResponse = useSelector(selectUserPassword);
+  // const userResponse = useSelector(selectUserPassword);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -32,7 +28,16 @@ export default function VerifyOTP() {
   console.log("location: ", location);
   const email = location?.state;
   const otpBoxReference = useRef([]);
+const [verifyOtp, { isLoading }] = useVerifyOtpMutation();
 
+const handleSubmit = async (values) => {
+  try {
+    await verifyOtp({ email, otp: values.otp.join("") }).unwrap();
+    navigate("/new-password", { state: { email } });
+  } catch (error) {
+    toast.error("Failed to verify OTP");
+  }
+};
   function handleChange(value, index) {
     if (value && index < 5) {
       otpBoxReference.current[index + 1].focus();
@@ -48,26 +53,13 @@ export default function VerifyOTP() {
     }
   }
 
-  useEffect(() => {
-    if (userResponse?.status === 200) {
-      navigate("/new-password", { state: { email } });
-    }
-  }, [userResponse?.status, navigate, email]);
+  // useEffect(() => {
+  //   if (userResponse?.status === 200) {
+  //     navigate("/new-password", { state: { email } });
+  //   }
+  // }, [userResponse?.status, navigate, email]);
 
-  const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    const otp = values.otp.join("");
-    console.log("Submitting OTP: ", otp);
-    console.log("Email: ", email);
 
-    setSubmitting(true);
-
-    setTimeout(() => {
-      dispatch(fetchEmailOtp({ otp, email })).finally(() =>
-        setSubmitting(false)
-      );
-      resetForm();
-    }, 500);
-  };
   const handleGoBack = () => {
     navigate("/");
   };
@@ -113,11 +105,11 @@ export default function VerifyOTP() {
         {({ isSubmitting }) => (
           <Form className="space-y-6">
             {/* Email Input */}
-            {userResponse?.status === 409 && (
+            {/* {userResponse?.status === 409 && (
               <Alert color="failure" icon={HiInformationCircle}>
                 {userResponse?.message}
               </Alert>
-            )}
+            )} */}
             <div className="flex flex-col md:py-4">
               <div className="flex justify-between space-x-2 md:space-x-4">
                 {initialValues.otp.map((_, index) => (

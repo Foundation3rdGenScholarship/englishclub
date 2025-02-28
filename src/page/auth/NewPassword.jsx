@@ -7,16 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import resetpasswordimg from "../../../public/svg/resetpassword.svg";
 import logolightmode from "../../../public/img/logo/logo-light-mode.png";
 import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
-import {
-  fetchNewPassword,
-  selectNewPassword,
-} from "../../redux/features/user/userSlice";
 import { useTranslation } from "react-i18next";
 import AuthLayout from "../../components/layout/AuthLayout";
 import InputField from "../../components/inputField/InputField";
 import SubmitButton from "../../components/button/SubmitButton";
+import { useResetPasswordMutation } from "../../redux/features/user/userSlice";
 export default function NewPassword() {
-  const response = useSelector(selectNewPassword);
+  // const response = useSelector(selectNewPassword);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -25,12 +22,21 @@ export default function NewPassword() {
   const email = location?.state?.email;
   console.log("email in NewPassword", email);
   const [loading, setLoading] = useState(false);
+const [resetPassword, { isLoading }] = useResetPasswordMutation();
 
-  useEffect(() => {
-    if (response?.status === 200) {
-      navigate("/login", { state: { email } });
-    }
-  }, [response?.status, navigate, email]);
+const handleSubmit = async (values) => {
+  try {
+    await resetPassword({ email, ...values }).unwrap();
+    navigate("/login");
+  } catch (error) {
+    toast.error("Failed to reset password");
+  }
+};
+  // useEffect(() => {
+  //   if (response?.status === 200) {
+  //     navigate("/login", { state: { email } });
+  //   }
+  // }, [response?.status, navigate, email]);
 
   const handleGoBack = () => {
     navigate("/");

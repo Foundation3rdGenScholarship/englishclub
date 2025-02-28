@@ -1,5 +1,5 @@
 {
-  "overview": "Dashboard",
+  "overview": "Getting Start",
   "skill": "Skill",
   "reading": "Reading",
   "writing": "Writing",
@@ -12,7 +12,7 @@
   "a1a2vocabulary": "A1 A2 vocabulary",
   "b1b2vocabulary": "B1 B2 vocabulary",
   "extraVideo": "Extra Video",
-  "grammar" : "Grammar",
-  "vocabulary" : "Vocabulary",
-  "placeholder" : "Search..."
+  "grammar": "Grammar",
+  "vocabulary": "Vocabulary",
+  "placeholder": "Search..."
 }
