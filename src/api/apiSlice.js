@@ -1,8 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// Define a service using a base URL and expected endpoints
+const baseUrl = import.meta.env.VITE_BASE_URL; // Read from Vite env
+
 export const apiSlice = createApi({
   reducerPath: "apiSlice",
-  baseQuery: fetchBaseQuery({ baseUrl: `https://english-club.istad.co` }),
+  baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (build) => ({}),
 });
