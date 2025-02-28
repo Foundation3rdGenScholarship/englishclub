@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "./Sidebar";
-import User from "./content/User";
+import User from "./content/dashbaordUser/User";
 import Listening from "./content/skill/Listening";
 import Reading from "./content/skill/Reading";
 import NavbarDashboard from "../../components/header/NavbarDashboard";
