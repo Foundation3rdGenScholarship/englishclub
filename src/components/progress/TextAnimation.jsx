@@ -24,7 +24,7 @@ const TextAnimation = ({ jsonName, text1, text2, text3, className }) => {
   return (
     <span
       ref={typedRef}
-      className={`text-heading-1 font-bold text-secondary-500 ${className}`}
+      className={`font-bold text-secondary-500 ${className}`}
     >
       {t(text1)}
     </span>

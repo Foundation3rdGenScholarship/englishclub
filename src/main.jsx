@@ -31,6 +31,7 @@ import B1B2vocabulary from "./page/dashboard/content/vocabularies/B1B2vocabulary
 import { ToastContainer } from "react-toastify";
 import VerifyOTP from "./page/auth/VertifyOTP.jsx";
 import NewPassword from "./page/auth/NewPassword.jsx";
+import ReadingDetail from "./page/dashboard/content/skillDetail/ReadingDetail.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -71,6 +72,7 @@ createRoot(document.getElementById("root")).render(
               <Route path="/moredoc" element={<MoreDoc />} />
               <Route path="/a1a2vocabulary" element={<A1A2vocabulary />} />
               <Route path="/b1b2vocanulary" element={<B1B2vocabulary />} />
+              <Route path="/reading/level=a1" element={<ReadingDetail />} />
             </Route>
             <Route path="/vertifyotp" element={<VerifyOTP />} />
             <Route path="/resetpassword" element={<NewPassword />} />

@@ -46,7 +46,7 @@ export default function Navbar() {
         <div className="flex items-center gap-5 w-full justify-between">
           <SearchBar />
           <div className="flex items-center gap-4">
-            <div className="sm:flex items-center gap-4 hidden">
+            <div className="md:flex items-center gap-4 hidden">
               <ButtonLanguage className={""} />
               <ThemeToggle />
             </div>

@@ -18,7 +18,7 @@ const SearchBar = () => {
       <div className="hidden sm:block">
         <input
           type="text"
-          className="px-3 py-2 border rounded-md bg-white dark:bg-gray-700 dark:text-white w-[170px] md:w-[270px]"
+          className="px-3 py-2 border rounded-md bg-white dark:bg-gray-700 dark:text-white w-[170px] lg:w-[270px]"
           placeholder={t("placeholder")}
         />
       </div>

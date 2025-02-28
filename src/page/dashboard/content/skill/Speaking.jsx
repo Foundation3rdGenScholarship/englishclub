@@ -1,6 +1,9 @@
 import React from "react";
+import { useAllReadingQuery } from "../../../../redux/features/skill/readingSlice";
 
 const Speaking = () => {
+  const { data, isLoading } = useAllReadingQuery();
+  console.log(data);
   return (
     <div className="p-4 sm:ml-64  mt-[88px]">
       <h1 className="dark:text-white text-black">
