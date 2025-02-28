@@ -1,6 +1,7 @@
 import React from "react";
+import { NavLink } from "react-router";
 
-const CourseCard = ({ title, img, des }) => {
+const CourseCard = ({ title, img, des, link }) => {
   return (
     <div className="flex justify-center md:justify-start">
       <div className="relative flex flex-col md:flex-row items-center shadow-md">
@@ -9,13 +10,14 @@ const CourseCard = ({ title, img, des }) => {
           alt="Woman using phone"
           className=" object-cover w-[350px]  lg:w-96 md:rounded"
         />
-        <div className="block md:absolute bg-white p-6 shadow-md md:ml-6  w-[350px] md:w-[360px] lg:w-[400px] left-[90px] top-[20px] lg:left-[250px] h-[200px] lg:top-[50px] md:rounded-tl-[50px] md:rounded-br-[50px]">
-          <h2 className="text-xl font-bold text-blue-700 md:text-heading-4 lg:text-heading-3 ">
+        <div className="border-2 block md:absolute bg-white dark:bg-bg-dark-mode dark:border-primary-500 p-6 shadow-md md:ml-6  w-[350px] md:w-[360px] lg:w-[500px] left-[90px] top-[20px] lg:left-[250px] lg:top-[50px] md:rounded-tl-[50px] md:rounded-br-[50px]">
+          <NavLink
+            to={link}
+            className="text-xl font-bold text-primary-500 md:text-heading-4 lg:text-heading-3 hover:underline"
+          >
             {title}
-          </h2>
-          <p className="text-gray-700 mt-2 md:text-des lg:text-des-3">
-            {des}
-          </p>
+          </NavLink>
+          <p className="text-gray-700 dark:text-text-des-dark-mode mt-2 md:text-des-5 lg:text-des-3">{des}</p>
         </div>
       </div>
     </div>
