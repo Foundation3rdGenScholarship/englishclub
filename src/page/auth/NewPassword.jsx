@@ -29,7 +29,7 @@ const handleSubmit = async (values) => {
     await resetPassword({ email, ...values }).unwrap();
     navigate("/login");
   } catch (error) {
-    toast.error("Failed to reset password");
+    toast.error(t("failed to reset password"));
   }
 };
   // useEffect(() => {

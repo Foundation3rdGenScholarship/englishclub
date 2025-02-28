@@ -57,6 +57,16 @@ export const api = createApi({
         body: file,
       }),
     }),
+    userVerify: builder.mutation({
+      query: (token) => ({
+        url: "/users/me",
+        method: "POST",
+        body: token,
+      }),
+    }),
+     getUser: builder.query({
+      query: () => "/users", // Endpoint to fetch user data
+    }),
   }),
 });
 
@@ -68,4 +78,6 @@ export const {
   useLoginUserMutation,
   useUpdateUserInfoMutation,
   useUploadFileMutation,
+  useUserVerifyMutation,
+  useGetUserQuery
 } = api;

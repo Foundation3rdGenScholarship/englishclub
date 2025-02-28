@@ -35,7 +35,7 @@ const handleSubmit = async (values) => {
     await verifyOtp({ email, otp: values.otp.join("") }).unwrap();
     navigate("/new-password", { state: { email } });
   } catch (error) {
-    toast.error("Failed to verify OTP");
+    toast.error(t("failed to verify OTP"));
   }
 };
   function handleChange(value, index) {

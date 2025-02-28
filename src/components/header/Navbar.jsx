@@ -1,23 +1,28 @@
+// components/Navbar.jsx
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import ButtonLanguage from "../button/ButtonLanguage";
+import ThemeToggle from "../button/ThemeToggle";
+import { useSelector, useDispatch } from "react-redux";
 import logolightmode from "../../../public/img/logo/logo-light-mode.png";
 import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
 import { NavLink, Link } from "react-router"; // Fixed import
-import ThemeToggle from "../button/ThemeToggle";
-import { useSelector } from "react-redux";
 import ButtonRegister from "../button/ButtonRegister";
+import Profile from "../button/Profile"; // Import the Profile component
+import { useGetUserQuery } from "../../redux/features/user/userSlice"; // Import RTK Query hook
+import { logout } from "../../redux/features/user/authSlice"; // Import logout action
 
 export default function Navbar() {
   const theme = useSelector((state) => state.theme.theme); // Get theme from Redux store
-
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation("navbar");
   const [isScrolled, setIsScrolled] = useState(false);
-  const getTheme = localStorage.getItem("theme");
+  const dispatch = useDispatch();
 
-  console.log(theme);
+  // Fetch user data using RTK Query
+  const { data: userData } = useGetUserQuery();
 
+  // Handle scroll event
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > window.innerHeight * 0.05); // 5% of viewport height
@@ -27,24 +32,30 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Navigation menu items
   const menu = [
     { title: t("courses"), path: "/dashboard" },
     { title: t("about"), path: "/about" },
     { title: t("contact"), path: "/contact" },
   ];
 
+  // Handle logout
+  const handleLogout = () => {
+    dispatch(logout()); // Clear user data from Redux store
+  };
+
   return (
     <header
       className={`sticky top-0 z-20 transition-all duration-300 ${
         isScrolled ? "dark:bg-white/5 backdrop-blur-[18px]" : "bg-transparent"
-      } `}
+      }`}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4">
         {/* Left section */}
         <div className="flex items-center gap-5">
           <NavLink to="/">
             <img
-              src={theme === "dark" ? `${logodarkmode}` : `${logolightmode}`}
+              src={theme === "dark" ? logodarkmode : logolightmode}
               alt="Logo"
               className="w-40"
             />
@@ -59,7 +70,7 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   isActive
                     ? "text-secondary-500 transition"
-                    : "text-black dark:text-white transition "
+                    : "text-black dark:text-white transition"
                 }
               >
                 {item.title}
@@ -74,16 +85,24 @@ export default function Navbar() {
           <div className="hidden md:block">
             <ButtonLanguage />
           </div>
-          <Link
-            className="hidden md:flex rounded-md bg-secondary-500 px-4 py-1.5 text-heading-6 text-black transition font-semibold"
-            to="/login"
-          >
-            {t("register")}
-          </Link>
+
+          {/* Show Profile if logged in, otherwise show Register */}
+          {userData ? (
+            <Profile user={userData} onLogout={handleLogout} /> // Profile component
+          ) : (
+            <Link
+              className="hidden md:flex rounded-md bg-secondary-500 px-4 py-1.5 text-heading-6 text-black transition font-semibold"
+              to="/register"
+            >
+              {t("register")}
+            </Link>
+          )}
+
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden rounded-md bg-secondary-500 p-2.5 text-black transition"
+            aria-label="Toggle menu"
           >
             <span className="sr-only">Toggle menu</span>
             <svg
@@ -117,7 +136,7 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   isActive
                     ? "text-secondary-500 transition"
-                    : "text-black dark:text-white transition "
+                    : "text-black dark:text-white transition"
                 }
                 to={item.path}
               >
@@ -130,7 +149,21 @@ export default function Navbar() {
               <ButtonLanguage />
             </li>
             <li>
-              <ButtonRegister/>
+              {userData ? (
+                <button
+                  onClick={handleLogout}
+                  className="rounded-md bg-secondary-500 px-5 py-2.5 text-sm font-medium text-white transition"
+                >
+                  {t("logout")}
+                </button>
+              ) : (
+                <Link
+                  className="rounded-md bg-secondary-500 px-5 py-2.5 text-sm font-medium text-white transition"
+                  to="/register"
+                >
+                  {t("register")}
+                </Link>
+              )}
             </li>
           </div>
         </ul>

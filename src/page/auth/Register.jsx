@@ -22,7 +22,7 @@ export default function Register() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const { t } = useTranslation("register");
   const [registerUser, { isLoading }] = useRegisterUserMutation();
-
+  const clientId = import.meta.env.VITE_GOOGLE_OAUTH_CLIENT_ID;
   const strongPasswordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[A-Za-z\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{8,}$/;
 
@@ -63,14 +63,14 @@ const handleSubmit = async (values) => {
   console.log("Payload:", values); // Log the payload for debugging
   try {
     await registerUser(values).unwrap();
-    toast.success("Sign up Successfully!");
+    toast.success(t("Sign up Successfully!"));
     navigate("/login");
   } catch (error) {
     console.error("Error:", error); // Log the error for debugging
     if (error.data && error.data.message) {
       toast.error(error.data.message); // Show server error message
     } else {
-      toast.error("Sign up failed. Please try again."); // Fallback error message
+      toast.error(t("sign up failed. Please try again.")); // Fallback error message
     }
   }
 };
@@ -83,20 +83,20 @@ const handleSubmit = async (values) => {
     try {
       const tokenId = response.tokenId;
       const result = await registerUser({ tokenId }).unwrap();
-      toast.success("Sign up Successfully!");
+      toast.success(ត("sign up Successfully!"));
       navigate("/login");
     } catch (error) {
-      toast.error("Google sign up failed");
+      toast.error(t("sign up failed. Please try again."));
     }
   };
 
   const handleGoogleLoginFailure = (error) => {
     console.log("Login Failed: ", error);
-    toast.error("Google sign up failed");
+    toast.error(t("sign up failed. Please try again."));
   };
 
   return (
-    <GoogleOAuthProvider clientId="886296695095-1j0sdqc2r8juug5f0f99gdoclir733vm.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={clientId}>
       <AuthLayout
         theme={theme}
         logoLightMode={logolightmode}
