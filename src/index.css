@@ -4,9 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 /* Hide the scrollbar */
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   display: none; 
-} */
+}
 
 /* for dynamic font */
 .font-en {

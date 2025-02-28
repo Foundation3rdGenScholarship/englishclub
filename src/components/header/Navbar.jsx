@@ -6,6 +6,7 @@ import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
 import { NavLink, Link } from "react-router"; // Fixed import
 import ThemeToggle from "../button/ThemeToggle";
 import { useSelector } from "react-redux";
+import ButtonRegister from "../button/ButtonRegister";
 
 export default function Navbar() {
   const theme = useSelector((state) => state.theme.theme); // Get theme from Redux store
@@ -129,12 +130,7 @@ export default function Navbar() {
               <ButtonLanguage />
             </li>
             <li>
-              <Link
-                className="rounded-md bg-secondary-500 px-5 py-2.5 text-sm font-medium text-white transition"
-                to="/register"
-              >
-                {t("register")}
-              </Link>
+              <ButtonRegister/>
             </li>
           </div>
         </ul>

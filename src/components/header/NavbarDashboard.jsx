@@ -8,13 +8,14 @@ import { NavLink } from "react-router";
 import { useSelector } from "react-redux";
 import ThemeToggle from "../button/ThemeToggle";
 import ButtonLanguage from "../button/ButtonLanguage";
+import ButtonRegister from "../button/ButtonRegister";
 
 export default function Navbar() {
   const theme = useSelector((state) => state.theme.theme); // Get theme from Redux store
   const { t } = useTranslation("dashboard");
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-gray-200 dark:border-gray-700 dark:bg-white/5 backdrop-blur-[18px]">
-      <div className="px-3 py-3 lg:px-5 lg:pl-3 flex items-center justify-between">
+      <div className="px-3 py-2 lg:px-5 lg:pl-3 flex items-center justify-between">
         {/* Left Sidebar */}
         <div className="flex items-center w-64">
           {/* Sidebar Toggle Button */}
@@ -42,10 +43,11 @@ export default function Navbar() {
           <SearchBar />
           <div className="flex items-center gap-4">
             <div className="sm:flex items-center gap-4 hidden">
-              <ButtonLanguage />
+              <ButtonLanguage className={""} />
               <ThemeToggle />
             </div>
-            <Profile />
+            {/* <Profile /> */}
+            <ButtonRegister />
           </div>
         </div>
       </div>
