@@ -5,7 +5,7 @@ export const readingSlice = apiSlice.injectEndpoints({
     allReading: builder.query({
       // ✅ Use the correct name
       query: () => ({
-        url: `/skills/reading`,
+        url: `/skills/skill_name=speaking/level=a1`,
         method: "GET",
       }),
     }),
@@ -13,4 +13,3 @@ export const readingSlice = apiSlice.injectEndpoints({
 });
 
 export const { useAllReadingQuery } = readingSlice;
-// ❌ This is incorrect because "allReading" is the correct name

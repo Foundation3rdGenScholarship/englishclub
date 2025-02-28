@@ -58,5 +58,5 @@ export default {
       fontFamily: {},
     },
   },
-  plugins: [],
+  plugins: [require("flowbite/plugin")],
 };

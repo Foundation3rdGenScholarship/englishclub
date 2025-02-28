@@ -5,7 +5,7 @@ import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import readingJson from "../../../../data/json/reading.json";
 import TextAnimation from "../../../../components/progress/TextAnimation";
 
-const Reading = () => {
+const ReadingDetail = () => {
   const skeleton = Array(8).fill(0);
   // const { data, isLoading } = useAllReadingQuery();
   const { t } = useTranslation("reading");
@@ -55,21 +55,20 @@ const Reading = () => {
           </div>
 
           {/* Courses Section */}
-          <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
+          {/* <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
             {readingJson.map((items) => (
               <CourseCard
-                link={"/reading/level=a1"}
                 key={items.level}
                 title={items.title}
                 img={items.img}
                 des={items.description}
               />
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
   );
 };
 
-export default Reading;
+export default ReadingDetail;

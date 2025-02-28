@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 const User = () => {
   const { t } = useTranslation("dashboard-overview");
   return (
+<<<<<<< HEAD
     <div className="p-4 sm:ml-64 mt-[88px] h-[3000px] max-w-screen-xl">
       <div className="flex justify-center">
         <img src={img} alt="" />
@@ -45,6 +46,10 @@ const User = () => {
           </h2>
         </div>
       </div>
+=======
+    <div className="p-4 sm:ml-64 mt-[88px] h-[3000px]">
+      <h1 className="dark:text-white text-black">This is for User View</h1>
+>>>>>>> 213ff44c992cbbbcedcd14a36d4484ccb3555995
     </div>
   );
 };

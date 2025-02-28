@@ -11,8 +11,10 @@ import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 import { NavLink } from "react-router";
 import ThemeToggle from "../../components/button/ThemeToggle";
 import ButtonLanguage from "../../components/button/ButtonLanguage";
-import { TbTextGrammar } from "react-icons/tb";
+import { TbTextGrammar, TbVocabulary } from "react-icons/tb";
 import { MdVideoLibrary } from "react-icons/md";
+import { closeMainSidebar } from "../../redux/features/user/visibilitySlice";
+
 
 import {
   setActiveItem,
@@ -22,7 +24,8 @@ import {
 const Sidebar = () => {
   // for two language
   const { t } = useTranslation("dashboard");
-
+  const isVisible = useSelector((state) => state.visibility.isVisible);
+  console.log(isVisible);
   // import object
   const menu = menuForSidebar();
   const skill = skillForSidebar();
@@ -45,7 +48,9 @@ const Sidebar = () => {
   return (
     <aside
       id="logo-sidebar"
-      className="border-r border-gray-200 dark:border-gray-700 dark:bg-bg-dark-mode fixed top-0 left-0 z-40 w-64 h-screen sm:pt-[88px] pt-[60px] transition-transform -translate-x-full  sm:translate-x-0 bg-white"
+      className={`border-r border-gray-200 dark:border-gray-700 dark:bg-bg-dark-mode fixed top-0 left-0 z-40 w-64 h-screen sm:pt-[80px] pt-[60px] transition-transform ${
+        isVisible ? "translate-x-0" : "-translate-x-full"
+      } bg-white sm:translate-x-0 sm:block`}
       aria-label="Sidebar"
     >
       <div className="h-full px-3 pb-4 overflow-y-auto dark:bg-white/5 backdrop-blur-[18px] pt-6">
@@ -149,9 +154,9 @@ const Sidebar = () => {
               onClick={() => handleDropdown("vocabulary")}
               className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-primary-100 dark:text-white dark:hover:bg-primary-950"
             >
-              <TbTextGrammar />
+              <TbVocabulary />
               <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
-                {t("grammar")}
+                {t("vocabulary")}
               </span>
               {openDropdowns.includes("vocabulary") ? (
                 <IoIosArrowDown />
