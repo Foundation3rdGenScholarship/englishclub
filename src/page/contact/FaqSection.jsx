@@ -3,9 +3,10 @@ import GlassCard from "../../components/card/GlassCard";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { BiSolidMessageSquareDetail } from "react-icons/bi";
 import { useTranslation } from "react-i18next";
+import Faq from "../../../public/svg/faq.svg";
 
 const FAQSection = () => {
-  const { t } = useTranslation("contact"); // Ensure this matches your namespace
+  const { t } = useTranslation("contact");
   const faqs = [
     {
       question: t("question1"),
@@ -40,14 +41,14 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="max-w-7xl w-full overflow-hidden pt-14 px-6 sm:px-14 min-w-[200px] flex flex-col md:flex-row justify-center items-center gap-8 m-auto">
+    <div className="flex flex-col md:flex-row justify-center items-center gap-8 py-14 m-auto">
       {/* Left Image Section - Stays Fixed */}
       <div className="w-full flex justify-center md:w-1/2 flex-shrink-0">
-        <img src="img/contactpage-img/FAQs-bro.svg" alt="Contact Us" />
+        <img src={Faq} alt="Contact Us" />
       </div>
 
       {/* FAQ Section */}
-      <div className="w-full max-w-xl rounded-xl px-6">
+      <div className="w-full max-w-xl rounded-xl ">
         {/* FAQ List */}
         <div className=" text-black dark:text-white">
           {faqs.map((faq, index) => (
