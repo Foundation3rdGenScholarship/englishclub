@@ -1,18 +1,17 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAllReadingQuery } from "../../../../redux/features/skill/readingSlice";
 import CourseCard from "../../../../components/card/CourseCard";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
-import readingJson from "../../../../data/json/reading.json";
-import TextAnimation from "../../../../components/progress/TextAnimation";
 import NotFound from "../../../err/NotFound";
-import { FaS } from "react-icons/fa6";
 import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
+import { useNavigate } from "react-router-dom";
 
 const ReadingDetail = () => {
-  const skeleton = Array(8).fill(0);
   const { data, isLoading, error } = useAllReadingQuery();
   const { t } = useTranslation("reading");
   const exercises = data?.flatMap((item) => item.exercises) || [];
+  const navigate = useNavigate(); // Initialize navigate hook
 
   if (isLoading) {
     return (
@@ -26,6 +25,14 @@ const ReadingDetail = () => {
   if (error) {
     return <NotFound />; // Handle errors properly
   }
+
+  // Handle click on card to get exercise ID and navigate to another page
+  const handleCardClick = (id) => {
+    navigate(`/exercises/${id}`); // Navigate to exercise detail page
+    console.log(id);
+    const fullUrl = `/exercises/${id}`;
+    console.log("Full URL:", fullUrl); // This should log the full URL
+  };
 
   return (
     <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
@@ -63,6 +70,7 @@ const ReadingDetail = () => {
                 title={item.title}
                 img={item.thumbnail}
                 des={item.description}
+                onClick={() => handleCardClick(item.ex_uuid)} // Passing the ex_uuid correctly
               />
             ))}
           </div>
