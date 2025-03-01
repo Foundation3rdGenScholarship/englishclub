@@ -48,8 +48,8 @@ const AskSection = () => {
         {/* FAQ Section */}
 
         <GlassCard className="rounded-[0px_2em_0px_2em] py-14">
-          <div className="w-full md:w-[500px] rounded-xl p-6 text-black dark:text-white ">
-            <div className="flex justify-center">
+          <div className="w-full md:w-[500px] rounded-xl p-6 text-black dark:text-white order-1">
+            <div className="flex justify-center ">
               <h2 className="text-heading-3 font-bold flex items-center gap-2">
                 <span className="text-primary-500">
                   <BiSolidMessageSquareDetail />
@@ -159,7 +159,7 @@ const AskSection = () => {
 
         {/* Right image */}
 
-        <div className=" w-full flex justify-center md:w-1/2">
+        <div className=" w-full flex justify-center md:w-1/2 order-2">
           <img src={questionGuy} alt="Contact Us" />
         </div>
       </div>

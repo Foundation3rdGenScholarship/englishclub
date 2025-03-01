@@ -43,12 +43,12 @@ const FAQSection = () => {
   return (
     <div className="flex flex-col md:flex-row justify-center items-center gap-8 py-14 m-auto">
       {/* Left Image Section - Stays Fixed */}
-      <div className="w-full flex justify-center md:w-1/2 flex-shrink-0">
+      <div className="w-full flex justify-center md:w-1/2 flex-shrink-0 order-2 md:order-1">
         <img src={Faq} alt="Contact Us" />
       </div>
 
       {/* FAQ Section */}
-      <div className="w-full max-w-xl rounded-xl ">
+      <div className="w-full max-w-xl rounded-xl  md:w-1/2 order-1 md:order-2">
         {/* FAQ List */}
         <div className=" text-black dark:text-white">
           {faqs.map((faq, index) => (
