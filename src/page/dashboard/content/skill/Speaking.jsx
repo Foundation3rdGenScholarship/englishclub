@@ -2,8 +2,15 @@ import React from "react";
 import { useAllReadingQuery } from "../../../../redux/features/skill/readingSlice";
 
 const Speaking = () => {
-  const { data, isLoading } = useAllReadingQuery();
-  console.log(data);
+  const { data, isLoading, error } = useAllReadingQuery();
+
+  console.log({ data, isLoading, error }); // Debugging log
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+
   return (
     <div className="p-4 sm:ml-64  mt-[88px]">
       <h1 className="dark:text-white text-black">

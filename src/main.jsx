@@ -53,7 +53,7 @@ createRoot(document.getElementById("root")).render(
           <Routes>
             <Route element={<RootLayout />}>
               <Route path="/" element={<HomeMain />} />
-              <Route path="/courses" element={<CoursesMain />} />
+              {/* <Route path="/courses" element={<CoursesMain />} /> */}
               <Route path="/contact" element={<Contact />} />
               <Route path="/about" element={<AboutUsMain />} />
             </Route>
@@ -72,7 +72,12 @@ createRoot(document.getElementById("root")).render(
               <Route path="/moredoc" element={<MoreDoc />} />
               <Route path="/a1a2vocabulary" element={<A1A2vocabulary />} />
               <Route path="/b1b2vocanulary" element={<B1B2vocabulary />} />
-              <Route path="/reading/level=a1" element={<ReadingDetail />} />
+            </Route>
+            <Route element={<App />}>
+              <Route
+                path="/courses/reading/level=a1"
+                element={<ReadingDetail />}
+              />
             </Route>
             <Route path="/vertifyotp" element={<VerifyOTP />} />
             <Route path="/resetpassword" element={<NewPassword />} />

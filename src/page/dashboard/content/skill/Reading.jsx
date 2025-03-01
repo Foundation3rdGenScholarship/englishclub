@@ -15,7 +15,7 @@ const Reading = () => {
       <div className="max-w-full">
         <div className="container mx-auto px-4">
           <div className="text-heading-4 h-[100px] md:h-auto md:text-heading-2 flex items-center gap-2">
-            <h1 className="text-text-des-light-mode dark:text-primary-500 py-5 font-bold">
+            <h1 className="text-primary-500 dark:text-primary-500 py-5 font-bold">
               {t("title")}
             </h1>
             <TextAnimation
@@ -58,7 +58,7 @@ const Reading = () => {
           <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
             {readingJson.map((items) => (
               <CourseCard
-                link={"/reading/level=a1"}
+                link={items.link}
                 key={items.level}
                 title={items.title}
                 img={items.img}
