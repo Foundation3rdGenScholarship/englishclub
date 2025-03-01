@@ -1,15 +1,10 @@
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { useAllReadingQuery } from "../../../../redux/features/skill/readingSlice";
 import CourseCard from "../../../../components/card/CourseCard";
-import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
-import readingJson from "../../../../data/json/reading.json";
 import TextAnimation from "../../../../components/progress/TextAnimation";
 
-const Reading = () => {
-  const skeleton = Array(8).fill(0);
-  // const { data, isLoading } = useAllReadingQuery();
-  const { t } = useTranslation("reading");
-
+export const OverSkill = () => {
+  const { t } = useTranslation("over-skill");
   return (
     <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
       <div className="max-w-full">
@@ -30,7 +25,7 @@ const Reading = () => {
           <div className="rounded-lg overflow-hidden">
             <div className="relative">
               <img
-                src="https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/max_1300x1300/public/2021-10/RS5825_169280449-hig.jpg?itok=wYILtdrb"
+                src="https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/1280x500/public/2023-04/RS9171_GettyImages-1391836113_1440x960.jpg?itok=tOgk6wtV"
                 alt="People collaborating at work"
                 className="w-full h-[400px] object-cover"
               />
@@ -56,7 +51,7 @@ const Reading = () => {
 
           {/* Courses Section */}
           <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
-            {readingJson.map((items) => (
+            {/* {readingJson.map((items) => (
               <CourseCard
                 link={items.link}
                 key={items.level}
@@ -64,12 +59,10 @@ const Reading = () => {
                 img={items.img}
                 des={items.description}
               />
-            ))}
+            ))} */}
           </div>
         </div>
       </div>
     </div>
   );
 };
-
-export default Reading;

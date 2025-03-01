@@ -15,7 +15,6 @@ import { TbTextGrammar, TbVocabulary } from "react-icons/tb";
 import { MdVideoLibrary } from "react-icons/md";
 import { closeMainSidebar } from "../../redux/features/user/visibilitySlice";
 
-
 import {
   setActiveItem,
   toggleDropdown,
@@ -37,12 +36,13 @@ const Sidebar = () => {
   const { activeItem, openDropdowns } = useSelector((state) => state.sidebar);
 
   // handle click
-  const handleClick = (item) => {
-    dispatch(setActiveItem(item));
+  const handleAction = (item, dropdown) => {
+    dispatch(setActiveItem(item)); // Set active item
+    dispatch(toggleDropdown(dropdown)); // Toggle dropdown
   };
 
-  const handleDropdown = (dropdown) => {
-    dispatch(toggleDropdown(dropdown));
+  const handleClick = (item) => {
+    dispatch(setActiveItem(item));
   };
 
   return (
@@ -64,7 +64,7 @@ const Sidebar = () => {
                   ? "bg-primary-100 dark:bg-primary-950"
                   : ""
               }`}
-              onClick={() => handleClick("dashboard")}
+              onClick={() => handleAction("dashboard", "dashboard")}
             >
               <FaHome className="size-6" />
               <span className="flex-1 ms-3 whitespace-nowrap">
@@ -75,22 +75,27 @@ const Sidebar = () => {
 
           {/* Skills */}
           <li>
-            <button
+            <NavLink
               type="button"
-              onClick={() => handleDropdown("dashboard")}
-              className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-primary-100 dark:text-white dark:hover:bg-primary-950"
+              to="/skills"
+              onClick={() => handleAction("skill", "skill")}
+              className={`flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-primary-100 dark:text-white dark:hover:bg-primary-950 ${
+                activeItem === "skill"
+                  ? "bg-primary-100 dark:bg-primary-950"
+                  : ""
+              }`}
             >
               <SiHyperskill />
               <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
                 {t("skill")}
               </span>
-              {openDropdowns.includes("dashboard") ? (
+              {openDropdowns.includes("skill") ? (
                 <IoIosArrowDown />
               ) : (
                 <IoIosArrowForward />
               )}
-            </button>
-            {openDropdowns.includes("dashboard") && (
+            </NavLink>
+            {openDropdowns.includes("skill") && (
               <ul className="py-2 space-y-2">
                 {skill.map((skillItem) => (
                   <li key={skillItem.text}>
@@ -112,10 +117,15 @@ const Sidebar = () => {
           </li>
           {/* Grammar */}
           <li>
-            <button
+            <NavLink
               type="button"
-              onClick={() => handleDropdown("grammar")}
-              className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-primary-100 dark:text-white dark:hover:bg-primary-950"
+              to="/over-grammar"
+              onClick={() => handleAction("grammar", "grammar")}
+              className={`flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-primary-100 dark:text-white dark:hover:bg-primary-950 ${
+                activeItem === "grammar"
+                  ? "bg-primary-100 dark:bg-primary-950"
+                  : ""
+              }`}
             >
               <TbTextGrammar />
               <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
@@ -126,7 +136,7 @@ const Sidebar = () => {
               ) : (
                 <IoIosArrowForward />
               )}
-            </button>
+            </NavLink>
             {openDropdowns.includes("grammar") && (
               <ul className="py-2 space-y-2">
                 {grammar.map((grammarItem) => (
@@ -149,10 +159,14 @@ const Sidebar = () => {
           </li>
           {/* Vocabulary */}
           <li>
-            <button
-              type="button"
-              onClick={() => handleDropdown("vocabulary")}
-              className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-primary-100 dark:text-white dark:hover:bg-primary-950"
+            <NavLink
+            to="/over-vocabulary"
+              onClick={() => handleAction("vocabulary", "vocabulary")}
+              className={`flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-primary-100 dark:text-white dark:hover:bg-primary-950 ${
+                activeItem === "vocabulary"
+                  ? "bg-primary-100 dark:bg-primary-950"
+                  : ""
+              }`}
             >
               <TbVocabulary />
               <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
@@ -163,7 +177,7 @@ const Sidebar = () => {
               ) : (
                 <IoIosArrowForward />
               )}
-            </button>
+            </NavLink>
             {openDropdowns.includes("vocabulary") && (
               <ul className="py-2 space-y-2">
                 {vocabulary.map((grammarItem) => (

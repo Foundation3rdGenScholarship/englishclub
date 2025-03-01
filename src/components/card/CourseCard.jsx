@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router";
 
-const CourseCard = ({ title, img, des, link }) => {
+const CourseCard = ({ title, img, des, link,onClick }) => {
   return (
-    <div className="flex justify-center md:justify-start">
+    <div onClick={onClick} className="flex justify-center md:justify-start">
       <div className="relative flex flex-col md:flex-row items-center shadow-md">
         <img
           src={img} // Replace with your actual image path
