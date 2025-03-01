@@ -13,4 +13,3 @@ export const speakingSlice = apiSlice.injectEndpoints({
 });
 
 export const { useAllSpeakingQuery } = speakingSlice;
-// ❌ This is incorrect because "allReading" is the correct name

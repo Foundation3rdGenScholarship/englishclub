@@ -3,15 +3,16 @@ import { useTranslation } from "react-i18next";
 import { useAllReadingQuery } from "../../../../redux/features/skill/readingSlice";
 import CourseCard from "../../../../components/card/CourseCard";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
-import NotFound from "../../../err/NotFound";
 import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
 import { useNavigate } from "react-router-dom";
+import ServerErrorPage from "../../../err/ServerErrorPage";
 
 const ReadingDetail = () => {
   const { data, isLoading, error } = useAllReadingQuery();
   const { t } = useTranslation("reading");
   const exercises = data?.flatMap((item) => item.exercises) || [];
   const navigate = useNavigate(); // Initialize navigate hook
+  console.log(exercises);
 
   if (isLoading) {
     return (
@@ -23,7 +24,7 @@ const ReadingDetail = () => {
   }
 
   if (error) {
-    return <NotFound />; // Handle errors properly
+    return <ServerErrorPage />; // Handle errors properly
   }
 
   // Handle click on card to get exercise ID and navigate to another page

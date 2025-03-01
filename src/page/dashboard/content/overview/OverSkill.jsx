@@ -1,11 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import TextAnimation from "../../../../components/progress/TextAnimation";
-import writingJson from "../../../../data/json/writingJson.json";
 import CourseCard from "../../../../components/card/CourseCard";
+import TextAnimation from "../../../../components/progress/TextAnimation";
 
-const Writing = () => {
-  const { t } = useTranslation("writing");
+export const OverSkill = () => {
+  const { t } = useTranslation("over-skill");
   return (
     <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
       <div className="max-w-full">
@@ -26,7 +25,7 @@ const Writing = () => {
           <div className="rounded-lg overflow-hidden">
             <div className="relative">
               <img
-                src="https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/max_1300x1300/public/RS7522_ThinkstockPhotos-622015126-hig_0.jpg?itok=qHpUdRl_"
+                src="https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/1280x500/public/2023-04/RS9171_GettyImages-1391836113_1440x960.jpg?itok=tOgk6wtV"
                 alt="People collaborating at work"
                 className="w-full h-[400px] object-cover"
               />
@@ -52,7 +51,7 @@ const Writing = () => {
 
           {/* Courses Section */}
           <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
-            {writingJson.map((items) => (
+            {/* {readingJson.map((items) => (
               <CourseCard
                 link={items.link}
                 key={items.level}
@@ -60,12 +59,10 @@ const Writing = () => {
                 img={items.img}
                 des={items.description}
               />
-            ))}
+            ))} */}
           </div>
         </div>
       </div>
     </div>
   );
 };
-
-export default Writing;

@@ -33,6 +33,9 @@ import VerifyOTP from "./page/auth/VertifyOTP.jsx";
 import NewPassword from "./page/auth/NewPassword.jsx";
 import ReadingDetail from "./page/dashboard/content/skillDetail/ReadingDetail.jsx";
 import ExerciseDetail from "./page/dashboard/content/exercises/ExerciseDetail.jsx";
+import { OverSkill } from "./page/dashboard/content/overview/OverSkill.jsx";
+import { OverGrammar } from "./page/dashboard/content/overview/OverGrammar.jsx";
+import { OverVocabulary } from "./page/dashboard/content/overview/OverVocabulary.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -79,6 +82,9 @@ createRoot(document.getElementById("root")).render(
                 path="/courses/reading/level=a1"
                 element={<ReadingDetail />}
               />
+              <Route path="/skills" element={<OverSkill />} />
+              <Route path="/over-grammar" element={<OverGrammar />} />
+              <Route path="/over-vocabulary" element={<OverVocabulary />} />
               <Route path="/exercises/:ex_uuid" element={<ExerciseDetail />} />
             </Route>
             <Route path="/vertifyotp" element={<VerifyOTP />} />
