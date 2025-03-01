@@ -6,12 +6,12 @@ export default function Section3() {
   return (
     <>
       {/* fhird section */}
-      <div className="flex lg:flex-nowrap flex-wrap dark:bg-primary-600 bg-[#A6E2FA] lg:px-16 md:px-8 px-4 lg:justify-between md:justify-between justify-center lg:gap-5 gap-4 lg:py-0 py-4">
+      <div className="flex lg:flex-nowrap flex-wrap dark:bg-primary-600 bg-[#A6E2FA] lg:px-16 md:px-8 px-4 lg:justify-between md:justify-center justify-center lg:gap-5 gap-4 lg:py-0 py-4">
         <div className="justify-center items-center ">
           <img
             src={dashboardUser}
             alt="dashboardUser"
-            className="lg:w-96 lg:h-96 md:w-80 mg:h-80 h-72 w-72"
+            className="lg:w-96 lg:h-96 md:w-80 md:h-80 sm:w-72 sm:h-64 h-60 w-64"
           />
         </div>
         <div className="flex flex-col justify-center items-center gap-4">
