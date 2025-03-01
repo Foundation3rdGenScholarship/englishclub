@@ -16,29 +16,36 @@ import loginimg from "../../../public/svg/login.svg";
 import GoogleLoginButton from "../../components/button/GoogleLoginButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useLoginUserMutation } from "../../redux/features/user/userSlice";
-import { storeAccessToken } from "../../lib/secureLocalStorage";
+import { getAccessToken, storeAccessToken } from "../../lib/secureLocalStorage";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/features/user/authSlice";
+
 const Login = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const navigate = useNavigate();
   const { t } = useTranslation("login");
   const [loginUser, { isLoading }] = useLoginUserMutation();
+  const dispatch = useDispatch(); // Add this line
   const clientId = import.meta.env.VITE_GOOGLE_OAUTH_CLIENT_ID;
+
   const handleSubmit = async (values) => {
     try {
       const response = await loginUser(values).unwrap();
       console.log(response);
+
       if (response.access_token) {
-        storeAccessToken(response);
+        storeAccessToken(response); // Store the access token
+        dispatch(login(response.user)); // Dispatch the login action with user data
         navigate("/");
       }
     } catch (error) {
-      console.error("Login Error:", error); // Log the error for debugging
+      console.error("Login Error:", error);
       if (error.status === 401) {
         toast.error(t("invalid email or password."));
       } else if (error.data?.detail) {
-        toast.error(error.data.detail); // Show server error message
+        toast.error(error.data.detail);
       } else {
-        toast.error(t("login failed. Please try again.")); // Fallback error message
+        toast.error(t("login failed. Please try again."));
       }
     }
   };
@@ -47,12 +54,14 @@ const Login = () => {
     try {
       const tokenId = response.tokenId;
       const result = await loginUser({ tokenId }).unwrap();
+
       if (result.access_token) {
-        storeAccessToken(result);
+        storeAccessToken(result); // Store the access token
+        dispatch(login(result.user)); // Dispatch the login action with user data
         navigate("/");
       }
     } catch (error) {
-      console.error("Google Login Error:", error); // Log the error for debugging
+      console.error("Google Login Error:", error);
       toast.error(t("Google login failed. Please try again."));
     }
   };

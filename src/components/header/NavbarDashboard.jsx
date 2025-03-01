@@ -4,14 +4,17 @@ import Profile from "../button/Profile";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import SearchBar from "../search/SearchBar";
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router";
+import { NavLink, Link } from "react-router-dom"; // Fixed import
 import { useSelector } from "react-redux";
 import ThemeToggle from "../button/ThemeToggle";
 import ButtonLanguage from "../button/ButtonLanguage";
-
-export default function Navbar() {
+import { selectIsLoginIn } from "../../redux/features/user/authSlice"; // Import the login selector
+import RegisterBtn from "../button/RegisterBtn";
+export default function NavbarDashboard() {
   const theme = useSelector((state) => state.theme.theme); // Get theme from Redux store
-  const { t } = useTranslation("dashboard");
+  const isLoggedIn = useSelector(selectIsLoginIn); // Get login status from Redux store
+  const { t } = useTranslation("navbar");
+
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-gray-200 dark:border-gray-700 dark:bg-white/5 backdrop-blur-[18px]">
       <div className="px-3 py-3 lg:px-5 lg:pl-3 flex items-center justify-between">
@@ -37,15 +40,16 @@ export default function Navbar() {
             />
           </NavLink>
         </div>
+
         {/* Right Sidebar */}
         <div className="flex items-center gap-5 w-full justify-between">
           <SearchBar />
           <div className="flex items-center gap-4">
             <div className="sm:flex items-center gap-4 hidden">
-              <ButtonLanguage />
               <ThemeToggle />
+              <ButtonLanguage />
             </div>
-            <Profile />
+            {isLoggedIn ? <Profile /> : <RegisterBtn />}
           </div>
         </div>
       </div>
