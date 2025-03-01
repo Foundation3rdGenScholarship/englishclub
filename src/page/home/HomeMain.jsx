@@ -1,6 +1,6 @@
 import React from "react";
 import Hero from "./Hero";
-import shap from "../../../public/svg.home/1.svg";
+import shap from "../../../public/svg/1.svg";
 
 const HomeMain = () => {
   return (

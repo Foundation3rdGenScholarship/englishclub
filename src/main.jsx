@@ -1,4 +1,6 @@
 import { StrictMode } from "react";
+import "flowbite";
+import { Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import "./index.css";
@@ -8,18 +10,75 @@ import RootLayout from "./components/layout/RootLayout.jsx";
 import ProgressBar from "./components/progress/ProgressBar.jsx";
 import "./i18n.js";
 import CoursesMain from "./page/courses/CoursesMain.jsx";
+import Login from "./page/auth/Login.jsx";
+import { store } from "./app/store.js";
+import { Provider } from "react-redux";
+import Register from "./page/auth/Register.jsx";
+import ForgotPassword from "./page/auth/ForgotPassword.jsx";
+import Dashboard from "./page/dashboard/Dashboard.jsx";
+import Contact from "./page/contact/ContactMain.jsx";
 import AboutUsMain from "./page/aboutus/AboutUsMain.jsx";
+import Reading from "./page/dashboard/content/skill/Reading.jsx";
+import Listening from "./page/dashboard/content/skill/Listening.jsx";
+import Writing from "./page/dashboard/content/skill/Writing.jsx";
+import Speaking from "./page/dashboard/content/skill/Speaking.jsx";
+import A1A2grammar from "./page/dashboard/content/grammars/A1A2grammar.jsx";
+import B1B2grammar from "./page/dashboard/content/grammars/B1B2grammar.jsx";
+import C1grammar from "./page/dashboard/content/grammars/C1grammar.jsx";
+import MoreDoc from "./page/dashboard/content/grammars/MoreDoc.jsx";
+import A1A2vocabulary from "./page/dashboard/content/vocabularies/A1A2vocabulary.jsx";
+import B1B2vocabulary from "./page/dashboard/content/vocabularies/B1B2vocabulary.jsx";
+import { ToastContainer } from "react-toastify";
+import VerifyOTP from "./page/auth/VertifyOTP.jsx";
+import NewPassword from "./page/auth/NewPassword.jsx";
+import ReadingDetail from "./page/dashboard/content/skillDetail/ReadingDetail.jsx";
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <ProgressBar />
-    <BrowserRouter>
-      <Routes>
-        <Route element={<RootLayout />}>
-          <Route path="/" element={<HomeMain />} />
-          <Route path="/courses" element={<CoursesMain />} />
-          <Route path="/about" element={<AboutUsMain/>}/>
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  </StrictMode>
+  <Suspense>
+    <StrictMode>
+      <ToastContainer
+        position="top-right" // Position of the toast
+        autoClose={3000} // Time before auto close (3s)
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light" // Change to "dark" if needed
+      />
+      <Provider store={store}>
+        <ProgressBar />
+        <BrowserRouter>
+          <Routes>
+            <Route element={<RootLayout />}>
+              <Route path="/" element={<HomeMain />} />
+              <Route path="/courses" element={<CoursesMain />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/about" element={<AboutUsMain />} />
+            </Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route element={<Dashboard />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/reading" element={<Reading />} />
+              <Route path="/listening" element={<Listening />} />
+              <Route path="/writing" element={<Writing />} />
+              <Route path="/speaking" element={<Speaking />} />
+              <Route path="/a1a2grammar" element={<A1A2grammar />} />
+              <Route path="/b1b2grammar" element={<B1B2grammar />} />
+              <Route path="/c1grammar" element={<C1grammar />} />
+              <Route path="/moredoc" element={<MoreDoc />} />
+              <Route path="/a1a2vocabulary" element={<A1A2vocabulary />} />
+              <Route path="/b1b2vocanulary" element={<B1B2vocabulary />} />
+              <Route path="/reading/level=a1" element={<ReadingDetail />} />
+            </Route>
+            <Route path="/vertifyotp" element={<VerifyOTP />} />
+            <Route path="/resetpassword" element={<NewPassword />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </StrictMode>
+  </Suspense>
 );
