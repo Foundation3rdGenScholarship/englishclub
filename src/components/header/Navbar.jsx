@@ -1,48 +1,43 @@
-// components/Navbar.jsx
+"use client";
+
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import ButtonLanguage from "../button/ButtonLanguage";
-import ThemeToggle from "../button/ThemeToggle";
-import { useSelector, useDispatch } from "react-redux";
 import logolightmode from "../../../public/img/logo/logo-light-mode.png";
 import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
-import { NavLink, Link } from "react-router"; // Fixed import
-import ButtonRegister from "../button/ButtonRegister";
-import Profile from "../button/Profile"; // Import the Profile component
-import { useGetUserQuery } from "../../redux/features/user/userSlice"; // Import RTK Query hook
-import { logout } from "../../redux/features/user/authSlice"; // Import logout action
+import { NavLink, Link } from "react-router-dom";
+import ThemeToggle from "../button/ThemeToggle";
+import { useSelector } from "react-redux";
+import Profile from "../button/Profile";
+import {
+  selectIsLoginIn,
+  selectUser,
+} from "../../redux/features/user/authSlice";
+import RegisterBtn from "../button/RegisterBtn";
 
 export default function Navbar() {
-  const theme = useSelector((state) => state.theme.theme); // Get theme from Redux store
+  const theme = useSelector((state) => state.theme.theme);
+  const isLoggedIn = useSelector(selectIsLoginIn);
+  const user = useSelector(selectUser);
+
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation("navbar");
   const [isScrolled, setIsScrolled] = useState(false);
-  const dispatch = useDispatch();
-
-  // Fetch user data using RTK Query
-  const { data: userData } = useGetUserQuery();
-
-  // Handle scroll event
+  console.log("User:", user);
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > window.innerHeight * 0.05); // 5% of viewport height
+      setIsScrolled(window.scrollY > window.innerHeight * 0.05);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Navigation menu items
   const menu = [
     { title: t("courses"), path: "/dashboard" },
     { title: t("about"), path: "/about" },
     { title: t("contact"), path: "/contact" },
   ];
-
-  // Handle logout
-  const handleLogout = () => {
-    dispatch(logout()); // Clear user data from Redux store
-  };
 
   return (
     <header
@@ -85,24 +80,11 @@ export default function Navbar() {
           <div className="hidden md:block">
             <ButtonLanguage />
           </div>
-
-          {/* Show Profile if logged in, otherwise show Register */}
-          {userData ? (
-            <Profile user={userData} onLogout={handleLogout} /> // Profile component
-          ) : (
-            <Link
-              className="hidden md:flex rounded-md bg-secondary-500 px-4 py-1.5 text-heading-6 text-black transition font-semibold"
-              to="/register"
-            >
-              {t("register")}
-            </Link>
-          )}
-
+          {isLoggedIn ? <Profile user={user} /> : <RegisterBtn />}
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden rounded-md bg-secondary-500 p-2.5 text-black transition"
-            aria-label="Toggle menu"
           >
             <span className="sr-only">Toggle menu</span>
             <svg
@@ -148,23 +130,15 @@ export default function Navbar() {
             <li className="mt-1 flex gap-2 items-center justify-center">
               <ButtonLanguage />
             </li>
-            <li>
-              {userData ? (
-                <button
-                  onClick={handleLogout}
-                  className="rounded-md bg-secondary-500 px-5 py-2.5 text-sm font-medium text-white transition"
-                >
-                  {t("logout")}
-                </button>
-              ) : (
-                <Link
-                  className="rounded-md bg-secondary-500 px-5 py-2.5 text-sm font-medium text-white transition"
-                  to="/register"
-                >
-                  {t("register")}
-                </Link>
-              )}
-            </li>
+            {isLoggedIn ? (
+              <li className="md:hidden">
+                <Profile user={user} />
+              </li>
+            ) : (
+              <li>
+                <RegisterBtn />
+              </li>
+            )}
           </div>
         </ul>
       </div>
