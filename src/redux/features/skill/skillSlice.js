@@ -8,7 +8,7 @@ export const skillSlice = apiSlice.injectEndpoints({
       transformResponse: (response) => response.payload,
     }),
     allReading: builder.query({
-      query: () => `/skills?skill_name=reading&level=a1`,
+      query: () => `/skills/skill_name=reading/level=a1`,
       method: "GET",
       transformResponse: (response) => response.payload,
     }),
