@@ -82,6 +82,10 @@ createRoot(document.getElementById("root")).render(
                 path="/courses/reading/level=a1"
                 element={<ReadingDetail />}
               />
+              <Route
+                path="/courses/reading/level=a2"
+                element={<ReadingDetail />}
+              />
               <Route path="/skills" element={<OverSkill />} />
               <Route path="/over-grammar" element={<OverGrammar />} />
               <Route path="/over-vocabulary" element={<OverVocabulary />} />
