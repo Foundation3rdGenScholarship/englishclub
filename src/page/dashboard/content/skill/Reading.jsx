@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { useAllReadingQuery } from "../../../../redux/features/skill/readingSlice";
 import CourseCard from "../../../../components/card/CourseCard";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import readingJson from "../../../../data/json/reading.json";
@@ -7,7 +6,6 @@ import TextAnimation from "../../../../components/progress/TextAnimation";
 
 const Reading = () => {
   const skeleton = Array(8).fill(0);
-  // const { data, isLoading } = useAllReadingQuery();
   const { t } = useTranslation("reading");
 
   return (

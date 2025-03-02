@@ -1,6 +1,5 @@
 import React from "react";
-import { useAllReadingQuery } from "../../../../redux/features/skill/readingSlice";
-
+import { useAllReadingQuery } from "../../../../redux/features/skill/skillSlice";
 const Speaking = () => {
   const { data, isLoading, error } = useAllReadingQuery();
 
