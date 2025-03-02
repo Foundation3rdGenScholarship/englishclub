@@ -2,23 +2,28 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import CourseCard from "../../../../components/card/CourseCard";
 import TextAnimation from "../../../../components/progress/TextAnimation";
+import { useAllSkillQuery } from "../../../../redux/features/skill/skillSlice";
 
 export const OverSkill = () => {
   const { t } = useTranslation("over-skill");
+  const { data } = useAllSkillQuery();
+  console.log(data);
   return (
     <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
       <div className="max-w-full">
         <div className="container mx-auto px-4">
-          <div className="text-heading-4 h-[100px] md:h-auto md:text-heading-2 flex items-center gap-2">
-            <h1 className="text-primary-500 dark:text-primary-500 py-5 font-bold">
-              {t("title")}
-            </h1>
-            <TextAnimation
-              jsonName={"reading"}
-              text1={"readingHere"}
-              text2={"fluentflow"}
-              text3={"moreKnow"}
-            />
+          <div className="text-heading-4 h-[100px] md:h-auto xl:text-heading-2 flex items-center gap-2">
+            <div className="flex flex-col md:flex-row items-center">
+              <h1 className="text-primary-500 dark:text-primary-500 py-5 font-bold">
+                {t("title")}
+              </h1>
+              <TextAnimation
+                jsonName={"reading"}
+                text1={"readingHere"}
+                text2={"fluentflow"}
+                text3={"moreKnow"}
+              />
+            </div>
           </div>
 
           {/* Hero Section */}
@@ -46,6 +51,18 @@ export const OverSkill = () => {
           <div className="p-4">
             <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
               {t("description")}
+            </p>
+            <h1 className="text-heading-3 text-primary-500 dark:text-primary-500 py-5 font-bold">
+              {t("title2")}
+            </h1>
+            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+              {t("description2")}
+            </p>
+            <h1 className="text-heading-3 text-primary-500 dark:text-primary-500 py-5 font-bold">
+              {t("title3")}
+            </h1>
+            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+              {t("description3")}
             </p>
           </div>
 
