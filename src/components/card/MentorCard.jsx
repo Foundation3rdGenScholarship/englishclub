@@ -25,13 +25,13 @@ export default function MentorCard() {
             className="p-3"
             href="http://linkedin.com/in/kim-chansokpheng-6b6513267"
           >
-            <FaLinkedinIn className="size-9 text-primary-950 hover:text-[#1560BD]" />
+            <FaLinkedinIn className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
           </a>
           <a className="p-3" href="http://">
-            <IoMdMail className="size-9 text-primary-950 hover:text-[#1560BD]" />
+            <IoMdMail className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
           </a>
           <a className="p-3" href="http://">
-            <FaGithub className="size-9 text-primary-950 hover:text-[#1560BD]" />
+            <FaGithub className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
           </a>
         </div>
       </div>
@@ -48,13 +48,13 @@ export default function MentorCard() {
         </div>
         <div className="flex justify-center p-5">
           <a className="p-3" href="http://linkedin.com/in/ing-davann-0617b32a3">
-            <FaLinkedinIn className="size-9 text-primary-950 hover:text-[#1560BD]" />
+            <FaLinkedinIn className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
           </a>
           <a className="p-3" href="http://">
-            <IoMdMail className="size-9 text-primary-950 hover:text-[#1560BD]" />
+            <IoMdMail className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
           </a>
           <a className="p-3" href="http://">
-            <FaGithub className="size-9 text-primary-950 hover:text-[#1560BD]" />
+            <FaGithub className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
           </a>
         </div>
       </div>

@@ -7,6 +7,7 @@ import Bubbles from "../../components/card/Bubble";
 import MissionCard from "../../components/card/MissionCard";
 import VissionCard from "../../components/card/VissionCard";
 import AboutUsShape from "./AboutUsShape";
+import MemberCard from "../../components/card/MemberCard";
 
 const AboutUsMain = () => {
   const { t } = useTranslation("about");
@@ -18,10 +19,10 @@ const AboutUsMain = () => {
             <div className="justify-items-center">
               <GlassCard className="relative top-[194px] w-[1205px] h-[429px]">
                 <div className="text-center ">
-                  <div className="text-[32px] mt-11 font-bold">
+                  <div className="text-[32px] mt-11 font-bold text-black dark:text-white">
                     {t("title")}
                   </div>
-                  <div className="text-[24px] p-4 text-gray-600">
+                  <div className="text-[24px] p-4 text-gray-600 dark:text-white">
                     {t("description")}
                   </div>
                 </div>
@@ -46,6 +47,12 @@ const AboutUsMain = () => {
           <VissionCard />
         </div>
       </Bubbles>
+      <div>
+        <p className="text-center text-blue-700  font-bold text-heading-4">
+          {t("teammember")}
+        </p>
+      </div>
+      <MemberCard />
     </>
   );
 };

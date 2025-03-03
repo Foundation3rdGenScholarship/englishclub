@@ -2,9 +2,9 @@ import React from "react";
 import vector1 from "../../../public/img/vextor/Vector19.svg";
 import vector2 from "../../../public/img/vextor/Vector20.svg";
 
-export default function AboutUsShape({children}) {
+export default function AboutUsShape({children , className=""}) {
   return (
-    <div>
+    <div {...className}>
       <div>
         <img
           src={vector2}
