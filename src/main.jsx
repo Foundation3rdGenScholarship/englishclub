@@ -40,6 +40,7 @@ import ReadingA2 from "./page/dashboard/content/skillDetail/ReadingA2.jsx";
 import ReadingB1 from "./page/dashboard/content/skillDetail/ReadingB1.jsx";
 import ReadingB2 from "./page/dashboard/content/skillDetail/ReadingB2.jsx";
 import ListeningA1 from "./page/dashboard/content/listeningDetail/ListeningA1.jsx";
+import UserProfile from "./page/user/UserProfile.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -100,6 +101,7 @@ createRoot(document.getElementById("root")).render(
             </Route>
             <Route path="/vertifyotp" element={<VerifyOTP />} />
             <Route path="/resetpassword" element={<NewPassword />} />
+            <Route path="/userprofile" element={<UserProfile />} />
           </Routes>
         </BrowserRouter>
       </Provider>

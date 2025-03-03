@@ -28,25 +28,36 @@ const Login = () => {
   const dispatch = useDispatch(); // Add this line
   const clientId = import.meta.env.VITE_GOOGLE_OAUTH_CLIENT_ID;
 
+  // Check if there's a stored user and token on page load
+  useEffect(() => {
+    const token = getAccessToken();
+    if (token) {
+      // If a token exists, restore the user session
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user) {
+        dispatch(login({ user, token }));
+        navigate("/");
+      }
+    }
+  }, [dispatch, navigate]);
+
   const handleSubmit = async (values) => {
     try {
+      console.log("Request Payload:", values);
       const response = await loginUser(values).unwrap();
-      console.log(response);
 
-      if (response.access_token) {
+      console.log("Full Response Object:", response); // Debugging
+
+      if (response?.access_token) {
         storeAccessToken(response); // Store the access token
-        dispatch(login(response.user)); // Dispatch the login action with user data
+        dispatch(login({ user: response.user, token: response.access_token })); // Dispatch login action
         navigate("/");
+      } else {
+        console.error("Access token missing in response:", response);
       }
     } catch (error) {
       console.error("Login Error:", error);
-      if (error.status === 401) {
-        toast.error(t("invalid email or password."));
-      } else if (error.data?.detail) {
-        toast.error(error.data.detail);
-      } else {
-        toast.error(t("login failed. Please try again."));
-      }
+      toast.error(t("login failed. Please try again."));
     }
   };
 
@@ -57,7 +68,7 @@ const Login = () => {
 
       if (result.access_token) {
         storeAccessToken(result); // Store the access token
-        dispatch(login(result.user)); // Dispatch the login action with user data
+        dispatch(login({ user: result.user, token: result.access_token })); // Dispatch the login action with user data
         navigate("/");
       }
     } catch (error) {
