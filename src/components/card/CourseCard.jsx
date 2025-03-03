@@ -17,7 +17,7 @@ const CourseCard = ({ title, img, des, link,onClick }) => {
           >
             {title}
           </NavLink>
-          <p className="text-gray-700 dark:text-text-des-dark-mode mt-2 md:text-des-5 lg:text-des-3">
+          <p className="text-gray-700 dark:text-text-des-dark-mode mt-2 md:text-des-5 lg:text-des-3 line-clamp-3">
             {des}
           </p>
         </div>

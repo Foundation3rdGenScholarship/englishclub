@@ -27,7 +27,7 @@ const MultipleChoiceQuiz = ({ exercises }) => {
   };
 
   return (
-    <div className="p-6 max-w-[1000px] bg-white dark:bg-bg-dark-mode dark:text-white border-gray-600 shadow-md rounded-lg">
+    <div className="text-black p-6 bg-white border-2 border-gray-600 dark:bg-bg-dark-mode dark:text-white shadow-md rounded-lg">
       {exercises.map((exercise, index) => {
         const selectedAnswer = selectedAnswers[exercise.id];
         const isCorrect =

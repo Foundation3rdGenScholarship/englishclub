@@ -16,12 +16,14 @@
   {
     "level": "B1",
     "title": "B1 Reading",
+    "link": "/courses/reading/level=b1",
     "img": "https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/430x261_4/public/2021-10/RS5896_182025553-hig.jpg?itok=3xbgNMsJ",
     "description": "Reading practice to help you understand texts with everyday or job-related language. Texts include articles, travel guides, emails, adverts and reviews."
   },
   {
     "level": "B2",
     "title": "B2 Reading",
+    "link": "/courses/reading/level=b2",
     "img": "https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/430x261_4/public/2021-10/RS8041_GettyImages-539434611-hig.jpg?itok=d6WUdhuC",
     "description": "Reading practice to help you understand texts with a wide vocabulary where you may need to consider the writer's opinion. Texts include articles, reports, messages, short stories and reviews."
   },
