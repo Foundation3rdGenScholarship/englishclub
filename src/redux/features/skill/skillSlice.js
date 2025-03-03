@@ -12,7 +12,28 @@ export const skillSlice = apiSlice.injectEndpoints({
       method: "GET",
       transformResponse: (response) => response.payload,
     }),
+    allReadingA2Query: builder.query({
+      query: () => `/skills/skill_name=reading/level=a2`,
+      method: "GET",
+      transformResponse: (response) => response.payload,
+    }),
+    allReadingB1Query: builder.query({
+      query: () => `/skills/skill_name=reading/level=b1`,
+      method: "GET",
+      transformResponse: (response) => response.payload,
+    }),
+    allReadingB2Query: builder.query({
+      query: () => `/skills/skill_name=reading/level=b2`,
+      method: "GET",
+      transformResponse: (response) => response.payload,
+    }),
   }),
 });
 
-export const { useAllSkillQuery, useAllReadingQuery } = skillSlice;
+export const {
+  useAllSkillQuery,
+  useAllReadingQuery,
+  useAllReadingA2QueryQuery,
+  useAllReadingB1QueryQuery,
+  useAllReadingB2QueryQuery,
+} = skillSlice;

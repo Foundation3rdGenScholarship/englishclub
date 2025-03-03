@@ -32,7 +32,8 @@ const FillInTheBlankQuiz = ({ exercises }) => {
         const userAnswer = answers[exercise.id] || "";
         const isCorrect =
           isSubmitted &&
-          userAnswer.toLowerCase() === exercise.correct_answer.toLowerCase();
+          String(userAnswer).toLowerCase() ===
+            String(exercise.correct_answer?.answer || "").toLowerCase();
 
         return (
           <div key={exercise.id} className="mb-6">
@@ -54,7 +55,9 @@ const FillInTheBlankQuiz = ({ exercises }) => {
               >
                 {isCorrect
                   ? "Correct!"
-                  : `Incorrect. Correct answer: ${exercise.correct_answer}`}
+                  : `Incorrect. Correct answer: ${
+                      exercise.correct_answer?.answer || "N/A"
+                    }`}
               </p>
             )}
           </div>

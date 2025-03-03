@@ -36,6 +36,10 @@ import ExerciseDetail from "./page/dashboard/content/exercises/ExerciseDetail.js
 import { OverSkill } from "./page/dashboard/content/overview/OverSkill.jsx";
 import { OverGrammar } from "./page/dashboard/content/overview/OverGrammar.jsx";
 import { OverVocabulary } from "./page/dashboard/content/overview/OverVocabulary.jsx";
+import ReadingA2 from "./page/dashboard/content/skillDetail/ReadingA2.jsx";
+import ReadingB1 from "./page/dashboard/content/skillDetail/ReadingB1.jsx";
+import ReadingB2 from "./page/dashboard/content/skillDetail/ReadingB2.jsx";
+import ListeningA1 from "./page/dashboard/content/listeningDetail/ListeningA1.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -82,9 +86,12 @@ createRoot(document.getElementById("root")).render(
                 path="/courses/reading/level=a1"
                 element={<ReadingDetail />}
               />
+              <Route path="/courses/reading/level=a2" element={<ReadingA2 />} />
+              <Route path="/courses/reading/level=b1" element={<ReadingB1 />} />
+              <Route path="/courses/reading/level=b2" element={<ReadingB2 />} />
               <Route
-                path="/courses/reading/level=a2"
-                element={<ReadingDetail />}
+                path="/courses/listening/level=a1"
+                element={<ListeningA1 />}
               />
               <Route path="/skills" element={<OverSkill />} />
               <Route path="/over-grammar" element={<OverGrammar />} />
