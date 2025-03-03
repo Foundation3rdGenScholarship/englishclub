@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom"; // To access the URL params
-import { useExerciseDetailsQuery } from "../../../../redux/features/exercises/exercisesSlice"; // Import the custom hook
+import {  useFetchExerciseByIdQuery } from "../../../../redux/features/exercises/exercisesSlice"; // Import the custom hook
 
 const ExerciseDetail = () => {
   const { ex_uuid } = useParams(); // Extract the ex_uuid from the URL using useParams
-  const { data, isLoading, error } = useExerciseDetailsQuery(ex_uuid); // Use the query with ex_uuid as the argument
+  const { data, isLoading, error } =  useFetchExerciseByIdQuery(ex_uuid); // Use the query with ex_uuid as the argument
 
   console.log(data);
 

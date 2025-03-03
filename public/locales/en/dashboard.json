@@ -14,5 +14,8 @@
   "extraVideo": "Extra Video",
   "grammar": "Grammar",
   "vocabulary": "Vocabulary",
-  "placeholder": "Search..."
+  "placeholder": "Search...",
+  "profile":"Profile",
+  "learning":"Learning",
+  "logout":"Logout"
 }

@@ -5,16 +5,17 @@ import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import SearchBar from "../search/SearchBar";
 import { useTranslation } from "react-i18next";
 import { NavLink, Link } from "react-router-dom"; // Fixed import
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import ThemeToggle from "../button/ThemeToggle";
 import ButtonLanguage from "../button/ButtonLanguage";
 import { selectIsLoginIn } from "../../redux/features/user/authSlice"; // Import the login selector
 import RegisterBtn from "../button/RegisterBtn";
+import { toggle } from "../../redux/features/user/visibilitySlice";
 export default function NavbarDashboard() {
   const theme = useSelector((state) => state.theme.theme); // Get theme from Redux store
   const isLoggedIn = useSelector(selectIsLoginIn); // Get login status from Redux store
   const { t } = useTranslation("navbar");
-
+  const dispatch = useDispatch();
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-gray-200 dark:border-gray-700 dark:bg-white/5 backdrop-blur-[18px]">
       <div className="px-3 py-2 lg:px-5 lg:pl-3 flex items-center justify-between">

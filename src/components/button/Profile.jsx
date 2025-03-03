@@ -1,23 +1,60 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { logout } from "../../redux/features/user/authSlice";
+import { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, updateUser } from "../../redux/features/user/authSlice";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useGetUserQuery } from "../../redux/features/user/userSlice";
-import { useSelector } from "react-redux";
+import secureLocalStorage from "react-secure-storage";
+import { useUserVerifyMutation } from "../../redux/features/user/userSlice"; // Import the verify mutation
+
 const Profile = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [userData, setUserData] = useState(null);
   const dropdownRef = useRef(null);
   const dispatch = useDispatch();
   const { t } = useTranslation("navbar");
-   const theme = useSelector((state) => state.theme.theme);
-  // Fetch user data using RTK Query
-  const { data, error, isLoading } = useGetUserQuery();
+  const theme = useSelector((state) => state.theme.theme);
 
-  // Extract user details from API response
-  const user = data?.payload?.[0];
+  // Retrieve the access token from secure local storage
+  const accessToken = localStorage.getItem("access_token");
+  // console.log("Access Token:", accessToken); // Log to check
+
+  // Using RTK query hook to call the verify mutation
+  const [verify, { data, error: verifyError, isLoading }] =
+    useUserVerifyMutation();
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      if (!accessToken) return;
+
+      try {
+        const response = await verify({ token: accessToken }).unwrap();
+        console.log("API Response:", response); // Log the response
+
+        if (response?.payload) {
+          setUserData(response.payload); // Set the data to state
+          dispatch(updateUser(response.payload)); // Dispatch to Redux
+        } else {
+          setError("Failed to load user data.");
+        }
+      } catch (err) {
+        setError("Failed to fetch user data.");
+        console.error("Error fetching user data:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserInfo();
+  }, [accessToken, verify, dispatch]);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    setIsOpen(false);
+  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -33,11 +70,6 @@ const Profile = () => {
     };
   }, []);
 
-  const handleLogout = () => {
-    dispatch(logout());
-    setIsOpen(false);
-  };
-
   return (
     <div className="relative flex flex-col items-center" ref={dropdownRef}>
       <button
@@ -48,17 +80,19 @@ const Profile = () => {
         <span className="sr-only">Open user menu</span>
         {isLoading ? (
           <div className="w-10 h-10 rounded-full bg-gray-300 animate-pulse"></div>
-        ) : (
+        ) : userData ? (
           <img
             className="w-10 h-10 rounded-full"
             src={
-              user?.profile ||
+              userData.profile ||
               (theme === "dark"
-                ? "../../../img/userDefault/user-white.png" // Dark mode image
+                ? "../../../img/userDefault/user-white.png"
                 : "../../../img/userDefault/user-black.png")
             }
             alt="user photo"
           />
+        ) : (
+          <div className="w-10 h-10 rounded-full bg-gray-300"></div>
         )}
       </button>
 
@@ -67,20 +101,20 @@ const Profile = () => {
           <div className="px-4 py-3">
             {isLoading ? (
               <p className="text-sm text-gray-500">Loading...</p>
-            ) : error ? (
-              <p className="text-sm text-red-500">Failed to load user</p>
+            ) : error || verifyError ? (
+              <p className="text-sm text-red-500">{error || verifyError}</p>
             ) : (
               <>
                 <p className="text-sm text-gray-900 dark:text-white font-medium">
-                  {user?.user_name || "Guest User"}
+                  {userData?.user_name || "Guest User"}
                 </p>
                 <p className="text-sm text-gray-500 truncate dark:text-gray-300">
-                  {user?.email || "guest@example.com"}
+                  {userData?.email || "guest@example.com"}
                 </p>
               </>
             )}
           </div>
-          <ul className="py-1">
+          <ul>
             <li>
               <Link
                 to="/dashboard"
@@ -92,7 +126,7 @@ const Profile = () => {
             </li>
             <li>
               <Link
-                to="/settings"
+                to="/userprofile"
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-100 dark:hover:bg-primary-950 dark:text-gray-300 dark:hover:text-white"
                 onClick={() => setIsOpen(false)}
               >
