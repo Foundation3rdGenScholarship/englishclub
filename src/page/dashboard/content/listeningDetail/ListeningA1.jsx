@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useAllReadingQuery } from "../../../../redux/features/skill/skillSlice";
+import { useAllListeningA1QueryQuery } from "../../../../redux/features/skill/skillSlice";
 import CourseCard from "../../../../components/card/CourseCard";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import ServerErrorPage from "../../../err/ServerErrorPage";
 
 const ListeningA1 = () => {
-  const { data, isLoading, error } = useAllReadingQuery();
+  const { data, isLoading, error } = useAllListeningA1QueryQuery();
   const { t } = useTranslation("listeningA1");
   const exercises = data?.flatMap((item) => item.exercises) || [];
   const navigate = useNavigate(); // Initialize navigate hook
