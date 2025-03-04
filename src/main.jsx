@@ -41,6 +41,7 @@ import ReadingB1 from "./page/dashboard/content/skillDetail/ReadingB1.jsx";
 import ReadingB2 from "./page/dashboard/content/skillDetail/ReadingB2.jsx";
 import ListeningA1 from "./page/dashboard/content/listeningDetail/ListeningA1.jsx";
 import UserProfile from "./page/user/UserProfile.jsx";
+import ListeningExercises from "./page/dashboard/content/exercises/ListeningExercises.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -98,6 +99,10 @@ createRoot(document.getElementById("root")).render(
               <Route path="/over-grammar" element={<OverGrammar />} />
               <Route path="/over-vocabulary" element={<OverVocabulary />} />
               <Route path="/exercises/:ex_uuid" element={<ExerciseDetail />} />
+              <Route
+                path="/listening/:ex_uuid"
+                element={<ListeningExercises />}
+              />
             </Route>
             <Route path="/vertifyotp" element={<VerifyOTP />} />
             <Route path="/resetpassword" element={<NewPassword />} />

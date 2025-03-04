@@ -28,8 +28,7 @@ export const OverGrammar = () => {
           <div className="rounded-lg overflow-hidden">
             <div className="relative">
               <img
-                src="https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/1280x500/public/2023-04/RS9171_GettyImages-1391836113_1440x960.jpg?itok=tOgk6wtV"
-                alt="People collaborating at work"
+                src="https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/1280x500/public/RS8037_GettyImages-985388610-hig.jpeg?itok=EeVe_FYT"
                 className="w-full h-[400px] object-cover"
               />
               <div className="absolute inset-0 flex items-end justify-center">
@@ -49,18 +48,6 @@ export const OverGrammar = () => {
           <div className="p-4">
             <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
               {t("description")}
-            </p>
-            <h1 className="text-heading-3 text-primary-500 dark:text-primary-500 py-5 font-bold">
-              {t("title2")}
-            </h1>
-            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
-              {t("description2")}
-            </p>
-            <h1 className="text-heading-3 text-primary-500 dark:text-primary-500 py-5 font-bold">
-              {t("title3")}
-            </h1>
-            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
-              {t("description3")}
             </p>
           </div>
 

@@ -9,7 +9,7 @@ import ServerErrorPage from "../../../err/ServerErrorPage";
 import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
 import { useFetchExerciseByIdQuery } from "../../../../redux/features/exercises/exercisesSlice"; // Import the custom hook
 
-const ExerciseDetail = () => {
+const ListeningExercises = () => {
   const { ex_uuid } = useParams(); // Extract the ex_uuid from the URL using useParams
   const { data, isLoading, error } = useFetchExerciseByIdQuery(ex_uuid); // Use the query with ex_uuid as the argument
 
@@ -75,6 +75,16 @@ const ExerciseDetail = () => {
                 {data.description}
               </p>
             </div>
+
+            {data.voice === "link voice" ? null : (
+              <h3 className="p-4 text-heading-3 text-primary-500">
+                Listening :
+                <audio controls className="w-full">
+                  <source src={data.voice} type="audio/mp3" />
+                  Your browser does not support the audio element.
+                </audio>
+              </h3>
+            )}
 
             {/* Reading */}
             <h3 className="p-4 text-heading-3 text-primary-500">Reading : </h3>
@@ -243,4 +253,4 @@ const ExerciseDetail = () => {
   }
 };
 
-export default ExerciseDetail;
+export default ListeningExercises;

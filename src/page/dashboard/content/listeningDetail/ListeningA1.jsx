@@ -29,9 +29,9 @@ const ListeningA1 = () => {
 
   // Handle click on card to get exercise ID and navigate to another page
   const handleCardClick = (id) => {
-    navigate(`/exercises/${id}`); // Navigate to exercise detail page
+    navigate(`/listening/${id}`); // Navigate to exercise detail page
     console.log(id);
-    const fullUrl = `/exercises/${id}`;
+    const fullUrl = `/listening/${id}`;
     console.log("Full URL:", fullUrl); // This should log the full URL
   };
 
