@@ -14,7 +14,6 @@ import {
   selectUser,
 } from "../../redux/features/user/authSlice";
 import RegisterBtn from "../button/RegisterBtn";
-
 export default function Navbar() {
   const theme = useSelector((state) => state.theme.theme);
   const isLoggedIn = useSelector(selectIsLoginIn);
@@ -23,7 +22,6 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation("navbar");
   const [isScrolled, setIsScrolled] = useState(false);
-  console.log("User:", user);
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > window.innerHeight * 0.05);

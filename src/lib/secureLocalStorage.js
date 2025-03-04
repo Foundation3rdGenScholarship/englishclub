@@ -1,60 +1,28 @@
-import secureLocalStorage from "react-secure-storage";
-
 export const storeAccessToken = (accessToken) => {
-  try {
-    if (!accessToken?.access_token) {
-      throw new Error("Invalid access token: access_token is missing");
-    }
+  console.log("⚡ Storing Token: Received Object:", accessToken);
 
-    const storagePrefix = import.meta.env.VITE_SECURE_LOCAL_STORAGE_PREFIX;
-    if (!storagePrefix) {
-      throw new Error("Storage prefix is not defined in environment variables");
-    }
-
-    secureLocalStorage.setItem(
-      `${storagePrefix}access_token`,
-      accessToken.access_token
-    );
-    console.log("Access token stored successfully");
-  } catch (error) {
-    console.error("Error storing access token:", error.message);
+  const token = accessToken?.access_token || accessToken?.data?.access_token;
+  if (!token) {
+    console.error("❌ Invalid token: Missing value");
+    return;
   }
+
+  localStorage.setItem("access_token", token);
+  console.log("✅ Token stored successfully:", token);
+  console.log(
+    "🔄 Token in localStorage NOW:",
+    localStorage.getItem("access_token")
+  );
 };
 
 export const getAccessToken = () => {
-  try {
-    const storagePrefix = import.meta.env.VITE_SECURE_LOCAL_STORAGE_PREFIX;
-    if (!storagePrefix) {
-      throw new Error("Storage prefix is not defined in environment variables");
-    }
-
-    const token = secureLocalStorage.getItem(`${storagePrefix}access_token`);
-    if (!token) {
-      console.warn("No access token found in storage");
-    }
-    return token;
-  } catch (error) {
-    console.error("Error retrieving access token:", error.message);
-    return null;
-  }
+  const token = localStorage.getItem("access_token");
+  console.log("📢 Retrieved Token:", token);
+  return token;
 };
 
 export const removeAccessToken = () => {
-  try {
-    const storagePrefix = import.meta.env.VITE_SECURE_LOCAL_STORAGE_PREFIX;
-    if (!storagePrefix) {
-      throw new Error("Storage prefix is not defined in environment variables");
-    }
-
-    secureLocalStorage.removeItem(`${storagePrefix}access_token`);
-    console.log("Access token removed successfully");
-  } catch (error) {
-    console.error("Error removing access token:", error.message);
-  }
-};
-
-export const hasAccessToken = () => {
-  const storagePrefix = import.meta.env.VITE_SECURE_LOCAL_STORAGE_PREFIX;
-  const token = secureLocalStorage.getItem(`${storagePrefix}access_token`);
-  return !!token; // Returns true if token exists, false otherwise
+  console.log("🗑️ Removing Token...");
+  localStorage.removeItem("access_token");
+  console.log("🛑 Token After Removal:", localStorage.getItem("access_token"));
 };

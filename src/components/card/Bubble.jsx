@@ -8,11 +8,13 @@ const bubbles = [
   { size: "w-8 h-8", x: "right-1/3", y: "top-1/4", delay: 0.3 },
   { size: "w-14 h-14", x: "right-1/6", y: "top-3/4", delay: 0.6 },
   { size: "w-32 h-32", x: "-right-5", y: "bottom-10", delay: 1.0 },
+  { size: "w-12 h-12", x: "left-5", y: "bottom-1/3", delay: 0.4 },
+  { size: "w-20 h-20", x: "right-1/4", y: "bottom-1/4", delay: 0.8 },
 ];
 
-const Bubbles = () => {
+const Bubbles = ({ className = "", children }) => {
   return (
-    <div className="relative w-full h-screen overflow-hidden -z-10">
+    <div className={`relative w-full h-screen overflow-hidden -z-10 ${className}`}>
       {bubbles.map((bubble, index) => (
         <motion.div
           key={index}
@@ -22,8 +24,9 @@ const Bubbles = () => {
           transition={{ duration: 1.5, delay: bubble.delay, repeat: Infinity, repeatType: "reverse" }}
         />
       ))}
+      {children}
     </div>
   );
 };
 
-export default Bubbles; 
+export default Bubbles;

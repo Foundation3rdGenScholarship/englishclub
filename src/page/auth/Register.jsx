@@ -59,21 +59,21 @@ export default function Register() {
     ),
   });
 
-const handleSubmit = async (values) => {
-  console.log("Payload:", values); // Log the payload for debugging
-  try {
-    await registerUser(values).unwrap();
-    toast.success(t("Sign up Successfully!"));
-    navigate("/login");
-  } catch (error) {
-    console.error("Error:", error); // Log the error for debugging
-    if (error.data && error.data.message) {
-      toast.error(error.data.message); // Show server error message
-    } else {
-      toast.error(t("sign up failed. Please try again.")); // Fallback error message
+  const handleSubmit = async (values) => {
+    console.log("Payload:", values); // Log the payload for debugging
+    try {
+      await registerUser(values).unwrap();
+      toast.success(t("Sign up Successfully!"));
+      navigate("/login");
+    } catch (error) {
+      console.error("Error:", error); // Log the error for debugging
+      if (error.data && error.data.detail) {
+        toast.error(error.data.detail); // Show specific error message from the server
+      } else {
+        toast.error(t("Sign up failed. Please try again.")); // Fallback error message
+      }
     }
-  }
-};
+  };
 
   const handleGoBack = () => {
     navigate("/");
