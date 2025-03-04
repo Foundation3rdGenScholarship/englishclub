@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useAllReadingQuery } from "../../../../redux/features/skill/skillSlice";
+import { useAllListeningA1QueryQuery } from "../../../../redux/features/skill/skillSlice";
 import CourseCard from "../../../../components/card/CourseCard";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import ServerErrorPage from "../../../err/ServerErrorPage";
 
 const ListeningA1 = () => {
-  const { data, isLoading, error } = useAllReadingQuery();
+  const { data, isLoading, error } = useAllListeningA1QueryQuery();
   const { t } = useTranslation("listeningA1");
   const exercises = data?.flatMap((item) => item.exercises) || [];
   const navigate = useNavigate(); // Initialize navigate hook
@@ -49,7 +49,7 @@ const ListeningA1 = () => {
           <div className="rounded-lg overflow-hidden">
             <div className="relative">
               <img
-                src="https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/max_1300x1300/public/RS8046_GettyImages-1036609896-hig.jpg?itok=MbOoWQsT"
+                src="https://howwelead.org/wp-content/uploads/2022/07/ken-blog-7.13.22.jpg"
                 alt="People collaborating at work"
                 className="w-full h-[400px] object-cover"
               />
