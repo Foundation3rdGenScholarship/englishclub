@@ -16,6 +16,6 @@
   "vocabulary": "Vocabulary",
   "placeholder": "Search...",
   "profile":"Profile",
-  "learning":"Learning",
-  "logout":"Logout"
+  "learning":"History of learning",
+  "sign out":"Sign out"
 }

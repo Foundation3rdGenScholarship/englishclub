@@ -1,32 +1,77 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router";
-import ThemeToggle from "../../components/button/ThemeToggle";
-import ButtonLanguage from "../../components/button/ButtonLanguage";
+import { Link } from "react-scroll"; // Import Link from react-scroll
 import { BsPerson, BsBarChartLine } from "react-icons/bs";
 import { IoIosLogOut } from "react-icons/io";
-import {
-  setActiveItem,
-  toggleDropdown,
-} from "../../redux/features/user/sidebarSlice.js";
+import { setActiveItem } from "../../redux/features/user/sidebarSlice.js";
+import SignOut from "../../page/user/SignOut.jsx";
 
-const UserProfileSidebar = () => {
-  // for two language
+const UserProfileSidebar = ({ showSignOutModal, setShowSignOutModal }) => {
   const { t } = useTranslation("dashboard");
-  const isVisible = useSelector((state) => state.visibility.isVisible);
-  // dispatch aciton
   const dispatch = useDispatch();
-  const { activeItem, openDropdowns } = useSelector((state) => state.sidebar);
-
-  // handle click
-  const handleAction = (item, dropdown) => {
-    dispatch(setActiveItem(item)); // Set active item
-    dispatch(toggleDropdown(dropdown)); // Toggle dropdown
+  const { activeItem } = useSelector((state) => state.sidebar);
+  const [isAtBottom, setIsAtBottom] = useState(false); // Track if we're at the bottom of the page
+  const [scrolling, setScrolling] = useState(false); // Track if we are actively scrolling
+  const isVisible = useSelector((state) => state.visibility.isVisible);
+  const handleAction = (item) => {
+    dispatch(setActiveItem(item));
   };
 
-  const handleClick = (item) => {
-    dispatch(setActiveItem(item));
+  // Track scroll position and update active item
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if we're at the bottom of the page
+      const bottom =
+        document.documentElement.scrollHeight ===
+        window.innerHeight + window.scrollY;
+      setIsAtBottom(bottom);
+
+      if (scrolling) {
+        return;
+      }
+
+      // Find the current visible section based on the scroll position
+      const sections = document.querySelectorAll("section");
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (
+          rect.top <= window.innerHeight / 2 &&
+          rect.bottom >= window.innerHeight / 2
+        ) {
+          // If section is in the middle of the screen, set it as the active section
+          handleAction(section.id);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [scrolling]);
+
+  // Smooth scroll when clicking on a sidebar item
+  const handleLinkClick = (item) => {
+    setScrolling(true); // Set scrolling state to true when a section is clicked
+    handleAction(item);
+  };
+
+  // Reset scrolling state after smooth scroll finishes
+  useEffect(() => {
+    if (scrolling) {
+      setTimeout(() => setScrolling(false), 500); // Reset after smooth scroll duration
+    }
+  }, [scrolling]);
+
+  // Ensure the profile section is active on initial load
+  useEffect(() => {
+    if (!activeItem) {
+      handleAction("profile-section");
+    }
+  }, [activeItem]);
+
+  const handleSignOutClick = () => {
+    setShowSignOutModal(true); // Show the sign-out modal when the link is clicked
   };
 
   return (
@@ -39,61 +84,60 @@ const UserProfileSidebar = () => {
     >
       <div className="h-full px-3 pb-4 overflow-y-auto dark:bg-white/5 backdrop-blur-[18px] pt-6">
         <ul className="space-y-2 font-medium">
-          {/* Profile */}
           <li>
-            <NavLink
-              to="/userprofile"
+            <Link
+              to="profile-section"
+              smooth={true}
+              duration={500}
+              offset={-60}
               className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 dark:hover:bg-primary-950 group ${
-                activeItem === "userprofile"
+                activeItem === "profile-section"
                   ? "bg-primary-100 dark:bg-primary-950"
                   : ""
               }`}
-              onClick={() => handleAction("userprofile", "userprofile")}
+              onClick={() => handleLinkClick("profile-section")}
             >
               <BsPerson className="size-6" />
               <span className="flex-1 ms-3 whitespace-nowrap">
                 {t("profile")}
               </span>
-            </NavLink>
+            </Link>
           </li>
-          {/* Learning */}
           <li>
-            <NavLink
-              to="#"
+            <Link
+              to="exercise-section"
+              smooth={true}
+              duration={500}
+              offset={-60}
               className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 dark:hover:bg-primary-950 group ${
-                activeItem === "learning"
+                activeItem === "exercise-section"
                   ? "bg-primary-100 dark:bg-primary-950"
                   : ""
               }`}
-              onClick={() => handleAction("learning")}
+              onClick={() => handleLinkClick("exercise-section")}
             >
               <BsBarChartLine className="size-6" />
               <span className="flex-1 ms-3 whitespace-nowrap">
                 {t("learning")}
               </span>
-            </NavLink>
+            </Link>
           </li>
-          {/* Logout */}
           <li>
-            <NavLink
-              to="#"
+            <Link
+              onClick={handleSignOutClick} // Use the passed function to trigger modal
+              to="/signout"
               className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 dark:hover:bg-primary-950 group ${
-                activeItem === "logout"
+                activeItem === "summary-section"
                   ? "bg-primary-100 dark:bg-primary-950"
                   : ""
               }`}
-              onClick={() => handleAction("logout")}
             >
               <IoIosLogOut className="size-6" />
               <span className="flex-1 ms-3 whitespace-nowrap">
-                {t("logout")}
+                {t("sign out")}
               </span>
-            </NavLink>
+            </Link>
           </li>
-        </ul>
-        <ul className="absolute bottom-0 w-64 left-0 flex justify-between px-5 py-2 sm:hidden">
-          <ButtonLanguage />
-          <ThemeToggle />
         </ul>
       </div>
     </aside>

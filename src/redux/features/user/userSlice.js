@@ -13,23 +13,32 @@ export const api = createApi({
     }),
     verifyEmail: builder.mutation({
       query: (email) => ({
-        url: "/request/reset-password",
+        url: `/request/reset-password?email=${email}`, // Ensure email is just the string
         method: "POST",
-        body: { email },
+        headers: {
+          "Content-Type": "application/json", // Ensure JSON content type
+        },
+        body: { email }, // Send the email in the body, if needed
       }),
     }),
     verifyOtp: builder.mutation({
       query: ({ email, otp }) => ({
         url: "/request/reset-password/otp-verify",
         method: "POST",
+        headers: {
+          "Content-Type": "application/json", // Ensure the content type is JSON
+        },
         body: { email, otp },
       }),
     }),
     resetPassword: builder.mutation({
       query: ({ email, new_password, confirm_password }) => ({
-        url: "/reset-password",
+        url: "/reset-password", // URL for the reset password endpoint
         method: "POST",
-        body: { email, new_password, confirm_password },
+        body: { email, new_password, confirm_password }, // Include email in the body
+        headers: {
+          "Content-Type": "application/json", // Ensure JSON content type
+        },
       }),
     }),
     loginUser: builder.mutation({
@@ -64,7 +73,7 @@ export const api = createApi({
         body: token,
       }),
     }),
-     getUser: builder.query({
+    getUser: builder.query({
       query: () => "/users", // Endpoint to fetch user data
     }),
   }),

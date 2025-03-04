@@ -5,22 +5,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, updateUser } from "../../redux/features/user/authSlice";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import secureLocalStorage from "react-secure-storage";
 import { useUserVerifyMutation } from "../../redux/features/user/userSlice"; // Import the verify mutation
+import SignOut from "../../page/user/SignOut";
 
 const Profile = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showSignOutModal, setShowSignOutModal] = useState(false); // Controls SignOut modal
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [userData, setUserData] = useState(null);
   const dropdownRef = useRef(null);
   const dispatch = useDispatch();
-  const { t } = useTranslation("navbar");
+  const { t } = useTranslation("userProfile");
   const theme = useSelector((state) => state.theme.theme);
 
   // Retrieve the access token from secure local storage
   const accessToken = localStorage.getItem("access_token");
-  // console.log("Access Token:", accessToken); // Log to check
 
   // Using RTK query hook to call the verify mutation
   const [verify, { data, error: verifyError, isLoading }] =
@@ -32,8 +32,6 @@ const Profile = () => {
 
       try {
         const response = await verify({ token: accessToken }).unwrap();
-        console.log("API Response:", response); // Log the response
-
         if (response?.payload) {
           setUserData(response.payload); // Set the data to state
           dispatch(updateUser(response.payload)); // Dispatch to Redux
@@ -51,9 +49,15 @@ const Profile = () => {
     fetchUserInfo();
   }, [accessToken, verify, dispatch]);
 
-  const handleLogout = () => {
-    dispatch(logout());
-    setIsOpen(false);
+  // Show SignOut Modal
+  const handleShowSignOut = () => {
+    setShowSignOutModal(true);
+    setIsOpen(false); // Close dropdown when opening modal
+  };
+
+  // Close SignOut Modal
+  const closeSignOutModal = () => {
+    setShowSignOutModal(false);
   };
 
   // Close dropdown when clicking outside
@@ -71,80 +75,76 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center" ref={dropdownRef}>
-      <button
-        type="button"
-        className="flex text-sm rounded-full focus:ring-2 focus:ring-secondary-300"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <span className="sr-only">Open user menu</span>
-        {isLoading ? (
-          <div className="w-10 h-10 rounded-full bg-gray-300 animate-pulse"></div>
-        ) : userData ? (
-          <img
-            className="w-10 h-10 rounded-full"
-            src={
-              userData.profile ||
-              (theme === "dark"
-                ? "../../../img/userDefault/user-white.png"
-                : "../../../img/userDefault/user-black.png")
-            }
-            alt="user photo"
-          />
-        ) : (
-          <div className="w-10 h-10 rounded-full bg-gray-300"></div>
-        )}
-      </button>
+    <>
+      <div className="relative flex flex-col items-center" ref={dropdownRef}>
+        <button
+          type="button"
+          className="flex text-sm rounded-full focus:ring-2 focus:ring-secondary-300"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <span className="sr-only">Open user menu</span>
+          {isLoading ? (
+            <div className="w-10 h-10 rounded-full bg-gray-300 animate-pulse"></div>
+          ) : userData ? (
+            <img
+              className="w-10 h-10 rounded-full"
+              src={
+                userData.profile ||
+                (theme === "dark"
+                  ? "../../../img/userDefault/user-white.png"
+                  : "../../../img/userDefault/user-black.png")
+              }
+              alt="user photo"
+            />
+          ) : (
+            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+          )}
+        </button>
 
-      {isOpen && (
-        <div className="absolute right-0 mt-14 w-52 bg-white divide-y divide-gray-100 rounded-md shadow-lg dark:bg-gray-700 dark:divide-gray-600 z-50">
-          <div className="px-4 py-3">
-            {isLoading ? (
-              <p className="text-sm text-gray-500">Loading...</p>
-            ) : error || verifyError ? (
-              <p className="text-sm text-red-500">{error || verifyError}</p>
-            ) : (
-              <>
-                <p className="text-sm text-gray-900 dark:text-white font-medium">
-                  {userData?.user_name || "Guest User"}
-                </p>
-                <p className="text-sm text-gray-500 truncate dark:text-gray-300">
-                  {userData?.email || "guest@example.com"}
-                </p>
-              </>
-            )}
+        {isOpen && (
+          <div className="absolute right-0 mt-14 w-52 bg-white divide-y divide-gray-100 rounded-md shadow-lg dark:bg-gray-700 dark:divide-gray-600 z-50">
+            <div className="px-4 py-3">
+              {isLoading ? (
+                <p className="text-sm text-gray-500">Loading...</p>
+              ) : error || verifyError ? (
+                <p className="text-sm text-red-500">{error || verifyError}</p>
+              ) : (
+                <>
+                  <p className="text-sm text-gray-900 dark:text-white font-medium">
+                    {userData?.user_name || "Guest User"}
+                  </p>
+                  <p className="text-sm text-gray-500 truncate dark:text-gray-300">
+                    {userData?.email || "guest@example.com"}
+                  </p>
+                </>
+              )}
+            </div>
+            <ul>
+              <li>
+                <Link
+                  to="/userprofile"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-100 dark:hover:bg-primary-950 dark:text-gray-300 dark:hover:text-white"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {t("dashboard")}
+                </Link>
+              </li>
+              <li>
+                <button
+                  onClick={handleShowSignOut} // Show modal instead of direct logout
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-primary-100 dark:hover:bg-primary-950 dark:text-gray-300 dark:hover:text-white"
+                >
+                  {t("sign out")}
+                </button>
+              </li>
+            </ul>
           </div>
-          <ul>
-            <li>
-              <Link
-                to="/dashboard"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-100 dark:hover:bg-primary-950 dark:text-gray-300 dark:hover:text-white"
-                onClick={() => setIsOpen(false)}
-              >
-                {t("dashboard")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/userprofile"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-100 dark:hover:bg-primary-950 dark:text-gray-300 dark:hover:text-white"
-                onClick={() => setIsOpen(false)}
-              >
-                {t("settings")}
-              </Link>
-            </li>
-            <li>
-              <button
-                onClick={handleLogout}
-                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-primary-100 dark:hover:bg-primary-950 dark:text-gray-300 dark:hover:text-white"
-              >
-                {t("sign out")}
-              </button>
-            </li>
-          </ul>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+
+      {/* SignOut Modal */}
+      {showSignOutModal && <SignOut closeModal={closeSignOutModal} />}
+    </>
   );
 };
 
