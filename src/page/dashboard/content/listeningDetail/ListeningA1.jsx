@@ -49,7 +49,7 @@ const ListeningA1 = () => {
           <div className="rounded-lg overflow-hidden">
             <div className="relative">
               <img
-                src="https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/max_1300x1300/public/RS8046_GettyImages-1036609896-hig.jpg?itok=MbOoWQsT"
+                src="https://howwelead.org/wp-content/uploads/2022/07/ken-blog-7.13.22.jpg"
                 alt="People collaborating at work"
                 className="w-full h-[400px] object-cover"
               />

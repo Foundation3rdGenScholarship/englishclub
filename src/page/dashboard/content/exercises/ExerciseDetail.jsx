@@ -35,6 +35,7 @@ const ExerciseDetail = () => {
   console.log("Tip : ", data?.tip);
   console.log("The Data : ", data);
   console.log("This is an Data Of Exercises : ", data?.questions);
+  console.log("Type of exericses : ", data.voice);
 
   // TODO Multiple Choies
   if (data?.questions[0].type?.toUpperCase() === "MULTIPLE_CHOICES") {
@@ -74,9 +75,21 @@ const ExerciseDetail = () => {
                 {data.description}
               </p>
             </div>
+
+            {data.voice === "link voice" ? null : (
+              <h3 className="p-4 text-heading-3 text-primary-500">
+                Listening :
+                <audio controls className="w-full">
+                  <source src={data.voice} type="audio/mp3" />
+                  Your browser does not support the audio element.
+                </audio>
+              </h3>
+            )}
+
+            {/* Reading */}
             <h3 className="p-4 text-heading-3 text-primary-500">Reading : </h3>
 
-            <div className="p-4 text-black text-des-2 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+            <div className="p-4 text-black text-des-2 text-justify dark:text-white m-auto leading-10">
               <div
                 dangerouslySetInnerHTML={{
                   __html: DOMPurify.sanitize(transcript),

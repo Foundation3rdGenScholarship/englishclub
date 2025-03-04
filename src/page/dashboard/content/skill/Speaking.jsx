@@ -155,7 +155,153 @@ const Speaking = () => {
     //     </div>
     //   </body>
     // </div>
-    <></>
+    // <></>
+    <div class="min-h-screen dark:bg-gray-900 bg-gray-100 transition-colors duration-300">
+      <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-6">
+          <p class="text-2xl font-bold dark:text-white text-gray-800">
+            Conversation
+          </p>
+        </div>
+
+        <div class="flex flex-col space-y-4">
+          <div class="message susanne-message">
+            <div class=" p-4 rounded-lg shadow">
+              <p class="font-semibold dark:text-white text-gray-800">
+                Susanne:
+              </p>
+              <p class="dark:text-gray-200 text-gray-700">
+                Hi, Mario. Can you help me prepare some things for the next
+                month?
+              </p>
+            </div>
+          </div>
+
+          <div class="message mario-message">
+            <div class="bg-green-100 dark:bg-primary-950 p-4 rounded-lg shadow">
+              <p class="font-semibold dark:text-white text-gray-800">Mario:</p>
+              <p class="dark:text-gray-200 text-gray-700">
+                OK, sure. What can I help you with?
+              </p>
+            </div>
+          </div>
+
+          <div class="message susanne-message">
+            <div class=" p-4 rounded-lg shadow">
+              <p class="font-semibold dark:text-white text-gray-800">
+                Susanne:
+              </p>
+              <p class="dark:text-gray-200 text-gray-700">
+                I need to visit the customer in Germany. It's important.
+              </p>
+            </div>
+          </div>
+
+          <div class="message mario-message">
+            <div class="bg-green-100 dark:bg-primary-950 p-4 rounded-lg shadow">
+              <p class="font-semibold dark:text-white text-gray-800">Mario:</p>
+              <p class="dark:text-gray-200 text-gray-700">
+                What can I do to help?
+              </p>
+            </div>
+          </div>
+
+          <div class="message susanne-message">
+            <div class=" p-4 rounded-lg shadow">
+              <p class="font-semibold dark:text-white text-gray-800">
+                Susanne:
+              </p>
+              <p class="dark:text-gray-200 text-gray-700">
+                Can you send an email to the customer? Ask them when I can visit
+                them next week. Please do this first. It's a priority and very
+                urgent.
+              </p>
+            </div>
+          </div>
+
+          <div class="message mario-message">
+            <div class="bg-green-100 dark:bg-primary-950 p-4 rounded-lg shadow">
+              <p class="font-semibold dark:text-white text-gray-800">Mario:</p>
+              <p class="dark:text-gray-200 text-gray-700">
+                Right. I'll do it today.
+              </p>
+            </div>
+          </div>
+
+          <div class="message susanne-message">
+            <div class=" p-4 rounded-lg shadow">
+              <p class="font-semibold dark:text-white text-gray-800">
+                Susanne:
+              </p>
+              <p class="dark:text-gray-200 text-gray-700">
+                Thanks. This next task is also important. Can you invite
+                everyone to the next team meeting?
+              </p>
+            </div>
+          </div>
+
+          <div class="message mario-message">
+            <div class="bg-green-100 dark:bg-primary-950 p-4 rounded-lg shadow">
+              <p class="font-semibold dark:text-white text-gray-800">Mario:</p>
+              <p class="dark:text-gray-200 text-gray-700">Yes, I will.</p>
+            </div>
+          </div>
+
+          <div class="message susanne-message">
+            <div class=" p-4 rounded-lg shadow">
+              <p class="font-semibold dark:text-white text-gray-800">
+                Susanne:
+              </p>
+              <p class="dark:text-gray-200 text-gray-700">
+                But first you need to book a meeting room. After that, please
+                send everyone an email about it.
+              </p>
+            </div>
+          </div>
+
+          <div class="message mario-message">
+            <div class="bg-green-100 dark:bg-primary-950 p-4 rounded-lg shadow">
+              <p class="font-semibold dark:text-white text-gray-800">Mario:</p>
+              <p class="dark:text-gray-200 text-gray-700">Yes, of course.</p>
+            </div>
+          </div>
+
+          <div class="message susanne-message">
+            <div class=" p-4 rounded-lg shadow">
+              <p class="font-semibold dark:text-white text-gray-800">
+                Susanne:
+              </p>
+              <p class="dark:text-gray-200 text-gray-700">
+                And finally, can you write a short report about our new project?
+                I have to give a presentation to our managers next month. Please
+                do it when you have time – sometime in the next two or three
+                weeks. It's not too urgent.
+              </p>
+            </div>
+          </div>
+
+          <div class="message mario-message">
+            <div class="bg-green-100 dark:bg-primary-950 p-4 rounded-lg shadow">
+              <p class="font-semibold dark:text-white text-gray-800">Mario:</p>
+              <p class="dark:text-gray-200 text-gray-700">
+                Sure, no problem. I can do it this week.
+              </p>
+            </div>
+          </div>
+
+          <div class="message susanne-message">
+            <div class=" p-4 rounded-lg shadow">
+              <p class="font-semibold dark:text-white text-gray-800">
+                Susanne:
+              </p>
+              <p class="dark:text-gray-200 text-gray-700">
+                There's no hurry. Take your time.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
