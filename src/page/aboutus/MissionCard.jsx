@@ -1,6 +1,5 @@
-
 import React from "react";
-import GlassCard from "./GlassCard";
+import GlassCard from "../../components/card/GlassCard";
 import missionIcon from "../../../public/img/iconSVG/hello.svg";
 import { useTranslation } from "react-i18next";
 
@@ -13,8 +12,9 @@ export default function MissionCard() {
         <div className="flex flex-col md:flex-row items-center justify-center p-3 gap-6">
           {/* Image */}
           <img
-            className="w-full max-w-[350px] md:max-w-[450px]"
+            className="hidden md:block w-full max-w-[350px] md:max-w-[450px] md:ml-auto"
             src={missionIcon}
+            loading="lazy"
             alt="Mission"
           />
 

@@ -27,6 +27,7 @@ export default function MemberCard() {
             <img
               src={member.image}
               alt={member.name}
+              loading="lazy"
               className="w-64 h-64 rounded-tl-[50px] rounded-br-[50px] object-cover  shadow-lg"
             />
 
