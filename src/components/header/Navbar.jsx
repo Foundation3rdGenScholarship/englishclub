@@ -78,7 +78,7 @@ export default function Navbar() {
           <div className="hidden md:block">
             <ButtonLanguage />
           </div>
-          {isLoggedIn ? <Profile user={user} /> : <RegisterBtn />}
+          {isLoggedIn ? <Profile user={user}/> : <RegisterBtn />}
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -129,7 +129,7 @@ export default function Navbar() {
               <ButtonLanguage />
             </li>
             {isLoggedIn ? (
-              <li className="md:hidden">
+              <li className="hidden">
                 <Profile user={user} />
               </li>
             ) : (

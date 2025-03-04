@@ -1,62 +1,68 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const StatsSummary = () => {
-  // Data for each level (A1, A2, B1, B2, C1, C2)
+  const { t } = useTranslation("userProfile");
+
+  // Retrieve stored chart data
+  const storedChartData = JSON.parse(localStorage.getItem("chartState")) || {
+    series: [0, 0, 0, 0, 0], // Default values if nothing is stored
+  };
+
+  console.log(storedChartData.series);
+
   const levels = [
     {
       name: "A1",
       image:
         "https://project-english-club.vercel.app/assets/Listening-DRjLXa_y.png",
-      completed: 0,
-      total: 10,
+      completed: 6,
+      total: storedChartData.series[0] || 0,
     },
     {
       name: "A2",
       image:
         "https://project-english-club.vercel.app/assets/reading10-B6uM6VFf.png",
-      completed: 5,
-      total: 10,
+      completed: 0,
+      total: storedChartData.series[1] || 0,
     },
     {
       name: "B1",
       image:
         "https://project-english-club.vercel.app/assets/speaking10-DeXVtclm.png",
-      completed: 7,
-      total: 10,
+      completed: 3,
+      total: storedChartData.series[2] || 0,
     },
     {
       name: "B2",
       image:
         "https://project-english-club.vercel.app/assets/writing-Bv33aIX_.png",
-      completed: 3,
-      total: 10,
+      completed: 0,
+      total: storedChartData.series[3] || 0,
     },
     {
       name: "C1",
       image:
         "https://project-english-club.vercel.app/assets/vocabulary-C_LuEoE2.png",
-      completed: 8,
-      total: 10,
-    },
-    {
-      name: "C2",
-      image:
-        "https://project-english-club.vercel.app/assets/garmmar1-BGSaCA1i.png",
       completed: 2,
-      total: 10,
+      total: storedChartData.series[4] || 0,
     },
   ];
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-900 rounded-xl shadow-lg p-6 sm:ml-64 mt-[88px] max-w-screen-xl">
-      <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-        ព័ត៌មានលម្អិតអំពីការធ្វើលំហាត់
+    <div className="bg-bg-light-mode dark:bg-gray-900 rounded-xl p-6 sm:ml-64 mt-[88px] max-w-screen-xl mb-16">
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+        {t("details about the")}{" "}
+        <span className="text-secondary-500">{t("exercises")}</span>
       </h2>
 
       {/* Grid Layout for Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {levels.map((level, index) => {
-          const progress = (level.completed / level.total) * 100; // Calculate progress percentage
+          const progress =
+            level.total > 0
+              ? ((level.completed / level.total) * 100).toFixed(2)
+              : 0; // Prevent division by zero
 
           return (
             <a
@@ -84,7 +90,7 @@ const StatsSummary = () => {
                       <span className="font-medium text-secondary-500">
                         {level.completed}
                       </span>{" "}
-                      / {level.total} បានធ្វើ
+                      / {level.total} {t("done")}
                     </p>
                   </div>
                   {/* Progress Circle */}
@@ -109,7 +115,7 @@ const StatsSummary = () => {
                         cy="50"
                         r="45"
                         fill="none"
-                        stroke="#fba518" // Blue color for progress
+                        stroke="#fba518" // Orange color for progress
                         strokeWidth="10"
                         strokeDasharray="283" // Circumference of the circle (2 * π * r)
                         strokeDashoffset={283 - (283 * progress) / 100} // Dynamic offset based on progress

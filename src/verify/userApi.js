@@ -10,31 +10,27 @@ export const userApi = createApi({
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }
-      headers.set("Content-Type", "application/json");
       return headers;
     },
   }),
   endpoints: (builder) => ({
     fetchUserData: builder.query({
-      query: () => "/users/me", // ✅ Fix: No token in URL
+      query: () => "/users/me",
       transformResponse: (response) => response.payload,
     }),
     updateUserInfo: builder.mutation({
       query: ({ user_uuid, user_name, profile, bio }) => ({
-        url: "/users/update",
-        method: "POST",
-        body: { user_uuid, user_name, profile, bio },
+        url: `/users/${user_uuid}`, // Use user_uuid passed in the function
+        method: "PUT",
+        body: { user_name, profile, bio },
       }),
     }),
     uploadFile: builder.mutation({
-      query: (file) => ({
+      query: (formData) => ({
         url: "/files",
         method: "POST",
-        body: file, // FormData should be passed directly
-        headers: {
-          "Content-Type": "multipart/form-data", // RTK Query handles the multipart content type
-          Authorization: `Bearer ${getAccessToken()}`, // Include the access token
-        },
+        body: formData,
+        // Headers are automatically set by prepareHeaders
       }),
     }),
   }),

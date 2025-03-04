@@ -13,7 +13,10 @@ import { useTranslation } from "react-i18next";
 import AuthLayout from "../../components/layout/AuthLayout";
 import InputField from "../../components/inputField/InputField";
 import SubmitButton from "../../components/button/SubmitButton";
-import { useVerifyEmailMutation } from "../../redux/features/user/userSlice";
+import {
+  useVerifyEmailMutation,
+  useResetPasswordMutation,
+} from "../../redux/features/user/userSlice";
 
 const ForgotPassword = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
@@ -33,17 +36,21 @@ const ForgotPassword = () => {
       .required(t("email is required")),
   });
 
-  const handleSubmit = async (values, { resetForm }) => {
-    console.log("Value: ", values)
-    try {
-      await verifyEmail(values).unwrap();
-      toast.success(t("verification email sent!"));
-      resetForm();
-      navigate("/otp-verify", { state: values.email });
-    } catch (error) {
-      toast.error(t("failed to verify email"));
-    }
-  };
+const handleSubmit = async (values, { resetForm }) => {
+  console.log("Value: ", values.email);
+  try {
+    // Ensure you're passing only the email string to the mutation
+    await verifyEmail(values.email).unwrap(); // Pass just the email value
+    toast.success(t("verification email sent!"));
+    resetForm();
+    navigate("/vertifyotp", { state: { email: values.email } });
+  } catch (error) {
+    console.error("Verification error:", error);
+    toast.error(t("failed to verify email"));
+  }
+};
+
+
 
   return (
     <AuthLayout
