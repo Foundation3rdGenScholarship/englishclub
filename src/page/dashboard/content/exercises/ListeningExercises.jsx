@@ -51,7 +51,7 @@ const ListeningExercises = () => {
     }));
 
     return (
-      <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
+      <div className="sm:ml-64 mt-[80px] mb-10">
         <div className="max-w-full">
           <div className="container mx-auto px-4">
             <div className="text-heading-4 h-[100px] md:h-auto md:text-heading-2 flex items-center gap-2">
@@ -69,41 +69,43 @@ const ListeningExercises = () => {
                 />
               </div>
             </div>
+            <div className="max-w-screen-md m-auto ">
+              <div className="p-4">
+                <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+                  {data.description}
+                </p>
+              </div>
+
+              {data.voice === "link voice" ? null : (
+                <h3 className="p-4 text-heading-3 text-primary-500">
+                  Listening :
+                  <audio controls className="w-full">
+                    <source src={data.voice} type="audio/mp3" />
+                    Your browser does not support the audio element.
+                  </audio>
+                </h3>
+              )}
+
+              {/* Reading */}
+              <h3 className="p-4 text-heading-3 text-primary-500">Reading</h3>
+
+              <div className="p-4 text-black text-des-2 text-justify dark:text-white m-auto leading-10">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(transcript),
+                  }}
+                />
+              </div>
+              <div className="p-4 dark:text-text-des-dark-mode">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(tip),
+                  }}
+                />
+              </div>
+              <MultipleChoiceQuiz exercises={exercisesData} />
+            </div>
             {/* Description */}
-            <div className="p-4">
-              <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
-                {data.description}
-              </p>
-            </div>
-
-            {data.voice === "link voice" ? null : (
-              <h3 className="p-4 text-heading-3 text-primary-500">
-                Listening :
-                <audio controls className="w-full">
-                  <source src={data.voice} type="audio/mp3" />
-                  Your browser does not support the audio element.
-                </audio>
-              </h3>
-            )}
-
-            {/* Reading */}
-            <h3 className="p-4 text-heading-3 text-primary-500">Reading : </h3>
-
-            <div className="p-4 text-black text-des-2 text-justify dark:text-white m-auto leading-10">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(transcript),
-                }}
-              />
-            </div>
-            <div className="p-4 dark:text-text-des-dark-mode">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(tip),
-                }}
-              />
-            </div>
-            <MultipleChoiceQuiz exercises={exercisesData} />
           </div>
         </div>
       </div>

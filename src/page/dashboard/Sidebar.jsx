@@ -200,7 +200,7 @@ const Sidebar = () => {
           </li>
           <li>
             <NavLink
-              to="#"
+              to="/extra-video"
               className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 dark:hover:bg-primary-950 group ${
                 activeItem === "extraVideo"
                   ? "bg-primary-100 dark:bg-primary-950"

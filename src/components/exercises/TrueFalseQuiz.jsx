@@ -27,7 +27,7 @@ const TrueFalseQuiz = ({ exercises }) => {
   };
 
   return (
-    <div className="p-6 max-w-2xl mx-auto bg-white shadow-md rounded-lg">
+    <div className="p-6 bg-white shadow-md rounded-lg">
       {exercises.map((exercise, index) => {
         const selectedAnswer = selectedAnswers[exercise.id];
         const isCorrect = selectedAnswer === exercise.correct_answer;

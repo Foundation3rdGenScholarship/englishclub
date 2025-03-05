@@ -42,6 +42,7 @@ import ReadingB2 from "./page/dashboard/content/skillDetail/ReadingB2.jsx";
 import ListeningA1 from "./page/dashboard/content/listeningDetail/ListeningA1.jsx";
 import UserProfile from "./page/user/UserProfile.jsx";
 import ListeningExercises from "./page/dashboard/content/exercises/ListeningExercises.jsx";
+import ExtraVideo from "./page/dashboard/content/video/ExtraVideo.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -82,6 +83,7 @@ createRoot(document.getElementById("root")).render(
               <Route path="/moredoc" element={<MoreDoc />} />
               <Route path="/a1a2vocabulary" element={<A1A2vocabulary />} />
               <Route path="/b1b2vocanulary" element={<B1B2vocabulary />} />
+              <Route path="//extra-video" element={<ExtraVideo />} />
             </Route>
             <Route element={<App />}>
               <Route
