@@ -46,7 +46,7 @@ const ExtraVideo = () => {
                   />
                 </div>
                 <div className="p-4">
-                  <h3 className="text-lg font-bold mb-2">{resource.title}</h3>
+                  <h3 className="text-lg font-bold mb-2 dark:text-text-des-dark-mode">{resource.title}</h3>
                   <div className="flex justify-between items-center">
                     {resource.extra && (
                       <span className="text-xs text-red-500">

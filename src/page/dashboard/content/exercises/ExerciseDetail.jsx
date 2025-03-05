@@ -26,26 +26,25 @@ const ExerciseDetail = () => {
   if (error) {
     return (
       <div>
-        <ServerErrorPage />ß
+        <ServerErrorPage />
       </div>
     ); // Show error if there's a problem fetching the data
   }
 
+  // Retrieving the object from localStorage and converting it back
+
   const transcript = data?.transcript || "";
   const tip = data?.tip || "";
-  console.log("Tip : ", data?.tip);
-  console.log("The Data : ", data);
-  console.log("This is an Data Of Exercises : ", data?.questions);
-  console.log("Type of exericses : ", data.voice);
 
   // TODO Multiple Choies
   if (data?.questions[0].type?.toUpperCase() === "MULTIPLE_CHOICES") {
     const exercisesData = data?.questions.map((item, index) => ({
       id: index + 1,
       question_text: item.question_text,
-      correct_answer: item.correct_answer?.answer || "", // Ensure correct_answer is a string
+      question_uuid: item.q_uuid, // this is an question uuid
+      correct_answer: item.correct_answer[0].answer || "", // Ensure correct_answer is a string
       choices: item.choices.map((choice) => ({
-        choice_uuid: choice.choice_uuid,
+        choice_uuid: choice.text,
         is_correct: choice.is_correct,
         text: choice.text,
       })),
@@ -95,7 +94,7 @@ const ExerciseDetail = () => {
                   }}
                 />
               </div>
-              <MultipleChoiceQuiz exercises={exercisesData} />
+              <MultipleChoiceQuiz exercises={exercisesData} ex_uuid={ex_uuid} />
             </div>
           </div>
         </div>

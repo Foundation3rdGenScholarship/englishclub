@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { submitExercises } from "../../services/submitExercises.js"; // Import the submitExercises function
 
-const MultipleChoiceQuiz = ({ exercises }) => {
+const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState("");
 
   // Handle answer selection
   const handleAnswerSelection = (exerciseId, choiceId) => {
@@ -19,10 +21,34 @@ const MultipleChoiceQuiz = ({ exercises }) => {
     (exercise) => selectedAnswers[exercise.id]
   );
 
+  console.log("This is exercisesz in multiple quiz : ", exercises);
+
+  // Prepare the answers object
+  // Prepare the answers object
+  const prepareAnswers = () => {
+    return exercises.map((exercise) => ({
+      // q_uuid : exercise.question_uuid,
+      answers: exercise.correct_answer,
+    }));
+  };
+  console.log("This is exercises UUID : ", ex_uuid);
   // Handle submission
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (isAllAnswered) {
       setIsSubmitted(true);
+
+      const answers = prepareAnswers();
+
+      // Call submitExercises to send the answers
+      const result = await submitExercises(ex_uuid, answers);
+      // find anwser that contain 5 question
+
+      // Handle the result from the submitExercises function
+      if (result.success) {
+        setFeedbackMessage("Exercise submitted successfully!");
+      } else {
+        setFeedbackMessage(`Error: ${result.message}`);
+      }
     }
   };
 
@@ -86,6 +112,9 @@ const MultipleChoiceQuiz = ({ exercises }) => {
       >
         Submit
       </button>
+
+      {/* Feedback message after submission */}
+      {feedbackMessage && <p className="mt-4 text-center">{feedbackMessage}</p>}
     </div>
   );
 };
