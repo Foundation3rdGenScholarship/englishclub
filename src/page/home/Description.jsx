@@ -19,19 +19,25 @@ const Description = () => {
             </p>
           </div>
           <div className="text-center">
-            <p className="text-heading-3 font-bold text-secondary-500"><CountUp end={219} duration={10} /></p>
+            <p className="text-heading-3 font-bold text-secondary-500">
+              <CountUp end={219} duration={10} />
+            </p>
             <p className="text-lg text-black dark:text-[#fdfefe]">
               {t("ca-lesson")}
             </p>
           </div>
           <div className="text-center">
-            <p className="text-heading-3 font-bold text-secondary-500"><CountUp end={56} duration={10} /></p>
+            <p className="text-heading-3 font-bold text-secondary-500">
+              <CountUp end={56} duration={10} />
+            </p>
             <p className="text-lg text-black dark:text-[#fdfefe]">
               {t("ca-exercise")}
             </p>
           </div>
           <div className="text-center">
-            <p className="text-heading-3 font-bold text-secondary-500"><CountUp end={40} duration={10} /></p>
+            <p className="text-heading-3 font-bold text-secondary-500">
+              <CountUp end={40} duration={10} />
+            </p>
             <p className="text-lg text-black dark:text-[#fdfefe]">
               {t("ca-videos")}
             </p>
