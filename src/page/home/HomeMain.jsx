@@ -4,6 +4,7 @@ import shap from "../../../public/svg/1.svg";
 import ellipseHalf from "../../../public/svg/2.svg";
 import Container from "./Container";
 import Categories from "./Categories";
+import CategoriesCard from "./CategoriesCard";
 
 const HomeMain = () => {
   const Container = ({ children, className = "" }) => {
@@ -37,6 +38,9 @@ const HomeMain = () => {
         <br />
         <Categories />
       </Container>
+      <div>
+        <CategoriesCard />
+      </div>
 
     </div>
   );

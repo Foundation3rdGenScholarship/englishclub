@@ -74,8 +74,8 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import cherPheng from "../../../public/img/image/cherPheng.png";
-import cherDavan from "../../../public/img/image/cherDavan.png";
+import cherPheng from "../../../public/img/image/LokKruPheng.png";
+import cherDavan from "../../../public/img/image/LokKruDavan.png";
 import { useTranslation } from "react-i18next";
 import { FaLinkedinIn } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
@@ -89,7 +89,7 @@ export default function MentorCard() {
       once: true, // Whether animation should happen only once
     });
   }, []);
-  
+
   const { t } = useTranslation("about");
 
   return (
@@ -103,22 +103,42 @@ export default function MentorCard() {
           </div>
         </div>
         <div className="flex justify-center">
-          <img 
-            className="w-72 mt-5" 
-            src={cherPheng} 
+          <img
+            className="w-72 mt-5"
+            src={cherPheng}
             alt="Cher Pheng"
             loading="lazy" // Lazy loading attribute
           />
         </div>
-        <div className="flex justify-center p-5">
-          <a className="p-3" href="http://linkedin.com/in/kim-chansokpheng-6b6513267">
-            <FaLinkedinIn className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
+        <div className="flex justify-center p-5 text-primary-950 dark:text-white">
+          {/* LinkedIn */}
+          <a
+            className="p-3"
+            href="https://linkedin.com/in/kim-chansokpheng-6b6513267"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaLinkedinIn className="size-9 hover:text-[#1560BD]" />
           </a>
-          <a className="p-3" href="http://">
-            <IoMdMail className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
+
+          {/* Email */}
+          <a
+            className="p-3"
+            href="http://kimchansokpheng123@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <IoMdMail className="size-9 hover:text-[#1560BD]" />
           </a>
-          <a className="p-3" href="http://">
-            <FaGithub className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
+
+          {/* GitHub */}
+          <a
+            className="p-3"
+            href="https://github.com/sokpheng001"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaGithub className="size-9 hover:text-[#1560BD]" />
           </a>
         </div>
       </div>
@@ -132,22 +152,31 @@ export default function MentorCard() {
           </div>
         </div>
         <div className="flex justify-center">
-          <img 
-            className="w-72 mt-5" 
-            src={cherDavan} 
+          <img
+            className="w-72 mt-5"
+            src={cherDavan}
             alt="Cher Davan"
             loading="lazy" // Lazy loading attribute
           />
         </div>
-        <div className="flex justify-center p-5">
-          <a className="p-3" href="http://linkedin.com/in/ing-davann-0617b32a3">
-            <FaLinkedinIn className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
+        <div className="flex justify-center p-5 text-primary-950 dark:text-white">
+          <a className="p-3"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="http://linkedin.com/in/ing-davann-0617b32a3">
+            <FaLinkedinIn className="size-9  hover:text-[#1560BD] " />
           </a>
-          <a className="p-3" href="http://">
-            <IoMdMail className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
+          <a className="p-3"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="http://ingdavann4444@gmail.com">
+            <IoMdMail className="size-9  hover:text-[#1560BD]" />
           </a>
-          <a className="p-3" href="http://">
-            <FaGithub className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
+          <a className="p-3"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="http://github.com/ingdavann">
+            <FaGithub className="size-9  hover:text-[#1560BD] " />
           </a>
         </div>
       </div>
