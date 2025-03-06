@@ -28,11 +28,11 @@ const SignOut = ({ closeModal }) => {
     setTimeout(() => {
       dispatch(logout());
       navigate("/login"); // Redirect to login page
-    }, 2000); // Delay for 2 seconds
+    }, 1500);
   };
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center bg-gray-800 bg-opacity-60 z-50">
+    <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-gray-800 bg-opacity-60 z-[1000]">
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full animate-fadeIn">
         <IoIosLogOut className="text-5xl text-primary-500 mx-auto mb-4" />
         <h2 className="text-xl font-semibold text-gray-800 text-center mb-2">

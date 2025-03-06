@@ -42,7 +42,7 @@ export default function NavbarDashboard() {
         </div>
 
         {/* Right Sidebar */}
-        <div className="flex items-center gap-5 w-full justify-between">
+        <div className="flex items-center gap-5 w-full justify-end">
           <SearchBar />
           <div className="flex items-center gap-4">
             <div className="sm:flex items-center gap-4 hidden">
