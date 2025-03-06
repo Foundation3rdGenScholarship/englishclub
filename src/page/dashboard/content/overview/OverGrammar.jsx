@@ -2,10 +2,12 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import CourseCard from "../../../../components/card/CourseCard";
 import TextAnimation from "../../../../components/progress/TextAnimation";
-import { useAllSkillQuery } from "../../../../redux/features/skill/skillSlice";
+import grammar from "../../../../data/json/grammar.json";
+import { useAllGrammarQuery } from "../../../../redux/features/grammar/grammarSlice";
 export const OverGrammar = () => {
   const { t } = useTranslation("over-grammar");
-  const { data } = useAllSkillQuery();
+  const { data, isLoarding, error } = useAllGrammarQuery();
+  console.log(data);
   return (
     <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
       <div className="max-w-full">
@@ -53,15 +55,15 @@ export const OverGrammar = () => {
 
           {/* Courses Section */}
           <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
-            {/* {readingJson.map((items) => (
-            <CourseCard
-              link={items.link}
-              key={items.level}
-              title={items.title}
-              img={items.img}
-              des={items.description}
-            />
-          ))} */}
+            {grammar.map((items) => (
+              <CourseCard
+                link={items.link}
+                key={items.level}
+                title={items.title}
+                img={items.img}
+                des={items.description}
+              />
+            ))}
           </div>
         </div>
       </div>

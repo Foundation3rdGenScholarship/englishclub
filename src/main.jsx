@@ -43,6 +43,9 @@ import ListeningA1 from "./page/dashboard/content/listeningDetail/ListeningA1.js
 import UserProfile from "./page/user/UserProfile.jsx";
 import ListeningExercises from "./page/dashboard/content/exercises/ListeningExercises.jsx";
 import ExtraVideo from "./page/dashboard/content/video/ExtraVideo.jsx";
+import { WritingA1 } from "./page/dashboard/content/writingDetail/WritingA1.jsx";
+import { SpeakingA1 } from "./page/dashboard/content/speakingDetail/SpeakingA1.jsx";
+import SpeakingExercises from "./page/dashboard/content/exercises/SpeakingExercises.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -77,15 +80,18 @@ createRoot(document.getElementById("root")).render(
               <Route path="/listening" element={<Listening />} />
               <Route path="/writing" element={<Writing />} />
               <Route path="/speaking" element={<Speaking />} />
-              <Route path="/a1a2grammar" element={<A1A2grammar />} />
-              <Route path="/b1b2grammar" element={<B1B2grammar />} />
-              <Route path="/c1grammar" element={<C1grammar />} />
+              {/* <Route path="/a1a2grammar" element={<A1A2grammar />} /> */}
+              {/* <Route path="/b1b2grammar" element={<B1B2grammar />} />
+              <Route path="/c1grammar" element={<C1grammar />} /> */}
               <Route path="/moredoc" element={<MoreDoc />} />
               <Route path="/a1a2vocabulary" element={<A1A2vocabulary />} />
               <Route path="/b1b2vocanulary" element={<B1B2vocabulary />} />
-              <Route path="//extra-video" element={<ExtraVideo />} />
+              <Route path="/extra-video" element={<ExtraVideo />} />
             </Route>
             <Route element={<App />}>
+              <Route path="/a1a2grammar" element={<A1A2grammar />} />
+              <Route path="/b1b2grammar" element={<B1B2grammar />} />
+              <Route path="/c1grammar" element={<C1grammar />} />
               <Route
                 path="/courses/reading/level=a1"
                 element={<ReadingDetail />}
@@ -97,6 +103,11 @@ createRoot(document.getElementById("root")).render(
                 path="/courses/listening/level=a1"
                 element={<ListeningA1 />}
               />
+              <Route path="/courses/writing/level=a1" element={<WritingA1 />} />
+              <Route
+                path="/courses/speaking/level=a1"
+                element={<SpeakingA1 />}
+              />
               <Route path="/skills" element={<OverSkill />} />
               <Route path="/over-grammar" element={<OverGrammar />} />
               <Route path="/over-vocabulary" element={<OverVocabulary />} />
@@ -104,6 +115,10 @@ createRoot(document.getElementById("root")).render(
               <Route
                 path="/listening/:ex_uuid"
                 element={<ListeningExercises />}
+              />
+              <Route
+                path="/speaking/:ex_uuid"
+                element={<SpeakingExercises />}
               />
             </Route>
             <Route path="/vertifyotp" element={<VerifyOTP />} />

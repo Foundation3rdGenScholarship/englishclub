@@ -12,7 +12,7 @@ const ReadingDetail = () => {
   const { t } = useTranslation("reading");
   const exercises = data?.flatMap((item) => item.exercises) || [];
   const navigate = useNavigate(); // Initialize navigate hook
-  console.log("This is an data : ",exercises);
+  console.log("This is an data : ", exercises);
 
   if (isLoading) {
     return (

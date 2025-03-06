@@ -1,23 +1,41 @@
 import React, { useState, useEffect } from "react";
-import extraVideo from "../../../../data/extraVideo/extraVideo.json";
+import VideoCard from "../../../../components/card/VideoCard";
+
+const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
+const videoIds = ["aMWT9aEShWs", "OW0uuGfpvUE", "B6kryr_WIaY","cWmGqByYEus"];
 
 const ExtraVideo = () => {
+  const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulating a data fetch delay
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1500); // Adjust the delay as needed
-    return () => clearTimeout(timer);
+    const fetchVideos = async () => {
+      try {
+        const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${videoIds.join(
+          ","
+        )}&key=${API_KEY}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+
+        if (data.items) {
+          setVideos(data.items);
+        }
+      } catch (error) {
+        console.error("Error fetching YouTube videos:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVideos();
   }, []);
 
   return (
     <div className="mt-[88px] sm:ml-64">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 p-4">
         {loading
-          ? // Show skeleton when loading
-            Array.from({ length: 6 }).map((_, index) => (
+          ? Array.from({ length: 6 }).map((_, index) => (
               <div
                 key={index}
                 className="border rounded-lg shadow-lg overflow-hidden animate-pulse"
@@ -30,33 +48,7 @@ const ExtraVideo = () => {
                 </div>
               </div>
             ))
-          : // Show actual videos when loaded
-            extraVideo.map((resource, index) => (
-              <div
-                key={index}
-                className="border rounded-lg shadow-lg overflow-hidden"
-              >
-                <div className="relative pt-[56.25%]">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${resource.youtubeId}`}
-                    title={resource.title}
-                    className="absolute top-0 left-0 w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-lg font-bold mb-2 dark:text-text-des-dark-mode">{resource.title}</h3>
-                  <div className="flex justify-between items-center">
-                    {resource.extra && (
-                      <span className="text-xs text-red-500">
-                        {resource.extra}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
+          : videos.map((video) => <VideoCard key={video.id} video={video} />)}
       </div>
     </div>
   );

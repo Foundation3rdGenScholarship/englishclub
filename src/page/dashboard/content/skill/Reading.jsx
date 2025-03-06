@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import CourseCard from "../../../../components/card/CourseCard";
-import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import readingJson from "../../../../data/json/reading.json";
 import TextAnimation from "../../../../components/progress/TextAnimation";
 import ButtonNavigate from "../../../../components/button/ButtonNavigate";

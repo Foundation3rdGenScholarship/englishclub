@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { submitExercises } from "../../services/submitExercises.js"; // Import the submitExercises function
+import { useTranslation } from "react-i18next";
 
 const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
+  const { t } = useTranslation("error");
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState("");
@@ -47,7 +49,8 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
       if (result.success) {
         setFeedbackMessage("Exercise submitted successfully!");
       } else {
-        setFeedbackMessage(`Error: ${result.message}`);
+        // TODO Message
+        setFeedbackMessage(`${t("multipleChoics")}`);
       }
     }
   };
@@ -63,12 +66,12 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
 
         return (
           <div key={exercise.id} className="mb-6">
-            <h2 className="font-bold text-lg mb-2">
+            <h2 className="font-bold text-heading-4 mb-2 text-primary-100">
               {index + 1}. {exercise.question_text}
             </h2>
             {exercise.choices.map((choice) => (
               <div key={choice.choice_uuid} className="mb-2">
-                <label className="flex items-center gap-2">
+                <label className="flex items-center gap-2 text-des-3 dark:text-text-des-dark-mode text-text-des-light-mode">
                   <input
                     type="radio"
                     name={`exercise-${exercise.id}`}
@@ -106,7 +109,7 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
         disabled={!isAllAnswered || isSubmitted}
         className={`px-4 py-2 rounded-lg text-white ${
           isAllAnswered && !isSubmitted
-            ? "bg-blue-500 hover:bg-blue-600"
+            ? "bg-primary-500 hover:bg-primary-600"
             : "bg-gray-400 cursor-not-allowed"
         }`}
       >
@@ -114,7 +117,9 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
       </button>
 
       {/* Feedback message after submission */}
-      {feedbackMessage && <p className="mt-4 text-center">{feedbackMessage}</p>}
+      {feedbackMessage && (
+        <p className="mt-4 text-center text-red-500">{feedbackMessage}</p>
+      )}
     </div>
   );
 };

@@ -13,7 +13,7 @@ const CourseCard = ({ title, img, des, link,onClick }) => {
         <div className="border-2 block md:absolute bg-white dark:bg-bg-dark-mode dark:border-primary-500 p-6 shadow-md lg:w-[500px] left-[90px] top-[20px] lg:left-[250px] lg:top-[50px] md:rounded-tl-[50px] md:rounded-br-[50px] w-[380px]">
           <NavLink
             to={link}
-            className="text-xl font-bold text-primary-500 md:text-heading-4 lg:text-heading-3 hover:underline"
+            className="text-heading-3 font-bold text-primary-500 md:text-heading-4 lg:text-heading-3 hover:underline line-clamp-1"
           >
             {title}
           </NavLink>

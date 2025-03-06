@@ -31,9 +31,9 @@ const Dashboard = () => {
 
       {/* Start Content */}
 
-      {/* toggle() */}
+      {/* toggle()  : onClick={() => dispatch(toggle())}*/}
 
-      <div onClick={() => dispatch(toggle())}>
+      <div>
         {activeItem === "dashboard" && <User />}
         {activeItem === "listening" && <Listening />}
         {activeItem === "reading" && <Reading />}

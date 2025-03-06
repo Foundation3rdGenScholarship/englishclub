@@ -7,16 +7,6 @@ export const submitExercises = async (exercise_uuid, selectedAnswers) => {
     return { success: false, message: "No user found!" };
   }
 
-  // Convert selected answers into API format
-  //   const user_answer = Object.entries(selectedAnswers).map(
-  //     // q_uuid : uuid's  question from api
-  //     // answer : text anwser from api
-  //     ([q_uuid, answer]) => ({
-  //       q_uuid, // Question UUID
-  //       answers: answer, // Wrap answer in array
-  //     })
-  //   );
-
   const user_answer = Object.entries(selectedAnswers).map(
     ([q_uuid, answer]) => ({
       q_uuid,
