@@ -38,9 +38,6 @@ const HomeMain = () => {
         <br />
         <Categories />
       </Container>
-      <div>
-        <CategoriesCard />
-      </div>
 
     </div>
   );
