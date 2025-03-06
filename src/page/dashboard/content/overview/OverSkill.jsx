@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import CourseCard from "../../../../components/card/CourseCard";
 import TextAnimation from "../../../../components/progress/TextAnimation";
 import { useAllSkillQuery } from "../../../../redux/features/skill/skillSlice";
+import HeroSkillOverView from "../../../../components/heroCard/HeroSkillOverView";
 
 export const OverSkill = () => {
   const { t } = useTranslation("over-skill");
@@ -77,6 +78,10 @@ export const OverSkill = () => {
                 des={items.description}
               />
             ))} */}
+          </div>
+          {/* OverView*/}
+          <div>
+            <HeroSkillOverView />
           </div>
         </div>
       </div>

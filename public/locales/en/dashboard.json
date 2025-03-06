@@ -17,5 +17,6 @@
   "placeholder": "Search...",
   "profile":"Profile",
   "learning":"History of learning",
-  "sign out":"Sign out"
+  "sign out":"Sign out",
+  "soundTts" : "Listening to words"
 }

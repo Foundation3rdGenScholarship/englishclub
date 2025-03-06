@@ -15,6 +15,7 @@ import A1A2vocabulary from "./content/vocabularies/A1A2vocabulary";
 import B1B2vocabulary from "./content/vocabularies/B1B2vocabulary";
 import { toggle } from "../../redux/features/user/visibilitySlice";
 import ExtraVideo from "./content/video/ExtraVideo";
+import ImageTTS from "./content/soundTts/ImageTTS";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const Dashboard = () => {
         {activeItem === "a1a2vocabulary" && <A1A2vocabulary />}
         {activeItem === "b1b2vocabulary" && <B1B2vocabulary />}
         {activeItem === "extraVideo" && <ExtraVideo />}
-        {}
+        {activeItem === "soundTts" && <ImageTTS />}
       </div>
     </div>
   );

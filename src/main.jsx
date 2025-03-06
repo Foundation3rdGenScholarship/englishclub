@@ -46,6 +46,7 @@ import ExtraVideo from "./page/dashboard/content/video/ExtraVideo.jsx";
 import { WritingA1 } from "./page/dashboard/content/writingDetail/WritingA1.jsx";
 import { SpeakingA1 } from "./page/dashboard/content/speakingDetail/SpeakingA1.jsx";
 import SpeakingExercises from "./page/dashboard/content/exercises/SpeakingExercises.jsx";
+import ImageTTS from "./page/dashboard/content/soundTts/ImageTTS.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -92,6 +93,7 @@ createRoot(document.getElementById("root")).render(
               <Route path="/a1a2grammar" element={<A1A2grammar />} />
               <Route path="/b1b2grammar" element={<B1B2grammar />} />
               <Route path="/c1grammar" element={<C1grammar />} />
+              <Route path="/soundTts" element={<ImageTTS />} />
               <Route
                 path="/courses/reading/level=a1"
                 element={<ReadingDetail />}
