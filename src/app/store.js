@@ -9,7 +9,7 @@ import visibilitySlice from "../redux/features/user/visibilitySlice.js";
 import { exerciseApi } from "../redux/features/exercises/exercisesSlice.js";
 import authReducer from "../redux/features/user/authSlice.js";
 import { api } from "../redux/features/user/userSlice.js";
-
+import { searchApi } from "../redux/features/search/search.js";
 export const store = configureStore({
   reducer: {
     sidebar: sidebarReducer,
@@ -20,15 +20,16 @@ export const store = configureStore({
     [userApi.reducerPath]: userApi.reducer,
     [exerciseApi.reducerPath]: exerciseApi.reducer,
     [api.reducerPath]: api.reducer,
+    [searchApi.reducerPath]: searchApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(
-        apiSlice.middleware,
-        userApi.middleware,
-        exerciseApi.middleware,
-        api.middleware
-      ),
+    getDefaultMiddleware().concat(
+      apiSlice.middleware,
+      userApi.middleware,
+      exerciseApi.middleware,
+      api.middleware,
+      searchApi.middleware
+    ),
 });
 
 setupListeners(store.dispatch);

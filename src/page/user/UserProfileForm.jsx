@@ -70,7 +70,10 @@ const UserProfileForm = ({
       enableReinitialize={true}
     >
       {({ setFieldValue, isSubmitting, values }) => (
-        <Form className="p-4 sm:ml-64 mt-[60px] max-w-screen-xl">
+        <Form
+          className="p-4 sm:ml-64 mt-[60px] max-w-screen-xl"
+          data-aos="fade-down"
+        >
           <div className="flex flex-col items-center mb-8 mt-12">
             <div className="relative w-28 h-28 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 p-1">
               <div className="w-full h-full rounded-full overflow-hidden">

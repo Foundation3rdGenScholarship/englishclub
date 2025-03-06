@@ -8,7 +8,7 @@
   "details about the": "ព័ត៌មានលម្អិតអំពីការធ្វើ",
   "done": "បានធ្វើ",
   "please enter your name": "សូមបញ្ជូលឈ្មោះរបស់អ្នក",
-  "rate of exercises by level": "អត្រានៃចំនួនលំហាត់តាមកម្រិត",
+  "rate of exercises": "អត្រានៃចំនួនលំហាត់តាមកម្រិត",
   "by level": "តាមកម្រិត",
   "exercises": "លំហាត់",
   "are you sure you want to sign out?": "តើ​អ្នក​ប្រាកដ​ជា​ចង់​ចាកចេញ?",
@@ -16,5 +16,6 @@
   "yes, Sign out": "បាទ/ចាស​, ចាកចេញ",
   "no, Go back": "ទេ, ត្រឡប់ទៅវិញ",
   "dashboard": "ផ្ទាំងគ្រប់គ្រង",
-  "sign out": "ចាកចេញ"
+  "sign out": "ចាកចេញ",
+  "completed": "នៃលំហាត់ដែលរួចរាល់"
 }
