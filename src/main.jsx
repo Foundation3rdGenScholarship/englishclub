@@ -16,6 +16,7 @@ import { Provider } from "react-redux";
 import Register from "./page/auth/Register.jsx";
 import ForgotPassword from "./page/auth/ForgotPassword.jsx";
 import Dashboard from "./page/dashboard/Dashboard.jsx";
+import NotFound from "./page/err/NotFound.jsx";
 import Contact from "./page/contact/ContactMain.jsx";
 import AboutUsMain from "./page/aboutus/AboutUsMain.jsx";
 import Reading from "./page/dashboard/content/skill/Reading.jsx";
@@ -69,6 +70,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route path="/notFound" element={<NotFound />} />
             <Route element={<Dashboard />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/reading" element={<Reading />} />
