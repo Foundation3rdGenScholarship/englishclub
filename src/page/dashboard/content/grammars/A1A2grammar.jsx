@@ -5,6 +5,7 @@ import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import CourseCard from "../../../../components/card/CourseCard";
 import HeroLevel from "../../../../components/heroCard/HeroLevel";
+import ServerErrorPage from "../../../err/ServerErrorPage";
 
 const A1A2grammar = () => {
   const { t } = useTranslation("a1a2grammar");
