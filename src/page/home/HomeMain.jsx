@@ -6,8 +6,9 @@ import ellipseHalf from "../../../public/svg/2.svg";
 import Description from "./Description";
 import FeaturesGrid from "./Categories";
 // import Container from "./Container";
-import Categories from "./Categories";
-import CategoriesCard from "./CategoriesCard";
+// import Categories from "./Categories";
+// import CategoriesCard from "./CategoriesCard";
+import ContentSectionCard from "./ContentSectionCard";
 
 const HomeMain = () => {
   const Container = ({ children, className = "" }) => {
@@ -52,6 +53,7 @@ const HomeMain = () => {
           </Container>
         </div>
       </div>
+      <ContentSectionCard />
     </div>
   );
 };

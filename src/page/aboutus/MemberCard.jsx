@@ -52,7 +52,7 @@ export default function MemberCard() {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 md:px-20 dark:text-white">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-6 md:px-20 dark:text-white">
         {teamMembers.map((member, index) => (
           <div key={index} className="flex flex-col items-center mt-5">
             {/* Name Tag */}
@@ -71,13 +71,13 @@ export default function MemberCard() {
             {/* Social Icons */}
             <div className="flex mt-5 text-3xl text-primary-950 dark:text-white">
               <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                <FaLinkedin className="cursor-pointer mr-4 hover:text-blue-700" />
+                <FaLinkedin className="cursor-pointer mr-4 hover:text-primary-100" />
               </a>
               <a href={member.email}>
-                <FaEnvelope className="cursor-pointer mx-2 hover:text-blue-700" />
+                <FaEnvelope className="cursor-pointer mx-2 hover:text-primary-100" />
               </a>
               <a href={member.github} target="_blank" rel="noopener noreferrer">
-                <FaGithub className="cursor-pointer ml-4 hover:text-blue-700" />
+                <FaGithub className="cursor-pointer ml-4 hover:text-primary-100" />
               </a>
             </div>
           </div>
