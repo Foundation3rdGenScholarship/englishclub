@@ -16,6 +16,7 @@ import { Provider } from "react-redux";
 import Register from "./page/auth/Register.jsx";
 import ForgotPassword from "./page/auth/ForgotPassword.jsx";
 import Dashboard from "./page/dashboard/Dashboard.jsx";
+import NotFound from "./page/err/NotFound.jsx";
 import Contact from "./page/contact/ContactMain.jsx";
 import AboutUsMain from "./page/aboutus/AboutUsMain.jsx";
 import Reading from "./page/dashboard/content/skill/Reading.jsx";
@@ -75,6 +76,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route path="/notFound" element={<NotFound />} />
             <Route element={<Dashboard />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/reading" element={<Reading />} />
@@ -87,9 +89,9 @@ createRoot(document.getElementById("root")).render(
               <Route path="/moredoc" element={<MoreDoc />} />
               <Route path="/a1a2vocabulary" element={<A1A2vocabulary />} />
               <Route path="/b1b2vocanulary" element={<B1B2vocabulary />} />
-              <Route path="/extra-video" element={<ExtraVideo />} />
             </Route>
             <Route element={<App />}>
+              <Route path="/extra-video" element={<ExtraVideo />} />
               <Route path="/a1a2grammar" element={<A1A2grammar />} />
               <Route path="/b1b2grammar" element={<B1B2grammar />} />
               <Route path="/c1grammar" element={<C1grammar />} />

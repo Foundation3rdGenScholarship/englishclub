@@ -28,12 +28,6 @@ const UserProfile = () => {
   const accessToken = localStorage.getItem("access_token");
   const location = useLocation();
   const dispatch = useDispatch();
-
-  // Show sidebar only on certain pages
-  const showSidebar =
-    location.pathname.includes("/profile") ||
-    location.pathname.includes("/exercises");
-
   const [verify] = useUserVerifyMutation();
 
   useEffect(() => {

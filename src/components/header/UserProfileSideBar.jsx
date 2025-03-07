@@ -72,6 +72,7 @@ const UserProfileSidebar = ({ showSignOutModal, setShowSignOutModal }) => {
 
   const handleSignOutClick = () => {
     setShowSignOutModal(true); // Show the sign-out modal when the link is clicked
+    dispatch(setActiveItem("sign-out"));
   };
 
   return (
@@ -90,9 +91,9 @@ const UserProfileSidebar = ({ showSignOutModal, setShowSignOutModal }) => {
               smooth={true}
               duration={500}
               offset={-60}
-              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 dark:hover:bg-primary-950 group ${
+              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
                 activeItem === "profile-section"
-                  ? "bg-primary-100 dark:bg-primary-950"
+                  ? "bg-primary-100 dark:bg-primary-950 text-white"
                   : ""
               }`}
               onClick={() => handleLinkClick("profile-section")}
@@ -109,9 +110,9 @@ const UserProfileSidebar = ({ showSignOutModal, setShowSignOutModal }) => {
               smooth={true}
               duration={500}
               offset={-60}
-              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 dark:hover:bg-primary-950 group ${
+              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
                 activeItem === "exercise-section"
-                  ? "bg-primary-100 dark:bg-primary-950"
+                  ? "bg-primary-100 dark:bg-primary-950 text-white"
                   : ""
               }`}
               onClick={() => handleLinkClick("exercise-section")}
@@ -125,10 +126,10 @@ const UserProfileSidebar = ({ showSignOutModal, setShowSignOutModal }) => {
           <li>
             <Link
               onClick={handleSignOutClick} // Use the passed function to trigger modal
-              to="/signout"
-              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 dark:hover:bg-primary-950 group ${
-                activeItem === "summary-section"
-                  ? "bg-primary-100 dark:bg-primary-950"
+              to="/sign out"
+              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
+                activeItem === "sign-out"
+                  ? "bg-primary-100 dark:bg-primary-950 text-white"
                   : ""
               }`}
             >

@@ -10,7 +10,7 @@ import MissionCard from "./MissionCard";
 import VissionCard from "./VissionCard";
 import AboutUsShape from "./AboutUsShape";
 import MemberCard from "./MemberCard";
-
+import WorkTogether from "../../../public/img/vextor/undraw_working-together_r43a.svg";
 const AboutUsMain = () => {
   useEffect(() => {
     AOS.init({
@@ -21,11 +21,11 @@ const AboutUsMain = () => {
   }, []);
   const { t } = useTranslation("about");
   return (
-    <main className="max-w-screen-xl mx-auto">
-      <section className="px-4 md:px-8 xl:px-16 py-10">
+    <main className=" mx-auto max-w-full overflow-hidden">
+      <section className="px-4 md:px-8 xl:px-16 py-10 ">
         <div className="flex justify-center">
-          <AboutUsShape className="w-full max-w-[1205px] flex justify-center">
-            <GlassCard className="relative top-20 w-full max-w-[1000px]  md:max-w-[1100px] xl:max-w-[1205px] px-4 md:px-8 xl:px-12 py-6 md:py-8 xl:py-10">
+          <AboutUsShape className="max-w-[1205px] flex justify-center relative -z-10">
+            <GlassCard className="relative top-20 z-20 w-full  max-w-[1000px] md:max-w-[1100px] xl:max-w-[1205px] px-4 md:px-8 xl:px-12 py-6 md:py-8 xl:py-10 sm:border-stone-200 md:border-stone-200 xl:border-white">
               <div className="text-center">
                 <h2 className="text-2xl md:text-3xl xl:text-4xl font-bold text-black dark:text-white mt-4">
                   {t("title")}
@@ -34,39 +34,43 @@ const AboutUsMain = () => {
                   {t("description")}
                 </p>
               </div>
+              <div className="flex justify-center items-center mt-3">
+                <img className="w-1/3" src={WorkTogether} alt="" />
+              </div>
             </GlassCard>
           </AboutUsShape>
         </div>
       </section>
-
-      <div className="mt-40 md:mt-96">
-        <div>
-          <p className="text-center text-blue-700  font-bold text-heading-4">
-            {t("mentor")}
-          </p>
-        </div>
-        <div>
-          <MentorCard></MentorCard>
-        </div>
-      </div>
-      <Bubbles className="mt-36">
-        <div className="relative z-10 flex flex-col gap-8 justify-center items-center h-screen">
-          <div data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-            <MissionCard />
+      <section className="container max-w-screen-xl mx-auto">
+        <div className="mt-40 md:mt-96">
+          <div>
+            <p className="text-center text-primary-950 dark:text-primary-100 font-bold text-heading-3">
+              {t("mentor")}
+            </p>
           </div>
           <div>
-            <VissionCard />
+            <MentorCard></MentorCard>
           </div>
         </div>
-      </Bubbles>
-      <div className="my-12">
-        <p className="text-center text-blue-700  font-bold text-heading-4">
-          {t("teammember")}
-        </p>
-      </div>
-      <div>
-        <MemberCard />
-      </div>
+        <Bubbles className="mt-36">
+          <div className="relative z-10 flex flex-col gap-8 justify-center items-center h-screen">
+            <div data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+              <MissionCard />
+            </div>
+            <div>
+              <VissionCard />
+            </div>
+          </div>
+        </Bubbles>
+        <div className="mt-36">
+          <p className="text-center text-primary-950 dark:text-primary-100  font-bold text-heading-3">
+            {t("teammember")}
+          </p>
+        </div>
+        <div className="mb-12 mt-6">
+          <MemberCard />
+        </div>
+      </section>
     </main>
   );
 };

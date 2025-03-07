@@ -8,7 +8,7 @@ export default function MissionCard() {
 
   return (
     <div className="flex justify-center p-4">
-      <GlassCard className="w-full max-w-[1100px] p-5 md:h-[380px]">
+      <GlassCard className="w-full max-w-[1100px] p-5 md:h-[380px] ">
         <div className="flex flex-col md:flex-row items-center justify-center p-3 gap-6">
           {/* Image */}
           <img

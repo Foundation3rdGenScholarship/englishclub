@@ -1,50 +1,106 @@
-import React from "react";
-import { FaSearch } from "react-icons/fa";
-import { MdOutlineClose } from "react-icons/md";
+import React, { useState } from "react";
+import { IoSearch } from "react-icons/io5";
+import { useSearchQuery } from "../../redux/features/search/search"; // Assuming you have this hook set up for searching
+import { useNavigate } from "react-router-dom"; // For navigation
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
-
 const SearchBar = () => {
+  const [searchTerm, setSearchTerm] = useState(""); // Store the search term
+  const [isInputVisible, setIsInputVisible] = useState(false); // For input visibility
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false); // For dropdown visibility
+  const navigate = useNavigate(); // For navigation
   const { t } = useTranslation("dashboard");
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  // Fetch search results from the API
+  const { data, isFetching, error } = useSearchQuery(searchTerm, {
+    skip: !searchTerm, // Only make the request if there’s a search term
+  });
+
+  const results = data?.payload || {}; // API response data
+  const exercises = results?.exercises || []; // Extract exercises from the response
+  console.log(results);
+  // Handle search icon click
+  const handleSearchIconClick = () => {
+    setIsInputVisible(!isInputVisible); // Toggle input visibility
+    setIsDropdownVisible(false); // Close dropdown when toggling input
+  };
+
+  // Handle search term change
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    setIsDropdownVisible(true); // Show dropdown when user types
+  };
+
+  // Handle click on a search result
+  const handleResultClick = (ex_uuid) => {
+    navigate(`/exercises/${ex_uuid}`); // Navigate to the lesson page
+    setIsDropdownVisible(false); // Close the dropdown after selection
+    setIsInputVisible(false); // Hide the input after selection
+    setSearchTerm(""); // Clear the search term
+  };
+
   return (
-    <div className="relative">
-      <button
-        className="p-2 rounded-md bg-secondary-600 sm:hidden mr-[-100px] absolute top-[-20px]"
-        onClick={() => setIsSearchOpen(true)}
+    <div className="flex items-center relative">
+      {/* Search Icon */}
+      <div
+        className="cursor-pointer text-black rounded-md bg-secondary-500 p-2 order-2"
+        onClick={handleSearchIconClick}
       >
-        <FaSearch className="w-6 h-6 text-gray-700 dark:text-white" />
-      </button>
-      <div className="hidden sm:block">
-        <input
-          type="text"
-          className="px-3 py-2 border rounded-md bg-white dark:bg-gray-700 dark:text-white w-[170px] lg:w-[270px]"
-          placeholder={t("placeholder")}
-        />
+        <IoSearch className="text-2xl" />
       </div>
 
-      {/* Mobile Search Popup */}
-      {isSearchOpen && (
-        <div className="">
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 mt-[100px]">
-            <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg w-3/4">
-              <div className="flex items-center justify-between">
-                <input
-                  type="text"
-                  className="w-full px-3 py-2 border rounded-md bg-white dark:bg-gray-700 dark:text-white"
-                  placeholder={t("placeholder")}
-                />
-                <button
-                  onClick={() => setIsSearchOpen(false)}
-                  className="ml-2 "
-                >
-                  <MdOutlineClose className="w-6 h-6 text-gray-700 dark:text-white" />
-                </button>
-              </div>
-            </div>
+      {/* Search Input */}
+      <div
+        className={`transition-all duration-300 ease-in-out overflow-hidden ${
+          isInputVisible
+            ? "w-[7rem] md:w-[17rem] lg:w-[40rem] xl:w-[61rem] opacity-100"
+            : "w-0 opacity-0"
+        }`}
+      >
+        <div className="rounded-lg shadow-lg z-50">
+          <div className="relative p-2">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="w-full p-1.5 rounded-lg bg-bg-light-mode focus:outline-none focus:ring-2 focus:ring-secondary-200 
+             focus:border-secondary-500 dark:bg-gray-800 dark:text-white order-1 text-sm md:text-md lg:text-lg"
+              placeholder={t("search for a lesson...")}
+              autoFocus // Automatically focus the input when it appears
+            />
           </div>
+
+          {/* Dropdown showing search results */}
+          {isDropdownVisible && searchTerm && (
+            <div className="absolute top-full left-0 w-full bg-white dark:bg-gray-800 border rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
+              {isFetching ? (
+                <div className="p-2 text-gray-600 dark:text-white">
+                  {t("loading...")}
+                </div>
+              ) : error ? (
+                <div className="p-2 text-red-500">Error fetching results</div>
+              ) : (
+                <div>
+                  {exercises.length === 0 ? (
+                    <div className="p-2 text-gray-500">No results found</div>
+                  ) : (
+                    exercises.map((item) => (
+                      <div
+                        key={item.ex_uuid} // Use ex_uuid as key
+                        className="p-2 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
+                        onClick={() => handleResultClick(item.ex_uuid)} // Navigate to the lesson
+                      >
+                        <h3 className="text-sm md:text-md lg:text-lg font-bold text-primary-500 dark:text-primary-300">
+                          {item.title}
+                        </h3>
+                        <hr />
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };
