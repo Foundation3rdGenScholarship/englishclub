@@ -66,11 +66,12 @@ createRoot(document.getElementById("root")).render(
               {/* <Route path="/courses" element={<CoursesMain />} /> */}
               <Route path="/contact" element={<Contact />} />
               <Route path="/about" element={<AboutUsMain />} />
+              <Route path="*" element={<NotFound />} />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
-            <Route path="/notFound" element={<NotFound />} />
+            
             <Route element={<Dashboard />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/reading" element={<Reading />} />
