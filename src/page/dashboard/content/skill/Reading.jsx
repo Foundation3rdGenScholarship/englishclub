@@ -12,15 +12,15 @@ const Reading = () => {
     <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
       <div className="max-w-full">
         <div className="container mx-auto px-4">
-          <div className="text-heading-4 h-[100px] md:h-auto md:text-heading-2 flex items-center gap-2">
-            <h1 className="text-primary-500 dark:text-primary-500 py-5 font-bold">
+          <div className="md:h-auto xl:text-heading-2 flex flex-wrap md:flex-nowrap items-center gap-1 sm:gap-2 text-heading-4">
+            <h1 className="text-primary-500 dark:text-primary-500 font-bold py-0 md:py-5 whitespace-nowrap">
               {t("title")}
             </h1>
             <TextAnimation
-              jsonName={"reading"}
-              text1={"readingHere"}
-              text2={"fluentflow"}
-              text3={"moreKnow"}
+              jsonName="reading"
+              text1="readingHere"
+              text2="fluentflow"
+              text3="moreKnow"
             />
           </div>
 
