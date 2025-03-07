@@ -11,6 +11,7 @@ import VissionCard from "./VissionCard";
 import AboutUsShape from "./AboutUsShape";
 import MemberCard from "./MemberCard";
 import WorkTogether from "../../../public/img/vextor/undraw_working-together_r43a.svg";
+import OurTeamSection from "./OurTeamSection";
 const AboutUsMain = () => {
   useEffect(() => {
     AOS.init({
@@ -21,10 +22,10 @@ const AboutUsMain = () => {
   }, []);
   const { t } = useTranslation("about");
   return (
-    <main className=" mx-auto max-w-full overflow-hidden">
+    <main className="mx-auto max-w-full overflow-hidden">
       <section className="px-4 md:px-8 xl:px-16 py-10 ">
         <div className="flex justify-center">
-          <AboutUsShape className="max-w-[1205px] flex justify-center relative -z-10">
+          <AboutUsShape className="max-w-[1205px] flex justify-center relative z-10">
             <GlassCard className="relative top-20 z-20 w-full  max-w-[1000px] md:max-w-[1100px] xl:max-w-[1205px] px-4 md:px-8 xl:px-12 py-6 md:py-8 xl:py-10 sm:border-stone-200 md:border-stone-200 xl:border-white">
               <div className="text-center">
                 <h2 className="text-2xl md:text-3xl xl:text-4xl font-bold text-black dark:text-white mt-4">
@@ -35,7 +36,7 @@ const AboutUsMain = () => {
                 </p>
               </div>
               <div className="flex justify-center items-center mt-3">
-                <img className="w-1/3" src={WorkTogether} alt="" />
+                <img className="w-[200px] sm:w-[200px] md:w-[300px] xl:w-1/3" src={WorkTogether} alt="" />
               </div>
             </GlassCard>
           </AboutUsShape>
