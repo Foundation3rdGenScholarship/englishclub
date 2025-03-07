@@ -12,11 +12,15 @@ const visibilitySlice = createSlice({
     toggle: (state) => {
       state.isVisible = !state.isVisible;
     },
+    closeSidebar: (state) => {
+      state.isVisible = false; // Always close when clicking outside
+    },
     closeMainSidebar: (state) => {
       state.isMainSidebarVisible = false;
     },
   },
 });
 
-export const { toggle, closeMainSidebar } = visibilitySlice.actions;
+export const { toggle, closeMainSidebar, closeSidebar } =
+  visibilitySlice.actions;
 export default visibilitySlice.reducer;

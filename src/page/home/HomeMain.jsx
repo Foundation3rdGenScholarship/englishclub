@@ -23,7 +23,7 @@ const HomeMain = () => {
         <img
           src={shap}
           alt=""
-          className="absolute mt-[-100px] w-[600px] right-0 z-[-1]"
+          className="absolute mt-[-100px] w-[50%] right-0 z-[-1] hidden md:block"
         />
       </div>
 

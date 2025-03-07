@@ -107,9 +107,9 @@ export default function Navbar() {
       <div
         className={`md:hidden ${
           isOpen ? "block" : "hidden"
-        } dark:bg-white/5 backdrop-blur-[18px] absolute w-full left-0 top-20 transition-all duration-300`}
+        } `}
       >
-        <ul className="flex flex-col items-left gap-6 text-heading-6 p-4">
+        <ul className="flex flex-col items-left gap-6 text-heading-6 p-6">
           {menu.map((item) => (
             <li key={item.title}>
               <NavLink

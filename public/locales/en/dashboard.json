@@ -15,9 +15,8 @@
   "grammar": "Grammar",
   "vocabulary": "Vocabulary",
   "placeholder": "Search...",
-  "profile": "Profile",
-  "learning": "History of learning",
-  "sign out": "Sign out",
-  "search for a lesson...": "Search for a lesson...",
-  "loading...": "loading..."
+  "profile":"Profile",
+  "learning":"History of learning",
+  "sign out":"Sign out",
+  "soundTts" : "Listening to words"
 }
