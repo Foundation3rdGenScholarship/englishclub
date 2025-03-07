@@ -6,7 +6,7 @@ import Section4 from "./Section4";
 
 const User = () => {
   return (
-    <div className="p-4 sm:ml-64 mt-[88px] h-[3000px] max-w-screen-xl">
+    <div className="p-4 sm:ml-64 mt-[88px]  max-w-screen-xl">
       <Section1 />
       <Section2 />
       <Section3 />
