@@ -60,27 +60,26 @@ const Login = () => {
       toast.error(t("login failed. Please try again."));
     }
   };
+  // const handleGoogleLoginSuccess = async (response) => {
+  //   try {
+  //     const tokenId = response.tokenId;
+  //     const result = await loginUser({ tokenId }).unwrap();
 
-  const handleGoogleLoginSuccess = async (response) => {
-    try {
-      const tokenId = response.tokenId;
-      const result = await loginUser({ tokenId }).unwrap();
+  //     if (result.access_token) {
+  //       storeAccessToken(result); // Store the access token
+  //       dispatch(login({ user: result.user, token: result.access_token })); // Dispatch the login action with user data
+  //       navigate("/");
+  //     }
+  //   } catch (error) {
+  //     console.error("Google Login Error:", error);
+  //     toast.error(t("Google login failed. Please try again."));
+  //   }
+  // };
 
-      if (result.access_token) {
-        storeAccessToken(result); // Store the access token
-        dispatch(login({ user: result.user, token: result.access_token })); // Dispatch the login action with user data
-        navigate("/");
-      }
-    } catch (error) {
-      console.error("Google Login Error:", error);
-      toast.error(t("Google login failed. Please try again."));
-    }
-  };
-
-  const handleGoogleLoginFailure = (error) => {
-    console.log("Login Failed: ", error);
-    toast.error(t("Google login failed. Please try again."));
-  };
+  // const handleGoogleLoginFailure = (error) => {
+  //   console.log("Login Failed: ", error);
+  //   toast.error(t("Google login failed. Please try again."));
+  // };
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
@@ -164,8 +163,7 @@ const Login = () => {
 
               {/* Google Login Button */}
               <GoogleLoginButton
-                onSuccess={handleGoogleLoginSuccess}
-                onFailure={handleGoogleLoginFailure}
+               
               />
 
               {/* Register Link */}

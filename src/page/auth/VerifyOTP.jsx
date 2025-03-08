@@ -1,22 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Formik, Form, useField } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { HiInformationCircle } from "react-icons/hi";
-import { Alert } from "flowbite-react";
-import { FaTimes } from "react-icons/fa";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import otpvertificationimg from "../../../public/svg/otpvertification.svg";
-import { NavLink } from "react-router-dom"; // Fixed import
+import { NavLink } from "react-router-dom";
 import logolightmode from "../../../public/img/logo/logo-light-mode.png";
 import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
 import { useTranslation } from "react-i18next";
 import OtpInput from "../../components/inputField/OtpInput";
 import AuthLayout from "../../components/layout/AuthLayout";
 import SubmitButton from "../../components/button/SubmitButton";
-import { useVerifyOtpMutation } from "../../redux/features/user/userSlice";
+import {
+  useVerifyOtpMutation,
+  useLoginUserMutation,
+} from "../../redux/features/user/userSlice";
 
 export default function VerifyOTP() {
   const navigate = useNavigate();
@@ -24,35 +23,52 @@ export default function VerifyOTP() {
   const { t } = useTranslation("login");
   const [loading, setLoading] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-  const email = location?.state;
+  const { email, password, action } = location.state || {}; // Get email, password, and action from state
   const otpBoxReference = useRef([]);
-  const [verifyOtp, { isLoading }] = useVerifyOtpMutation();
+  const [verifyOtp] = useVerifyOtpMutation();
+  const [loginUser] = useLoginUserMutation();
 
-const handleSubmit = async (values) => {
-  try {
-    // Ensure the OTP is joined into a single string
-    const otp = values.otp.join("");
+  const handleSubmit = async (values) => {
+    try {
+      // Ensure the OTP is joined into a single string
+      const otp = values.otp.join("");
 
-    // Log the payload for debugging
-    console.log("Sending payload:", { email, otp });
+      // Log the payload for debugging
+      console.log("Sending payload:", { email, otp });
 
-    // Call the verifyOtp mutation
-    const response = await verifyOtp({ email:email?.email, otp }).unwrap();
-    toast.success(t("OTP verification successful!"));
-    // If successful, navigate to the new password page
-    navigate("/resetpassword", { state: { email } });
-  } catch (error) {
-    // Log the error for debugging
-    console.error("OTP verification failed:", error);
+      // Call the verifyOtp mutation
+      const response = await verifyOtp({ email, otp }).unwrap();
+      toast.success(t("OTP verification successful!"));
+      console.log('action :>> ', action);
+      // Handle post-verification based on the action
+      if (action === "google-signin") {
+        // Auto-login for Google Sign-In
+        const loginResponse = await loginUser({
+          email,
+          password,
+        }).unwrap();
 
-    // Display a user-friendly error message
-    if (error.data && error.data.message) {
-      toast.error(error.data.message); // Display the server error message
-    } else {
-      toast.error(t("Failed to verify OTP. Please try again."));
+        // Store token and redirect
+        localStorage.setItem("access_token", loginResponse.accessToken);
+        toast.success("Login successful! Redirecting...");
+        navigate("/dashboard");
+      } else if (action === "reset-password") {
+        // Redirect to reset password page
+        navigate("/resetpassword", { state: { email } });
+        toast.success("OTP verified. Please reset your password.");
+      }
+    } catch (error) {
+      // Log the error for debugging
+      console.error("OTP verification failed:", error);
+
+      // Display a user-friendly error message
+      if (error.data && error.data.message) {
+        toast.error(error.data.message); // Display the server error message
+      } else {
+        toast.error(t("Failed to verify OTP. Please try again."));
+      }
     }
-  }
-};
+  };
 
   function handleChange(value, index) {
     if (value && index < 5) {
@@ -127,7 +143,7 @@ const handleSubmit = async (values) => {
 
             <SubmitButton
               isSubmitting={isSubmitting}
-              loading={isLoading} // Use isLoading from the mutation
+              loading={loading} // Use loading state
               label={t("verify")}
               loadingLabel={t("verifying...")}
               disabled={false}

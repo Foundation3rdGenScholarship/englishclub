@@ -51,7 +51,7 @@ const SearchBar = () => {
       <div
         className={`transition-all duration-300 ease-in-out overflow-hidden ${
           isInputVisible
-            ? "w-[7rem] md:w-[17rem] lg:w-[40rem] xl:w-[61rem] opacity-100"
+            ? "w-[8rem] sm:w-[19rem] md:w-[23rem] lg:w-[58rem] opacity-100"
             : "w-0 opacity-0"
         }`}
       >

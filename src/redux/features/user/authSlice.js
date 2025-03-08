@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoginIn: !!localStorage.getItem("access_token"), // Set based on token presence
   token: localStorage.getItem("access_token") || null, // Optionally track token in state
+  user: JSON.parse(localStorage.getItem("user")) || null, // Load user from localStorage
 };
 
 const authSlice = createSlice({
