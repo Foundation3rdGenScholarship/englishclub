@@ -5,10 +5,12 @@ import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import CourseCard from "../../../../components/card/CourseCard";
 import HeroLevel from "../../../../components/heroCard/HeroLevel";
+import { useNavigate } from "react-router";
 
 const C1grammar = () => {
   const { t } = useTranslation("c1grammar");
   const { data, isLoading, error } = useAllGrammarQuery();
+  const navigate = useNavigate();
 
   if (isLoading) {
     return (
@@ -44,6 +46,7 @@ const C1grammar = () => {
                 title={item.lessons[0].lesson_title}
                 img={item.lessons[0].thumbnail}
                 des={item.lessons[0].description}
+                onClick={() => navigate(`/lesson/${item.lessons[0].lesson_uuid}`)}
               />
             );
           }

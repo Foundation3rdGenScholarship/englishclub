@@ -2,7 +2,7 @@ import React from "react";
 
 const HeroLevel = ({ thumnail,title,description }) => {
   return (
-    <>
+    <div className="max-w-screen-2xl">
       <div className="text-heading-4 h-[100px] md:h-auto md:text-heading-2 flex items-center gap-2">
         <h1 className="text-primary-500 dark:text-primary-500 py-5 font-bold">
           {title}
@@ -25,7 +25,7 @@ const HeroLevel = ({ thumnail,title,description }) => {
           {description}
         </p>
       </div>
-    </>
+    </div>
   );
 };
 
