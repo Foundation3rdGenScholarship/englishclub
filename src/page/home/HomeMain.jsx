@@ -5,7 +5,6 @@ import ellipseHalf from "../../../public/svg/2.svg";
 
 import Description from "./Description";
 import FeaturesGrid from "./Categories";
-// import Container from "./Container";
 import Categories from "./Categories";
 import CategoriesCard from "./CategoriesCard";
 
