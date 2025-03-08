@@ -53,7 +53,12 @@ const HomeMain = () => {
           </Container>
         </div>
       </div>
-      <ContentSectionCard />
+      <div className="relative">
+        <div className="absolute  rounded-full bg-primary-100 z-0"></div>
+        <div className="absolute  rounded-full bg-primary-100 z-0"></div>
+        <div className="absolute  rounded-full bg-primary-100 z-0"></div>
+        <ContentSectionCard />
+      </div>
     </div>
   );
 };
