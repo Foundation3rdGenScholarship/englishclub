@@ -118,7 +118,7 @@ export default function MentorCard() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaLinkedinIn className="size-9 hover:text-[#1560BD]" />
+            <FaLinkedinIn className="size-9 hover:text-primary-100" />
           </a>
 
           {/* Email */}
@@ -128,7 +128,7 @@ export default function MentorCard() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <IoMdMail className="size-9 hover:text-[#1560BD]" />
+            <IoMdMail className="size-9 hover:text-primary-100" />
           </a>
 
           {/* GitHub */}
@@ -138,7 +138,7 @@ export default function MentorCard() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaGithub className="size-9 hover:text-[#1560BD]" />
+            <FaGithub className="size-9 hover:text-primary-100" />
           </a>
         </div>
       </div>
@@ -164,19 +164,19 @@ export default function MentorCard() {
           target="_blank"
           rel="noopener noreferrer"
           href="http://linkedin.com/in/ing-davann-0617b32a3">
-            <FaLinkedinIn className="size-9  hover:text-[#1560BD] " />
+            <FaLinkedinIn className="size-9  hover:text-primary-100 " />
           </a>
           <a className="p-3"
           target="_blank"
           rel="noopener noreferrer"
           href="http://ingdavann4444@gmail.com">
-            <IoMdMail className="size-9  hover:text-[#1560BD]" />
+            <IoMdMail className="size-9  hover:text-primary-100" />
           </a>
           <a className="p-3"
           target="_blank"
           rel="noopener noreferrer"
           href="http://github.com/ingdavann">
-            <FaGithub className="size-9  hover:text-[#1560BD] " />
+            <FaGithub className="size-9  hover:text-primary-100 " />
           </a>
         </div>
       </div>

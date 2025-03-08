@@ -33,7 +33,7 @@ const Bubbles = ({ className = "", children }) => {
   return (
     <div
       id="bubbles-container"
-      className={`relative w-full space-x-7 h-screen overflow-hidden -z-10 ${className}`}
+      className={`relative w-full space-x-7 h-screen overflow-hidden z-10 ${className}`}
     >
       {bubbles.map((bubble, index) => (
         <motion.div

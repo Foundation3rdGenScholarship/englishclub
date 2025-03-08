@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import TextAnimation from "../../../../components/progress/TextAnimation";
 import writingJson from "../../../../data/json/writingJson.json";
 import CourseCard from "../../../../components/card/CourseCard";
+import { useAllSkillQuery } from "../../../../redux/features/skill/skillSlice";
 
 const Writing = () => {
   const { t } = useTranslation("writing");

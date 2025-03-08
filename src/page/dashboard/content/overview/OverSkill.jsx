@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import CourseCard from "../../../../components/card/CourseCard";
 import TextAnimation from "../../../../components/progress/TextAnimation";
 import { useAllSkillQuery } from "../../../../redux/features/skill/skillSlice";
+import HeroSkillOverView from "../../../../components/heroCard/HeroSkillOverView";
 
 export const OverSkill = () => {
   const { t } = useTranslation("over-skill");
@@ -13,15 +14,15 @@ export const OverSkill = () => {
       <div className="max-w-full">
         <div className="container mx-auto px-4">
           <div className="text-heading-4 h-[100px] md:h-auto xl:text-heading-2 flex items-center gap-2">
-            <div className="flex flex-col md:flex-row items-center">
-              <h1 className="text-primary-500 dark:text-primary-500 py-5 font-bold">
+            <div className="md:h-auto xl:text-heading-2 flex flex-wrap xl:flex-nowrap items-center gap-1 sm:gap-2 text-heading-4">
+              <h1 className="text-primary-500 dark:text-primary-500 font-bold py-2 xl:py-5 whitespace-nowrap">
                 {t("title")}
               </h1>
               <TextAnimation
-                jsonName={"reading"}
-                text1={"readingHere"}
-                text2={"fluentflow"}
-                text3={"moreKnow"}
+                jsonName="reading"
+                text1="readingHere"
+                text2="fluentflow"
+                text3="moreKnow"
               />
             </div>
           </div>
@@ -77,6 +78,10 @@ export const OverSkill = () => {
                 des={items.description}
               />
             ))} */}
+          </div>
+          {/* OverView*/}
+          <div>
+            <HeroSkillOverView />
           </div>
         </div>
       </div>

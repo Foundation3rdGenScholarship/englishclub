@@ -41,7 +41,7 @@ const SearchBar = () => {
     <div className="flex items-center relative">
       {/* Search Icon */}
       <div
-        className="cursor-pointer text-white rounded-md bg-secondary-500 p-2 order-2"
+        className="cursor-pointer text-black rounded-md bg-secondary-500 p-2 order-2"
         onClick={handleSearchIconClick}
       >
         <IoSearch className="text-2xl" />

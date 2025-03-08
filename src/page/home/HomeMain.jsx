@@ -5,8 +5,10 @@ import ellipseHalf from "../../../public/svg/2.svg";
 
 import Description from "./Description";
 import FeaturesGrid from "./Categories";
-import Categories from "./Categories";
-import CategoriesCard from "./CategoriesCard";
+// import Container from "./Container";
+// import Categories from "./Categories";
+// import CategoriesCard from "./CategoriesCard";
+import ContentSectionCard from "./ContentSectionCard";
 
 const HomeMain = () => {
   const Container = ({ children, className = "" }) => {
@@ -22,7 +24,7 @@ const HomeMain = () => {
         <img
           src={shap}
           alt=""
-          className="absolute mt-[-100px] w-[600px] right-0 z-[-1]"
+          className="absolute mt-[-100px] w-[50%] right-0 z-[-1] hidden md:block"
         />
       </div>
 
@@ -39,9 +41,6 @@ const HomeMain = () => {
         <br />
         <Description />
       </Container>
-      <div>
-        <CategoriesCard />
-      </div>
 
       <div className="relative">
         <div className="absolute w-32 h-32 bg-primary-100 rounded-full top-[150px] left-[1px] z-0 "></div>
@@ -54,6 +53,7 @@ const HomeMain = () => {
           </Container>
         </div>
       </div>
+      <ContentSectionCard />
     </div>
   );
 };

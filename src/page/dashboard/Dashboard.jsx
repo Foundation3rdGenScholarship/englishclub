@@ -1,4 +1,3 @@
-import React from "react";
 import Sidebar from "./Sidebar";
 import User from "./content/dashbaordUser/User";
 import Listening from "./content/skill/Listening";
@@ -13,26 +12,25 @@ import C1grammar from "./content/grammars/C1grammar";
 import MoreDoc from "./content/grammars/MoreDoc";
 import A1A2vocabulary from "./content/vocabularies/A1A2vocabulary";
 import B1B2vocabulary from "./content/vocabularies/B1B2vocabulary";
-import { toggle } from "../../redux/features/user/visibilitySlice";
+import {
+  closeSidebar,
+  toggle,
+} from "../../redux/features/user/visibilitySlice";
+import ExtraVideo from "./content/video/ExtraVideo";
+import ImageTTS from "./content/soundTts/ImageTTS";
+import React, { useEffect, useRef } from "react";
 
 const Dashboard = () => {
-  const dispatch = useDispatch();
   const { activeItem } = useSelector((state) => state.sidebar);
-  const isVisible = useSelector((state) => state.visibility.isVisible);
+
+  const dispatch = useDispatch();
 
   return (
     <div>
-      {/* Start Navbar */}
       <NavbarDashboard />
-
-      {/* Start sidebar */}
       <Sidebar />
 
-      {/* Start Content */}
-
-      {/* toggle() */}
-
-      <div onClick={() => dispatch(toggle())}>
+      <div onClick={() => dispatch(closeSidebar())}>
         {activeItem === "dashboard" && <User />}
         {activeItem === "listening" && <Listening />}
         {activeItem === "reading" && <Reading />}
@@ -44,7 +42,8 @@ const Dashboard = () => {
         {activeItem === "moredoc" && <MoreDoc />}
         {activeItem === "a1a2vocabulary" && <A1A2vocabulary />}
         {activeItem === "b1b2vocabulary" && <B1B2vocabulary />}
-        {}
+        {activeItem === "extraVideo" && <ExtraVideo />}
+        {activeItem === "soundTts" && <ImageTTS />}
       </div>
     </div>
   );

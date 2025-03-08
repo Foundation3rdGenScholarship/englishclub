@@ -12,8 +12,8 @@ import { NavLink } from "react-router";
 import ThemeToggle from "../../components/button/ThemeToggle";
 import ButtonLanguage from "../../components/button/ButtonLanguage";
 import { TbTextGrammar, TbVocabulary } from "react-icons/tb";
+import { PiUserSoundFill } from "react-icons/pi";
 import { MdVideoLibrary } from "react-icons/md";
-import { closeMainSidebar } from "../../redux/features/user/visibilitySlice";
 
 import {
   setActiveItem,
@@ -53,7 +53,7 @@ const Sidebar = () => {
       } bg-white sm:translate-x-0 sm:block`}
       aria-label="Sidebar"
     >
-      <div className="h-full px-3 pb-4 overflow-y-auto dark:bg-white/5 backdrop-blur-[18px] pt-6">
+      <div className="h-full px-3 pb-16 overflow-y-auto dark:bg-white/5 backdrop-blur-[18px] pt-6">
         <ul className="space-y-2 font-medium">
           {/* Overview */}
           <li>
@@ -160,7 +160,7 @@ const Sidebar = () => {
           {/* Vocabulary */}
           <li>
             <NavLink
-            to="/over-vocabulary"
+              to="/over-vocabulary"
               onClick={() => handleAction("vocabulary", "vocabulary")}
               className={`flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 ${
                 activeItem === "vocabulary"
@@ -200,8 +200,24 @@ const Sidebar = () => {
           </li>
           <li>
             <NavLink
-              to="#"
-              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
+              to="/soundTts"
+              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 dark:hover:bg-primary-950 group ${
+                activeItem === "soundTts"
+                  ? "bg-primary-100 dark:bg-primary-950"
+                  : ""
+              }`}
+              onClick={() => handleClick("soundTts")}
+            >
+              <PiUserSoundFill className="size-6" />
+              <span className="flex-1 ms-3 whitespace-nowrap">
+                {t("soundTts")}
+              </span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/extra-video"
+              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 dark:hover:bg-primary-950 group ${
                 activeItem === "extraVideo"
                   ? "bg-primary-100 dark:bg-primary-950 text-white"
                   : ""
@@ -215,11 +231,11 @@ const Sidebar = () => {
             </NavLink>
           </li>
         </ul>
-        <ul className="absolute bottom-0 w-64 left-0 flex justify-between px-5 py-2 sm:hidden">
-          <ButtonLanguage />
-          <ThemeToggle />
-        </ul>
       </div>
+      <ul className="absolute bg-white/10 backdrop-blur-md border-2 border-white dark:border-none border-white/20 bottom-0 w-64 left-0 flex justify-between px-5 py-2 sm:hidden">
+        <ButtonLanguage />
+        <ThemeToggle />
+      </ul>
     </aside>
   );
 };
