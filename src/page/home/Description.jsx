@@ -8,7 +8,7 @@ const Description = () => {
     <>
       {/* count number */}
       <div className="flex items-center justify-center">
-        <div className="bg-[#fdfefe] dark:bg-transparent rounded-lg shadow-md p-6 grid grid-cols-2 md:flex md:justify-around w-full gap-4 md:gap-0">
+        <div className="bg-[#fdfefe] dark:bg-transparent rounded-3xl shadow-md dark:shadow-none p-6 grid grid-cols-2 md:flex md:justify-around w-full gap-4 md:gap-0">
           <div className="text-center">
             <p className="text-heading-3 font-bold text-secondary-500">
               {" "}

@@ -53,6 +53,11 @@
   "title-section-content-one": "World's largest",
   "title-section-content-two": "learning platform today",
   "des-section-content": "Start learning by registering for free",
+  "btn-sign": "sign up for free",
 
-  "feedback": "Students Feedback"
+  "feedback": "Students Feedback",
+  "feedback-des-one": "I enjoyed the lesson! The content is easy to follow, and I feel my speaking skills improving. The course lets me practice at my own pace, and live group classes are engaging. ",
+  "feedback-des-two": "This course is truly amazing. The materials are clear and well-organized, and the teacher always provides helpful feedback. I have noticed real improvement in my English skills.",
+  "feedback-des-three": "I always struggled with speaking English, but after taking the video lessons, I can see the difference. I highly recommend this platform to anyone who wants to improve their English speaking skills!",
+  "student": "student"
 }
