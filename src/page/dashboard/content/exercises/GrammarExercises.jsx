@@ -29,17 +29,17 @@ export default function GrammarExercises() {
         <ul>
           {lesson.sections?.map((section, index) => (
             <li key={index}>
-              <h3 className="font-semibold text-heading-4">{section.title}</h3>
-              <p className="text-des-3 leading-10">{section.description}</p>
+              <h3 className="font-semibold text-heading-4 dark:text-white">{section.title}</h3>
+              <p className="text-des-3 leading-10 text-text-des-dark-mode">{section.description}</p>
             </li>
           ))}
         </ul>
 
-        <h3 className="font-semibold text-heading-4">Exercises</h3>
+        <h3 className="font-semibold text-heading-4 dark:text-white">Exercises</h3>
         <ul className="list-disc ml-5">
           {lesson.exercises?.map((exercise, index) => (
             <li key={index}>
-              <h3 className="font-semibold">{exercise.lesson_title}</h3>
+              <h3 className="font-semibold dark:text-white">{exercise.lesson_title}</h3>
               <p>Lesson Level: {exercise.lesson_level}</p>
             </li>
           ))}

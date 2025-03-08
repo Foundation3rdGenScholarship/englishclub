@@ -23,10 +23,10 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
     (exercise) => selectedAnswers[exercise.id]
   );
 
-  console.log("This is exercisesz in multiple quiz : ", exercises);
+  // console.log("This is exercisesz in multiple quiz : ", exercises);
 
   // Prepare the answers object
-  // we should change in this function to function that uuid of question : 
+  // we should change in this function to function that uuid of question :
   const prepareAnswers = () => {
     return exercises.map((exercise) => ({
       // q_uuid : exercise.question_uuid,
@@ -34,7 +34,7 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
     }));
   };
 
-  console.log("This is exercises UUID : ", ex_uuid);
+  // console.log("This is exercises UUID : ", ex_uuid);
   // Handle submission
   const handleSubmit = async () => {
     if (isAllAnswered) {

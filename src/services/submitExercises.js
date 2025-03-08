@@ -15,6 +15,7 @@ export const submitExercises = async (exercise_uuid, selectedAnswers) => {
   );
 
   console.log("This is an anwser to submit : ", user_answer);
+
   // user_anwser it an anwser that user complete and will to api
 
   console.log("Request Body:", {
