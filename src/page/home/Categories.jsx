@@ -63,7 +63,7 @@ const FeaturesGrid = () => {
     <>
       {/* description  */}
       <div>
-        <div className=" py-14 ">
+        <div className=" py-16 ">
           <div className="text-center">
             <span className="text-heading-3  font-bold leading-tight text-primary-500 dark:text-white ">
               {t("des-title")}
