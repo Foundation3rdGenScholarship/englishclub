@@ -1,6 +1,7 @@
 {
-  "title": "Get in touch with",
-
+  "title": "Get in touch with FluentFlow",
+  "welcome": "Welcome to Contact Page",
+  
   "des": "FAQ",
   "con": "Contact",
   "name": "FluentFlow",
@@ -61,5 +62,6 @@
   "submitting" : "Submitting...",
   "submit-success" : "Form submitted successfully!"
 
+ 
 
 }

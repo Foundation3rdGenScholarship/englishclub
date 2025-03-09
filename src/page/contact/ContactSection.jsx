@@ -16,7 +16,7 @@ const ContactSection = () => {
     <div id="contact">
       <div className="flex flex-col md:flex-row justify-center items-center gap-8 m-auto">
         {/* Left Image */}
-        <div className="w-full flex justify-center md:w-1/2 order-2 md:order-1">
+        <div className="w-full flex justify-center md:w-1/2 order-1 md:order-1">
           <img
             src={contactImage}
             alt="Contact Us"
@@ -25,7 +25,7 @@ const ContactSection = () => {
         </div>
 
         {/* Right Contact Info */}
-        <div className="w-full md:w-1/2 flex justify-center order-1 md:order-2">
+        <div className="w-full md:w-1/2 flex justify-center order-2 md:order-2">
           <GlassCard className="rounded-[2em_0px_2em_0px] w-full max-w-lg px-8 py-20 flex flex-col items-center text-center">
             <h2 className="text-black dark:text-white text-heading-3 font-bold mb-4 text-center ">
               {t("head-office")}
