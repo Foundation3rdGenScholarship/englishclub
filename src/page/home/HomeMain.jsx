@@ -60,9 +60,11 @@ const HomeMain = () => {
         <div className="absolute w-4 h-4 bg-primary-500 rounded-full bottom-[50px] left-[60px]"></div>
         <ContentSingle />
       </div>
-      <Container className="bg-white dark:bg-transparent">
-        <FeedbackSection />
-      </Container>{" "}
+      <div className="bg-white dark:bg-transparent">
+        <Container>
+          <FeedbackSection />
+        </Container>{" "}
+      </div>
     </div>
   );
 };

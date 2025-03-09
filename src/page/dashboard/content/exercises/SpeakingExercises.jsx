@@ -102,7 +102,7 @@ const SpeakingExercises = () => {
               {/* This is video */}
 
               {data.ex_uuid === "3b2a3076-a30d-4ce9-aab0-0888a4e6078f" ? (
-                <div class="w-full aspect-video">
+                <div className="w-full aspect-video">
                   <iframe
                     title="vimeo-player"
                     src="https://player.vimeo.com/video/770046095?h=90c9a5939c"
