@@ -6,9 +6,19 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import React, { useEffect } from "react";
 
 const AskSection = () => {
   const { t } = useTranslation("contact");
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: false,
+      // mirror: true,
+    });
+  }, []);
   // formik
   const initialValues = {
     name: "",
@@ -43,7 +53,8 @@ const AskSection = () => {
     <div id="ask-question">
       <div
         className="flex flex-col md:flex-row justify-center items-center gap-8 m-auto"
-        // className="max-w-7xl w-full overflow-hidden pt-14 px-6 sm:px-14 min-w-[200px] flex flex-col md:flex-row justify-center items-center gap-8 m-auto"
+         data-aos="fade-up"
+        data-aos-delay="100"
       >
         {/* FAQ Section */}
 
@@ -159,7 +170,10 @@ const AskSection = () => {
 
         {/* Right image */}
 
-        <div className=" w-full flex justify-center md:w-1/2 order-1 md:order-2">
+        <div
+          className=" w-full flex justify-center md:w-1/2 order-1 md:order-2"
+      
+        >
           <img src={questionGuy} alt="Contact Us" />
         </div>
       </div>

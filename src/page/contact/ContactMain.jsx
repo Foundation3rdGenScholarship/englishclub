@@ -7,6 +7,7 @@ import CardSection from "./CardSection";
 import Bubbles from "../../components/card/Bubble";
 import AiDescription from "./AiDescription";
 
+
 export function Contact() {
   const { t } = useTranslation("contact");
 

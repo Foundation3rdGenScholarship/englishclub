@@ -1,29 +1,42 @@
-import React from "react";
 import GlassCard from "../../components/card/GlassCard";
 import { useTranslation } from "react-i18next";
-import TextAnimation from "../../components/progress/TextAnimation";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import React, { useEffect } from "react";
+// import TextAnimation from "../../components/progress/TextAnimation";
 
 const CardSection = () => {
   const { t } = useTranslation("contact");
 
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: false,
+    });
+  }, []);
+
   return (
     <>
       <div>
-        <div className="text-center py-14">
-          {/* <h2 className="text-primary-500 text-heading-1 font-bold dark:text-primary-500 py-14">
+        <div className="text-center">
+          <h2 className="text-primary-500 text-heading-1 font-bold dark:text-primary-500 py-14">
             <span>{t("title")}</span>{" "}
             <span className="text-[#FBA526] font-en">FluentFlow</span>
-          </h2> */}
-          <TextAnimation
+          </h2>
+          {/* <TextAnimation
             className="text-primary-500 text-heading-1 font-bold dark:text-primary-500 py-14 "
             jsonName="contact"
             text1="title"
             text2="welcome"
-          />
-          <p className="pb-14"></p>
+          /> */}
+          {/* <p className="pb-14"></p> */}
 
           <div className="flex justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 pt-1 ">
+            <div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 pt-1 "
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
               <GlassCard className="w-full max-w-[350px] h-full flex flex-col items-center text-center p-6">
                 <img
                   alt="FAQS Icon"

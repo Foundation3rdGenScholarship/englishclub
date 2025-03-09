@@ -2,9 +2,19 @@ import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import Faq from "../../../public/svg/faq.svg";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import React, { useEffect } from "react";
 
 const FAQSection = () => {
   const { t } = useTranslation("contact");
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: false,
+   
+    });
+  }, []);
   const faqs = [
     {
       question: t("question1"),
@@ -41,14 +51,22 @@ const FAQSection = () => {
   return (
     <div className="flex flex-col md:flex-row justify-center items-center gap-8 py-14 m-auto">
       {/* Left Image Section - Stays Fixed */}
-      <div className="w-full flex justify-center md:w-1/2 flex-shrink-0 order-1 md:order-1">
+      <div
+        className="w-full flex justify-center md:w-1/2 flex-shrink-0 order-1 md:order-1"
+        data-aos="fade-right"
+        data-aos-delay="100"
+      >
         <img src={Faq} alt="Contact Us" />
       </div>
 
       {/* FAQ Section */}
       <div className="w-full max-w-xl rounded-xl  md:w-1/2 order-2 md:order-2">
         {/* FAQ List */}
-        <div className=" text-black dark:text-white">
+        <div
+          className=" text-black dark:text-white"
+          data-aos="fade-left"
+          data-aos-delay="100"
+        >
           {faqs.map((faq, index) => (
             <div
               key={index}
