@@ -10,9 +10,7 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
   const [feedbackMessage, setFeedbackMessage] = useState("");
 
   // Function to play sound
-  // Function to play sound
   const playSound = (soundName) => {
-    console.log("Playing sound:", soundName); // Debugging the value of soundName
     const audio = new Audio(`/sounds/${soundName}.mp3`);
     audio.play();
   };
@@ -55,6 +53,19 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
 
       if (result.success) {
         setFeedbackMessage("Exercise submitted successfully!");
+
+        // Play the correct sound for each correct answer
+        exercises.forEach((exercise, index) => {
+          const selectedAnswer = selectedAnswers[exercise.id];
+          const isCorrect =
+            exercise.choices.find(
+              (choice) => choice.choice_uuid === selectedAnswer
+            )?.is_correct || false;
+
+          if (isCorrect) {
+            playSound(`correct${index + 1}`);
+          }
+        });
       } else {
         setFeedbackMessage(`${t("multipleChoics")}`);
       }
@@ -69,12 +80,6 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
           exercise.choices.find(
             (choice) => choice.choice_uuid === selectedAnswer
           )?.is_correct || false;
-
-        // Play the sound when the answer is correct
-        // Play the sound when the answer is correct
-        if (isCorrect && !isSubmitted) {
-          playSound(`correct${index + 1}`);
-        }
 
         return (
           <div key={exercise.id} className="mb-6">

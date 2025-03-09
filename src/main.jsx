@@ -49,6 +49,8 @@ import { SpeakingA1 } from "./page/dashboard/content/speakingDetail/SpeakingA1.j
 import SpeakingExercises from "./page/dashboard/content/exercises/SpeakingExercises.jsx";
 import ImageTTS from "./page/dashboard/content/soundTts/ImageTTS.jsx";
 import GrammarExercises from "./page/dashboard/content/exercises/GrammarExercises.jsx";
+import ListeningA2 from "./page/dashboard/content/listeningDetail/ListeningA2.jsx";
+import ListeningB1 from "./page/dashboard/content/listeningDetail/ListeningB1.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -108,6 +110,14 @@ createRoot(document.getElementById("root")).render(
               <Route
                 path="/courses/listening/level=a1"
                 element={<ListeningA1 />}
+              />
+              <Route
+                path="/courses/listening/level=a2"
+                element={<ListeningA2 />}
+              />
+              <Route
+                path="/courses/listening/level=b1"
+                element={<ListeningB1 />}
               />
               <Route path="/courses/writing/level=a1" element={<WritingA1 />} />
               <Route
