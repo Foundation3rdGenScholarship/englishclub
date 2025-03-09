@@ -45,7 +45,7 @@ const FeedbackSection = () => {
           {feedback.map((feed) => (
             <GlassCard
               key={feed.id}
-              className="w-full flex flex-col justify-between dark:border-secondary-500 bg-[#ffff] dark:bg-white/10 p-8"
+              className="w-full flex flex-col justify-between dark:border-secondary-500 bg-[#ffff] dark:bg-white/10 shadow-md p-8"
             >
               <div className="text-secondary-500 flex gap-2">
                 {[...Array(feed.stars)].map((_, index) => (
