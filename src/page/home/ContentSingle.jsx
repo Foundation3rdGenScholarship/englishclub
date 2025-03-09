@@ -12,8 +12,8 @@ const ContentSingle = () => {
       <div class="bg-primary-50 dark:bg-transparent flex items-center justify-center pb-12">
         <div class="max-w-6xl mx-auto p-6 gap-6  rounded-lg flex flex-col md:flex-row items-center">
           <div class="relative w-full md:w-1/2 flex flex-col">
-            <img src={staralign} class="mb-[-280px] -ml-6 self-start" />
-            <div class="w-full h-full pt-4 pl-8">
+            <img src={staralign} class="mb-[-190px] md:mb-[-180px] sm:mb-[-300px] lg:mb-[-280px] -ml-2 md:-ml-2 sm:ml-2 self-start" />
+            <div class="w-full h-full -ml-3 sm:ml-8 md:-ml-2 lg:ml-1 pt-4 pl-8">
               <img height="500" src={senior} width="480" class="object-cover" />
             </div>
           </div>
