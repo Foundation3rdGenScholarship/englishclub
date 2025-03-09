@@ -84,7 +84,7 @@ const FeaturesGrid = () => {
           {features.map((feature, index) => (
             <GlassCard
               key={index}
-              className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+              className="bg-[#ffff] rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <FeatureCard
                 icon={feature.icon}

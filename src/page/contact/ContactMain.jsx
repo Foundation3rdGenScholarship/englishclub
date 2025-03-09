@@ -21,7 +21,8 @@ export function Contact() {
   };
 
   return (
-    <main>
+    <main className="overflow-x-hidden">
+      <div className="w-full h-full">
       {/* Section 1, card */}
       <section>
         <div className="h-0 w-full mx-auto max-w-8xl flex items-center justify-center ">
@@ -83,6 +84,7 @@ export function Contact() {
           <AiDescription />
         </Container>
       </section>
+      </div>
     </main>
   );
 }

@@ -59,7 +59,7 @@ const AskSection = () => {
         {/* FAQ Section */}
 
         <GlassCard className="flex rounded-[0px_2em_0px_2em] shadow-md py-14 order-2 md:order-1">
-          <div className="w-full md:w-[500px] rounded-xl p-6 text-black dark:text-white ">
+          <div className="w-full md:w-[500px] sm:w-[500px] rounded-xl p-6 text-black dark:text-white ">
             <div className="flex justify-center ">
               <h2 className="text-heading-3 font-bold flex items-center gap-2">
                 <span className="text-primary-500">

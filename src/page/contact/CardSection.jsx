@@ -37,7 +37,7 @@ const CardSection = () => {
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              <GlassCard className="w-full max-w-[350px] h-full flex flex-col items-center text-center p-6">
+              <GlassCard className="w-full shadow-md max-w-[350px] h-full flex flex-col items-center text-center p-6">
                 <img
                   alt="FAQS Icon"
                   className="mx-auto mb-4"
@@ -60,7 +60,7 @@ const CardSection = () => {
                 </a>
               </GlassCard>
 
-              <GlassCard className="w-full max-w-[350px] h-full flex flex-col items-center text-center p-6">
+              <GlassCard className="w-full shadow-md max-w-[350px] h-full flex flex-col items-center text-center p-6">
                 <img
                   alt="Support Icon"
                   className="mx-auto mb-4"
@@ -83,7 +83,7 @@ const CardSection = () => {
                 </a>
               </GlassCard>
 
-              <GlassCard className="w-full max-w-[350px] h-full flex flex-col items-center text-center p-6">
+              <GlassCard className="w-full shadow-md max-w-[350px] h-full flex flex-col items-center text-center p-6">
                 <img
                   alt="Business Growing Icon"
                   className="mx-auto mb-4"

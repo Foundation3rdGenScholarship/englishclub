@@ -1,7 +1,16 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { FaStar } from "react-icons/fa";
-import GlassCard from "../../components/card/GlassCard";
+// import GlassCard from "../../components/card/GlassCard";
+const GlassCard = ({ children, className }) => {
+  return (
+    <div
+      className={`p-6 rounded-tl-[50px] rounded-br-[50px] bg-[#ffff] dark:bg-white/10  backdrop-blur-md border-2 dark:border-none border-white/20 ${className}`}
+    >
+      {children}
+    </div>
+  );
+};
 
 const FeedbackSection = () => {
   const { t } = useTranslation(["homepage", "about"]);
@@ -32,30 +41,34 @@ const FeedbackSection = () => {
       stars: 5,
     },
   ];
- 
 
   return (
     <>
       <div className="py-12">
-        <h2 className="text-heading-3 font-bold text-bg-dark-mode dark:text-white text-center mb-12">
+        <h2 className="text-heading-3 font-bold text-primary-500 dark:text-white text-center mb-12">
           {t("feedback")}
+          <span className="text-secondary-500"> {t("feedback-one")}</span>
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 sm:px-6 lg:px-0 pb-6">
+         
+        <div className="flex lg:grid lg:grid-cols-3 gap-8 overflow-x-auto lg:overflow-hidden pb-6 px-4 sm:px-6 lg:px-0 scrollbar-hide">
           {feedback.map((feed) => (
             <GlassCard
               key={feed.id}
-              className="w-full flex flex-col justify-between dark:border-secondary-500 bg-[#ffff] dark:bg-white/10 shadow-md p-8"
+              className="w-full sm:w-[450px] md:w-[400px] lg:w-auto flex-shrink-0 dark:border-secondary-500 p-8 flex flex-col justify-between"
             >
+              {/* star rating */}
               <div className="text-secondary-500 flex gap-2">
                 {[...Array(feed.stars)].map((_, index) => (
                   <FaStar key={index} size={20} />
                 ))}
               </div>
-              <p className="my-4 mb-0 text-des-2 font-normal leading-relaxed tracking-wide text-gray-400">
+
+              {/* comment */}
+              <p className="my-4 mb-0 text-des-2 font-normal leading-relaxed tracking-wide text-gray-400  flex-grow">
                 {feed.text}
               </p>
-
+              {/* user */}
               <div className="mt-6 flex items-center gap-6">
                 <div className="h-10 w-10 overflow-hidden rounded-full shadow-sm outline-neutral-800">
                   <div className="relative inline-block overflow-hidden rounded-lg border-neutral-800">
@@ -65,7 +78,7 @@ const FeedbackSection = () => {
                       width="50"
                       height="50"
                       decoding="async"
-                      data-nimg="1"
+                      data-img="1"
                       className="inline-block"
                       loading="lazy"
                       style={{ color: "transparent" }}
