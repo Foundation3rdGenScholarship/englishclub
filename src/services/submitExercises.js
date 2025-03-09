@@ -7,16 +7,11 @@ export const submitExercises = async (exercise_uuid, selectedAnswers) => {
     return { success: false, message: "No user found!" };
   }
 
-  const user_answer = Object.entries(selectedAnswers).map(
-    ([q_uuid, answer]) => ({
-      q_uuid,
-      answers: [answer], // Wrap answer in an array
-    })
-  );
-
-  console.log("This is an anwser to submit : ", user_answer);
-
-  // user_anwser it an anwser that user complete and will to api
+  // Ensure correct format for user_answer
+  const user_answer = selectedAnswers.user_answer.map((answerObj) => ({
+    q_uuid: answerObj.q_uuid, // Ensure the question UUID is included
+    answers: answerObj.answers, // Ensure answers are properly structured
+  }));
 
   console.log("Request Body:", {
     user_uuid,
@@ -46,7 +41,6 @@ export const submitExercises = async (exercise_uuid, selectedAnswers) => {
     }
 
     const result = await response.json();
-
     console.log("Submission successful:", result);
     return { success: true, result };
   } catch (error) {

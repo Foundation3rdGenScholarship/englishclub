@@ -28,10 +28,14 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
   // Prepare the answers object
   // we should change in this function to function that uuid of question :
   const prepareAnswers = () => {
-    return exercises.map((exercise) => ({
-      // q_uuid : exercise.question_uuid,
-      answers: exercise.correct_answer,
-    }));
+    return {
+      user_answer: exercises.map((exercise) => ({
+        q_uuid: exercise.question_uuid, // Ensure it's the correct UUID
+        answers: selectedAnswers[exercise.id]
+          ? [selectedAnswers[exercise.id]] // Always wrap in an array
+          : [],
+      })),
+    };
   };
 
   // console.log("This is exercises UUID : ", ex_uuid);
@@ -42,15 +46,11 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
 
       const answers = prepareAnswers();
 
-      // Call submitExercises to send the answers
       const result = await submitExercises(ex_uuid, answers);
-      // find anwser that contain 5 question
 
-      // Handle the result from the submitExercises function
       if (result.success) {
         setFeedbackMessage("Exercise submitted successfully!");
       } else {
-        // TODO Message
         setFeedbackMessage(`${t("multipleChoics")}`);
       }
     }
