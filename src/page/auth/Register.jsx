@@ -79,22 +79,6 @@ export default function Register() {
     navigate("/");
   };
 
-  const handleGoogleLoginSuccess = async (response) => {
-    try {
-      const tokenId = response.tokenId;
-      const result = await registerUser({ tokenId }).unwrap();
-      toast.success(ត("sign up Successfully!"));
-      navigate("/login");
-    } catch (error) {
-      toast.error(t("sign up failed. Please try again."));
-    }
-  };
-
-  const handleGoogleLoginFailure = (error) => {
-    console.log("Login Failed: ", error);
-    toast.error(t("sign up failed. Please try again."));
-  };
-
   return (
     <GoogleOAuthProvider clientId={clientId}>
       <AuthLayout
@@ -181,8 +165,7 @@ export default function Register() {
 
               {/* Google Login Button */}
               <GoogleLoginButton
-                onSuccess={handleGoogleLoginSuccess}
-                onFailure={handleGoogleLoginFailure}
+        
               />
 
               {/* Login Link */}
