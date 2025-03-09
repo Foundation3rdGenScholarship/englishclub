@@ -11,8 +11,12 @@
   "reading": "Reading",
   "writing": "Writing",
   "speaking": "Speaking",
-  
+
   "grammar": "Grammar",
   "vocabulary": "Vocabulary",
-  "organizeBy": "Organize By"
+  "organizeBy": "Organize By",
+  "newsLetter": "News Letter",
+  ".": ".",
+  "by": "by",
+  "allRights": "All rights reserved."
 }

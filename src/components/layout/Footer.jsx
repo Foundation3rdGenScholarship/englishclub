@@ -4,6 +4,7 @@ import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
 import istadLogoLight from "../../../public/img/logo/istad-logo-light.webp";
 import istadLogoDark from "../../../public/img/logo/istad-logo-dark.png";
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router";
 
 export default function Footer() {
   const theme = useSelector((state) => state.theme.theme);
@@ -33,16 +34,16 @@ export default function Footer() {
             </h5>
             <ul className="space-y-2 text-text-des-light-mode dark:text-text-des-dark-mode ">
               <li>
-                <a href="">{t("home")}</a>
+                <NavLink to="/">{t("home")}</NavLink>
               </li>
               <li>
-                <a href="">{t("courses")}</a>
+                <NavLink to="/dashboard">{t("courses")}</NavLink>
               </li>
               <li>
-                <a href="">{t("about")}</a>
+                <NavLink to="/about">{t("about")}</NavLink>
               </li>
               <li>
-                <a href="">{t("contact")}</a>
+                <NavLink to="/contact">{t("contact")}</NavLink>
               </li>
             </ul>
           </div>
@@ -53,16 +54,16 @@ export default function Footer() {
             </h5>
             <ul className="space-y-2 text-text-des-light-mode dark:text-text-des-dark-mode ">
               <li>
-                <a href="">{t("listening")}</a>
+                <NavLink to="/listening">{t("listening")}</NavLink>
               </li>
               <li>
-                <a href="">{t("reading")}</a>
+                <NavLink to="/reading">{t("reading")}</NavLink>
               </li>
               <li>
-                <a href="">{t("writing")}</a>
+                <NavLink to="/writing">{t("writing")}</NavLink>
               </li>
               <li>
-                <a href="">{t("speaking")}</a>
+                <NavLink to="/speaking">{t("speaking")}</NavLink>
               </li>
             </ul>
           </div>
@@ -73,13 +74,13 @@ export default function Footer() {
             </h5>
             <ul className="space-y-2 text-text-des-light-mode dark:text-text-des-dark-mode ">
               <li>
-                <a href="">A1 - A2</a>
+                <NavLink to="/a1a2grammar">A1 - A2</NavLink>
               </li>
               <li>
-                <a href="">B1 - B2</a>
+                <NavLink to="/b1b2grammar">B1 - B2</NavLink>
               </li>
               <li>
-                <a href="">C1</a>
+                <NavLink to="/c1grammar">C1</NavLink>
               </li>
             </ul>
           </div>
@@ -90,13 +91,13 @@ export default function Footer() {
             </h5>
             <ul className="space-y-2 text-text-des-light-mode dark:text-text-des-dark-mode ">
               <li>
-                <a href="">A1 - A2</a>
+                <NavLink to="/a1a2vocabulary">A1 - A2</NavLink>
               </li>
               <li>
-                <a href="">B1 - B2</a>
+                <NavLink to="/a1a2vocabulary">B1 - B2</NavLink>
               </li>
               <li>
-                <a href="">C1</a>
+                <NavLink to="">C1</NavLink>
               </li>
             </ul>
           </div>
@@ -113,24 +114,24 @@ export default function Footer() {
                 alt="ISTAD Logo"
               />
             </div>
-            {/* NEWS LETTER */}
-            {/* <div>
+            <div>
               <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
-                News letter
+                {t("newsLetter")}
               </h5>
               <input
-                className="bg-[#f1f5f9] placeholder-text-des-light-mode dark:placeholder-text-des-dark-mode placeholder:text-left text-sm xl:pl-4 lg:pl-4 md:pl-4 sm:pl-4 pl-2  border-text-des-light-mode dark:border-text-des-dark-mode w-60"
+                className="bg-[#f1f5f9] rounded-md placeholder-text-des-light-mode dark:placeholder-text-des-dark-mode placeholder:text-left text-sm xl:pl-4 lg:pl-4 md:pl-4 sm:pl-4 pl-2 border-text-des-light-mode w-60 focus:outline-none focus:ring-1 focus:ring-primary-600 focus:border-primary-600"
                 placeholder="Enter your email address"
                 type="text"
               />
-            </div> */}
+            </div>
           </div>
         </div>
         <hr className="bg-text-des-light-mode dark:bg-text-des-dark-mode my-8 border-0 h-px" />
         <div className="text-center">
           <p className="text-text-des-light-mode dark:text-text-des-dark-mode">
-            &copy; 2025 Copyright <a href="#">FluentFlow</a> by{" "}
-            <a href="https://www.cstad.edu.kh/">ISTAD</a> .All rights reserved.™
+            &copy; 2025 FluentFlow {t("by")}{" "}
+            <a href="https://www.cstad.edu.kh/">ISTAD{t(".")}</a>{" "}
+            {t("allRights")}
           </p>
         </div>
       </div>
