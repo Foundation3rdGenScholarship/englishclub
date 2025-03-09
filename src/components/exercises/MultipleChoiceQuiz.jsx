@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { submitExercises } from "../../services/submitExercises.js"; // Import the submitExercises function
 import { useTranslation } from "react-i18next";
+import SubmitPopup from "../popup/SubmitPopup.jsx";
 
 const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
   const { t } = useTranslation("error");
@@ -28,13 +29,17 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
   // Prepare the answers object
   // we should change in this function to function that uuid of question :
   const prepareAnswers = () => {
-    return exercises.map((exercise) => ({
-      // q_uuid : exercise.question_uuid,
-      answers: exercise.correct_answer,
-    }));
+    return {
+      user_answer: exercises.map((exercise) => ({
+        q_uuid: exercise.question_uuid, // Ensure it's the correct UUID
+        answers: selectedAnswers[exercise.id]
+          ? [selectedAnswers[exercise.id]] // Always wrap in an array
+          : [],
+      })),
+    };
   };
 
-  // console.log("This is exercises UUID : ", ex_uuid);
+  console.log("This is exercises UUID : ", ex_uuid);
   // Handle submission
   const handleSubmit = async () => {
     if (isAllAnswered) {
@@ -42,15 +47,11 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
 
       const answers = prepareAnswers();
 
-      // Call submitExercises to send the answers
       const result = await submitExercises(ex_uuid, answers);
-      // find anwser that contain 5 question
 
-      // Handle the result from the submitExercises function
       if (result.success) {
         setFeedbackMessage("Exercise submitted successfully!");
       } else {
-        // TODO Message
         setFeedbackMessage(`${t("multipleChoics")}`);
       }
     }
@@ -118,8 +119,13 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
       </button>
 
       {/* Feedback message after submission */}
+      {/* {feedbackMessage && <SubmitPopup />} */}
       {feedbackMessage && (
-        <p className="mt-4 text-center text-red-500">{feedbackMessage}</p>
+        <SubmitPopup
+          message={feedbackMessage}
+          type={feedbackMessage.includes("Error") ? "error" : "success"}
+          onClose={() => setFeedbackMessage("")}
+        />
       )}
     </div>
   );

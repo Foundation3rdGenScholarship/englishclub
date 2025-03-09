@@ -55,7 +55,8 @@ const SpeakingExercises = () => {
     const exercisesData = data?.questions.map((item, index) => ({
       id: index + 1,
       question_text: item.question_text,
-      correct_answer: item.correct_answer?.answer || "", // Ensure correct_answer is a string
+      question_uuid: item.q_uuid, // this is an question uuid
+      correct_answer: item.correct_answer[0].answer || "", // Ensure correct_answer is a string
       choices: item.choices.map((choice) => ({
         choice_uuid: choice.choice_uuid,
         is_correct: choice.is_correct,
@@ -139,7 +140,7 @@ const SpeakingExercises = () => {
                   }}
                 />
               </div>
-              <MultipleChoiceQuiz exercises={exercisesData} />
+              <MultipleChoiceQuiz exercises={exercisesData} ex_uuid={ex_uuid} />
             </div>
           </div>
         </div>
