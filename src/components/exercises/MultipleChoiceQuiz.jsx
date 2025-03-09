@@ -38,7 +38,7 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
     };
   };
 
-  // console.log("This is exercises UUID : ", ex_uuid);
+  console.log("This is exercises UUID : ", ex_uuid);
   // Handle submission
   const handleSubmit = async () => {
     if (isAllAnswered) {
