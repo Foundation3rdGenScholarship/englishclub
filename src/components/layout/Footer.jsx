@@ -3,119 +3,140 @@ import logolightmode from "../../../public/img/logo/logo-light-mode.png";
 import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
 import istadLogoLight from "../../../public/img/logo/istad-logo-light.webp";
 import istadLogoDark from "../../../public/img/logo/istad-logo-dark.png";
+import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router";
+import { AiOutlineMail } from "react-icons/ai";
 
 export default function Footer() {
   const theme = useSelector((state) => state.theme.theme);
-
+  const { t } = useTranslation("footer");
   return (
     <footer className="bg-[#f1f5f9] dark:bg-white/5 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-8 justify-items-center">
+        <div className="grid xl:grid-cols-8 lg:grid-cols-8 md:grid-cols-2 sm:grid-cols-2 justify-items-center gap-4">
           {/* Logo */}
-          <div className="col-span-2">
+          <div className="flex flex-col items-center text-center col-span-2 pb-2">
             <img
               src={theme === "dark" ? logodarkmode : logolightmode}
               alt="Logo"
               className="w-48 mb-6"
             />
-            <p>
-              <span className="text-primary-500 font-bold">FluentFlow</span> is
-              the best platform to improve your English skills for free!
+            <p className="text-text-des-light-mode dark:text-text-des-dark-mode">
+              <span className="text-primary-500 dark:text-white font-bold">
+                FluentFlow
+              </span>{" "}
+              {t("isTheBest")}
             </p>
           </div>
           {/* Contents */}
-          <div>
-            <h5 className="text-heading-5 font-bold mb-6">Contents</h5>
-            <ul className="space-y-2 text-text-des-light-mode ">
+          <div className="flex flex-col">
+            <h5 className="text-heading-5 font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
+              {t("contents")}
+            </h5>
+            <ul className="space-y-2 text-text-des-light-mode dark:text-text-des-dark-mode ">
               <li>
-                <a href="">Home</a>
+                <NavLink to="/">{t("home")}</NavLink>
               </li>
               <li>
-                <a href="">Courses</a>
+                <NavLink to="/dashboard">{t("courses")}</NavLink>
               </li>
               <li>
-                <a href="">About</a>
+                <NavLink to="/about">{t("about")}</NavLink>
               </li>
               <li>
-                <a href="">Contact</a>
+                <NavLink to="/contact">{t("contact")}</NavLink>
               </li>
             </ul>
           </div>
           {/* Skills */}
-          <div>
-            <h5 className="text-xl font-bold mb-6">Skills</h5>
-            <ul className="space-y-2 text-text-des-light-mode ">
+          <div className="flex flex-col">
+            <h5 className="text-xl font-bold mb-6  text-text-des-light-mode dark:text-text-des-dark-mode">
+              {t("skills")}
+            </h5>
+            <ul className="space-y-2 text-text-des-light-mode dark:text-text-des-dark-mode ">
               <li>
-                <a href="">Listening</a>
+                <NavLink to="/listening">{t("listening")}</NavLink>
               </li>
               <li>
-                <a href="">Reading</a>
+                <NavLink to="/reading">{t("reading")}</NavLink>
               </li>
               <li>
-                <a href="">Writing</a>
+                <NavLink to="/writing">{t("writing")}</NavLink>
               </li>
               <li>
-                <a href="">Speaking</a>
+                <NavLink to="/speaking">{t("speaking")}</NavLink>
               </li>
             </ul>
           </div>
           {/* Grammar */}
-          <div>
-            <h5 className="text-xl font-bold mb-6">Grammar</h5>
-            <ul className="space-y-2 text-text-des-light-mode ">
+          <div className="flex flex-col">
+            <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
+              {t("grammar")}
+            </h5>
+            <ul className="space-y-2 text-text-des-light-mode dark:text-text-des-dark-mode ">
               <li>
-                <a href="">A1 - A2</a>
+                <NavLink to="/a1a2grammar">A1 - A2</NavLink>
               </li>
               <li>
-                <a href="">B1 - B2</a>
+                <NavLink to="/b1b2grammar">B1 - B2</NavLink>
               </li>
               <li>
-                <a href="">C1</a>
+                <NavLink to="/c1grammar">C1</NavLink>
               </li>
             </ul>
           </div>
           {/* Vocabulary */}
-          <div>
-            <h5 className="text-xl font-bold mb-6">Vocabulary</h5>
-            <ul className="space-y-2 text-text-des-light-mode ">
+          <div className="flex flex-col">
+            <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
+              {t("vocabulary")}
+            </h5>
+            <ul className="space-y-2 text-text-des-light-mode dark:text-text-des-dark-mode ">
               <li>
-                <a href="">A1 - A2</a>
+                <NavLink to="/a1a2vocabulary">A1 - A2</NavLink>
               </li>
               <li>
-                <a href="">B1 - B2</a>
+                <NavLink to="/a1a2vocabulary">B1 - B2</NavLink>
               </li>
               <li>
-                <a href="">C1</a>
+                <NavLink to="">C1</NavLink>
               </li>
             </ul>
           </div>
           {/* Organize */}
-          <div className="col-span-2">
+          <div className="col-span-2 flex flex-col  justify-center items-center">
             {/* ISTAD */}
-            <div className="mb-16">
-              <h5 className="text-xl font-bold mb-6">Organize By</h5>
+            <div className="mb-12">
+              <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
+                {t("organizeBy")}
+              </h5>
               <img
                 className="w-40"
                 src={theme === "dark" ? istadLogoDark : istadLogoLight}
                 alt="ISTAD Logo"
               />
             </div>
-            {/* NEWS LETTER */}
             <div>
-              <h5 className="text-xl font-bold mb-6">News letter</h5>
-              <input
-                className="bg-[#f1f5f9] placeholder-text-des-light-mode placeholder:text-left text-sm pl-0 border-t-0 border-x-0 border-text-des-light-mode w-60"
-                placeholder="Enter your email address"
-                type="text"
-              />
+              <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
+                {t("newsLetter")}
+              </h5>
+              <div className="flex ">
+                <input
+                  className=" border-none bg-[#f1f5f9] dark:bg-white/5 dark:pl-2 backdrop-blur-md dark:text-white placeholder-text-des-light-mode dark:placeholder-text-des-dark-mode placeholder:text-left text-sm pl-0 w-60 focus:outline-none focus:ring-0 focus:border-transparent"
+                  placeholder="Enter your email address"
+                  type="text"
+                />
+                <AiOutlineMail className="h-8 w-8 text-primary-300" />
+              </div>
+              <hr className="bg-text-des-light-mode border-0 h-px" />
             </div>
           </div>
         </div>
-        <hr className="bg-primary-100 my-8 border-0 h-px" />
+        <hr className="bg-text-des-light-mode dark:bg-text-des-dark-mode my-8 border-0 h-px" />
         <div className="text-center">
-          <p>
-            &copy; 2025 Copyright <a href="#">FluentFlow</a> by{" "}
-            <a href="https://www.cstad.edu.kh/">ISTAD</a> .All rights reserved.™
+          <p className="text-text-des-light-mode dark:text-text-des-dark-mode">
+            &copy; 2025 FluentFlow {t("by")}{" "}
+            <a href="https://www.cstad.edu.kh/">ISTAD{t(".")}</a>{" "}
+            {t("allRights")}
           </p>
         </div>
       </div>

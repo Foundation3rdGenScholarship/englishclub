@@ -30,7 +30,7 @@ import MoreDoc from "./page/dashboard/content/grammars/MoreDoc.jsx";
 import A1A2vocabulary from "./page/dashboard/content/vocabularies/A1A2vocabulary.jsx";
 import B1B2vocabulary from "./page/dashboard/content/vocabularies/B1B2vocabulary.jsx";
 import { ToastContainer } from "react-toastify";
-import VerifyOTP from "./page/auth/VertifyOTP.jsx";
+import VerifyOTP from "./page/auth/VerifyOTP.jsx";
 import NewPassword from "./page/auth/NewPassword.jsx";
 import ReadingDetail from "./page/dashboard/content/skillDetail/ReadingDetail.jsx";
 import ExerciseDetail from "./page/dashboard/content/exercises/ExerciseDetail.jsx";
@@ -129,7 +129,7 @@ createRoot(document.getElementById("root")).render(
               <Route path="/a1a2grammar" element={<A1A2grammar />} />
               <Route path="/lesson/:lessonId" element={<GrammarExercises />} />
             </Route>
-            <Route path="/vertifyotp" element={<VerifyOTP />} />
+            <Route path="/verifyotp" element={<VerifyOTP />} />
             <Route path="/resetpassword" element={<NewPassword />} />
             <Route path="/userprofile" element={<UserProfile />} />
           </Routes>

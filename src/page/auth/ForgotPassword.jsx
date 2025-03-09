@@ -43,7 +43,9 @@ const handleSubmit = async (values, { resetForm }) => {
     await verifyEmail(values.email).unwrap(); // Pass just the email value
     toast.success(t("verification email sent!"));
     resetForm();
-    navigate("/vertifyotp", { state: { email: values.email } });
+    navigate("/verifyotp", {
+      state: { email: values.email, action: "reset-password" },
+    });
   } catch (error) {
     console.error("Verification error:", error);
     toast.error(t("failed to verify email"));
