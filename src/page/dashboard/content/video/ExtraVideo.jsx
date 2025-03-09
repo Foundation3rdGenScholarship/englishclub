@@ -2,7 +2,20 @@ import React, { useState, useEffect } from "react";
 import VideoCard from "../../../../components/card/VideoCard";
 
 const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
-const videoIds = ["aMWT9aEShWs", "OW0uuGfpvUE", "B6kryr_WIaY","cWmGqByYEus"];
+const videoIds = [
+  "aMWT9aEShWs",
+  "OW0uuGfpvUE",
+  "B6kryr_WIaY",
+  "cWmGqByYEus",
+  "SUt8q0EKbms",
+  "7HUW_aukApo",
+  "e_04ZrNroTo",
+  "XqZsoesa55w",
+  "kpy6QEAuLJw",
+  "cSe5mwiXPT0",
+  "O9S70oJAivI",
+  "d0wV9EC3t14",
+];
 
 const ExtraVideo = () => {
   const [videos, setVideos] = useState([]);
@@ -33,7 +46,7 @@ const ExtraVideo = () => {
 
   return (
     <div className="mt-[88px] sm:ml-64">
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 p-4">
+      <div className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 xl:p-4 lg:p-4 md:p-4 sm:p-4 py-4 px-16">
         {loading
           ? Array.from({ length: 6 }).map((_, index) => (
               <div
