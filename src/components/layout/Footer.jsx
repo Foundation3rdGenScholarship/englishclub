@@ -5,6 +5,7 @@ import istadLogoLight from "../../../public/img/logo/istad-logo-light.webp";
 import istadLogoDark from "../../../public/img/logo/istad-logo-dark.png";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
+import { AiOutlineMail } from "react-icons/ai";
 
 export default function Footer() {
   const theme = useSelector((state) => state.theme.theme);
@@ -28,7 +29,7 @@ export default function Footer() {
             </p>
           </div>
           {/* Contents */}
-          <div className="flex flex-col items-center text-center ">
+          <div className="flex flex-col">
             <h5 className="text-heading-5 font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
               {t("contents")}
             </h5>
@@ -48,7 +49,7 @@ export default function Footer() {
             </ul>
           </div>
           {/* Skills */}
-          <div className="flex flex-col  items-center text-center">
+          <div className="flex flex-col">
             <h5 className="text-xl font-bold mb-6  text-text-des-light-mode dark:text-text-des-dark-mode">
               {t("skills")}
             </h5>
@@ -68,7 +69,7 @@ export default function Footer() {
             </ul>
           </div>
           {/* Grammar */}
-          <div className="flex flex-col  items-center text-center">
+          <div className="flex flex-col">
             <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
               {t("grammar")}
             </h5>
@@ -85,7 +86,7 @@ export default function Footer() {
             </ul>
           </div>
           {/* Vocabulary */}
-          <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col">
             <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
               {t("vocabulary")}
             </h5>
@@ -102,7 +103,7 @@ export default function Footer() {
             </ul>
           </div>
           {/* Organize */}
-          <div className="col-span-2 flex flex-col  justify-center items-center text-center">
+          <div className="col-span-2 flex flex-col  justify-center items-center">
             {/* ISTAD */}
             <div className="mb-12">
               <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
@@ -118,11 +119,15 @@ export default function Footer() {
               <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
                 {t("newsLetter")}
               </h5>
-              <input
-                className="bg-[#f1f5f9] rounded-md placeholder-text-des-light-mode dark:placeholder-text-des-dark-mode placeholder:text-left text-sm xl:pl-4 lg:pl-4 md:pl-4 sm:pl-4 pl-2 border-text-des-light-mode w-60 focus:outline-none focus:ring-1 focus:ring-primary-600 focus:border-primary-600"
-                placeholder="Enter your email address"
-                type="text"
-              />
+              <div className="flex ">
+                <input
+                  className=" border-none bg-[#f1f5f9] dark:bg-white/5 dark:pl-2 backdrop-blur-md dark:text-white placeholder-text-des-light-mode dark:placeholder-text-des-dark-mode placeholder:text-left text-sm pl-0 w-60 focus:outline-none focus:ring-0 focus:border-transparent"
+                  placeholder="Enter your email address"
+                  type="text"
+                />
+                <AiOutlineMail className="h-8 w-8 text-primary-300" />
+              </div>
+              <hr className="bg-text-des-light-mode border-0 h-px" />
             </div>
           </div>
         </div>
