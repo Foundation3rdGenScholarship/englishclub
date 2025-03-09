@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { submitExercises } from "../../services/submitExercises.js"; // Import the submitExercises function
 import { useTranslation } from "react-i18next";
+import SubmitPopup from "../popup/SubmitPopup.jsx";
 
 const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
   const { t } = useTranslation("error");
@@ -118,8 +119,13 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
       </button>
 
       {/* Feedback message after submission */}
+      {/* {feedbackMessage && <SubmitPopup />} */}
       {feedbackMessage && (
-        <p className="mt-4 text-center text-red-500">{feedbackMessage}</p>
+        <SubmitPopup
+          message={feedbackMessage}
+          type={feedbackMessage.includes("Error") ? "error" : "success"}
+          onClose={() => setFeedbackMessage("")}
+        />
       )}
     </div>
   );
