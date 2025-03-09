@@ -3,14 +3,13 @@ const ButtonHero = ({ href = "#", label = "Button Name", className = "" }) => {
   return (
     <a href={href}>
       <button
-        className={`text-heading-5 text-white m-3 bg-secondary-500 hover:bg-gradient-to-bl 
-            focus:ring-4 focus:outline-none focus:ring-secondary-200 
-            font-medium rounded-lg text-sm px-5 py-2 text-center ${className}`}
+        className={`inline-block text-lg  text-white
+            font-medium rounded-lg  text-center py-3 px-6  bg-secondary-500  hover:bg-secondary-800 transition duration-300  focus:ring-4 focus:outline-none focus:ring-secondary-200 ${className}`}
       >
         {label}
       </button>
     </a>
   );
 };
-
+ 
 export default ButtonHero;
