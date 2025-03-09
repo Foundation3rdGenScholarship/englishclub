@@ -48,6 +48,7 @@ import { WritingA1 } from "./page/dashboard/content/writingDetail/WritingA1.jsx"
 import { SpeakingA1 } from "./page/dashboard/content/speakingDetail/SpeakingA1.jsx";
 import SpeakingExercises from "./page/dashboard/content/exercises/SpeakingExercises.jsx";
 import ImageTTS from "./page/dashboard/content/soundTts/ImageTTS.jsx";
+import GrammarExercises from "./page/dashboard/content/exercises/GrammarExercises.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -77,7 +78,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
-            
+
             <Route element={<Dashboard />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/reading" element={<Reading />} />
@@ -125,6 +126,8 @@ createRoot(document.getElementById("root")).render(
                 path="/speaking/:ex_uuid"
                 element={<SpeakingExercises />}
               />
+              <Route path="/a1a2grammar" element={<A1A2grammar />} />
+              <Route path="/lesson/:lessonId" element={<GrammarExercises />} />
             </Route>
             <Route path="/vertifyotp" element={<VerifyOTP />} />
             <Route path="/resetpassword" element={<NewPassword />} />

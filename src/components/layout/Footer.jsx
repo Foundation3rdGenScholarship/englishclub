@@ -3,66 +3,75 @@ import logolightmode from "../../../public/img/logo/logo-light-mode.png";
 import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
 import istadLogoLight from "../../../public/img/logo/istad-logo-light.webp";
 import istadLogoDark from "../../../public/img/logo/istad-logo-dark.png";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
   const theme = useSelector((state) => state.theme.theme);
-
+  const { t } = useTranslation("footer");
   return (
     <footer className="bg-[#f1f5f9] dark:bg-white/5 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-8 justify-items-center">
+        <div className="grid xl:grid-cols-8 lg:grid-cols-8 md:grid-cols-2 sm:grid-cols-2 justify-items-center gap-4">
           {/* Logo */}
-          <div className="col-span-2">
+          <div className="flex flex-col items-center text-center col-span-2 pb-2">
             <img
               src={theme === "dark" ? logodarkmode : logolightmode}
               alt="Logo"
               className="w-48 mb-6"
             />
-            <p>
-              <span className="text-primary-500 font-bold">FluentFlow</span> is
-              the best platform to improve your English skills for free!
+            <p className="text-text-des-light-mode dark:text-text-des-dark-mode">
+              <span className="text-primary-500 dark:text-white font-bold">
+                FluentFlow
+              </span>{" "}
+              {t("isTheBest")}
             </p>
           </div>
           {/* Contents */}
-          <div>
-            <h5 className="text-heading-5 font-bold mb-6">Contents</h5>
-            <ul className="space-y-2 text-text-des-light-mode ">
+          <div className="flex flex-col items-center text-center ">
+            <h5 className="text-heading-5 font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
+              {t("contents")}
+            </h5>
+            <ul className="space-y-2 text-text-des-light-mode dark:text-text-des-dark-mode ">
               <li>
-                <a href="">Home</a>
+                <a href="">{t("home")}</a>
               </li>
               <li>
-                <a href="">Courses</a>
+                <a href="">{t("courses")}</a>
               </li>
               <li>
-                <a href="">About</a>
+                <a href="">{t("about")}</a>
               </li>
               <li>
-                <a href="">Contact</a>
+                <a href="">{t("contact")}</a>
               </li>
             </ul>
           </div>
           {/* Skills */}
-          <div>
-            <h5 className="text-xl font-bold mb-6">Skills</h5>
-            <ul className="space-y-2 text-text-des-light-mode ">
+          <div className="flex flex-col  items-center text-center">
+            <h5 className="text-xl font-bold mb-6  text-text-des-light-mode dark:text-text-des-dark-mode">
+              {t("skills")}
+            </h5>
+            <ul className="space-y-2 text-text-des-light-mode dark:text-text-des-dark-mode ">
               <li>
-                <a href="">Listening</a>
+                <a href="">{t("listening")}</a>
               </li>
               <li>
-                <a href="">Reading</a>
+                <a href="">{t("reading")}</a>
               </li>
               <li>
-                <a href="">Writing</a>
+                <a href="">{t("writing")}</a>
               </li>
               <li>
-                <a href="">Speaking</a>
+                <a href="">{t("speaking")}</a>
               </li>
             </ul>
           </div>
           {/* Grammar */}
-          <div>
-            <h5 className="text-xl font-bold mb-6">Grammar</h5>
-            <ul className="space-y-2 text-text-des-light-mode ">
+          <div className="flex flex-col  items-center text-center">
+            <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
+              {t("grammar")}
+            </h5>
+            <ul className="space-y-2 text-text-des-light-mode dark:text-text-des-dark-mode ">
               <li>
                 <a href="">A1 - A2</a>
               </li>
@@ -75,9 +84,11 @@ export default function Footer() {
             </ul>
           </div>
           {/* Vocabulary */}
-          <div>
-            <h5 className="text-xl font-bold mb-6">Vocabulary</h5>
-            <ul className="space-y-2 text-text-des-light-mode ">
+          <div className="flex flex-col items-center text-center">
+            <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
+              {t("vocabulary")}
+            </h5>
+            <ul className="space-y-2 text-text-des-light-mode dark:text-text-des-dark-mode ">
               <li>
                 <a href="">A1 - A2</a>
               </li>
@@ -90,10 +101,12 @@ export default function Footer() {
             </ul>
           </div>
           {/* Organize */}
-          <div className="col-span-2">
+          <div className="col-span-2 flex flex-col  justify-center items-center text-center">
             {/* ISTAD */}
-            <div className="mb-16">
-              <h5 className="text-xl font-bold mb-6">Organize By</h5>
+            <div className="mb-12">
+              <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
+                {t("organizeBy")}
+              </h5>
               <img
                 className="w-40"
                 src={theme === "dark" ? istadLogoDark : istadLogoLight}
@@ -101,19 +114,21 @@ export default function Footer() {
               />
             </div>
             {/* NEWS LETTER */}
-            <div>
-              <h5 className="text-xl font-bold mb-6">News letter</h5>
+            {/* <div>
+              <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
+                News letter
+              </h5>
               <input
-                className="bg-[#f1f5f9] placeholder-text-des-light-mode placeholder:text-left text-sm pl-0 border-t-0 border-x-0 border-text-des-light-mode w-60"
+                className="bg-[#f1f5f9] placeholder-text-des-light-mode dark:placeholder-text-des-dark-mode placeholder:text-left text-sm xl:pl-4 lg:pl-4 md:pl-4 sm:pl-4 pl-2  border-text-des-light-mode dark:border-text-des-dark-mode w-60"
                 placeholder="Enter your email address"
                 type="text"
               />
-            </div>
+            </div> */}
           </div>
         </div>
-        <hr className="bg-primary-100 my-8 border-0 h-px" />
+        <hr className="bg-text-des-light-mode dark:bg-text-des-dark-mode my-8 border-0 h-px" />
         <div className="text-center">
-          <p>
+          <p className="text-text-des-light-mode dark:text-text-des-dark-mode">
             &copy; 2025 Copyright <a href="#">FluentFlow</a> by{" "}
             <a href="https://www.cstad.edu.kh/">ISTAD</a> .All rights reserved.™
           </p>
