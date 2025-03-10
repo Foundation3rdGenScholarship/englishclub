@@ -12,7 +12,7 @@ export function vocabularyForSidebar() {
     },
     {
       title: t("b1b2vocabulary"),
-      paht: "/b1b2vocabulary",
+      path: "/b1b2vocanulary",
       active: () => "b1b2vocabulary",
       text: "b1b2vocabulary",
     },

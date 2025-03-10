@@ -1,10 +1,46 @@
 import React, { useState } from "react";
+import { submitExercises } from "../../services/submitExercises.js";
+import { useTranslation } from "react-i18next";
+import SubmitPopup from "../popup/SubmitPopup.jsx";
 
 const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState("");
+  const { t } = useTranslation();
 
   console.log("Data In True False : ", exercises);
+
+  // Prepare answers for API submission
+  const prepareAnswers = () => {
+    // Make sure we return an array, even if empty
+    if (!exercises || exercises.length === 0) {
+      console.warn("No exercises found to prepare answers");
+      return [];
+    }
+
+    // Create an array of objects with question_id and choice_id
+    return exercises
+      .filter((exercise) => selectedAnswers[exercise.id]) // Only include answered questions
+      .map((exercise) => {
+        return {
+          question_id: exercise.id,
+          choice_id: selectedAnswers[exercise.id],
+        };
+      });
+  };
+
+  // Function to play sound
+  const playSound = (soundId) => {
+    const sound = document.getElementById(soundId);
+    if (sound) {
+      sound.play().catch((error) => {
+        console.error(`Error playing sound: ${error}`);
+      });
+    } else {
+      console.warn(`Sound element with id '${soundId}' not found`);
+    }
+  };
 
   // Handle selection
   const handleAnswerSelection = (questionId, choiceId) => {
@@ -17,14 +53,56 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
   };
 
   // Check if all questions are answered
-  const isAllAnswered = exercises.every((exercise) =>
-    selectedAnswers.hasOwnProperty(exercise.id)
-  );
+  const isAllAnswered =
+    exercises &&
+    exercises.length > 0 &&
+    exercises.every((exercise) => selectedAnswers.hasOwnProperty(exercise.id));
 
   // Handle submission
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (isAllAnswered) {
       setIsSubmitted(true);
+
+      try {
+        // Prepare the answers in the format expected by the API
+        const answers = prepareAnswers();
+
+        console.log("Submitting answers:", answers);
+
+        // Only call the API if we have answers to submit
+        if (answers && answers.length > 0) {
+          const result = await submitExercises(ex_uuid, answers);
+
+          console.log("This is result : ", result);
+
+          if (result && result.success) {
+            setFeedbackMessage("Exercise submitted successfully!");
+
+            // Play the correct sound for each correct answer
+            exercises.forEach((exercise, index) => {
+              const selectedAnswer = selectedAnswers[exercise.id];
+              const isCorrect =
+                exercise.choices.find(
+                  (choice) => choice.choice_uuid === selectedAnswer
+                )?.is_correct || false;
+
+              if (isCorrect) {
+                playSound(`correct${index + 1}`);
+              }
+            });
+          } else {
+            setFeedbackMessage(t("multipleChoics") || "Submission failed");
+          }
+        } else {
+          console.error("No answers to submit");
+          setFeedbackMessage("Error: No answers to submit");
+        }
+      } catch (error) {
+        console.error("Error submitting exercises:", error);
+        setFeedbackMessage(
+          `Error: ${error.message || "Failed to submit exercises"}`
+        );
+      }
     }
   };
 
@@ -41,8 +119,27 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
     return selectedChoice && selectedChoice.is_correct === true;
   };
 
+  // If no exercises are provided, show a message
+  if (!exercises || exercises.length === 0) {
+    return (
+      <div className="p-6 bg-white shadow-md rounded-lg">
+        No exercises available
+      </div>
+    );
+  }
+
   return (
     <div className="p-6 bg-white shadow-md rounded-lg">
+      {/* Hidden audio elements for sounds */}
+      {exercises.map((_, index) => (
+        <audio
+          key={`sound-${index}`}
+          id={`correct${index + 1}`}
+          src="/sounds/correct-answer.mp3"
+          preload="auto"
+        />
+      ))}
+
       {exercises.map((exercise, index) => {
         const selectedChoiceId = selectedAnswers[exercise.id];
         const isAnswerCorrect =
@@ -55,25 +152,29 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
               {index + 1}. {exercise.question_text}
             </h2>
             <div className="flex gap-4">
-              {exercise.choices.map((choice) => (
-                <label
-                  key={choice.choice_uuid}
-                  className="flex items-center gap-2"
-                >
-                  <input
-                    type="radio"
-                    name={`exercise-${exercise.id}`}
-                    value={choice.choice_uuid}
-                    checked={selectedChoiceId === choice.choice_uuid}
-                    onChange={() =>
-                      handleAnswerSelection(exercise.id, choice.choice_uuid)
-                    }
-                    disabled={isSubmitted}
-                    className="cursor-pointer"
-                  />
-                  {choice.text}
-                </label>
-              ))}
+              {exercise.choices && exercise.choices.length > 0 ? (
+                exercise.choices.map((choice) => (
+                  <label
+                    key={choice.choice_uuid}
+                    className="flex items-center gap-2"
+                  >
+                    <input
+                      type="radio"
+                      name={`exercise-${exercise.id}`}
+                      value={choice.choice_uuid}
+                      checked={selectedChoiceId === choice.choice_uuid}
+                      onChange={() =>
+                        handleAnswerSelection(exercise.id, choice.choice_uuid)
+                      }
+                      disabled={isSubmitted}
+                      className="cursor-pointer"
+                    />
+                    {choice.text}
+                  </label>
+                ))
+              ) : (
+                <p>No choices available for this question</p>
+              )}
             </div>
             {isSubmitted && (
               <p
@@ -103,6 +204,14 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
       >
         Submit
       </button>
+      {/* Feedback message after submission */}
+      {feedbackMessage && (
+        <SubmitPopup
+          message={feedbackMessage}
+          type={feedbackMessage.includes("Error") ? "error" : "success"}
+          onClose={() => setFeedbackMessage("")}
+        />
+      )}
     </div>
   );
 };
