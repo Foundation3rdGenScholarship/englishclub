@@ -6,25 +6,29 @@ import { useAllVocabulariesQuery } from "../../../../redux/features/vocabularies
 import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import ServerErrorPage from "../../../err/ServerErrorPage";
+import { useNavigate } from "react-router";
 
 const A1A2vocabulary = () => {
   const { t } = useTranslation("a1a2vocabularies");
   const { data, isLoading, error } = useAllVocabulariesQuery();
-  console.log(data);
+  const allData = data?.payload;
+  const navigate = useNavigate();
+  // const lesson = data?.flatMap((item) => item.lessons) || [];
+  console.log("Data For Vocabulary : ", allData);
+  console.log("Data : ", data);
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
-  //       <HeroSkeleton />
-  //       <CoursesSkeleton />
-  //     </div>
-  //   );
-  // }
-  // // console.log("Lesson Description: ", data[0].lessons[0].description);
+  if (isLoading) {
+    return (
+      <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
+        <HeroSkeleton />
+        <CoursesSkeleton />
+      </div>
+    );
+  }
 
-  // if (error) {
-  //   return <ServerErrorPage />; // Handle errors properly
-  // }
+  if (error) {
+    return <ServerErrorPage />; // Handle errors properly
+  }
 
   return (
     <div className="p-4 sm:ml-64  mt-[88px]">
@@ -36,7 +40,7 @@ const A1A2vocabulary = () => {
         description={t("description")}
       />
       <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
-        {/* {data?.map((item, index) => {
+        {allData?.map((item, index) => {
           if (
             item.lessons.length > 0 && // Ensure lessons array is not empty
             (item.lessons[0].lesson_level === "A1" ||
@@ -48,11 +52,12 @@ const A1A2vocabulary = () => {
                 title={item.lessons[0].lesson_title}
                 img={item.lessons[0].thumbnail}
                 des={item.lessons[0].description}
+                onClick={() => navigate(`/vocabulary/${item.lessons[0].lesson_uuid}`)}
               />
             );
           }
           return null;
-        })} */}
+        })}
       </div>
     </div>
   );

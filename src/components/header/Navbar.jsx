@@ -78,7 +78,7 @@ export default function Navbar() {
           <div className="hidden md:block">
             <ButtonLanguage />
           </div>
-          {isLoggedIn ? <Profile user={user}/> : <RegisterBtn />}
+          {isLoggedIn ? <Profile user={user} /> : <RegisterBtn />}
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -104,11 +104,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`md:hidden ${
-          isOpen ? "block" : "hidden"
-        } `}
-      >
+      <div className={`md:hidden ${isOpen ? "block" : "hidden"} `}>
         <ul className="flex flex-col items-left gap-6 text-heading-6 p-6">
           {menu.map((item) => (
             <li key={item.title}>
