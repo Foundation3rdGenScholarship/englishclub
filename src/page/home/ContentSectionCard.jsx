@@ -1,6 +1,8 @@
+
 import { useTranslation } from "react-i18next";
 import React from "react";
 import GlassCard from "../../components/card/GlassCard";
+import ButtonNavigate from "../../components/button/ButtonNavigate";
 
 export default function ContentSectionCard() {
   const { t } = useTranslation("homepage");
@@ -34,32 +36,28 @@ export default function ContentSectionCard() {
   ];
 
   return (
-    <div className="mt-32  md:mx-28 space-y-16">
+    <div className="mt-32 md:mx-28 space-y-16">
       <div className="text-center">
-        <p className="text-primary-400 text-heading-3 font-bold">{t("title-card")} <span className="text-secondary-400 text-heading-3 font-bold">{t("title-cardii")}</span></p>
+        <p className="text-primary-400 text-heading-3 font-bold">
+          {t("title-card")}{" "}
+          <span className="text-secondary-400 text-heading-3 font-bold">
+            {t("title-cardii")}
+          </span>
+        </p>
         <p className="text-primary-800 text-heading-5">{t("des-title-card")}</p>
       </div>
+
       {content.map((item, index) => (
         <div
           key={index}
-          className={`flex items-center gap-7 mx-[60px] ${
-            item.float === "right" ? "flex-row-reverse" : "flex-row"
-          }`}
+          className={`flex flex-col sm:flex-col md:flex-row items-center gap-7 mx-[40px]
+          ${item.float === "right" ? "md:flex-row-reverse" : "md:flex-row"}`}
         >
-          {/* Image Outside the GlassCard */}
-          <div className="flex-1">
-            <img
-              src={item.image}
-              alt={item.title}
-              className="w-full h-auto object-cover rounded-tr-[50px] rounded-bl-[50px] shadow-lg"
-            />
-          </div>
-
           {/* Text Content Inside the GlassCard */}
-          <div className="flex-1">
+          <div className="flex-1 order-1">
             <GlassCard
               className="p-6 rounded-tl-[50px] rounded-br-[50px] 
-             bg-white/10 dark:bg-[#111827] 
+             bg-white/10 dark:bg-[#242f31] 
              backdrop-blur-md border-2 border-white dark:border-none border-white/20"
             >
               <div className="p-5">
@@ -74,11 +72,25 @@ export default function ContentSectionCard() {
                     <li key={subIndex}>{sub}</li>
                   ))}
                 </ul>
-                <button className="mt-6 px-6 py-3 bg-yellow-500 text-black font-bold rounded-full shadow-md hover:bg-yellow-400">
-                  {t("button-learn-more")}
-                </button>
+                <div className="mt-6">
+                  <ButtonNavigate
+                    label={t("hero-btn")}
+                    link="/dashboard"
+                    text={t("hero-btn")}
+                  />
+                </div>
               </div>
             </GlassCard>
+          </div>
+
+          {/* Image - Responsive Positioning */}
+          <div className="flex-1 order-2 md:order-${item.float === 'right' ? '2' : '1'} sm:order-2">
+            <img
+              src={item.image}
+              alt={item.title}
+              loading="lazy"
+              className="w-full h-auto object-cover rounded-tr-[50px] rounded-bl-[50px] shadow-lg"
+            />
           </div>
         </div>
       ))}

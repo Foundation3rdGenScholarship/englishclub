@@ -53,11 +53,16 @@ const HomeMain = () => {
           </Container>
         </div>
       </div>
-      <div className="relative">
-        <div className="absolute  rounded-full bg-primary-100 z-0"></div>
-        <div className="absolute  rounded-full bg-primary-100 z-0"></div>
-        <div className="absolute  rounded-full bg-primary-100 z-0"></div>
-        <ContentSectionCard />
+      <div className="">
+        {/* <div className="absolute w-20 h-20 top-32 left-36  rounded-full bg-primary-100 z-0"></div>
+        <div className="absolute w-20 h-20 top-[600px] right-[680px]  rounded-full bg-primary-100 z-0"></div>
+        <div className="absolute w-20 h-20  rounded-full bg-primary-100 z-0"></div>
+        <div className="absolute w-14 h-14 top-[440px] left-[710px] rounded-full bg-primary-100 z-0"></div>
+        <div className="absolute w-14 h-14 top-[850px] right-[710px]  rounded-full bg-primary-100 z-0"></div>
+        <div className="absolute w-14 h-14  rounded-full bg-primary-100 z-0"></div> */}
+        <div className="z-10">
+          <ContentSectionCard />
+        </div>
       </div>
     </div>
   );
