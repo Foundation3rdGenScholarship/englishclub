@@ -11,23 +11,25 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
 
   console.log("Data In True False : ", exercises);
 
-  // Prepare answers for API submission
+  // Prepare answers for API submission in the correct format
   const prepareAnswers = () => {
-    // Make sure we return an array, even if empty
+    // Make sure we return an object with the proper structure
     if (!exercises || exercises.length === 0) {
       console.warn("No exercises found to prepare answers");
-      return [];
+      return { user_answer: [] };
     }
 
-    // Create an array of objects with question_id and choice_id
-    return exercises
+    // Create the user_answer array with proper structure
+    const user_answer = exercises
       .filter((exercise) => selectedAnswers[exercise.id]) // Only include answered questions
       .map((exercise) => {
         return {
-          question_id: exercise.id,
-          choice_id: selectedAnswers[exercise.id],
+          q_uuid: exercise.question_uuid, // Use q_uuid instead of question_id
+          answers: [selectedAnswers[exercise.id]], // Put the choice_id in an array as answers
         };
       });
+
+    return { user_answer };
   };
 
   // Function to play sound
@@ -70,7 +72,7 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
         console.log("Submitting answers:", answers);
 
         // Only call the API if we have answers to submit
-        if (answers && answers.length > 0) {
+        if (answers && answers.user_answer && answers.user_answer.length > 0) {
           const result = await submitExercises(ex_uuid, answers);
 
           console.log("This is result : ", result);
