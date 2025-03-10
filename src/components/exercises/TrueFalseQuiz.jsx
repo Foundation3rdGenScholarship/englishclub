@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 
-const TrueFalseQuiz = ({ exercises }) => {
+const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  console.log("Data In True False : ", exercises);
+
   // Handle selection
-  const handleAnswerSelection = (exerciseId, answer) => {
+  const handleAnswerSelection = (questionId, choiceId) => {
     if (!isSubmitted) {
       setSelectedAnswers((prev) => ({
         ...prev,
-        [exerciseId]: answer,
+        [questionId]: choiceId,
       }));
     }
   };
@@ -26,11 +28,26 @@ const TrueFalseQuiz = ({ exercises }) => {
     }
   };
 
+  // Find the correct choice for a question
+  const getCorrectChoice = (question) => {
+    return question.choices.find((choice) => choice.is_correct === true);
+  };
+
+  // Check if selected choice is correct
+  const isChoiceCorrect = (question, selectedChoiceId) => {
+    const selectedChoice = question.choices.find(
+      (choice) => choice.choice_uuid === selectedChoiceId
+    );
+    return selectedChoice && selectedChoice.is_correct === true;
+  };
+
   return (
     <div className="p-6 bg-white shadow-md rounded-lg">
       {exercises.map((exercise, index) => {
-        const selectedAnswer = selectedAnswers[exercise.id];
-        const isCorrect = selectedAnswer === exercise.correct_answer;
+        const selectedChoiceId = selectedAnswers[exercise.id];
+        const isAnswerCorrect =
+          selectedChoiceId && isChoiceCorrect(exercise, selectedChoiceId);
+        const correctChoice = getCorrectChoice(exercise);
 
         return (
           <div key={exercise.id} className="mb-6">
@@ -38,41 +55,36 @@ const TrueFalseQuiz = ({ exercises }) => {
               {index + 1}. {exercise.question_text}
             </h2>
             <div className="flex gap-4">
-              <label className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  name={`exercise-${exercise.id}`}
-                  value="true"
-                  checked={selectedAnswer === true}
-                  onChange={() => handleAnswerSelection(exercise.id, true)}
-                  disabled={isSubmitted}
-                  className="cursor-pointer"
-                />
-                True
-              </label>
-              <label className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  name={`exercise-${exercise.id}`}
-                  value="false"
-                  checked={selectedAnswer === false}
-                  onChange={() => handleAnswerSelection(exercise.id, false)}
-                  disabled={isSubmitted}
-                  className="cursor-pointer"
-                />
-                False
-              </label>
+              {exercise.choices.map((choice) => (
+                <label
+                  key={choice.choice_uuid}
+                  className="flex items-center gap-2"
+                >
+                  <input
+                    type="radio"
+                    name={`exercise-${exercise.id}`}
+                    value={choice.choice_uuid}
+                    checked={selectedChoiceId === choice.choice_uuid}
+                    onChange={() =>
+                      handleAnswerSelection(exercise.id, choice.choice_uuid)
+                    }
+                    disabled={isSubmitted}
+                    className="cursor-pointer"
+                  />
+                  {choice.text}
+                </label>
+              ))}
             </div>
             {isSubmitted && (
               <p
                 className={`mt-2 ${
-                  isCorrect ? "text-green-600" : "text-red-600"
+                  isAnswerCorrect ? "text-green-600" : "text-red-600"
                 }`}
               >
-                {isCorrect
+                {isAnswerCorrect
                   ? "Correct!"
                   : `Incorrect. The correct answer is: ${
-                      exercise.correct_answer ? "True" : "False"
+                      correctChoice ? correctChoice.text : "Not available"
                     }`}
               </p>
             )}
