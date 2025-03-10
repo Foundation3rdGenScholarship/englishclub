@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import SubmitPopup from "../popup/SubmitPopup.jsx";
 
 const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("error");
   const [answers, setAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState("");
@@ -65,7 +65,7 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
             }
           });
         } else {
-          setFeedbackMessage(t("multipleChoics") || "Submission failed");
+          setFeedbackMessage(t("fillintheblank") || "Submission failed");
         }
       } catch (error) {
         setFeedbackMessage(`Error: ${error.message || "Something went wrong"}`);

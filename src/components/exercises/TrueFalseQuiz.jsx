@@ -7,7 +7,7 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState("");
-  const { t } = useTranslation();
+  const { t } = useTranslation("error");
 
   console.log("Data In True False : ", exercises);
 
@@ -93,7 +93,7 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
               }
             });
           } else {
-            setFeedbackMessage(t("multipleChoics") || "Submission failed");
+            setFeedbackMessage(t("trueFalse") || "Submission failed");
           }
         } else {
           console.error("No answers to submit");
