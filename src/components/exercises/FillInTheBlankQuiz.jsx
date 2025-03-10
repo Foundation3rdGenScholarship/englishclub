@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import { submitExercises } from "../../services/submitExercises.js";
+import { useTranslation } from "react-i18next";
+import SubmitPopup from "../popup/SubmitPopup.jsx";
 
-const FillInTheBlankQuiz = ({ exercises }) => {
+const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
+  const { t } = useTranslation();
   const [answers, setAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState("");
 
   // Handle input change
   const handleInputChange = (exerciseId, value) => {
@@ -19,10 +24,52 @@ const FillInTheBlankQuiz = ({ exercises }) => {
     (exercise) => answers[exercise.id]?.length > 0
   );
 
+  // Function to play sound (assuming this is defined elsewhere)
+  const playSound = (soundId) => {
+    // Implementation for playing sound
+    console.log(`Playing sound: ${soundId}`);
+  };
+
+  // Prepare the answers object
+  const prepareAnswers = () => {
+    return {
+      user_answer: exercises.map((exercise) => ({
+        q_uuid: exercise.question_uuid,
+        answers: [answers[exercise.id] || ""],
+      })),
+    };
+  };
+
   // Handle submission
-  const handleSubmit = () => {
-    if (isAllFilled) {
+  const handleSubmit = async () => {
+    if (!isSubmitted && isAllFilled) {
       setIsSubmitted(true);
+
+      const formattedAnswers = prepareAnswers();
+
+      try {
+        const result = await submitExercises(ex_uuid, formattedAnswers);
+
+        if (result.success) {
+          setFeedbackMessage("Exercise submitted successfully!");
+
+          // Play the correct sound for each correct answer
+          exercises.forEach((exercise, index) => {
+            const userAnswer = answers[exercise.id] || "";
+            const isCorrect =
+              String(userAnswer).toLowerCase() ===
+              String(exercise.correct_answer?.answer || "").toLowerCase();
+
+            if (isCorrect) {
+              playSound(`correct${index + 1}`);
+            }
+          });
+        } else {
+          setFeedbackMessage(t("multipleChoics") || "Submission failed");
+        }
+      } catch (error) {
+        setFeedbackMessage(`Error: ${error.message || "Something went wrong"}`);
+      }
     }
   };
 
@@ -75,6 +122,14 @@ const FillInTheBlankQuiz = ({ exercises }) => {
       >
         Submit
       </button>
+
+      {feedbackMessage && (
+        <SubmitPopup
+          message={feedbackMessage}
+          type={feedbackMessage.includes("Error") ? "error" : "success"}
+          onClose={() => setFeedbackMessage("")}
+        />
+      )}
     </div>
   );
 };

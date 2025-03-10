@@ -12,7 +12,7 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
   // Function to play sound
   const playSound = (soundName) => {
     const audio = new Audio(`/sounds/${soundName}.mp3`);
-    audio.play();
+    // audio.play();
   };
 
   // Handle answer selection
