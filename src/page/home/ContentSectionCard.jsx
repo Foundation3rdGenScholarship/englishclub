@@ -1,9 +1,20 @@
 import { useTranslation } from "react-i18next";
-import React from "react";
+import React, { useEffect } from "react";
 import GlassCard from "../../components/card/GlassCard";
+import ButtonNavigate from "../../components/button/ButtonNavigate";
+import AOS from "aos";
+import "aos/dist/aos.css"; // Make sure you import the AOS CSS
 
 export default function ContentSectionCard() {
   const { t } = useTranslation("homepage");
+
+  // Initialize AOS when component mounts
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Animation duration
+      once: false, // Trigger animation only once
+    });
+  }, []);
 
   const content = [
     {
@@ -12,6 +23,7 @@ export default function ContentSectionCard() {
       sub: [t("sub-des-skill1"), t("sub-des-skill2"), t("sub-des-skill3")],
       image: "/img/image/skill.jpg",
       float: "right",
+      link: "/skills",
     },
     {
       title: t("title-cards-grammar"),
@@ -23,6 +35,7 @@ export default function ContentSectionCard() {
       ],
       image: "/img/image/grammer.jpg",
       float: "left",
+      link: "/over-grammar",
     },
     {
       title: t("title-cards-vocab"),
@@ -30,13 +43,19 @@ export default function ContentSectionCard() {
       sub: [t("sub-des-vocab1"), t("sub-des-vocab2"), t("sub-des-vocab3")],
       image: "/img/image/vocab.jpg",
       float: "right",
+      link: "/over-vocabulary",
     },
   ];
 
   return (
-    <div className="mt-32  md:mx-28 space-y-16">
-      <div className="text-center">
-        <p className="text-primary-400 text-heading-3 font-bold">{t("title-card")} <span className="text-secondary-400 text-heading-3 font-bold">{t("title-cardii")}</span></p>
+    <div className="mt-32 md:mx-28 space-y-16">
+      <div className="text-center" data-aos="fade-up">
+        <p className="text-primary-400 text-heading-3 font-bold">
+          {t("title-card")}{" "}
+          <span className="text-secondary-400 text-heading-3 font-bold">
+            {t("title-cardii")}
+          </span>
+        </p>
         <p className="text-primary-800 text-heading-5">{t("des-title-card")}</p>
       </div>
       {content.map((item, index) => (
@@ -47,7 +66,11 @@ export default function ContentSectionCard() {
           }`}
         >
           {/* Image Outside the GlassCard */}
-          <div className="flex-1">
+          <div
+            className="flex-1"
+            data-aos={item.float === "right" ? "fade-right" : "fade-left"}
+            data-aos-delay={index * 100} // Stagger delay for each card
+          >
             <img
               src={item.image}
               alt={item.title}
@@ -56,7 +79,11 @@ export default function ContentSectionCard() {
           </div>
 
           {/* Text Content Inside the GlassCard */}
-          <div className="flex-1">
+          <div
+            className="flex-1"
+            data-aos={item.float === "right" ? "fade-left" : "fade-right"}
+            data-aos-delay={index * 100} // Stagger delay for each card
+          >
             <GlassCard
               className="p-6 rounded-tl-[50px] rounded-br-[50px] 
              bg-white/10 dark:bg-[#111827] 
@@ -69,14 +96,16 @@ export default function ContentSectionCard() {
                 <p className="text-gray-500 dark:text-white text-heading-5 leading-relaxed">
                   {item.des}
                 </p>
-                <ul className="list-disc pl-5 text-gray-500 dark:text-white mt-4">
+                <ul className="list-disc pl-5 text-gray-500 dark:text-white mt-4 mb-8 text-[20px]">
                   {item.sub.map((sub, subIndex) => (
                     <li key={subIndex}>{sub}</li>
                   ))}
                 </ul>
-                <button className="mt-6 px-6 py-3 bg-yellow-500 text-black font-bold rounded-full shadow-md hover:bg-yellow-400">
-                  {t("button-learn-more")}
-                </button>
+                <ButtonNavigate
+                  text={t("start Learning")}
+                  link={item.link}
+                  addMoreStyle=""
+                />
               </div>
             </GlassCard>
           </div>

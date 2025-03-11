@@ -5,23 +5,19 @@ import {
   useFetchSubmitExercisesByLevelQuery,
 } from "../../redux/features/exercises/exerciseApi";
 import { BeatLoader } from "react-spinners";
+import { skipToken } from "@reduxjs/toolkit/query/react";
 
 // Helper function to get level image
 const getLevelImage = (level) => {
-  switch (level) {
-    case "A1":
-      return "https://cdn3d.iconscout.com/3d/premium/thumb/e-learning-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--online-study-education-teaching-internomo-v1-pack-seo-web-illustrations-3049732.png";
-    case "A2":
-      return "https://cdn3d.iconscout.com/3d/premium/thumb/live-3d-icon-download-in-png-blend-fbx-gltf-file-formats--streaming-video-online-broadcast-podcast-day-pack-network-communication-icons-7794707.png?f=webp";
-    case "B1":
-      return "https://project-english-club.vercel.app/assets/speaking10-DeXVtclm.png";
-    case "B2":
-      return "https://project-english-club.vercel.app/assets/writing-Bv33aIX_.png";
-    case "C1":
-      return "https://project-english-club.vercel.app/assets/vocabulary-C_LuEoE2.png";
-    default:
-      return "";
-  }
+  const images = {
+    A1: "https://cdn3d.iconscout.com/3d/premium/thumb/e-learning-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--online-study-education-teaching-internomo-v1-pack-seo-web-illustrations-3049732.png",
+    A2: "https://cdn3d.iconscout.com/3d/premium/thumb/live-3d-icon-download-in-png-blend-fbx-gltf-file-formats--streaming-video-online-broadcast-podcast-day-pack-network-communication-icons-7794707.png?f=webp",
+    B1: "https://project-english-club.vercel.app/assets/speaking10-DeXVtclm.png",
+    B2: "https://project-english-club.vercel.app/assets/writing-Bv33aIX_.png",
+    C1: "https://project-english-club.vercel.app/assets/vocabulary-C_LuEoE2.png",
+  };
+
+  return images[level] || "";
 };
 
 const StatsSummary = () => {
@@ -29,38 +25,38 @@ const StatsSummary = () => {
   const [isLoading, setIsLoading] = useState(true); // Loading state
   const [levelsData, setLevelsData] = useState([]);
 
-  // Fetch user data from local storage and parse it
-  const userData = JSON.parse(localStorage.getItem("user")); // Replace "userData" with the actual key
-  const user_uuid = userData?.user_uuid; // Extract user_uuid from the parsed object
+  // Fetch user data from local storage
+  const userData = JSON.parse(localStorage.getItem("user"));
+  const user_uuid = userData?.user_uuid;
+  console.log("userData :>> ", userData);
+  if (!user_uuid) {
+    console.error("User UUID is missing!");
+    return <div>Error: User not found!</div>;
+  }
+
   // Fetch all exercises
   const { data: allExercises, isLoading: isExercisesLoading } =
     useFetchExercisesQuery();
 
-  // Fetch completed exercises for each level
-  const a1Exercises = useFetchSubmitExercisesByLevelQuery({
-    user_uuid: user_uuid, // Use the extracted user_uuid
-    level: "A1",
+  // Fetch exercises by level using Redux
+  const levelNames = ["A1", "A2", "B1", "B2", "C1"];
+  const levelQueries = levelNames.map((level) => {
+    const queryArgs = user_uuid ? { user_uuid, level } : skipToken;
+    return useFetchSubmitExercisesByLevelQuery(queryArgs);
   });
-  const a2Exercises = useFetchSubmitExercisesByLevelQuery({
-    user_uuid: user_uuid,
-    level: "A2",
-  });
-  const b1Exercises = useFetchSubmitExercisesByLevelQuery({
-    user_uuid: user_uuid,
-    level: "B1",
-  });
-  const b2Exercises = useFetchSubmitExercisesByLevelQuery({
-    user_uuid: user_uuid,
-    level: "B2",
-  });
-  const c1Exercises = useFetchSubmitExercisesByLevelQuery({
-    user_uuid: user_uuid,
-    level: "C1",
-  });
+
+  // Log level queries for debugging
+  useEffect(() => {
+    levelQueries.forEach((query, index) => {
+      console.log(`Level ${levelNames[index]} Data:`, query.data);
+      console.log(`Level ${levelNames[index]} Error:`, query.error);
+    });
+  }, [levelQueries]);
 
   // Calculate total and completed exercises for each level
   useEffect(() => {
     if (!isExercisesLoading && allExercises) {
+      // Group exercises by level
       const groupedExercises = allExercises.reduce((acc, exercise) => {
         const level = exercise.exercise_level;
         if (!acc[level]) acc[level] = [];
@@ -68,51 +64,23 @@ const StatsSummary = () => {
         return acc;
       }, {});
 
-      const levelsData = [
-        {
-          name: "A1",
-          image: getLevelImage("A1"),
-          completed: a1Exercises.data?.payload?.length || 0,
-          total: groupedExercises["A1"]?.length || 0,
-        },
-        {
-          name: "A2",
-          image: getLevelImage("A2"),
-          completed: a2Exercises.data?.payload?.length || 0,
-          total: groupedExercises["A2"]?.length || 0,
-        },
-        {
-          name: "B1",
-          image: getLevelImage("B1"),
-          completed: b1Exercises.data?.payload?.length || 0,
-          total: groupedExercises["B1"]?.length || 0,
-        },
-        {
-          name: "B2",
-          image: getLevelImage("B2"),
-          completed: b2Exercises.data?.payload?.length || 0,
-          total: groupedExercises["B2"]?.length || 0,
-        },
-        {
-          name: "C1",
-          image: getLevelImage("C1"),
-          completed: c1Exercises.data?.payload?.length || 0,
-          total: groupedExercises["C1"]?.length || 0,
-        },
-      ];
+      // Map level data
+      const levelsData = levelNames.map((level, index) => {
+        const { data: levelExercises } = levelQueries[index];
+        const completed = levelExercises?.data?.length || 0;
+        const total = groupedExercises[level]?.length || 0;
+        return {
+          name: level,
+          image: getLevelImage(level),
+          completed,
+          total,
+        };
+      });
 
       setLevelsData(levelsData);
       setIsLoading(false);
     }
-  }, [
-    isExercisesLoading,
-    allExercises,
-    a1Exercises.data,
-    a2Exercises.data,
-    b1Exercises.data,
-    b2Exercises.data,
-    c1Exercises.data,
-  ]);
+  }, [isExercisesLoading, allExercises, ...levelQueries]);
 
   // Show loading state while waiting for data
   if (isLoading) {
@@ -125,6 +93,18 @@ const StatsSummary = () => {
         <div className="flex justify-center items-center h-64">
           <BeatLoader color="#fba518" />
         </div>
+      </div>
+    );
+  }
+
+  // Show error state if any query fails
+  const errors = levelQueries.filter((query) => query.isError);
+  if (errors.length > 0) {
+    return (
+      <div className="bg-bg-light-mode dark:bg-gray-900 rounded-xl p-6 sm:ml-64 max-w-screen-xl mb-16">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+          {t("error loading data")}
+        </h2>
       </div>
     );
   }
@@ -142,7 +122,7 @@ const StatsSummary = () => {
           const progress =
             level.total > 0
               ? ((level.completed / level.total) * 100).toFixed(2)
-              : 0; // Prevent division by zero
+              : 0;
 
           return (
             <div
@@ -151,7 +131,6 @@ const StatsSummary = () => {
               className="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
             >
               <div className="p-6">
-                {/* Level Image */}
                 <div className="w-20 h-20 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center mb-4 mx-auto">
                   <img
                     className="w-12 h-12 object-cover"
@@ -160,12 +139,10 @@ const StatsSummary = () => {
                   />
                 </div>
 
-                {/* Level Name */}
                 <h3 className="text-xl font-bold text-center text-gray-800 dark:text-white mb-2">
                   {level.name}
                 </h3>
 
-                {/* Completion Text */}
                 <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-4">
                   <span className="font-medium text-secondary-500">
                     {level.completed}
@@ -173,7 +150,6 @@ const StatsSummary = () => {
                   / {level.total} {t("done")}
                 </p>
 
-                {/* Progress Bar with Animation */}
                 <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 mb-4">
                   <div
                     className="bg-secondary-500 h-2.5 rounded-full transition-all duration-1000 ease-in-out"
@@ -181,7 +157,6 @@ const StatsSummary = () => {
                   ></div>
                 </div>
 
-                {/* Progress Percentage */}
                 <p className="text-center text-gray-600 dark:text-gray-400">
                   {progress}% {t("completed")}
                 </p>

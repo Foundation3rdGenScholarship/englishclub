@@ -18,5 +18,7 @@
   "no, Go back":"No, Go back",
   "dashboard":"Dashboard",
   "sign out": "Sign out",
-  "completed":"Completed"
+  "completed":"Completed",
+  "total of Exercises":"Total of Exercises",
+  "successfully signed out. Redirecting...":"Successfully signed out. Redirecting..."
 }
