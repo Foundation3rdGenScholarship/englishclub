@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, updateUser } from "../../redux/features/user/authSlice";
@@ -74,6 +72,11 @@ const Profile = () => {
     };
   }, []);
 
+  // Get the first character of the username or default to "G" for Guest
+  const profileFallback = userData?.user_name
+    ? userData.user_name[0].toUpperCase()
+    : "G";
+
   return (
     <>
       <div className="relative flex flex-col items-center" ref={dropdownRef}>
@@ -86,16 +89,17 @@ const Profile = () => {
           {isLoading ? (
             <div className="w-10 h-10 rounded-full bg-gray-300 animate-pulse"></div>
           ) : userData ? (
-            <img
-              className="w-10 h-10 rounded-full"
-              src={
-                userData.profile ||
-                (theme === "dark"
-                  ? "../../../img/userDefault/user-white.png"
-                  : "../../../img/userDefault/user-black.png")
-              }
-              alt="user photo"
-            />
+            userData.profile ? (
+              <img
+                className="w-10 h-10 rounded-full"
+                src={userData.profile}
+                alt="user photo"
+              />
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white font-bold text-lg">
+                {profileFallback}
+              </div>
+            )
           ) : (
             <div className="w-10 h-10 rounded-full bg-gray-300"></div>
           )}

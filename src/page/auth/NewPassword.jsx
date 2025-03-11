@@ -26,33 +26,33 @@ export default function NewPassword() {
   const [resetPassword, { isLoading }] = useResetPasswordMutation();
 
  const handleSubmit = async (values) => {
-   try {
-     // Ensure correct request format
-     const payload = {
-       email: email?.email, // Ensure email is included
-       new_password: values.newPassword, // Match server field names
-       confirm_password: values.confirmPassword,
-     };
+  try {
+    // Ensure correct request format
+    const payload = {
+      email: email, // Ensure email is included
+      new_password: values.newPassword, // Match server field names
+      confirm_password: values.confirmPassword,
+    };
 
-     console.log("Sending payload:", payload); // Debugging
+    console.log("Sending payload:", payload); // Debugging
 
-     // Attempt to reset the password
-     await resetPassword(payload).unwrap();
+    // Attempt to reset the password
+    await resetPassword(payload).unwrap();
 
-     toast.success(t("Password reset successfully!"));
-     navigate("/login");
-   } catch (error) {
-     console.error("Error details:", error);
+    toast.success(t("Password reset successfully!"));
+    navigate("/login");
+  } catch (error) {
+    console.error("Error details:", error);
 
-     // Extract validation errors from the API response
-     if (error.status === 422 && error.data?.detail) {
-       const errorMessages = error.data.detail.map((err) => err.msg).join(", ");
-       toast.error(t(`Validation failed: ${errorMessages}`));
-     } else {
-       toast.error(t("Failed to reset password. Please try again."));
-     }
-   }
- };
+    // Extract validation errors from the API response
+    if (error.status === 422 && error.data?.detail) {
+      const errorMessages = error.data.detail.map((err) => err.msg).join(", ");
+      toast.error(t(`Validation failed: ${errorMessages}`));
+    } else {
+      toast.error(t("Failed to reset password. Please try again."));
+    }
+  }
+};
 
 
 
