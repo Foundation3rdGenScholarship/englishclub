@@ -49,6 +49,10 @@ import { SpeakingA1 } from "./page/dashboard/content/speakingDetail/SpeakingA1.j
 import SpeakingExercises from "./page/dashboard/content/exercises/SpeakingExercises.jsx";
 import ImageTTS from "./page/dashboard/content/soundTts/ImageTTS.jsx";
 import GrammarExercises from "./page/dashboard/content/exercises/GrammarExercises.jsx";
+import ListeningA2 from "./page/dashboard/content/listeningDetail/ListeningA2.jsx";
+import ListeningB1 from "./page/dashboard/content/listeningDetail/ListeningB1.jsx";
+import ScrollToTop from "./components/progress/ScrollToTop.jsx";
+import VocabulariesExercises from "./page/dashboard/content/exercises/VocabulariesExercises.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -67,6 +71,7 @@ createRoot(document.getElementById("root")).render(
       <Provider store={store}>
         <ProgressBar />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route element={<RootLayout />}>
               <Route path="/" element={<HomeMain />} />
@@ -109,6 +114,14 @@ createRoot(document.getElementById("root")).render(
                 path="/courses/listening/level=a1"
                 element={<ListeningA1 />}
               />
+              <Route
+                path="/courses/listening/level=a2"
+                element={<ListeningA2 />}
+              />
+              <Route
+                path="/courses/listening/level=b1"
+                element={<ListeningB1 />}
+              />
               <Route path="/courses/writing/level=a1" element={<WritingA1 />} />
               <Route
                 path="/courses/speaking/level=a1"
@@ -128,6 +141,10 @@ createRoot(document.getElementById("root")).render(
               />
               <Route path="/a1a2grammar" element={<A1A2grammar />} />
               <Route path="/lesson/:lessonId" element={<GrammarExercises />} />
+              <Route
+                path="/vocabulary/:lessonId"
+                element={<VocabulariesExercises />}
+              />
             </Route>
             <Route path="/verifyotp" element={<VerifyOTP />} />
             <Route path="/resetpassword" element={<NewPassword />} />

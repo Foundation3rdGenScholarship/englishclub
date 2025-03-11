@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useAllListeningA1QueryQuery } from "../../../../redux/features/skill/skillSlice";
+import { useAllListeningA2QueryQuery } from "../../../../redux/features/skill/skillSlice";
 import CourseCard from "../../../../components/card/CourseCard";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
 import { useNavigate } from "react-router-dom";
 import ServerErrorPage from "../../../err/ServerErrorPage";
 
-const ListeningA1 = () => {
-  const { data, isLoading, error } = useAllListeningA1QueryQuery();
+const ListeningA2 = () => {
+  const { data, isLoading, error } = useAllListeningA2QueryQuery();
   const { t } = useTranslation("listeningA1");
   const exercises = data?.flatMap((item) => item.exercises) || [];
   const navigate = useNavigate(); // Initialize navigate hook
   console.log("This is an data : ", exercises);
+
   if (isLoading) {
     return (
       <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
@@ -80,4 +81,4 @@ const ListeningA1 = () => {
   );
 };
 
-export default ListeningA1;
+export default ListeningA2;
