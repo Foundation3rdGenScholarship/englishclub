@@ -10,7 +10,7 @@ import FeaturesGrid from "./Categories";
 // import CategoriesCard from "./CategoriesCard";
 import ContentSectionCard from "./ContentSectionCard";
 import ContentSingle from "./ContentSingle";
-import FeedbackSection from "./feedbackSection";
+import FeedbackSection from "./FeedbackSection";
 
 const HomeMain = () => {
   const Container = ({ children, className = "" }) => {
