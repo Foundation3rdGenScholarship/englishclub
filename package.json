@@ -12,6 +12,7 @@
   "dependencies": {
     "@google/generative-ai": "^0.23.0",
     "@react-oauth/google": "^0.12.1",
+    "@react-spring/web": "^9.7.5",
     "@reduxjs/toolkit": "^2.6.0",
     "@tailwindcss/vite": "^4.0.7",
     "aos": "^2.3.4",
@@ -43,6 +44,7 @@
     "react-toastify": "^11.0.3",
     "react-use": "^17.6.0",
     "secure-ls": "^2.0.0",
+    "swiper": "^11.2.5",
     "type.js": "^0.0.1",
     "typed.js": "^2.1.0",
     "yup": "^1.6.1"

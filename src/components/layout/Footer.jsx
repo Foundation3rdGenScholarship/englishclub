@@ -15,7 +15,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid xl:grid-cols-8 lg:grid-cols-8 md:grid-cols-2 sm:grid-cols-2 justify-items-center gap-4">
           {/* Logo */}
-          <div className="flex flex-col items-center text-center col-span-2 pb-2">
+          <div className="flex flex-col text-center col-span-2 pb-2">
             <img
               src={theme === "dark" ? logodarkmode : logolightmode}
               alt="Logo"
@@ -103,7 +103,7 @@ export default function Footer() {
             </ul>
           </div>
           {/* Organize */}
-          <div className="col-span-2 flex flex-col  justify-center items-center">
+          <div className="col-span-2 flex flex-col">
             {/* ISTAD */}
             <div className="mb-12">
               <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">

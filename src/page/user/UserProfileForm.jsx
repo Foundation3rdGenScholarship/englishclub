@@ -149,7 +149,7 @@ const UserProfileForm = ({
                   type="text"
                   name="user_name"
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-secondary-500 dark:bg-gray-700 dark:text-white"
-                  placeholder="បញ្ចូលឈ្មោះរបស់អ្នក"
+                  placeholder={t("please enter your name")}
                 />
               )}
             </div>
@@ -165,7 +165,7 @@ const UserProfileForm = ({
                   as="textarea"
                   name="bio"
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-secondary-500 dark:bg-gray-700 dark:text-white"
-                  placeholder="បញ្ជូលជីវប្រវត្តិរបស់អ្នក"
+                  placeholder={t("please enter your bio")}
                   rows="4"
                 />
               )}

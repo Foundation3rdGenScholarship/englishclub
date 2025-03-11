@@ -31,9 +31,9 @@ const CardSection = () => {
           /> */}
           {/* <p className="pb-14"></p> */}
 
-          <div className="flex justify-center">
+          <div className="flex justify-center items-center">
             <div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 pt-1 "
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 pt-1"
               data-aos="fade-up"
               data-aos-delay="100"
             >

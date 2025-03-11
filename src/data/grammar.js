@@ -22,12 +22,6 @@ export function grammarForSidebar() {
       active: () => "c1grammar",
       text: "c1grammar",
     },
-    {
-      title: t("moreDoc"),
-      path: "moredoc",
-      active: () => "moredoc",
-      text: "moredoc",
-    },
   ];
 
   return grammar; // 🔥 Return the array so it can be used in other files

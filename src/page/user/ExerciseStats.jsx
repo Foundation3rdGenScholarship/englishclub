@@ -82,7 +82,7 @@ const ExerciseStats = () => {
     options: {
       chart: { type: "donut" },
       labels: ["A1", "A2", "B1", "B2", "C1"],
-      colors: ["#fbae2f", "#fcb746", "#c98413", "#fcc05d", "#e29516"],
+      colors: ["#c98413", "#fba518", "#c98413", "#fba518", "#e29516"],
       responsive: [
         {
           breakpoint: 480,
@@ -99,7 +99,7 @@ const ExerciseStats = () => {
               show: true,
               total: {
                 show: true,
-                label: "Total of Exercises",
+                label: t("total of Exercises"),
                 formatter: function (w) {
                   return allExercises?.length || 0;
                 },
@@ -144,7 +144,7 @@ const ExerciseStats = () => {
                   show: true,
                   total: {
                     show: true,
-                    label: "Total of Exercises",
+                    label: t("total of Exercises"),
                     formatter: function (w) {
                       return allExercises.length;
                     },
@@ -182,10 +182,10 @@ const ExerciseStats = () => {
         {t("rate of exercises")}{" "}
         <span className="text-secondary-500">{t("by level")}</span>
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 justify-center items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 justify-center items-center">
         {/* Donut Chart */}
         <div
-          className="w-[25rem] h-[18rem] md:w-[25rem] md:h-[25rem] lg:w-[30rem] lg:h-[30rem] chart order-2 mx-auto"
+          className="w-[25rem] h-[18rem] md:w-[25rem] md:h-[25rem] lg:w-[29rem] lg:h-[29rem] chart order-2"
           data-aos="fade-right"
         >
           <ReactApexChart
@@ -194,12 +194,12 @@ const ExerciseStats = () => {
             type="donut"
             width="100%"
             height="100%"
-            className="flex justify-center items-center"
+            className="flex justify-center items-center mt-9"
           />
         </div>
 
         {/* Image */}
-        <div className="h-[450px] order-1" data-aos="fade-left">
+        <div className="h-[470px] order-1" data-aos="fade-left">
           <img
             className="h-full"
             src="../../../public/svg/UserProfile.svg"
