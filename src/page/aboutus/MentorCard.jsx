@@ -124,7 +124,8 @@ export default function MentorCard() {
           {/* Email */}
           <a
             className="p-3"
-            href="http://kimchansokpheng123@gmail.com"
+            onClick={() => window.open("https://kimchansokpheng123@gmail.com#inbox", "_blank")}
+            // href="kimchansokpheng123@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -169,7 +170,7 @@ export default function MentorCard() {
           <a className="p-3"
           target="_blank"
           rel="noopener noreferrer"
-          href="http://ingdavann4444@gmail.com">
+          href="mailto:http://ingdavann4444@gmail.com">
             <IoMdMail className="size-9  hover:text-primary-100" />
           </a>
           <a className="p-3"

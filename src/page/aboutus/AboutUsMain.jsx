@@ -17,7 +17,7 @@ const AboutUsMain = () => {
     AOS.init({
       duration: 1000, // Animation duration (in ms)
       easing: "ease-in-out", // Easing function
-      once: true, // Whether animation should happen only once
+      once: false, // Whether animation should happen only once
     });
   }, []);
   const { t } = useTranslation("about");
@@ -43,7 +43,7 @@ const AboutUsMain = () => {
         </div>
       </section>
       <section className="container max-w-screen-xl mx-auto">
-        <div className="mt-40 md:mt-96">
+        <div className="mt-36 md:mt-96">
           <div>
             <p className="text-center text-primary-950 dark:text-primary-100 font-bold text-heading-3">
               {t("mentor")}
@@ -55,7 +55,8 @@ const AboutUsMain = () => {
         </div>
         <Bubbles className="mt-36">
           <div className="relative z-10 flex flex-col gap-8 justify-center items-center h-screen">
-            <div data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+            <div>
+            {/* data-aos="fade-up" data-aos-anchor-placement="top-bottom" */}
               <MissionCard />
             </div>
             <div>
