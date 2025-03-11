@@ -15,7 +15,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid xl:grid-cols-8 lg:grid-cols-8 md:grid-cols-2 sm:grid-cols-2 justify-items-center gap-4">
           {/* Logo */}
-          <div className="flex flex-col text-center col-span-2 pb-2">
+          <div className="flex flex-col justify-start xl:items-start lg:items-start md:items-center sm:items-center items-center text-center col-span-2 pb-2">
             <img
               src={theme === "dark" ? logodarkmode : logolightmode}
               alt="Logo"
@@ -50,7 +50,7 @@ export default function Footer() {
           </div>
           {/* Skills */}
           <div className="flex flex-col">
-            <h5 className="text-xl font-bold mb-6  text-text-des-light-mode dark:text-text-des-dark-mode">
+            <h5 className="text-heading-5 font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
               {t("skills")}
             </h5>
             <ul className="space-y-2 text-text-des-light-mode dark:text-text-des-dark-mode ">
@@ -70,7 +70,7 @@ export default function Footer() {
           </div>
           {/* Grammar */}
           <div className="flex flex-col">
-            <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
+            <h5 className="text-heading-5 font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
               {t("grammar")}
             </h5>
             <ul className="space-y-2 text-text-des-light-mode dark:text-text-des-dark-mode ">
@@ -103,10 +103,10 @@ export default function Footer() {
             </ul>
           </div>
           {/* Organize */}
-          <div className="col-span-2 flex flex-col">
+          <div className="col-span-2 flex flex-col justify-center items-center ">
             {/* ISTAD */}
-            <div className="mb-12">
-              <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
+            <div className="flex flex-col pb-8">
+              <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode text-center">
                 {t("organizeBy")}
               </h5>
               <img
@@ -116,12 +116,12 @@ export default function Footer() {
               />
             </div>
             <div>
-              <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode">
+              <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode flex flex-col justify-start xl:items-start lg:items-start md:items-start sm:items-center items-center text-center col-span-2 ">
                 {t("newsLetter")}
               </h5>
-              <div className="flex ">
+              <div className="flex justity-center items-center">
                 <input
-                  className=" border-none bg-[#f1f5f9] dark:bg-white/5 dark:pl-2 backdrop-blur-md dark:text-white placeholder-text-des-light-mode dark:placeholder-text-des-dark-mode placeholder:text-left text-sm pl-0 w-60 focus:outline-none focus:ring-0 focus:border-transparent"
+                  className=" border-none bg-[#f1f5f9] dark:bg-white/5 blur-none dark:pl-2  dark:text-white placeholder-text-des-light-mode dark:placeholder-text-des-dark-mode placeholder:text-left text-sm pl-0 w-60 focus:outline-none focus:ring-0 focus:border-transparent"
                   placeholder="Enter your email address"
                   type="text"
                 />
