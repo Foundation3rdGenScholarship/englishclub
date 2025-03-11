@@ -4,6 +4,7 @@ import CourseCard from "../../../../components/card/CourseCard";
 import TextAnimation from "../../../../components/progress/TextAnimation";
 import { useAllSkillQuery } from "../../../../redux/features/skill/skillSlice";
 import HeroSkillOverView from "../../../../components/heroCard/HeroSkillOverView";
+import SkillTab from "../../../../components/tab/SkillTab";
 
 export const OverSkill = () => {
   const { t } = useTranslation("over-skill");
@@ -81,7 +82,8 @@ export const OverSkill = () => {
           </div>
           {/* OverView*/}
           <div>
-            <HeroSkillOverView />
+            {/* <HeroSkillOverView /> */}
+            <SkillTab />
           </div>
         </div>
       </div>
