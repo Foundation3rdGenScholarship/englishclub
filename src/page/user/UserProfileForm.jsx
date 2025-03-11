@@ -17,7 +17,10 @@ const UserProfileForm = ({
 }) => {
   const theme = useSelector((state) => state.theme.theme); // Move inside the component
   const { t } = useTranslation("userProfile");
-
+  // Get the first character of the username or default to "G" for Guest
+  const profileFallback = user?.user_name
+    ? user?.user_name[0].toUpperCase()
+    : "G";
   // Validation schema
   const validationSchema = Yup.object({
     user_name: Yup.string().required(t("please enter your name")),
@@ -86,16 +89,9 @@ const UserProfileForm = ({
                     alt="user profile"
                   />
                 ) : (
-                  <img
-                    className="w-full h-full object-cover"
-                    src={
-                      user?.profile ||
-                      (theme === "dark"
-                        ? "../../../img/userDefault/user-white.png"
-                        : "../../../img/userDefault/user-black.png")
-                    }
-                    alt="userProfile"
-                  />
+                  <div className="w-full h-full rounded-full bg-primary-500 flex items-center justify-center text-white font-bold text-7xl">
+                    {profileFallback}
+                  </div>
                 )}
               </div>
 
