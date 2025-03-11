@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
-import Pagination from "../../../test/pagination";
+import Pagination from "../../../test/Pagination";
 // import UserAnswers from "../../../test/UserAnswers";
 
 const MoreDoc = () => {
