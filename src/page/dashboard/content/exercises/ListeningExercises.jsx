@@ -4,6 +4,7 @@ import DOMPurify from "dompurify";
 
 import MultipleChoiceQuiz from "../../../../components/exercises/MultipleChoiceQuiz";
 import TrueFalseQuiz from "../../../../components/exercises/TrueFalseQuiz";
+import fillInTheBlankDataListeningB1 from "../../../../components/quiz/4bef9626-22be-4b9d-9410-128dbeb65f21";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import ServerErrorPage from "../../../err/ServerErrorPage";
 import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
@@ -105,6 +106,14 @@ const ListeningExercises = () => {
                 />
               </div>
               <MultipleChoiceQuiz exercises={exercisesData} ex_uuid={ex_uuid} />
+              {ex_uuid === "4bef9626-22be-4b9d-9410-128dbeb65f21" && (
+                <div className="mt-5">
+                  <FillInTheBlankQuiz
+                    exercises={fillInTheBlankDataListeningB1}
+                    ex_uuid={ex_uuid}
+                  />
+                </div>
+              )}
             </div>
             {/* Description */}
           </div>
@@ -165,7 +174,7 @@ const ListeningExercises = () => {
                 }}
               />
             </div>
-            <FillInTheBlankQuiz exercises={exercisesData} />
+            <FillInTheBlankQuiz exercises={exercisesData} ex_uuid={ex_uuid} />
           </div>
         </div>
       </div>
@@ -238,7 +247,7 @@ const ListeningExercises = () => {
             {/* <div>
               <MultipleChoice exercise={exerciseData} />
             </div> */}
-            <div className="">
+            {/* <div className="">
               {data?.questions[0].type?.toUpperCase() === "TRUE_OR_FALSE" ? (
                 <TrueFalseQuiz exercises={exercisesData} />
               ) : // <h1>"for true and false question"</h1>
@@ -248,7 +257,7 @@ const ListeningExercises = () => {
                 "FILL_IN_THE_BLANK" ? (
                 <FillInTheBlankQuiz exercises={exercisesData} />
               ) : null}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -27,7 +27,6 @@ const StatsSummary = () => {
   const { t } = useTranslation("userProfile");
   const [isLoading, setIsLoading] = useState(true);
   const [levelsData, setLevelsData] = useState([]);
-  const [error, setError] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]);
   const [levelCounts, setLevelCounts] = useState({
     A1: 0,
@@ -50,7 +49,8 @@ const StatsSummary = () => {
       const userId = userData?.user_uuid;
 
       if (!token || !userId) {
-        setError("User not authenticated");
+        // Instead of setting an error for new users, just leave the answers empty
+        setUserAnswers([]);
         setIsLoading(false);
         return;
       }
@@ -68,12 +68,17 @@ const StatsSummary = () => {
         );
 
         if (!response.ok) {
-          throw new Error(`API error: ${response.status}`);
+          // Handle API errors but don't show to user
+          console.error(`API error: ${response.status}`);
+          // Still set empty answers for new users
+          setUserAnswers([]);
+          setIsLoading(false);
+          return;
         }
 
         const data = await response.json();
 
-        // Set the answers
+        // Set the answers (use empty array if payload is null/undefined)
         setUserAnswers(data.payload || []);
 
         // Count unique exercises by level
@@ -87,30 +92,34 @@ const StatsSummary = () => {
           C2: 0,
         };
 
-        // First pass: collect unique exercise IDs
-        data.payload.forEach((item) => {
-          uniqueExercises.add(item.ex_uuid);
-        });
+        // Only process if we have data
+        if (data.payload && data.payload.length > 0) {
+          // First pass: collect unique exercise IDs
+          data.payload.forEach((item) => {
+            uniqueExercises.add(item.ex_uuid);
+          });
 
-        // Second pass: count by level for unique exercises only
-        const processedIds = new Set();
-        data.payload.forEach((item) => {
-          // Only count if we haven't processed this exercise ID yet
-          if (!processedIds.has(item.ex_uuid)) {
-            // Add to processed set
-            processedIds.add(item.ex_uuid);
+          // Second pass: count by level for unique exercises only
+          const processedIds = new Set();
+          data.payload.forEach((item) => {
+            // Only count if we haven't processed this exercise ID yet
+            if (!processedIds.has(item.ex_uuid)) {
+              // Add to processed set
+              processedIds.add(item.ex_uuid);
 
-            // Increment the count for this level
-            if (counts.hasOwnProperty(item.ex_level)) {
-              counts[item.ex_level]++;
+              // Increment the count for this level
+              if (counts.hasOwnProperty(item.ex_level)) {
+                counts[item.ex_level]++;
+              }
             }
-          }
-        });
+          });
+        }
 
         setLevelCounts(counts);
       } catch (error) {
         console.error("Error fetching user answers:", error);
-        setError(error.message);
+        // For errors, still show the UI with zero completed exercises
+        setUserAnswers([]);
       }
     };
 
@@ -186,21 +195,6 @@ const StatsSummary = () => {
     );
   }
 
-  // Show error if there's an issue
-  if (error) {
-    return (
-      <div className="bg-bg-light-mode dark:bg-gray-900 rounded-xl p-6 sm:ml-64 max-w-screen-xl mb-16">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center">
-          {t("details about the")}{" "}
-          <span className="text-secondary-500">{t("exercises")}</span>
-        </h2>
-        <div className="flex justify-center items-center h-64 text-red-500">
-          <p>Error: {error}</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="bg-bg-light-mode dark:bg-gray-900 rounded-xl p-6 sm:ml-64 mt-[88px] max-w-screen-xl mb-16">
       <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center">
@@ -263,8 +257,8 @@ const StatsSummary = () => {
         })}
       </div>
 
-      {/* Exercise Details Section */}
-      {userAnswers.length > 0 && (
+      {/* Exercise Details Section - Only show if there are answers */}
+      {userAnswers.length > 0 ? (
         <div className="mt-12">
           <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
             {t("exercise details")}
@@ -298,6 +292,15 @@ const StatsSummary = () => {
               </li>
             ))}
           </ul>
+        </div>
+      ) : (
+        <div className="mt-12 text-center p-8 bg-white dark:bg-gray-800 rounded-xl shadow">
+          <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3">
+            {t("no exercises completed yet")}
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400">
+            {t("start taking exercises to see your progress history here")}
+          </p>
         </div>
       )}
     </div>
