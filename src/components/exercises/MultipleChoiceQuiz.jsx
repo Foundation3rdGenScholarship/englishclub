@@ -1,12 +1,19 @@
 import React, { useState } from "react";
-import { submitExercises } from "../../services/submitExercises.js"; // Import the submitExercises function
+import { submitExercises } from "../../services/submitExercises.js";
 import { useTranslation } from "react-i18next";
+import SubmitPopup from "../popup/SubmitPopup.jsx";
 
 const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
   const { t } = useTranslation("error");
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState("");
+
+  // Function to play sound
+  const playSound = (soundName) => {
+    const audio = new Audio(`/sounds/${soundName}.mp3`);
+    // audio.play();
+  };
 
   // Handle answer selection
   const handleAnswerSelection = (exerciseId, choiceId) => {
@@ -23,18 +30,18 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
     (exercise) => selectedAnswers[exercise.id]
   );
 
-  console.log("This is exercisesz in multiple quiz : ", exercises);
-
   // Prepare the answers object
-  // we should change in this function to function that uuid of question : 
   const prepareAnswers = () => {
-    return exercises.map((exercise) => ({
-      // q_uuid : exercise.question_uuid,
-      answers: exercise.correct_answer,
-    }));
+    return {
+      user_answer: exercises.map((exercise) => ({
+        q_uuid: exercise.question_uuid,
+        answers: selectedAnswers[exercise.id]
+          ? [selectedAnswers[exercise.id]]
+          : [],
+      })),
+    };
   };
 
-  console.log("This is exercises UUID : ", ex_uuid);
   // Handle submission
   const handleSubmit = async () => {
     if (isAllAnswered) {
@@ -42,15 +49,24 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
 
       const answers = prepareAnswers();
 
-      // Call submitExercises to send the answers
       const result = await submitExercises(ex_uuid, answers);
-      // find anwser that contain 5 question
 
-      // Handle the result from the submitExercises function
       if (result.success) {
         setFeedbackMessage("Exercise submitted successfully!");
+
+        // Play the correct sound for each correct answer
+        exercises.forEach((exercise, index) => {
+          const selectedAnswer = selectedAnswers[exercise.id];
+          const isCorrect =
+            exercise.choices.find(
+              (choice) => choice.choice_uuid === selectedAnswer
+            )?.is_correct || false;
+
+          if (isCorrect) {
+            playSound(`correct${index + 1}`);
+          }
+        });
       } else {
-        // TODO Message
         setFeedbackMessage(`${t("multipleChoics")}`);
       }
     }
@@ -119,7 +135,11 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
 
       {/* Feedback message after submission */}
       {feedbackMessage && (
-        <p className="mt-4 text-center text-red-500">{feedbackMessage}</p>
+        <SubmitPopup
+          message={feedbackMessage}
+          type={feedbackMessage.includes("Error") ? "error" : "success"}
+          onClose={() => setFeedbackMessage("")}
+        />
       )}
     </div>
   );

@@ -4,6 +4,7 @@ import DOMPurify from "dompurify";
 
 import MultipleChoiceQuiz from "../../../../components/exercises/MultipleChoiceQuiz";
 import TrueFalseQuiz from "../../../../components/exercises/TrueFalseQuiz";
+import fillInTheBlankDataListeningB1 from "../../../../components/quiz/4bef9626-22be-4b9d-9410-128dbeb65f21";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import ServerErrorPage from "../../../err/ServerErrorPage";
 import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
@@ -42,7 +43,8 @@ const ListeningExercises = () => {
     const exercisesData = data?.questions.map((item, index) => ({
       id: index + 1,
       question_text: item.question_text,
-      correct_answer: item.correct_answer?.answer || "", // Ensure correct_answer is a string
+      question_uuid: item.q_uuid, // this is an question uuid
+      correct_answer: item.correct_answer[0].answer || "", // Ensure correct_answer is a string
       choices: item.choices.map((choice) => ({
         choice_uuid: choice.choice_uuid,
         is_correct: choice.is_correct,
@@ -51,7 +53,7 @@ const ListeningExercises = () => {
     }));
 
     return (
-      <div className="sm:ml-64 mt-[80px] mb-10">
+      <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
         <div className="max-w-full">
           <div className="container mx-auto px-4">
             <div className="text-heading-4 h-[100px] md:h-auto md:text-heading-2 flex items-center gap-2">
@@ -60,36 +62,36 @@ const ListeningExercises = () => {
               </h1>
             </div>
             {/* Hero Section */}
-            <div className="rounded-lg overflow-hidden">
+            <div className="mb-10">
               <div className="relative">
+                {/* Image */}
                 <img
                   src={data.thumbnail}
                   alt="People collaborating at work"
                   className="w-full h-[400px] object-cover"
                 />
+
+                {/* Text Below Image */}
+                <div className="bg-white relative -mt-20 z-10 mx-auto max-w-screen-lg rounded-tl-[50px] rounded-br-[50px] shadow-lg dark:bg-bg-dark-mode dark:text-text-des-dark-mode dark:border-2 p-6 border-white/20 text-des-2">
+                  <p className="text-justify leading-10">{data.description}</p>
+                </div>
               </div>
             </div>
-            <div className="max-w-screen-md m-auto ">
-              <div className="p-4">
-                <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
-                  {data.description}
-                </p>
-              </div>
-
+            {/*  Section To learn */}
+            <div className="max-w-screen-lg m-auto ">
+              <h3 className="pb-6 text-heading-3 text-primary-500">
+                Listening :
+              </h3>
               {data.voice === "link voice" ? null : (
-                <h3 className="p-4 text-heading-3 text-primary-500">
-                  Listening :
-                  <audio controls className="w-full">
-                    <source src={data.voice} type="audio/mp3" />
-                    Your browser does not support the audio element.
-                  </audio>
-                </h3>
+                <audio controls className="w-full">
+                  <source src={data.voice} type="audio/mp3" />
+                  Your browser does not support the audio element.
+                </audio>
               )}
 
               {/* Reading */}
-              <h3 className="p-4 text-heading-3 text-primary-500">Reading</h3>
-
-              <div className="p-4 text-black text-des-2 text-justify dark:text-white m-auto leading-10">
+              <h3 className="pt-6 text-heading-3 text-primary-500">Reading</h3>
+              <div className="px-4 pb-4 text-black text-des-2 text-justify dark:text-white m-auto leading-10">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(transcript),
@@ -103,7 +105,15 @@ const ListeningExercises = () => {
                   }}
                 />
               </div>
-              <MultipleChoiceQuiz exercises={exercisesData} />
+              <MultipleChoiceQuiz exercises={exercisesData} ex_uuid={ex_uuid} />
+              {ex_uuid === "4bef9626-22be-4b9d-9410-128dbeb65f21" && (
+                <div className="mt-5">
+                  <FillInTheBlankQuiz
+                    exercises={fillInTheBlankDataListeningB1}
+                    ex_uuid={ex_uuid}
+                  />
+                </div>
+              )}
             </div>
             {/* Description */}
           </div>
@@ -164,7 +174,7 @@ const ListeningExercises = () => {
                 }}
               />
             </div>
-            <FillInTheBlankQuiz exercises={exercisesData} />
+            <FillInTheBlankQuiz exercises={exercisesData} ex_uuid={ex_uuid} />
           </div>
         </div>
       </div>
@@ -237,7 +247,7 @@ const ListeningExercises = () => {
             {/* <div>
               <MultipleChoice exercise={exerciseData} />
             </div> */}
-            <div className="">
+            {/* <div className="">
               {data?.questions[0].type?.toUpperCase() === "TRUE_OR_FALSE" ? (
                 <TrueFalseQuiz exercises={exercisesData} />
               ) : // <h1>"for true and false question"</h1>
@@ -247,7 +257,7 @@ const ListeningExercises = () => {
                 "FILL_IN_THE_BLANK" ? (
                 <FillInTheBlankQuiz exercises={exercisesData} />
               ) : null}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

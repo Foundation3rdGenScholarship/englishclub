@@ -13,7 +13,6 @@ const ListeningA1 = () => {
   const exercises = data?.flatMap((item) => item.exercises) || [];
   const navigate = useNavigate(); // Initialize navigate hook
   console.log("This is an data : ", exercises);
-
   if (isLoading) {
     return (
       <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">

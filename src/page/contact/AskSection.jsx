@@ -6,9 +6,19 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import React, { useEffect } from "react";
 
 const AskSection = () => {
   const { t } = useTranslation("contact");
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: false,
+      // mirror: true,
+    });
+  }, []);
   // formik
   const initialValues = {
     name: "",
@@ -42,13 +52,14 @@ const AskSection = () => {
   return (
     <div id="ask-question">
       <div
-        className="flex flex-col md:flex-row justify-center items-center gap-8 m-auto"
-        // className="max-w-7xl w-full overflow-hidden pt-14 px-6 sm:px-14 min-w-[200px] flex flex-col md:flex-row justify-center items-center gap-8 m-auto"
+        className="flex flex-col md:flex-row justify-center items-center gap-8 mx-auto"
+        data-aos="fade-up"
+        data-aos-delay="100"
       >
         {/* FAQ Section */}
 
-        <GlassCard className="rounded-[0px_2em_0px_2em] py-14">
-          <div className="w-full md:w-[500px] rounded-xl p-6 text-black dark:text-white order-1">
+        <GlassCard className="flex rounded-[0px_2em_0px_2em] shadow-sm  py-14 order-2 md:order-1">
+          <div className="w-[380px] md:w-[500px] rounded-xl p-6 text-black dark:text-white">
             <div className="flex justify-center ">
               <h2 className="text-heading-3 font-bold flex items-center gap-2">
                 <span className="text-primary-500">
@@ -75,7 +86,7 @@ const AskSection = () => {
                     type="text"
                     name="name"
                     placeholder={t("name-placeholder")}
-                    className={`w-full text-des-3 p-2 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 ${
+                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 ${
                       errors.name && touched.name ? "border-red-500" : ""
                     }`}
                   />
@@ -93,7 +104,7 @@ const AskSection = () => {
                     type="email"
                     name="email"
                     placeholder={t("email-placeholder")}
-                    className={`w-full text-des-3 p-2 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 ${
+                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 ${
                       errors.email && touched.email ? "border-red-500" : ""
                     }`}
                   />
@@ -111,7 +122,7 @@ const AskSection = () => {
                     type="text"
                     name="subject"
                     placeholder={t("subject-placeholder")}
-                    className={`w-full text-des-3 p-2 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 ${
+                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 ${
                       errors.subject && touched.subject ? "border-red-500" : ""
                     }`}
                   />
@@ -129,7 +140,7 @@ const AskSection = () => {
                     as="textarea"
                     name="question"
                     placeholder={t("question-ask-placeholder")}
-                    className={`w-full text-des-3 p-2 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 ${
+                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 ${
                       errors.question && touched.question
                         ? "border-red-500"
                         : ""
@@ -145,7 +156,7 @@ const AskSection = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`bg-secondary-500 text-white px-5 py-2 rounded-lg focus:ring-4 focus:outline-none focus:ring-secondary-200 font-medium flex ml-auto mt-3 ${
+                    className={`bg-secondary-500 text-white px-5 w-full justify-center py-2 rounded-lg focus:ring-4 focus:outline-none focus:ring-secondary-200 font-medium flex ml-auto mt-3 ${
                       isSubmitting ? "opacity-50 cursor-not-allowed" : ""
                     }`}
                   >
@@ -159,7 +170,7 @@ const AskSection = () => {
 
         {/* Right image */}
 
-        <div className=" w-full flex justify-center md:w-1/2 order-2">
+        <div className=" w-full flex lg:flex md:hidden justify-center md:w-1/2 order-1 md:order-2">
           <img src={questionGuy} alt="Contact Us" />
         </div>
       </div>

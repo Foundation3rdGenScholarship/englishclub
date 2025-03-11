@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import GlassCard from "../../components/card/GlassCard";
 import { RiHeadphoneLine, RiFileList3Line } from "react-icons/ri";
 import { FaRegFaceFrownOpen, FaArrowUpRightDots } from "react-icons/fa6";
 import { AiOutlinePieChart, AiOutlineRead } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
-  <div className="h-full flex flex-col">
+  <div className="h-full flex flex-col" data-aos="zoom-in">
     <div className="p-2 flex flex-col items-center text-center flex-grow">
       <div
         className={`w-12 h-12 rounded-full flex justify-center items-center mb-6`}
       >
-        {/* Render the icon as a JSX component */}
         {Icon && <Icon className="text-6xl text-black dark:text-white" />}
       </div>
       <h3 className="text-heading-4 font-bold text-primary-500 mb-4">
@@ -59,13 +60,18 @@ const FeaturesGrid = () => {
     },
   ];
 
+  // Initialize AOS when the component mounts
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <>
-      {/* description  */}
       <div>
-        <div className=" py-16 ">
-          <div className="text-center">
-            <span className="text-heading-3  font-bold leading-tight text-primary-500 dark:text-white ">
+        {/* Title Section with fade-up animation */}
+        <div className="py-16">
+          <div className="text-center" data-aos="fade-up">
+            <span className="text-heading-3 font-bold leading-tight text-primary-500 dark:text-white">
               {t("des-title")}
               <span className="text-secondary-500">
                 {" "}
@@ -73,17 +79,18 @@ const FeaturesGrid = () => {
               </span>{" "}
               <span> {t("des-sub")}</span>
             </span>
-
             <p className="mt-4 text-des-2 leading-7 text-gray-500 sm:mt-8">
               {t("des-subtwo")}
             </p>
           </div>
         </div>
 
+        {/* Features Grid with zoom-in animation */}
         <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10 pb-6">
           {features.map((feature, index) => (
             <GlassCard
               key={index}
+              data-aos="fade-up" // Zoom-in effect on each card
               className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <FeatureCard

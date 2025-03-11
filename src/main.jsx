@@ -30,7 +30,7 @@ import MoreDoc from "./page/dashboard/content/grammars/MoreDoc.jsx";
 import A1A2vocabulary from "./page/dashboard/content/vocabularies/A1A2vocabulary.jsx";
 import B1B2vocabulary from "./page/dashboard/content/vocabularies/B1B2vocabulary.jsx";
 import { ToastContainer } from "react-toastify";
-import VerifyOTP from "./page/auth/VertifyOTP.jsx";
+import VerifyOTP from "./page/auth/VerifyOTP.jsx";
 import NewPassword from "./page/auth/NewPassword.jsx";
 import ReadingDetail from "./page/dashboard/content/skillDetail/ReadingDetail.jsx";
 import ExerciseDetail from "./page/dashboard/content/exercises/ExerciseDetail.jsx";
@@ -48,6 +48,11 @@ import { WritingA1 } from "./page/dashboard/content/writingDetail/WritingA1.jsx"
 import { SpeakingA1 } from "./page/dashboard/content/speakingDetail/SpeakingA1.jsx";
 import SpeakingExercises from "./page/dashboard/content/exercises/SpeakingExercises.jsx";
 import ImageTTS from "./page/dashboard/content/soundTts/ImageTTS.jsx";
+import GrammarExercises from "./page/dashboard/content/exercises/GrammarExercises.jsx";
+import ListeningA2 from "./page/dashboard/content/listeningDetail/ListeningA2.jsx";
+import ListeningB1 from "./page/dashboard/content/listeningDetail/ListeningB1.jsx";
+import ScrollToTop from "./components/progress/ScrollToTop.jsx";
+import VocabulariesExercises from "./page/dashboard/content/exercises/VocabulariesExercises.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -66,6 +71,7 @@ createRoot(document.getElementById("root")).render(
       <Provider store={store}>
         <ProgressBar />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route element={<RootLayout />}>
               <Route path="/" element={<HomeMain />} />
@@ -77,7 +83,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
-            
+
             <Route element={<Dashboard />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/reading" element={<Reading />} />
@@ -108,6 +114,14 @@ createRoot(document.getElementById("root")).render(
                 path="/courses/listening/level=a1"
                 element={<ListeningA1 />}
               />
+              <Route
+                path="/courses/listening/level=a2"
+                element={<ListeningA2 />}
+              />
+              <Route
+                path="/courses/listening/level=b1"
+                element={<ListeningB1 />}
+              />
               <Route path="/courses/writing/level=a1" element={<WritingA1 />} />
               <Route
                 path="/courses/speaking/level=a1"
@@ -125,8 +139,14 @@ createRoot(document.getElementById("root")).render(
                 path="/speaking/:ex_uuid"
                 element={<SpeakingExercises />}
               />
+              <Route path="/a1a2grammar" element={<A1A2grammar />} />
+              <Route path="/lesson/:lessonId" element={<GrammarExercises />} />
+              <Route
+                path="/vocabulary/:lessonId"
+                element={<VocabulariesExercises />}
+              />
             </Route>
-            <Route path="/vertifyotp" element={<VerifyOTP />} />
+            <Route path="/verifyotp" element={<VerifyOTP />} />
             <Route path="/resetpassword" element={<NewPassword />} />
             <Route path="/userprofile" element={<UserProfile />} />
           </Routes>

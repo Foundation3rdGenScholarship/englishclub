@@ -116,9 +116,11 @@ const ExerciseDetail = () => {
     // Assuming 'data' contains your original data shown in the console
     const exercisesData = data.questions.map((question, index) => {
       console.log("Question : ", question);
+
       return {
         id: index + 1,
         question_text: question.question_text,
+        question_uuid: question.q_uuid,
         correct_answer: Array.isArray(question.correct_answer)
           ? question.correct_answer[0]
           : question.correct_answer,
@@ -167,7 +169,7 @@ const ExerciseDetail = () => {
                   }}
                 />
               </div>
-              <FillInTheBlankQuiz exercises={exercisesData} />
+              <FillInTheBlankQuiz exercises={exercisesData} ex_uuid={ex_uuid} />
             </div>
           </div>
         </div>

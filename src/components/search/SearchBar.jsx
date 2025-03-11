@@ -41,7 +41,7 @@ const SearchBar = () => {
     <div className="flex items-center relative">
       {/* Search Icon */}
       <div
-        className="cursor-pointer text-black rounded-md bg-secondary-500 p-2 order-2"
+        className="cursor-pointer text-white rounded-md bg-secondary-500 p-2 order-2"
         onClick={handleSearchIconClick}
       >
         <IoSearch className="text-2xl" />
@@ -51,7 +51,7 @@ const SearchBar = () => {
       <div
         className={`transition-all duration-300 ease-in-out overflow-hidden ${
           isInputVisible
-            ? "w-[7rem] md:w-[17rem] lg:w-[40rem] xl:w-[61rem] opacity-100"
+            ? "w-[8rem] sm:w-[19rem] md:w-[23rem] lg:w-[58rem] opacity-100"
             : "w-0 opacity-0"
         }`}
       >

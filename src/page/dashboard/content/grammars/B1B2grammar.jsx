@@ -5,10 +5,13 @@ import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import CourseCard from "../../../../components/card/CourseCard";
 import HeroLevel from "../../../../components/heroCard/HeroLevel";
+import { useNavigate } from "react-router";
 
 const A1B2grammar = () => {
   const { t } = useTranslation("b1b2grammar");
   const { data, isLoading, error } = useAllGrammarQuery();
+  const lesson = data?.flatMap((item) => item.lessons) || [];
+  const navigate = useNavigate(); // Initialize navigate hook
 
   if (isLoading) {
     return (
@@ -30,9 +33,7 @@ const A1B2grammar = () => {
         thumnail={
           "https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/max_1300x1300/public/2023-03/RS7979_ThinkstockPhotos-625733420-hig-flip.jpg?itok=Lp0lXONW"
         }
-        description={
-          t("description")
-        }
+        description={t("description")}
       />
       <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
         {data?.map((item, index) => {
@@ -47,6 +48,7 @@ const A1B2grammar = () => {
                 title={item.lessons[0].lesson_title}
                 img={item.lessons[0].thumbnail}
                 des={item.lessons[0].description}
+                onClick={() => navigate(`/lesson/${item.lessons[0].lesson_uuid}`)}
               />
             );
           }

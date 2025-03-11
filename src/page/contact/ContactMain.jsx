@@ -7,6 +7,7 @@ import CardSection from "./CardSection";
 import Bubbles from "../../components/card/Bubble";
 import AiDescription from "./AiDescription";
 
+
 export function Contact() {
   const { t } = useTranslation("contact");
 
@@ -46,9 +47,9 @@ export function Contact() {
       </section>
       {/* Section 3, Ask-button*/}
       <section>
-        <div className="h-0 w-full mx-auto max-w-8xl flex items-center justify-center ">
+        {/* <div className="h-0 w-full mx-auto max-w-8xl flex items-center justify-center ">
           <Bubbles></Bubbles>
-        </div>
+        </div> */}
         <Container className="mt-10">
           <div className="  text-center">
             <div className="">
@@ -59,9 +60,9 @@ export function Contact() {
       </section>
       {/* Section 4, contact message */}
       <section>
-        <div className="h-0 w-full mx-auto max-w-8xl flex items-center justify-center ">
+        {/* <div className="h-0 w-full mx-auto max-w-8xl flex items-center justify-center ">
           <Bubbles></Bubbles>
-        </div>
+        </div> */}
         <Container>
           <div className="">
             <h2 className="text-primary-500 text-heading-1 font-bold text-center py-14">

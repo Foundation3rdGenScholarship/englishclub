@@ -9,6 +9,8 @@ import FeaturesGrid from "./Categories";
 // import Categories from "./Categories";
 // import CategoriesCard from "./CategoriesCard";
 import ContentSectionCard from "./ContentSectionCard";
+import ContentSingle from "./ContentSingle";
+import FeedbackSection from "./FeedbackSection";
 
 const HomeMain = () => {
   const Container = ({ children, className = "" }) => {
@@ -27,7 +29,6 @@ const HomeMain = () => {
           className="absolute mt-[-100px] w-[50%] right-0 z-[-1] hidden md:block"
         />
       </div>
-
       <div className="relative">
         <img
           src={ellipseHalf}
@@ -35,13 +36,11 @@ const HomeMain = () => {
           className="absolute mt-[170px] w-[200px] left-0 z-[-1]"
         />
       </div>
-
       <Container>
         <Hero />
         <br />
         <Description />
       </Container>
-
       <div className="relative">
         <div className="absolute w-32 h-32 bg-primary-100 rounded-full top-[150px] left-[1px] z-0 "></div>
         <div className="absolute w-24 h-24 bg-primary-100 rounded-full top-1/3 right-1 z-0 "></div>
@@ -53,16 +52,18 @@ const HomeMain = () => {
           </Container>
         </div>
       </div>
-      <div className="">
-        {/* <div className="absolute w-20 h-20 top-32 left-36  rounded-full bg-primary-100 z-0"></div>
-        <div className="absolute w-20 h-20 top-[600px] right-[680px]  rounded-full bg-primary-100 z-0"></div>
-        <div className="absolute w-20 h-20  rounded-full bg-primary-100 z-0"></div>
-        <div className="absolute w-14 h-14 top-[440px] left-[710px] rounded-full bg-primary-100 z-0"></div>
-        <div className="absolute w-14 h-14 top-[850px] right-[710px]  rounded-full bg-primary-100 z-0"></div>
-        <div className="absolute w-14 h-14  rounded-full bg-primary-100 z-0"></div> */}
-        <div className="z-10">
-          <ContentSectionCard />
-        </div>
+      <ContentSectionCard />
+      <div className="relative">
+        {/* red dot */}
+        <div className="absolute w-4 h-4 bg-red-500 rounded-full top-[30px] left-[300px]"></div>
+        {/* blue dot */}
+        <div className="absolute w-4 h-4 bg-primary-500 rounded-full bottom-[50px] left-[60px]"></div>
+        <ContentSingle />
+      </div>
+      <div className="dark:bg-transparent">
+        <Container>
+          <FeedbackSection />
+        </Container>{" "}
       </div>
     </div>
   );

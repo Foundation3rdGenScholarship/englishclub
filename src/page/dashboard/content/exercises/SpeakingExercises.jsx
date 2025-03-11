@@ -55,7 +55,8 @@ const SpeakingExercises = () => {
     const exercisesData = data?.questions.map((item, index) => ({
       id: index + 1,
       question_text: item.question_text,
-      correct_answer: item.correct_answer?.answer || "", // Ensure correct_answer is a string
+      question_uuid: item.q_uuid, // this is an question uuid
+      correct_answer: item.correct_answer[0].answer || "", // Ensure correct_answer is a string
       choices: item.choices.map((choice) => ({
         choice_uuid: choice.choice_uuid,
         is_correct: choice.is_correct,
@@ -102,7 +103,7 @@ const SpeakingExercises = () => {
               {/* This is video */}
 
               {data.ex_uuid === "3b2a3076-a30d-4ce9-aab0-0888a4e6078f" ? (
-                <div class="w-full aspect-video">
+                <div className="w-full aspect-video">
                   <iframe
                     title="vimeo-player"
                     src="https://player.vimeo.com/video/770046095?h=90c9a5939c"
@@ -139,7 +140,7 @@ const SpeakingExercises = () => {
                   }}
                 />
               </div>
-              <MultipleChoiceQuiz exercises={exercisesData} />
+              <MultipleChoiceQuiz exercises={exercisesData} ex_uuid={ex_uuid} />
             </div>
           </div>
         </div>
