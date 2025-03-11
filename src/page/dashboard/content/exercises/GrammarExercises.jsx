@@ -130,6 +130,86 @@ export default function GrammarExercises() {
                       allowfullscreen
                     ></iframe>
                   )}
+                  {section.section_uuid ===
+                    "6b0dc470-4c43-4eff-9034-c04a3afb82b4" && (
+                    <iframe
+                      title="vimeo-player"
+                      src="https://player.vimeo.com/video/1002224317?badge=0&autopause=0&player_id=0&app_id=58479"
+                      frameborder="0"
+                      className="w-full h-full"
+                      allowfullscreen
+                    ></iframe>
+                  )}
+                  {section.section_uuid ===
+                    "8c452a34-addc-45fc-927f-5609862d1757" && (
+                    <iframe
+                      title="vimeo-player"
+                      src="https://player.vimeo.com/video/1002217261?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
+                      frameborder="0"
+                      className="w-full h-full"
+                      allowfullscreen
+                    ></iframe>
+                  )}
+                  {section.section_uuid ===
+                    "144ee728-672a-43a8-b32d-30da9ab2a69e" && (
+                    <iframe
+                      title="vimeo-player"
+                      src="https://player.vimeo.com/video/1002224936?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
+                      frameborder="0"
+                      className="w-full h-full"
+                      allowfullscreen
+                    ></iframe>
+                  )}
+                  {section.section_uuid ===
+                    "2ab5d582-99c5-428a-b5a4-42607bc1335f" && (
+                    <iframe
+                      title="vimeo-player"
+                      src="https://player.vimeo.com/video/580175225"
+                      frameborder="0"
+                      className="w-full h-full"
+                      allowfullscreen
+                    ></iframe>
+                  )}
+                  {section.section_uuid ===
+                    "ba761987-d91d-48a2-9c56-ba28bc50cbda" && (
+                    <iframe
+                      title="vimeo-player"
+                      src="https://player.vimeo.com/video/579307802"
+                      frameborder="0"
+                      className="w-full h-full"
+                      allowfullscreen
+                    ></iframe>
+                  )}
+                  {section.section_uuid ===
+                    "ed8309f6-be82-4fc6-b4e6-a39a0d7fd62c" && (
+                    <iframe
+                      title="vimeo-player"
+                      src="https://player.vimeo.com/video/927016194?h=52edb5c72d"
+                      frameborder="0"
+                      className="w-full h-full"
+                      allowfullscreen
+                    ></iframe>
+                  )}
+                  {section.section_uuid ===
+                    "3efdecae-85c7-4468-a6f7-a71a7d1701ff" && (
+                    <iframe
+                      title="vimeo-player"
+                      src="https://player.vimeo.com/video/580128992?h=98b8e50d7a"
+                      frameborder="0"
+                      className="w-full h-full"
+                      allowfullscreen
+                    ></iframe>
+                  )}
+                  {section.section_uuid ===
+                    "cb4fa1d8-c90d-42c5-978c-fb863d443f4d" && (
+                    <iframe
+                      title="vimeo-player"
+                      src="https://player.vimeo.com/video/1002233425?badge=0&autopause=0&transparent=0&player_id=0&app_id=58479"
+                      frameborder="0"
+                      className="w-full h-full"
+                      allowfullscreen
+                    ></iframe>
+                  )}
                 </div>
               )}
               {/* This is for example */}
