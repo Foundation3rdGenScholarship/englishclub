@@ -131,7 +131,7 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
   }
 
   return (
-    <div className="p-6 bg-white shadow-md rounded-lg">
+    <div className="p-6 dark:bg-bg-dark-mode dark:text-text-des-dark-mode dark:border-text-des-dark-mode dark:border-2 bg-white shadow-md rounded-lg">
       {/* Hidden audio elements for sounds */}
       {exercises.map((_, index) => (
         <audio
