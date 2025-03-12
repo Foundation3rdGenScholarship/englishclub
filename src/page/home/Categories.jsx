@@ -8,7 +8,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
-  <div className="h-full flex flex-col" data-aos="zoom-in">
+  <div
+    className="h-full flex flex-col"
+    data-aos="zoom-in"
+    data-aos-duration="600"
+  >
     <div className="p-2 flex flex-col items-center text-center flex-grow">
       <div
         className={`w-12 h-12 rounded-full flex justify-center items-center mb-6`}

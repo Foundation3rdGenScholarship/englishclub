@@ -13,11 +13,11 @@ const FeedbackSection = () => {
 
   // Initialize AOS
   useEffect(() => {
-    AOS.init({ duration: 1000, once: false });
+    AOS.init({ duration: 600, once: false });
 
     const aosRefreshInterval = setInterval(() => {
       AOS.refresh();
-    }, 500);
+    }, 600);
 
     return () => clearInterval(aosRefreshInterval);
   }, []);

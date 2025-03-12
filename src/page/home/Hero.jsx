@@ -13,7 +13,7 @@ const Hero = () => {
   // Initialize AOS
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration
+      duration: 600, // Animation duration
       easing: "ease-in-out", // Animation easing
       once: true, // Ensure the animation only happens once
     });

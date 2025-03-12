@@ -83,11 +83,10 @@ export default function ContentSectionCard() {
           <div
             className="flex-1"
             data-aos={item.float === "right" ? "fade-left" : "fade-right"}
-            data-aos-delay={index * 100} // Stagger delay for each card
+            data-aos-duration="600"
           >
             <GlassCard
               className="p-6 rounded-tl-[50px] rounded-br-[50px] 
-             bg-white/10 dark:bg-[#242f31] 
              backdrop-blur-md border-2 border-white dark:border-none border-white/20"
             >
               <div className="p-5">
@@ -115,7 +114,7 @@ export default function ContentSectionCard() {
           <div className="flex-1 order-2 md:order-${item.float === 'right' ? '2' : '1'} sm:order-2">
             <img
               data-aos={item.float === "right" ? "fade-right" : "fade-left"}
-              data-aos-delay={index * 100} // Stagger delay for each card
+              data-aos-duration="600"
               src={item.image}
               alt={item.title}
               loading="lazy"
