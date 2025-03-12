@@ -47,7 +47,7 @@ const Sidebar = () => {
   return (
     <aside
       id="logo-sidebar"
-      className={`border-r border-gray-200 dark:border-gray-700 dark:bg-bg-dark-mode fixed top-0 left-0 z-40 w-64 h-screen sm:pt-[80px] pt-[60px] transition-transform ${
+      className={`border-r text-white border-gray-200 dark:border-gray-700 dark:bg-bg-dark-mode fixed top-0 left-0 z-40 w-64 h-screen sm:pt-[80px] pt-[60px] transition-transform ${
         isVisible ? "translate-x-0" : "-translate-x-full"
       } bg-white sm:translate-x-0 sm:block`}
       aria-label="Sidebar"

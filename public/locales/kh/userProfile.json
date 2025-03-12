@@ -19,6 +19,7 @@
   "dashboard": "ផ្ទាំងគ្រប់គ្រង",
   "sign out": "ចាកចេញ",
   "completed": "នៃលំហាត់ដែលរួចរាល់",
-  "total of Exercises":"ចំនួនសរុបនៃលំហាត់",
-  "successfully signed out. Redirecting...":"ចាកចេញដោយជោគជ័យ។ កំពុងបញ្ជូនបន្តទៅកាន់..."
+  "total of Exercises": "ចំនួនសរុបនៃលំហាត់",
+  "successfully signed out. Redirecting...": "ចាកចេញដោយជោគជ័យ។ កំពុងបញ្ជូនបន្តទៅកាន់...",
+  "exercises history": "ប្រវត្តិនៃលំហាត់"
 }

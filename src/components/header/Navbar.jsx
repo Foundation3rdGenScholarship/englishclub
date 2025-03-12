@@ -77,11 +77,17 @@ export default function Navbar() {
           <div className="hidden md:block">
             <ButtonLanguage />
           </div>
-          {isLoggedIn ? <Profile user={user} /> : <RegisterBtn />}
+          {isLoggedIn ? (
+              <Profile user={user} />
+          ) : (
+            <li className="hidden md:flex">
+              <RegisterBtn />
+            </li>
+          )}
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden rounded-md bg-secondary-500 p-2.5 text-black transition"
+            className="md:hidden rounded-md bg-secondary-500 p-2.5 text-white transition"
           >
             <span className="sr-only">Toggle menu</span>
             <svg
@@ -128,7 +134,7 @@ export default function Navbar() {
                 <Profile user={user} />
               </li>
             ) : (
-              <li>
+              <li className="flex">
                 <RegisterBtn />
               </li>
             )}
