@@ -24,7 +24,6 @@ const Sidebar = () => {
   // for two language
   const { t } = useTranslation("dashboard");
   const isVisible = useSelector((state) => state.visibility.isVisible);
-  console.log(isVisible);
   // import object
   const menu = menuForSidebar();
   const skill = skillForSidebar();

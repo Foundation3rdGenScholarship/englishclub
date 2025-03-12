@@ -88,6 +88,12 @@ const UserProfileForm = ({
                     src={profilePreview} // Display uploaded image
                     alt="user profile"
                   />
+                ) : user?.profile ? ( // <-- Fixed the condition here
+                  <img
+                    className="ww-full h-full rounded-full"
+                    src={user?.profile}
+                    alt="user photo"
+                  />
                 ) : (
                   <div className="w-full h-full rounded-full bg-primary-500 flex items-center justify-center text-white font-bold text-7xl">
                     {profileFallback}

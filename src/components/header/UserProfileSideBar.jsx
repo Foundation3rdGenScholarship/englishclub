@@ -5,7 +5,6 @@ import { Link } from "react-scroll"; // Import Link from react-scroll
 import { BsPerson, BsBarChartLine } from "react-icons/bs";
 import { IoIosLogOut } from "react-icons/io";
 import { setActiveItem } from "../../redux/features/user/sidebarSlice.js";
-import SignOut from "../../page/user/SignOut.jsx";
 
 const UserProfileSidebar = ({ showSignOutModal, setShowSignOutModal }) => {
   const { t } = useTranslation("dashboard");
