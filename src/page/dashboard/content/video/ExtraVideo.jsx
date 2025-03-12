@@ -29,7 +29,6 @@ const ExtraVideo = () => {
       console.error("No video IDs available.");
       return;
     }
-
     const fetchVideos = async () => {
       try {
         const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${videoIds.join(
@@ -37,7 +36,6 @@ const ExtraVideo = () => {
         )}&key=${API_KEY}`;
         const response = await fetch(url);
         const data = await response.json();
-        console.log(data);
 
         if (data.items) {
           setVideos(data.items);

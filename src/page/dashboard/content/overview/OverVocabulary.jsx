@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import CourseCard from "../../../../components/card/CourseCard";
 import TextAnimation from "../../../../components/progress/TextAnimation";
 import { useAllSkillQuery } from "../../../../redux/features/skill/skillSlice";
+import vocabularies from "../../../../data/json/vocabularies.json";
 
 export const OverVocabulary = () => {
   const { t } = useTranslation("over-vocabulary");
@@ -54,15 +55,15 @@ export const OverVocabulary = () => {
 
           {/* Courses Section */}
           <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
-            {/* {readingJson.map((items) => (
-          <CourseCard
-            link={items.link}
-            key={items.level}
-            title={items.title}
-            img={items.img}
-            des={items.description}
-          />
-        ))} */}
+            {vocabularies.map((items) => (
+              <CourseCard
+                link={items.link}
+                key={items.level}
+                title={items.title}
+                img={items.img}
+                des={items.description}
+              />
+            ))}
           </div>
         </div>
       </div>

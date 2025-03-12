@@ -11,12 +11,7 @@ import { useNavigate } from "react-router";
 const A1A2grammar = () => {
   const { t } = useTranslation("a1a2grammar");
   const { data, isLoading, error } = useAllGrammarQuery();
-  const lesson = data?.flatMap((item) => item.lessons) || [];
   const navigate = useNavigate(); // Initialize navigate hook
-
-
-  console.log("data for grammar", data);
-
   if (isLoading) {
     return (
       <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
@@ -51,24 +46,15 @@ const A1A2grammar = () => {
                 title={item.lessons[0].lesson_title}
                 img={item.lessons[0].thumbnail}
                 des={item.lessons[0].description}
-                onClick={() => navigate(`/lesson/${item.lessons[0].lesson_uuid}`)}
+                onClick={() =>
+                  navigate(`/lesson/${item.lessons[0].lesson_uuid}`)
+                }
               />
             );
           }
           return null;
         })}
       </div>
-      {/* <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
-        {lesson.map((item, index) => (
-          <CourseCard
-            key={index}
-            title={item.lesson_title}
-            img={item.thumbnail}
-            des={item.description}
-            onClick={() => navigate(`/lesson/${item.lesson_uuid}`)} // Navigate to lesson detail page
-          />
-        ))}
-      </div> */}
     </div>
   );
 };

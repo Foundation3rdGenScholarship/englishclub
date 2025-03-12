@@ -3,11 +3,8 @@ import { useTranslation } from "react-i18next";
 import CourseCard from "../../../../components/card/CourseCard";
 import TextAnimation from "../../../../components/progress/TextAnimation";
 import grammar from "../../../../data/json/grammar.json";
-import { useAllGrammarQuery } from "../../../../redux/features/grammar/grammarSlice";
 export const OverGrammar = () => {
   const { t } = useTranslation("over-grammar");
-  const { data, isLoarding, error } = useAllGrammarQuery();
-  console.log(data);
   return (
     <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
       <div className="max-w-full">

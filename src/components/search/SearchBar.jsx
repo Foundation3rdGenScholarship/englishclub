@@ -16,7 +16,6 @@ const SearchBar = () => {
 
   const results = data?.payload || {}; // API response data
   const exercises = results?.exercises || []; // Extract exercises from the response
-  console.log(results);
   // Handle search icon click
   const handleSearchIconClick = () => {
     setIsInputVisible(!isInputVisible); // Toggle input visibility

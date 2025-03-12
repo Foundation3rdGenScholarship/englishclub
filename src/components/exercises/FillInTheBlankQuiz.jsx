@@ -74,7 +74,7 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
   };
 
   return (
-    <div className="p-6 bg-white shadow-md rounded-lg">
+    <div className="p-6 dark:bg-bg-dark-mode dark:text-text-des-dark-mode bg-white shadow-md rounded-lg">
       {exercises.map((exercise, index) => {
         const userAnswer = answers[exercise.id] || "";
         const isCorrect =
@@ -98,11 +98,11 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
                   {partIndex < array.length - 1 && (
                     <input
                       type="text"
-                      className={`border-b-2 border-none px-2 text-center w-40 mx-1 outline-none ${
+                      className={`dark:bg-gray-600 border-b-2 border-none focus:border-red-500 focus:ring-0 p-2 px-2 text-center w-40 mx-1 outline-none${
                         isSubmitted
                           ? isCorrect
                             ? "border-green-500 text-green-600"
-                            : "border-red-500 text-red-600"
+                            : "border-red-500 dark:text-red-500 text-red-600"
                           : "border-gray-500"
                       }`}
                       value={userAnswer}
@@ -119,7 +119,7 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
             {isSubmitted && (
               <p
                 className={`mt-2 ${
-                  isCorrect ? "text-green-600" : "text-red-600"
+                  isCorrect ? "text-green-600" : "dark:text-red-900 text-red-600"
                 }`}
               >
                 {isCorrect
@@ -136,7 +136,7 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
       <button
         onClick={handleSubmit}
         disabled={!isAllFilled || isSubmitted}
-        className={`px-4 py-2 rounded-lg text-white ${
+        className={`mt-5 px-4 py-2 rounded-lg text-white ${
           isAllFilled && !isSubmitted
             ? "bg-blue-500 hover:bg-blue-600"
             : "bg-gray-400 cursor-not-allowed"
