@@ -45,7 +45,18 @@ export default function VocabulariesExercises() {
                 {section.description}
               </p>
               {/* This is for voice and video :  */}
-              {section.voice && section.voice[0] && (
+              <div className="w-full aspect-video">
+                <div
+                  className="w-full h-full"
+                  dangerouslySetInnerHTML={{
+                    __html: section.voice[0].voice_url.replace(
+                      "<iframe",
+                      '<iframe style="width:100%; height:100%;"'
+                    ),
+                  }}
+                />
+              </div>
+              {/* {section.voice && section.voice[0] && (
                 <div className="w-full aspect-video">
                   {section.section_uuid ===
                     "00a52469-946d-4cc3-9952-205c6e82b39b" && (
@@ -108,7 +119,7 @@ export default function VocabulariesExercises() {
                     ></iframe>
                   )}
                 </div>
-              )}
+              )} */}
               {/* This is for example :  */}
               <p className="font-semibold text-heading-4 text-primary-600 dark:text-whites py-5">
                 Example :{" "}

@@ -39,7 +39,6 @@ const Dashboard = () => {
         {activeItem === "a1a2grammar" && <A1A2grammar />}
         {activeItem === "b1b2grammar" && <B1B2grammar />}
         {activeItem === "c1grammar" && <C1grammar />}
-        {activeItem === "moredoc" && <MoreDoc />}
         {activeItem === "a1a2vocabulary" && <A1A2vocabulary />}
         {activeItem === "b1b2vocabulary" && <B1B2vocabulary />}
         {activeItem === "extraVideo" && <ExtraVideo />}
