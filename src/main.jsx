@@ -93,15 +93,14 @@ createRoot(document.getElementById("root")).render(
               {/* <Route path="/a1a2grammar" element={<A1A2grammar />} /> */}
               {/* <Route path="/b1b2grammar" element={<B1B2grammar />} />
               <Route path="/c1grammar" element={<C1grammar />} /> */}
-              <Route path="/moredoc" element={<MoreDoc />} />
-              <Route path="/a1a2vocabulary" element={<A1A2vocabulary />} />
-              <Route path="/b1b2vocanulary" element={<B1B2vocabulary />} />
             </Route>
             <Route element={<App />}>
               <Route path="/extra-video" element={<ExtraVideo />} />
               <Route path="/a1a2grammar" element={<A1A2grammar />} />
               <Route path="/b1b2grammar" element={<B1B2grammar />} />
               <Route path="/c1grammar" element={<C1grammar />} />
+              <Route path="/a1a2vocabulary" element={<A1A2vocabulary />} />
+              <Route path="/b1b2vocanulary" element={<B1B2vocabulary />} />
               <Route path="/soundTts" element={<ImageTTS />} />
               <Route
                 path="/courses/reading/level=a1"

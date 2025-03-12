@@ -13,9 +13,6 @@ const B1B2vocabulary = () => {
   const { data, isLoading, error } = useAllVocabulariesQuery();
   const allData = data?.payload;
   const navigate = useNavigate();
-  // const lesson = data?.flatMap((item) => item.lessons) || [];
-  console.log("Data For Vocabulary : ", allData);
-  console.log("Data : ", data);
 
   if (isLoading) {
     return (
