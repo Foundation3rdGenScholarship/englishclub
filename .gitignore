@@ -24,7 +24,5 @@ src/test/
 *.sln
 *.sw?
 
-.env*
+# .env*
 .vercel
-
-vercel.json

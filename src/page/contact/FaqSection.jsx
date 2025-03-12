@@ -12,7 +12,6 @@ const FAQSection = () => {
     AOS.init({
       duration: 800,
       once: false,
-   
     });
   }, []);
   const faqs = [
@@ -73,7 +72,7 @@ const FAQSection = () => {
               className=" border-primary-500 border-l-4 border-b-2 border-0 rounded-lg mb-4 "
             >
               <button
-                className="w-full text-left p-4 flex justify-between items-center break-words text-lg sm:text-xl md:text-2xl"
+                className="w-full text-left p-4 flex justify-between items-center break-words xl:text-xl lg:text-lg md:text-lg sm:text-sm text-xs"
                 onClick={() => toggleFAQ(index)}
               >
                 {faq.question}
@@ -82,7 +81,7 @@ const FAQSection = () => {
                 </span>
               </button>
               {openIndex === index && (
-                <p className="p-4 text-gray-600 dark:text-gray-400 break-words text-left text-base sm:text-lg md:text-xl">
+                <p className="p-4 text-gray-600 dark:text-gray-400 break-words text-left xl:text-xl lg:text-lg md:text-lg sm:text-sm text-xs">
                   {faq.answer}
                 </p>
               )}
