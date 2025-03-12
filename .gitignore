@@ -26,5 +26,3 @@ src/test/
 
 .env*
 .vercel
-
-vercel.json
