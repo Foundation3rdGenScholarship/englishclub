@@ -27,11 +27,11 @@ export default function Section4() {
             <img src={reading} alt="" className="w-[400px]" />
           </div>
         </div>
-        <div className="flex lg:flex-nowrap flex-wrap lg:justify-between md:justify-between justify-center px-10">
-          <div>
-            <img src={video} alt="" className="w-[400px]" />
+        <div className="flex lg:flex-nowrap flex-wrap lg:justify-between md:justify-center justify-center lg:gap-5 gap-4">
+          <div className="xl:order-1 lg:order-1 md:order-2 sm:order-2 order-2">
+            <img src={video} alt="" className="w-[400px] " />
           </div>
-          <GlassCard className="flex flex-col gap-6 justify-center items-center lg:w-1/2 md:w-3/4 w-full p-4">
+          <GlassCard className="flex  flex-col gap-6 justify-center items-center lg:w-1/2 md:w-3/4 w-full p-4 xl:order-2 lg:order-2 md:order-1 sm:order-1 order-1">
             <h4 className="dark:text-accents-color text-primary-950 lg:text-heading-4 md:text-heading-5 sm:text-heading-6 text-heading-6 font-semibold text-center">
               {t("more-videos")}
             </h4>
