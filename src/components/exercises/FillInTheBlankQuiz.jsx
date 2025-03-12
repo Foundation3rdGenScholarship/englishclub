@@ -87,7 +87,8 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
 
         return (
           <div key={exercise.id} className="">
-            {/* <h2 className="text-xl font-bold mb-4">Question {index + 1}</h2> */}
+            {/* <h2 className="text-xl font-bold">Question {index + 1}</h2> */}
+            {/* {index + 1} */}
             <p
               className="text-lg mt-3
             "
@@ -119,7 +120,9 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
             {isSubmitted && (
               <p
                 className={`mt-2 ${
-                  isCorrect ? "text-green-600" : "dark:text-red-900 text-red-600"
+                  isCorrect
+                    ? "text-green-600"
+                    : "dark:text-red-900 text-red-600"
                 }`}
               >
                 {isCorrect

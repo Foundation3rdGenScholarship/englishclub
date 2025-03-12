@@ -42,6 +42,16 @@ export const skillSlice = apiSlice.injectEndpoints({
       method: "GET",
       transformResponse: (response) => response.payload,
     }),
+    allListeningB2Query: builder.query({
+      query: () => `/skills/skill_name=listening/level=b2`,
+      method: "GET",
+      transformResponse: (response) => response.payload,
+    }),
+    allListeningC1Query: builder.query({
+      query: () => `/skills/skill_name=listening/level=c1`,
+      method: "GET",
+      transformResponse: (response) => response.payload,
+    }),
     allWritingA1Query: builder.query({
       query: () => `/skills/skill_name=writing/level=a1`,
       method: "GET",
@@ -64,6 +74,8 @@ export const {
   useAllListeningA1QueryQuery,
   useAllListeningA2QueryQuery,
   useAllListeningB1QueryQuery,
+  useAllListeningB2QueryQuery,
+  useAllListeningC1QueryQuery,
   useAllWritingA1QueryQuery,
   useAllSpeakingA1QueryQuery,
 } = skillSlice;

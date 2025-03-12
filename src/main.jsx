@@ -53,6 +53,8 @@ import ListeningA2 from "./page/dashboard/content/listeningDetail/ListeningA2.js
 import ListeningB1 from "./page/dashboard/content/listeningDetail/ListeningB1.jsx";
 import ScrollToTop from "./components/progress/ScrollToTop.jsx";
 import VocabulariesExercises from "./page/dashboard/content/exercises/VocabulariesExercises.jsx";
+import ListeningB2 from "./page/dashboard/content/listeningDetail/ListeningB2.jsx";
+import ListeningC1 from "./page/dashboard/content/listeningDetail/ListeningC1.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -120,6 +122,14 @@ createRoot(document.getElementById("root")).render(
               <Route
                 path="/courses/listening/level=b1"
                 element={<ListeningB1 />}
+              />
+              <Route
+                path="/courses/listening/level=b2"
+                element={<ListeningB2 />}
+              />
+              <Route
+                path="/courses/listening/level=c1"
+                element={<ListeningC1 />}
               />
               <Route path="/courses/writing/level=a1" element={<WritingA1 />} />
               <Route
