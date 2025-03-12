@@ -10,7 +10,6 @@ import { useNavigate } from "react-router";
 const A1B2grammar = () => {
   const { t } = useTranslation("b1b2grammar");
   const { data, isLoading, error } = useAllGrammarQuery();
-  const lesson = data?.flatMap((item) => item.lessons) || [];
   const navigate = useNavigate(); // Initialize navigate hook
 
   if (isLoading) {
@@ -21,8 +20,6 @@ const A1B2grammar = () => {
       </div>
     );
   }
-  console.log("Lesson Description: ", data[0].lessons[0].description);
-
   if (error) {
     return <ServerErrorPage />; // Handle errors properly
   }

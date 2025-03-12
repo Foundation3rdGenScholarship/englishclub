@@ -8,10 +8,25 @@ import TrueFalseQuiz from "../../../../components/exercises/TrueFalseQuiz";
 
 export default function GrammarExercises() {
   const { lessonId } = useParams(); // Get lesson ID from URL
-  const { data } = useAllGrammarQuery();
+  const { data, isLoading, error } = useAllGrammarQuery();
 
   // Exit early if data is not available
-  if (!data) return <p>Loading...</p>;
+  if (isLoading) {
+    return (
+      <div className="mt-[88px] sm:pl-64">
+        <HeroSkeleton />
+        <CoursesSkeleton />
+      </div>
+    ); // Show loading while fetching data
+  }
+
+  if (error) {
+    return (
+      <div>
+        <ServerErrorPage />
+      </div>
+    ); // Show error if there's a problem fetching the data
+  }
 
   // Find the current lesson
   const lesson = data

@@ -124,7 +124,7 @@ export default function MentorCard() {
           {/* Email */}
           <a
             className="p-3"
-            href="http://kimchansokpheng123@gmail.com"
+            href="https://mail.google.com/mail/u/0/#search/kimchansokpheng123%40gmail.com?compose=new"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -169,7 +169,7 @@ export default function MentorCard() {
           <a className="p-3"
           target="_blank"
           rel="noopener noreferrer"
-          href="http://ingdavann4444@gmail.com">
+          href="https://mail.google.com/mail/u/0/#search/ingdavann4444%40gmail.com?compose=new">
             <IoMdMail className="size-9  hover:text-primary-100" />
           </a>
           <a className="p-3"

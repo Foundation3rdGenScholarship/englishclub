@@ -1,3 +1,4 @@
+
 import { useTranslation } from "react-i18next";
 import React, { useEffect } from "react";
 import GlassCard from "../../components/card/GlassCard";
@@ -58,15 +59,15 @@ export default function ContentSectionCard() {
         </p>
         <p className="text-primary-800 text-heading-5">{t("des-title-card")}</p>
       </div>
+
       {content.map((item, index) => (
         <div
           key={index}
-          className={`flex items-center gap-7 mx-[60px] ${
-            item.float === "right" ? "flex-row-reverse" : "flex-row"
-          }`}
+          className={`flex flex-col sm:flex-col md:flex-row items-center gap-7 mx-[40px]
+          ${item.float === "right" ? "md:flex-row-reverse" : "md:flex-row"}`}
         >
           {/* Image Outside the GlassCard */}
-          <div
+          {/* <div
             className="flex-1"
             data-aos={item.float === "right" ? "fade-right" : "fade-left"}
             data-aos-delay={index * 100} // Stagger delay for each card
@@ -76,7 +77,7 @@ export default function ContentSectionCard() {
               alt={item.title}
               className="w-full h-auto object-cover rounded-tr-[50px] rounded-bl-[50px] shadow-lg"
             />
-          </div>
+          </div> */}
 
           {/* Text Content Inside the GlassCard */}
           <div
@@ -86,7 +87,7 @@ export default function ContentSectionCard() {
           >
             <GlassCard
               className="p-6 rounded-tl-[50px] rounded-br-[50px] 
-             bg-white/10 dark:bg-[#111827] 
+             bg-white/10 dark:bg-[#242f31] 
              backdrop-blur-md border-2 border-white dark:border-none border-white/20"
             >
               <div className="p-5">
@@ -108,6 +109,18 @@ export default function ContentSectionCard() {
                 />
               </div>
             </GlassCard>
+          </div>
+
+          {/* Image - Responsive Positioning */}
+          <div className="flex-1 order-2 md:order-${item.float === 'right' ? '2' : '1'} sm:order-2">
+            <img
+              data-aos={item.float === "right" ? "fade-right" : "fade-left"}
+              data-aos-delay={index * 100} // Stagger delay for each card
+              src={item.image}
+              alt={item.title}
+              loading="lazy"
+              className="w-full h-auto object-cover rounded-tr-[50px] rounded-bl-[50px] shadow-lg"
+            />
           </div>
         </div>
       ))}

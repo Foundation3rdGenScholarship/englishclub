@@ -20,7 +20,6 @@ const C1grammar = () => {
       </div>
     );
   }
-  console.log("Lesson Description: ", data[0].lessons[0].description);
 
   if (error) {
     return <ServerErrorPage />; // Handle errors properly

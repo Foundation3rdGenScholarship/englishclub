@@ -9,7 +9,6 @@ import SkillTab from "../../../../components/tab/SkillTab";
 export const OverSkill = () => {
   const { t } = useTranslation("over-skill");
   const { data } = useAllSkillQuery();
-  console.log(data);
   return (
     <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
       <div className="max-w-full">
@@ -67,7 +66,6 @@ export const OverSkill = () => {
               {t("description3")}
             </p>
           </div>
-
           {/* Courses Section */}
           <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
             {/* {readingJson.map((items) => (
