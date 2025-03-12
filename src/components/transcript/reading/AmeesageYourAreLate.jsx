@@ -69,7 +69,7 @@ const AmeesageYourAreLate = () => {
               <div class="bg-green-100 rounded-2xl rounded-tr-none px-4 py-2 text-des-3">
                 OK, LMK when you find a place
               </div>
-              <span class="text-des-3 mt-1 ml-2 dark:text-text-des-dark-mode dark:text-text-des-dark-mode">
+              <span class="text-des-3 mt-1 ml-2 dark:text-text-des-dark-mode">
                 16:11
               </span>
             </div>

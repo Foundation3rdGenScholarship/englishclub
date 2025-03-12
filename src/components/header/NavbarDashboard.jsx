@@ -28,7 +28,7 @@ export default function NavbarDashboard() {
           <button
             onClick={() => dispatch(toggle())}
             type="button"
-            className="inline-flex items-center p-2 text-black rounded-md sm:hidden bg-secondary-600"
+            className="inline-flex items-center p-2 text-white rounded-md sm:hidden bg-secondary-500"
           >
             {/* <span className="sr-only">Open sidebar</span> */}
             {isVisible ? (

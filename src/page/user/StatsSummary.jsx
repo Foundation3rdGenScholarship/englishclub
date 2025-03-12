@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useFetchExercisesQuery } from "../../redux/features/exercises/exerciseApi";
 import { BeatLoader } from "react-spinners";
-
+import Pagination from "./Pagination";
 // Helper function to get level image
 const getLevelImage = (level) => {
   switch (level) {
@@ -28,6 +28,15 @@ const StatsSummary = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [levelsData, setLevelsData] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5); // 3 answers per page
+  // Calculate paginated data
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = userAnswers.slice(indexOfFirstItem, indexOfLastItem);
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   const [levelCounts, setLevelCounts] = useState({
     A1: 0,
     A2: 0,
@@ -260,11 +269,11 @@ const StatsSummary = () => {
       {/* Exercise Details Section - Only show if there are answers */}
       {userAnswers.length > 0 ? (
         <div className="mt-12">
-          <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
-            {t("exercise details")}
+          <h2 className="text-xl font-bold text-primary-500 dark:text-white mb-4">
+            {t("exercises history")}
           </h2>
           <ul className="space-y-4">
-            {userAnswers.map((item, index) => (
+            {currentItems.map((item, index) => (
               <li
                 key={index}
                 className="p-3 border border-gray-200 dark:border-gray-700 rounded bg-white dark:bg-gray-800"
@@ -292,6 +301,14 @@ const StatsSummary = () => {
               </li>
             ))}
           </ul>
+
+          {/* Pagination */}
+          <Pagination
+            totalItems={userAnswers.length}
+            itemsPerPage={itemsPerPage}
+            currentPage={currentPage}
+            paginate={setCurrentPage}
+          />
         </div>
       ) : (
         <div className="mt-12 text-center p-8 bg-white dark:bg-gray-800 rounded-xl shadow">
