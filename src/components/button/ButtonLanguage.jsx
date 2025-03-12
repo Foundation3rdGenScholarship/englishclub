@@ -4,7 +4,7 @@ import "../../i18n.js";
 import cambodiaFlag from "../../../public/img/flage/khmer-flag.png";
 import englishFlag from "../../../public/img/flage/english-flag.png";
 
-const ButtonLanguage = () => {
+const ButtonLanguage = ({ className }) => {
   const { i18n } = useTranslation();
 
   // Get saved language or default to English
@@ -31,7 +31,7 @@ const ButtonLanguage = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="pb-1 border-b-4 border-primary-950"
+      className={`pb-1 border-b-4 border-primary-950 dark:border-white ${className}`}
     >
       <img src={currentFlag} alt="Language Flag" className="w-10 h-7" />
     </button>

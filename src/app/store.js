@@ -1,30 +1,40 @@
+// src/redux/store.js
 import { configureStore } from "@reduxjs/toolkit";
-import userSlice from "../redux/features/user/userSlice";
-// import skillSlice from "./features/skill/skillSlice";
-// import skillnamelevel from "./skillnamelevel/skillnamelevel";
-// import lessondetailSlice from "./features/lessondetail/lessondetailSlice";
-// import submitsSlice from "../redux/features/submit/submitSlice";
-import { verifyUserSlice } from "../verify/verifyUserSlice";
-// import grammarSllice from "./features/grammar/grammarSllice";
-// import LessonsSlice from "./features/lessons/LessonsSlice";
-// import vocabularySlice from "./features/vocabulary/vocabularySlice";
-// import resubmitSlice from "./features/resubmit/reSumitSlice";
-// import SearchSlide from "./features/search/SearchSlide";
-// import exerciseSlice from "./features/exerciseSubmit/exerciseSubmitSlice";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import { apiSlice } from "../api/apiSlice.js";
+import { userApi } from "../verify/userApi.js";
+import themeReducer from "../redux/features/button/themeSlice";
+import sidebarReducer from "../redux/features/user/sidebarSlice";
+import visibilitySlice from "../redux/features/user/visibilitySlice.js";
+import { exerciseApi } from "../redux/features/exercises/exercisesSlice.js";
+import { lessonsApi } from "../redux/features/lesson/lessonSlice.js";
+import videoReducer from "../redux/features/video/videoSlice";
+import authReducer from "../redux/features/user/authSlice.js";
+import { api } from "../redux/features/user/userSlice.js";
+import { searchApi } from "../redux/features/search/search.js";
 export const store = configureStore({
   reducer: {
-    user: userSlice,
-    // skill: skillSlice,
-    // skillNameLevel: skillnamelevel,
-    // excersice: lessondetailSlice,
-    // submits: submitsSlice,
-    userVerify: verifyUserSlice,
-    // grammar: grammarSllice,
-    // lesson: LessonsSlice,
-    // vocabluary: vocabularySlice,
-    // resubmit: resubmitSlice,
-    // search: SearchSlide,
-    // exercise: exerciseSlice,
-    // vocabulary : vocabularySlice
+    sidebar: sidebarReducer,
+    theme: themeReducer,
+    visibility: visibilitySlice,
+    auth: authReducer,
+    videos: videoReducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
+    [userApi.reducerPath]: userApi.reducer,
+    [exerciseApi.reducerPath]: exerciseApi.reducer,
+    [lessonsApi.reducerPath]: lessonsApi.reducer,
+    [api.reducerPath]: api.reducer,
+    [searchApi.reducerPath]: searchApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      apiSlice.middleware,
+      userApi.middleware,
+      lessonsApi.middleware,
+      exerciseApi.middleware,
+      api.middleware,
+      searchApi.middleware
+    ),
 });
+
+setupListeners(store.dispatch);

@@ -2,38 +2,85 @@ import { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { FaUser, FaLock } from "react-icons/fa";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { fetchUserLogin } from "../../redux/features/user/userSlice";
-import { NavLink } from "react-router-dom"; // React Router
+import { NavLink } from "react-router-dom";
 import InputField from "../../components/inputField/InputField";
 import SubmitButton from "../../components/button/SubmitButton";
 import { useTranslation } from "react-i18next";
 import AuthLayout from "../../components/layout/AuthLayout";
 import logolightmode from "../../../public/img/logo/logo-light-mode.png";
 import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
-import loginimg from "../../../public/svg/login.svg"; // Page-specific image
+import loginimg from "../../../public/svg/login.svg";
 import GoogleLoginButton from "../../components/button/GoogleLoginButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { useLoginUserMutation } from "../../redux/features/user/userSlice";
+import { getAccessToken, storeAccessToken } from "../../lib/secureLocalStorage";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/features/user/authSlice";
+
 const Login = () => {
-  const [loading, setLoading] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation("login");
+  const [loginUser, { isLoading }] = useLoginUserMutation();
+  const dispatch = useDispatch(); // Add this line
+  const clientId = import.meta.env.VITE_GOOGLE_OAUTH_CLIENT_ID;
 
-  const handleGoogleLoginSuccess = (response) => {
-    // You can send the response.tokenId to your backend to validate the login
-    console.log("Login Success: ", response);
-    // After successful login, you can redirect to the dashboard or wherever needed
-  };
+  // Check if there's a stored user and token on page load
+  useEffect(() => {
+    const token = getAccessToken();
+    if (token) {
+      // If a token exists, restore the user session
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user) {
+        dispatch(login({ user, token }));
+        navigate("/");
+      }
+    }
+  }, [dispatch, navigate]);
 
-  const handleGoogleLoginFailure = (error) => {
-    console.log("Login Failed: ", error);
-    // Handle the failure case, maybe show a toast error
+  const handleSubmit = async (values) => {
+    try {
+      console.log("Request Payload:", values);
+      const response = await loginUser(values).unwrap();
+
+      console.log("Full Response Object:", response); // Debugging
+
+      if (response?.access_token) {
+        storeAccessToken(response); // Store the access token
+        dispatch(login({ user: response.user, token: response.access_token })); // Dispatch login action
+        navigate("/");
+      } else {
+        console.error("Access token missing in response:", response);
+      }
+    } catch (error) {
+      console.error("Login Error:", error);
+      toast.error(t("login failed. Please try again."));
+    }
   };
+  // const handleGoogleLoginSuccess = async (response) => {
+  //   try {
+  //     const tokenId = response.tokenId;
+  //     const result = await loginUser({ tokenId }).unwrap();
+
+  //     if (result.access_token) {
+  //       storeAccessToken(result); // Store the access token
+  //       dispatch(login({ user: result.user, token: result.access_token })); // Dispatch the login action with user data
+  //       navigate("/");
+  //     }
+  //   } catch (error) {
+  //     console.error("Google Login Error:", error);
+  //     toast.error(t("Google login failed. Please try again."));
+  //   }
+  // };
+
+  // const handleGoogleLoginFailure = (error) => {
+  //   console.log("Login Failed: ", error);
+  //   toast.error(t("Google login failed. Please try again."));
+  // };
+
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
@@ -48,51 +95,25 @@ const Login = () => {
       .email(t("invalid email format"))
       .required(t("email is required")),
     password: Yup.string()
-      .min(6, t("minimum 6 characters"))
+      .min(8, t("minimum 8 characters"))
       .required(t("password is required")),
   });
-
-  const handleSubmit = (values, { setSubmitting }) => {
-    setLoading(true);
-    dispatch(fetchUserLogin(values))
-      .unwrap()
-      .then(() => {
-        toast.success(t("login Successfully!"));
-        setTimeout(() => {
-          setLoading(false);
-          setSubmitting(false);
-          navigate("/");
-        }, 1500);
-      })
-      .catch((error) => {
-        console.log("Login error:", error);
-        setTimeout(() => {
-          setLoading(false);
-          setSubmitting(false);
-          if (error.message === t("User is not verified")) {
-            toast.error(t("please verify your email before logging in."));
-          } else {
-            toast.error(t("incorrect email or password."));
-          }
-        }, 500);
-      });
-  };
 
   const handleGoBack = () => {
     navigate("/");
   };
 
   return (
-    <GoogleOAuthProvider clientId="886296695095-1j0sdqc2r8juug5f0f99gdoclir733vm.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={clientId}>
       <AuthLayout
         theme={theme}
         logoLightMode={logolightmode}
         logoDarkMode={logodarkmode}
         onGoBack={handleGoBack}
-        imageSrc={loginimg} // Pass the custom image
-        blobPosition="right-[-38%]" // Custom blob position for different devices
-        ellipse1Position="top-[15%] right-[22%] lg:right-[-7%] lg:top-[27%] md:-right-[-30%] md:top-[18%]" // Custom ellipse position for different devices
-        ellipse2Position="top-[54%] right-[-10%] lg:right-[10%] lg:top-[86%] md:-right-[-15%] md:top-[60%]" // Custom ellipse position for different devices
+        imageSrc={loginimg}
+        blobPosition="right-[-38%]"
+        ellipse1Position="top-[15%] right-[22%] lg:right-[-7%] lg:top-[27%] md:-right-[-30%] md:top-[18%]"
+        ellipse2Position="top-[54%] right-[-10%] lg:right-[10%] lg:top-[86%] md:-right-[-15%] md:top-[60%]"
       >
         <h2 className="mb-6 mt-6 text-center text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
           {t("login")}
@@ -134,16 +155,17 @@ const Login = () => {
 
               {/* Login Button */}
               <SubmitButton
-                isSubmitting={isSubmitting}
-                loading={loading}
+                isSubmitting={isSubmitting || isLoading}
                 label={t("login")}
                 loadingLabel={t("logging in...")}
-                disabled={false}
+                disabled={isSubmitting || isLoading}
               />
+
+              {/* Google Login Button */}
               <GoogleLoginButton
-                onSuccess={handleGoogleLoginSuccess}
-                onFailure={handleGoogleLoginFailure}
+               
               />
+
               {/* Register Link */}
               <div className="text-center mt-6">
                 <span className="text-gray-600 dark:text-gray-400">

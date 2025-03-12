@@ -1,82 +1,65 @@
-import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
-import { MdOutlineClose } from "react-icons/md";
-import logoDarkMode from "./../../../public/img/logo/logo-light-mode.png";
-import ThemeToggle from "../button/ThemeToggle";
-import ButtonLanguage from "../button/ButtonLanguage";
+import logolightmode from "./../../../public/img/logo/logo-light-mode.png";
+import logoDarkMode from "./../../../public/img/logo/logo-dark-mode.png";
 import Profile from "../button/Profile";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
+import SearchBar from "../search/SearchBar";
+import { useTranslation } from "react-i18next";
+import { NavLink, Link } from "react-router-dom"; // Fixed import
+import { useDispatch, useSelector } from "react-redux";
+import ThemeToggle from "../button/ThemeToggle";
+import ButtonLanguage from "../button/ButtonLanguage";
+import { selectIsLoginIn } from "../../redux/features/user/authSlice"; // Import the login selector
+import { MdClose } from "react-icons/md";
+import RegisterBtn from "../button/RegisterBtn";
+import { toggle } from "../../redux/features/user/visibilitySlice";
 
-export default function Navbar() {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-
+export default function NavbarDashboard() {
+  const dispatch = useDispatch();
+  const theme = useSelector((state) => state.theme.theme); // Get theme from Redux store
+  const isLoggedIn = useSelector(selectIsLoginIn); // Get login status from Redux store
+  const { t } = useTranslation("navbar");
+  const isVisible = useSelector((state) => state.visibility.isVisible);
+  console.log(isVisible);
   return (
-    <nav className="fixed top-0 z-50 w-full bg-red-700 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-      <div className="px-3 py-3 lg:px-5 lg:pl-3 flex items-center justify-between">
+    <nav className="fixed top-0 z-50 w-full border-b border-gray-200 dark:border-gray-700 dark:bg-white/5 backdrop-blur-[18px]">
+      <div className="px-3 py-2 lg:px-5 lg:pl-3 flex items-center justify-between">
         {/* Left Sidebar */}
         <div className="flex items-center w-64">
           {/* Sidebar Toggle Button */}
           <button
-            data-drawer-target="logo-sidebar"
-            data-drawer-toggle="logo-sidebar"
-            aria-controls="logo-sidebar"
+            onClick={() => dispatch(toggle())}
             type="button"
             className="inline-flex items-center p-2 text-black rounded-md sm:hidden bg-secondary-600"
           >
-            <span className="sr-only">Open sidebar</span>
-            <HiOutlineMenuAlt2 className="text-2xl" />
+            {/* <span className="sr-only">Open sidebar</span> */}
+            {isVisible ? (
+              <MdClose className="text-2xl" />
+            ) : (
+              <HiOutlineMenuAlt2 className="text-2xl" />
+            )}
           </button>
           {/* Logo */}
-          <a href="#" className="ms-2">
-            <img src={logoDarkMode} className="h-12" alt="Logo" />
-          </a>
+          <NavLink to="/" className="ms-2 sm:w-64">
+            <img
+              src={theme === "dark" ? `${logoDarkMode}` : `${logolightmode}`}
+              alt="Logo"
+              className="w-40"
+            />
+          </NavLink>
         </div>
 
         {/* Right Sidebar */}
-        <div className="flex items-center space-x-4">
-          {/* Search Bar */}
-          <div className="relative">
-            <button
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 sm:hidden"
-              onClick={() => setIsSearchOpen(true)}
-            >
-              <FaSearch className="w-6 h-6 text-gray-700 dark:text-white" />
-            </button>
-            <div className="hidden sm:block">
-              <input
-                type="text"
-                className="px-3 py-2 border rounded-md bg-white dark:bg-gray-700 dark:text-white"
-                placeholder="Search..."
-              />
+        <div className="flex items-center gap-5 w-full justify-end">
+          <SearchBar />
+          <div className="flex items-center gap-4">
+            <div className="sm:flex items-center gap-4 hidden">
+              <ThemeToggle />
+              <ButtonLanguage />
             </div>
+            {isLoggedIn ? <Profile /> : <RegisterBtn />}
           </div>
-
-          {/* Language & Theme Toggle */}
-          <ButtonLanguage />
-          <ThemeToggle />
-
-          {/* Profile */}
-          <Profile />
         </div>
       </div>
-
-      {/* Mobile Search Popup */}
-      {isSearchOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg w-3/4">
-            <div className="flex items-center justify-between">
-              <input
-                type="text"
-                className="w-full px-3 py-2 border rounded-md bg-white dark:bg-gray-700 dark:text-white"
-                placeholder="Search..."
-              />
-              <button onClick={() => setIsSearchOpen(false)} className="ml-2">
-                <MdOutlineClose className="w-6 h-6 text-gray-700 dark:text-white" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </nav>
   );
 }

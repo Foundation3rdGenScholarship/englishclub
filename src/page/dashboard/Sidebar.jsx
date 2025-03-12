@@ -1,176 +1,242 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaHome } from "react-icons/fa";
 import { SiHyperskill } from "react-icons/si";
+import menuForSidebar from "../../data/menu.js";
+import skillForSidebar from "../../data/skill.js";
+import grammarForSidebar from "../../data/grammar.js";
+import vocabularyForSidebar from "../../data/vocabulary.js";
+import { useDispatch, useSelector } from "react-redux";
+import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
+import { NavLink } from "react-router";
+import ThemeToggle from "../../components/button/ThemeToggle";
+import ButtonLanguage from "../../components/button/ButtonLanguage";
+import { TbTextGrammar, TbVocabulary } from "react-icons/tb";
+import { PiUserSoundFill } from "react-icons/pi";
+import { MdVideoLibrary } from "react-icons/md";
+
+import {
+  setActiveItem,
+  toggleDropdown,
+} from "../../redux/features/user/sidebarSlice.js";
 
 const Sidebar = () => {
-  const [sidebar, setSidebar] = useState(false);
+  // for two language
+  const { t } = useTranslation("dashboard");
+  const isVisible = useSelector((state) => state.visibility.isVisible);
+  console.log(isVisible);
+  // import object
+  const menu = menuForSidebar();
+  const skill = skillForSidebar();
+  const grammar = grammarForSidebar();
+  const vocabulary = vocabularyForSidebar();
+
+  // dispatch aciton
+  const dispatch = useDispatch();
+  const { activeItem, openDropdowns } = useSelector((state) => state.sidebar);
+
+  // handle click
+  const handleAction = (item, dropdown) => {
+    dispatch(setActiveItem(item)); // Set active item
+    dispatch(toggleDropdown(dropdown)); // Toggle dropdown
+  };
+
+  const handleClick = (item) => {
+    dispatch(setActiveItem(item));
+  };
+
   return (
-    <div>
-      <aside
-        id="logo-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
-        aria-label="Sidebar"
-      >
-        <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
-          <ul className="space-y-2 font-medium">
-            <li>
-              <a
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <FaHome />
-                <span className="ms-3">Dashboard</span>
-              </a>
-            </li>
-            {/* First Button */}
-            <li>
-              <button
-                type="button"
-                class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                aria-controls="dropdown-example"
-                data-collapse-toggle="dropdown-example"
-              >
-                <svg
-                  class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 18 21"
-                >
-                  <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
-                </svg>
-                <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
-                  E-commerce
-                </span>
-                <svg
-                  class="w-3 h-3"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 10 6"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m1 1 4 4 4-4"
-                  />
-                </svg>
-              </button>
-              <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                <li>
-                  <a
-                    href="#"
-                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >
-                    Products
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >
-                    Billing
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >
-                    Invoice
-                  </a>
-                </li>
+    <aside
+      id="logo-sidebar"
+      className={`border-r border-gray-200 dark:border-gray-700 dark:bg-bg-dark-mode fixed top-0 left-0 z-40 w-64 h-screen sm:pt-[80px] pt-[60px] transition-transform ${
+        isVisible ? "translate-x-0" : "-translate-x-full"
+      } bg-white sm:translate-x-0 sm:block`}
+      aria-label="Sidebar"
+    >
+      <div className="h-full px-3 pb-16 overflow-y-auto dark:bg-white/5 backdrop-blur-[18px] pt-6">
+        <ul className="space-y-2 font-medium">
+          {/* Overview */}
+          <li>
+            <NavLink
+              to="/dashboard"
+              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
+                activeItem === "dashboard"
+                  ? "bg-primary-100 dark:bg-primary-950 text-white"
+                  : ""
+              }`}
+              onClick={() => handleAction("dashboard", "dashboard")}
+            >
+              <FaHome className="size-6" />
+              <span className="flex-1 ms-3 whitespace-nowrap">
+                {t("overview")}
+              </span>
+            </NavLink>
+          </li>
+
+          {/* Skills */}
+          <li>
+            <NavLink
+              type="button"
+              to="/skills"
+              onClick={() => handleAction("skill", "skill")}
+              className={`flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 ${
+                activeItem === "skill"
+                  ? "bg-primary-100 dark:bg-primary-950 text-white"
+                  : ""
+              }`}
+            >
+              <SiHyperskill />
+              <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
+                {t("skill")}
+              </span>
+              {openDropdowns.includes("skill") ? (
+                <IoIosArrowDown />
+              ) : (
+                <IoIosArrowForward />
+              )}
+            </NavLink>
+            {openDropdowns.includes("skill") && (
+              <ul className="py-2 space-y-2">
+                {skill.map((skillItem) => (
+                  <li key={skillItem.text}>
+                    <NavLink
+                      to={skillItem.path}
+                      onClick={() => handleClick(skillItem.text)}
+                      className={`flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 cursor-pointer ${
+                        activeItem === skillItem.text
+                          ? "bg-primary-100 dark:bg-primary-950 text-white"
+                          : ""
+                      }`}
+                    >
+                      {skillItem.title}
+                    </NavLink>
+                  </li>
+                ))}
               </ul>
-            </li>
-            <li>
-              <button
-                type="button"
-                class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                aria-controls="dropdown-example"
-                data-collapse-toggle="dropdown-example"
-              >
-                <svg
-                  class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 18 21"
-                >
-                  <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
-                </svg>
-                <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
-                  E-commerce
-                </span>
-                <svg
-                  class="w-3 h-3"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 10 6"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m1 1 4 4 4-4"
-                  />
-                </svg>
-              </button>
-              <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                <li>
-                  <a
-                    href="#"
-                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >
-                    Products
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >
-                    Billing
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >
-                    Invoice
-                  </a>
-                </li>
+            )}
+          </li>
+          {/* Grammar */}
+          <li>
+            <NavLink
+              type="button"
+              to="/over-grammar"
+              onClick={() => handleAction("grammar", "grammar")}
+              className={`flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 ${
+                activeItem === "grammar"
+                  ? "bg-primary-100 dark:bg-primary-950 text-white"
+                  : ""
+              }`}
+            >
+              <TbTextGrammar />
+              <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
+                {t("grammar")}
+              </span>
+              {openDropdowns.includes("grammar") ? (
+                <IoIosArrowDown />
+              ) : (
+                <IoIosArrowForward />
+              )}
+            </NavLink>
+            {openDropdowns.includes("grammar") && (
+              <ul className="py-2 space-y-2">
+                {grammar.map((grammarItem) => (
+                  <li key={grammarItem.text}>
+                    <NavLink
+                      to={grammarItem.path}
+                      onClick={() => handleClick(grammarItem.text)}
+                      className={`flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 cursor-pointer ${
+                        activeItem === grammarItem.text
+                          ? "bg-primary-100 dark:bg-primary-950 text-white"
+                          : ""
+                      }`}
+                    >
+                      {grammarItem.title}
+                    </NavLink>
+                  </li>
+                ))}
               </ul>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <svg
-                  className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
-                </svg>
-                <span className="flex-1 ms-3 whitespace-nowrap">Inbox</span>
-                <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
-                  3
-                </span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </aside>
-    </div>
+            )}
+          </li>
+          {/* Vocabulary */}
+          <li>
+            <NavLink
+              to="/over-vocabulary"
+              onClick={() => handleAction("vocabulary", "vocabulary")}
+              className={`flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 ${
+                activeItem === "vocabulary"
+                  ? "bg-primary-100 dark:bg-primary-950 text-white"
+                  : ""
+              }`}
+            >
+              <TbVocabulary />
+              <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
+                {t("vocabulary")}
+              </span>
+              {openDropdowns.includes("vocabulary") ? (
+                <IoIosArrowDown />
+              ) : (
+                <IoIosArrowForward />
+              )}
+            </NavLink>
+            {openDropdowns.includes("vocabulary") && (
+              <ul className="py-2 space-y-2">
+                {vocabulary.map((grammarItem) => (
+                  <li key={grammarItem.text}>
+                    <NavLink
+                      to={grammarItem.path}
+                      onClick={() => handleClick(grammarItem.text)}
+                      className={`flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 cursor-pointer ${
+                        activeItem === grammarItem.text
+                          ? "bg-primary-100 dark:bg-primary-950 text-white"
+                          : ""
+                      }`}
+                    >
+                      {grammarItem.title}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+          <li>
+            <NavLink
+              to="/soundTts"
+              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
+                activeItem === "soundTts"
+                  ? "bg-primary-100 dark:bg-primary-950"
+                  : ""
+              }`}
+              onClick={() => handleClick("soundTts")}
+            >
+              <PiUserSoundFill className="size-6" />
+              <span className="flex-1 ms-3 whitespace-nowrap">
+                {t("soundTts")}
+              </span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/extra-video"
+              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
+                activeItem === "extraVideo"
+                  ? "bg-primary-100 dark:bg-primary-950 text-white"
+                  : ""
+              }`}
+              onClick={() => handleClick("extraVideo")}
+            >
+              <MdVideoLibrary className="size-6" />
+              <span className="flex-1 ms-3 whitespace-nowrap">
+                {t("extraVideo")}
+              </span>
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+      <ul className="absolute bg-white/10 backdrop-blur-md border-2 border-white dark:border-none border-white/20 bottom-0 w-64 left-0 flex justify-between px-5 py-2 sm:hidden">
+        <ButtonLanguage />
+        <ThemeToggle />
+      </ul>
+    </aside>
   );
 };
 

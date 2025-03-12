@@ -3,8 +3,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Hide the scrollbar */
 ::-webkit-scrollbar {
-  display: none; /* Hide the scrollbar */
+  display: none; 
 }
 
 /* for dynamic font */

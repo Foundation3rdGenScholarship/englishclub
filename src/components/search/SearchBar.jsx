@@ -1,42 +1,106 @@
-import React from "react";
-
+import React, { useState } from "react";
+import { IoSearch } from "react-icons/io5";
+import { useSearchQuery } from "../../redux/features/search/search"; // Assuming you have this hook set up for searching
+import { useNavigate } from "react-router-dom"; // For navigation
+import { useTranslation } from "react-i18next";
 const SearchBar = () => {
+  const [searchTerm, setSearchTerm] = useState(""); // Store the search term
+  const [isInputVisible, setIsInputVisible] = useState(false); // For input visibility
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false); // For dropdown visibility
+  const navigate = useNavigate(); // For navigation
+  const { t } = useTranslation("dashboard");
+  // Fetch search results from the API
+  const { data, isFetching, error } = useSearchQuery(searchTerm, {
+    skip: !searchTerm, // Only make the request if there’s a search term
+  });
+
+  const results = data?.payload || {}; // API response data
+  const exercises = results?.exercises || []; // Extract exercises from the response
+  console.log(results);
+  // Handle search icon click
+  const handleSearchIconClick = () => {
+    setIsInputVisible(!isInputVisible); // Toggle input visibility
+    setIsDropdownVisible(false); // Close dropdown when toggling input
+  };
+
+  // Handle search term change
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    setIsDropdownVisible(true); // Show dropdown when user types
+  };
+
+  // Handle click on a search result
+  const handleResultClick = (ex_uuid) => {
+    navigate(`/exercises/${ex_uuid}`); // Navigate to the lesson page
+    setIsDropdownVisible(false); // Close the dropdown after selection
+    setIsInputVisible(false); // Hide the input after selection
+    setSearchTerm(""); // Clear the search term
+  };
+
   return (
-    <div>
-      <form className="w-96 ">
-        <label
-          for="default-search"
-          className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-        >
-          Search
-        </label>
-        <div className="relative">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <svg
-              className="w-4 h-4 text-gray-500 dark:text-gray-400"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 20"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-              />
-            </svg>
+    <div className="flex items-center relative">
+      {/* Search Icon */}
+      <div
+        className="cursor-pointer text-white rounded-md bg-secondary-500 p-2 order-2"
+        onClick={handleSearchIconClick}
+      >
+        <IoSearch className="text-2xl" />
+      </div>
+
+      {/* Search Input */}
+      <div
+        className={`transition-all duration-300 ease-in-out overflow-hidden ${
+          isInputVisible
+            ? "w-[8rem] sm:w-[19rem] md:w-[23rem] lg:w-[58rem] opacity-100"
+            : "w-0 opacity-0"
+        }`}
+      >
+        <div className="rounded-lg shadow-lg z-50">
+          <div className="relative p-2">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="w-full p-1.5 rounded-lg bg-bg-light-mode focus:outline-none focus:ring-2 focus:ring-secondary-200 
+             focus:border-secondary-500 dark:bg-gray-800 dark:text-white order-1 text-sm md:text-md lg:text-lg"
+              placeholder={t("search for a lesson...")}
+              autoFocus // Automatically focus the input when it appears
+            />
           </div>
-          <input
-            type="search"
-            id="default-search"
-            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search Mockups, Logos..."
-            required
-          />
+
+          {/* Dropdown showing search results */}
+          {isDropdownVisible && searchTerm && (
+            <div className="absolute top-full left-0 w-full bg-white dark:bg-gray-800 border rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
+              {isFetching ? (
+                <div className="p-2 text-gray-600 dark:text-white">
+                  {t("loading...")}
+                </div>
+              ) : error ? (
+                <div className="p-2 text-red-500">Error fetching results</div>
+              ) : (
+                <div>
+                  {exercises.length === 0 ? (
+                    <div className="p-2 text-gray-500">No results found</div>
+                  ) : (
+                    exercises.map((item) => (
+                      <div
+                        key={item.ex_uuid} // Use ex_uuid as key
+                        className="p-2 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
+                        onClick={() => handleResultClick(item.ex_uuid)} // Navigate to the lesson
+                      >
+                        <h3 className="text-sm md:text-md lg:text-lg font-bold text-primary-500 dark:text-primary-300">
+                          {item.title}
+                        </h3>
+                        <hr />
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
+            </div>
+          )}
         </div>
-      </form>
+      </div>
     </div>
   );
 };

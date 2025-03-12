@@ -1,6 +1,7 @@
 {
   "title": "Get in touch with",
-
+  "welcome": "Welcome to Contact Page",
+  
   "des": "FAQ",
   "con": "Contact",
   "name": "FluentFlow",
@@ -8,7 +9,7 @@
   "sub-des-con": "for our contact, check it out!",
   "sub-des-name": "Checkout other lesson!",
   "btn-des": "Ask Questions",
-  "btn-con": "Send messages",
+  "btn-con": "Messages us",
   "btn-name": "Coming Soon...",
 
   "title-second": "Frequently Ask Question",
@@ -50,5 +51,17 @@
   "ai-caption": "We Also Have",
   "ai-caption2": "AI Support",
   "ai-caption3": "for Your Learning Journey",
-  "ai-description": "Stuck on something? Don’t worry! located at the bottom right corner of your screen, is here to help you 24/7. Whether you need study tips, explanations, or guidance, just ask—it’s like having a tutor ready whenever you need it. Learning just got easier!"
+  "ai-description": "Stuck on something? Don’t worry! located at the bottom right corner of your screen, is here to help you 24/7. Whether you need study tips, explanations, or guidance, just ask—it’s like having a tutor ready whenever you need it. Learning just got easier!",
+
+  "required-name" : "Name is required",
+  "required-email" : "Email is required",
+  "invalid-email" : "Invalid email",
+  "required-subject" : "Subject is required",
+  "required-question" : "Question is required",
+
+  "submitting" : "Submitting...",
+  "submit-success" : "Form submitted successfully!"
+
+ 
+
 }
