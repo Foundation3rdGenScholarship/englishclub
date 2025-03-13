@@ -103,7 +103,7 @@ export default function Footer() {
             </ul>
           </div>
           {/* Organize */}
-          <div className="col-span-2 flex flex-col justify-center items-center ">
+          <div className="col-span-2 flex flex-col">
             {/* ISTAD */}
             <div className="flex flex-col pb-8">
               <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode text-center">
@@ -115,20 +115,6 @@ export default function Footer() {
                 alt="ISTAD Logo"
               />
             </div>
-            {/* <div>
-              <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode flex flex-col justify-start xl:items-start lg:items-start md:items-start sm:items-center items-center text-center col-span-2 ">
-                {t("newsLetter")}
-              </h5>
-              <div className="flex justity-center items-center">
-                <input
-                  className=" border-none bg-[#f1f5f9] dark:bg-white/5 blur-none dark:pl-2  dark:text-white placeholder-text-des-light-mode dark:placeholder-text-des-dark-mode placeholder:text-left text-sm pl-0 w-60 focus:outline-none focus:ring-0 focus:border-transparent"
-                  placeholder="Enter your email address"
-                  type="text"
-                />
-                <AiOutlineMail className="h-8 w-8 text-primary-300" />
-              </div>
-            </div> */}
-              <hr className="bg-text-des-light-mode border-0 h-px" />
           </div>
         </div>
         <hr className="bg-text-des-light-mode dark:bg-text-des-dark-mode my-8 border-0 h-px" />
