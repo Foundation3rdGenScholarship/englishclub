@@ -55,6 +55,12 @@ import ScrollToTop from "./components/progress/ScrollToTop.jsx";
 import VocabulariesExercises from "./page/dashboard/content/exercises/VocabulariesExercises.jsx";
 import GoogleAnalytics from "./utils/GoogleAnalytics.jsx";
 import { HelmetProvider } from "react-helmet-async";
+import ListeningB2 from "./page/dashboard/content/listeningDetail/ListeningB2.jsx";
+import ListeningC1 from "./page/dashboard/content/listeningDetail/ListeningC1.jsx";
+import { WritingA2 } from "./page/dashboard/content/writingDetail/WritingA2.jsx";
+import { WritingB1 } from "./page/dashboard/content/writingDetail/WritingB1.jsx";
+import { WritingB2 } from "./page/dashboard/content/writingDetail/WritingB2.jsx";
+import { WritingC1 } from "./page/dashboard/content/writingDetail/WritingC1.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -98,6 +104,7 @@ createRoot(document.getElementById("root")).render(
                 {/* <Route path="/b1b2grammar" element={<B1B2grammar />} />
               <Route path="/c1grammar" element={<C1grammar />} /> */}
               </Route>
+
               <Route element={<App />}>
                 <Route path="/extra-video" element={<ExtraVideo />} />
                 <Route path="/a1a2grammar" element={<A1A2grammar />} />
@@ -135,8 +142,32 @@ createRoot(document.getElementById("root")).render(
                   element={<ListeningB1 />}
                 />
                 <Route
+                  path="/courses/listening/level=b2"
+                  element={<ListeningB2 />}
+                />
+                <Route
+                  path="/courses/listening/level=c1"
+                  element={<ListeningC1 />}
+                />
+                <Route
                   path="/courses/writing/level=a1"
                   element={<WritingA1 />}
+                />
+                <Route
+                  path="/courses/writing/level=a2"
+                  element={<WritingA2 />}
+                />
+                <Route
+                  path="/courses/writing/level=b1"
+                  element={<WritingB1 />}
+                />
+                <Route
+                  path="/courses/writing/level=b2"
+                  element={<WritingB2 />}
+                />
+                <Route
+                  path="/courses/writing/level=c1"
+                  element={<WritingC1 />}
                 />
                 <Route
                   path="/courses/speaking/level=a1"

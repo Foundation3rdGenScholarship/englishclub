@@ -87,6 +87,8 @@ const StatsSummary = () => {
 
         const data = await response.json();
 
+        console.log("This is all data from submit : ", data);
+
         // Set the answers (use empty array if payload is null/undefined)
         setUserAnswers(data.payload || []);
 

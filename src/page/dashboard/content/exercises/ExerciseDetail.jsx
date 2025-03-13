@@ -9,6 +9,7 @@ import ServerErrorPage from "../../../err/ServerErrorPage";
 import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
 import { useFetchExerciseByIdQuery } from "../../../../redux/features/exercises/exercisesSlice"; // Import the custom hook
 import AmeesageYourAreLate from "../../../../components/transcript/reading/AmeesageYourAreLate";
+import HeroLevel from "../../../../components/heroCard/HeroLevel";
 
 const ExerciseDetail = () => {
   const { ex_uuid } = useParams(); // Extract the ex_uuid from the URL using useParams
@@ -129,32 +130,34 @@ const ExerciseDetail = () => {
 
     console.log(exercisesData);
     return (
-      <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
+      <div className="sm:ml-64 mt-[80px] mb-10">
         <div className="max-w-full">
           <div className="container mx-auto px-4">
-            <div className="text-heading-4 h-[100px] md:h-auto md:text-heading-2 flex items-center gap-2">
+            {/* <div className="text-heading-4 h-[100px] md:h-auto md:text-heading-2 flex items-center gap-2">
               <h1 className="text-primary-500 dark:text-primary-500 py-5 font-bold">
                 {data.title}
               </h1>
             </div>
-            {/* Hero Section */}
             <div className="mb-10">
               <div className="relative">
-                {/* Image */}
                 <img
                   src={data.thumbnail}
                   alt="People collaborating at work"
                   className="w-full h-[400px] object-cover"
                 />
 
-                {/* Text Below Image */}
-                <div className="bg-white relative -mt-20 z-10 mx-auto max-w-screen-md rounded-tl-[50px] rounded-br-[50px] shadow-lg dark:bg-bg-dark-mode dark:text-text-des-dark-mode dark:border-2 p-6 border-white/20">
-                  <p className="text-justify leading-10">{data.description}</p>
+                <div className="bg-white relative -mt-20 z-10 mx-auto rounded-tl-[50px] rounded-br-[50px] shadow-lg dark:bg-bg-dark-mode dark:text-text-des-dark-mode dark:border-2 p-6 border-white/20">
+                  <p className="text-des-3 text-justify leading-10">{data.description}</p>
                 </div>
               </div>
-            </div>
+            </div> */}
+            <HeroLevel
+              title={data.title}
+              thumnail={data.thumbnail}
+              description={data.description}
+            />
             {/* Section */}
-            <div className="max-w-screen-md m-auto">
+            <div className="max-w-screen-lg m-auto">
               <div className="text-black text-des-2 text-justify dark:text-text-des-dark-mode m-auto leading-10">
                 <div
                   dangerouslySetInnerHTML={{

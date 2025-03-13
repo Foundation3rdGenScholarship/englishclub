@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useAllReadingB2QueryQuery } from "../../../../redux/features/skill/skillSlice";
+import { useAllListeningC1QueryQuery } from "../../../../redux/features/skill/skillSlice";
 import CourseCard from "../../../../components/card/CourseCard";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
 import { useNavigate } from "react-router-dom";
 import ServerErrorPage from "../../../err/ServerErrorPage";
 
-const ReadingB2 = () => {
-  const { data, isLoading, error } = useAllReadingB2QueryQuery();
-  const { t } = useTranslation("readingB1");
+const ListeningC1 = () => {
+  const { data, isLoading, error } = useAllListeningC1QueryQuery();
+  const { t } = useTranslation("listeningA1");
   const exercises = data?.flatMap((item) => item.exercises) || [];
   const navigate = useNavigate(); // Initialize navigate hook
   console.log("This is an data : ", exercises);
@@ -29,9 +29,9 @@ const ReadingB2 = () => {
 
   // Handle click on card to get exercise ID and navigate to another page
   const handleCardClick = (id) => {
-    navigate(`/exercises/${id}`); // Navigate to exercise detail page
+    navigate(`/listening/${id}`); // Navigate to exercise detail page
     console.log(id);
-    const fullUrl = `/exercises/${id}`;
+    const fullUrl = `/listening/${id}`;
     console.log("Full URL:", fullUrl); // This should log the full URL
   };
 
@@ -41,7 +41,7 @@ const ReadingB2 = () => {
         <div className="container mx-auto px-4">
           <div className="text-heading-4 h-[100px] md:h-auto md:text-heading-2 flex items-center gap-2">
             <h1 className="text-primary-500 dark:text-primary-500 py-5 font-bold">
-              {t("b1reading")}
+              {t("a1listening")}
             </h1>
           </div>
 
@@ -49,7 +49,7 @@ const ReadingB2 = () => {
           <div className="rounded-lg overflow-hidden">
             <div className="relative">
               <img
-                src="https://www.continentalpress.com/wp-content/uploads/2023/08/shutterstock_2287978891-1-min-scaled.jpg"
+                src="https://howwelead.org/wp-content/uploads/2022/07/ken-blog-7.13.22.jpg"
                 alt="People collaborating at work"
                 className="w-full h-[400px] object-cover"
               />
@@ -59,7 +59,7 @@ const ReadingB2 = () => {
           {/* Description */}
           <div className="p-4">
             <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
-              {t("b1description")}
+              {t("description")}
             </p>
           </div>
 
@@ -81,4 +81,4 @@ const ReadingB2 = () => {
   );
 };
 
-export default ReadingB2;
+export default ListeningC1;
