@@ -1,7 +1,8 @@
 {
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/api/(.*)",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
@@ -9,13 +10,20 @@
         },
         {
           "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, OPTIONS, PUT, DELETE"
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
         },
         {
           "key": "Access-Control-Allow-Headers",
           "value": "Content-Type, Authorization"
         }
       ]
+    }
+  ],
+
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
