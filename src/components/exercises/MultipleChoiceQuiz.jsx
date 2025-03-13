@@ -11,11 +11,22 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
 
   // Initialize toast notifications
   const notify = (message, type = "success") => {
-    if (type === "success") {
-      toast.success(message);
-    } else {
-      toast.error(message);
-    }
+    const colors = {
+      success: { background: "#fff", text: "#4CAF50", progress: "#2E7D32" }, // White background, Green text
+      error: { background: "#fff", text: "#F44336", progress: "#D32F2F" }, // White background, Red text
+      warning: { background: "#fff", text: "#FFA000", progress: "#FF6F00" }, // White background, Yellow-Orange text
+    };
+
+    toast(message, {
+      style: {
+        backgroundColor: colors[type]?.background || "#333", // Default to dark gray if type not found
+        color: colors[type]?.text || "#fff", // Apply the text color
+        fontWeight: "bold",
+      },
+      progressStyle: {
+        backgroundColor: colors[type]?.progress || "#555",
+      },
+    });
   };
 
   // Function to play sound
@@ -53,34 +64,47 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
 
   // Handle submission
   const handleSubmit = async () => {
-    if (isAllAnswered) {
-      setIsSubmitted(true);
-      const answers = prepareAnswers();
+    if (!isAllAnswered) {
+      notify("⚠️ Please answer all questions before submitting.", "error");
+      return;
+    }
 
-      try {
-        const result = await submitExercises(ex_uuid, answers);
+    setIsSubmitted(true);
+    const answers = prepareAnswers();
 
-        if (result.success) {
-          notify("Exercise submitted successfully!");
+    try {
+      const result = await submitExercises(ex_uuid, answers);
 
-          // Play the correct sound for each correct answer
-          exercises.forEach((exercise, index) => {
-            const selectedAnswer = selectedAnswers[exercise.id];
-            const isCorrect =
-              exercise.choices.find(
-                (choice) => choice.choice_uuid === selectedAnswer
-              )?.is_correct || false;
+      if (result.success) {
+        notify("🎉 Exercise submitted successfully!", "success");
 
-            if (isCorrect) {
-              playSound(`correct${index + 1}`);
-            }
-          });
+        // Play the correct sound for each correct answer
+        exercises.forEach((exercise, index) => {
+          const selectedAnswer = selectedAnswers[exercise.id];
+          const isCorrect =
+            exercise.choices.find(
+              (choice) => choice.choice_uuid === selectedAnswer
+            )?.is_correct || false;
+
+          if (isCorrect) {
+            playSound(`correct${index + 1}`);
+          }
+        });
+      } else {
+        let errorMessage = result.message || t("multipleChoics");
+
+        if (errorMessage.includes("already done this exercise")) {
+          notify(
+            "⚠️ You've already completed this exercise. Try another one!",
+            "warning"
+          );
         } else {
-          notify(t("multipleChoics"), "error");
+          notify(`❌ Submission failed: ${errorMessage}`, "error");
         }
-      } catch (error) {
-        notify(`Error: ${error.message || "Something went wrong"}`, "error");
       }
+    } catch (error) {
+      console.error("Unexpected error:", error);
+      notify("🚨 An unexpected error occurred. Please try again.", "error");
     }
   };
 

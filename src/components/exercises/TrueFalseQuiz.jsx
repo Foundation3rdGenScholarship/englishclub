@@ -14,6 +14,8 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
   const notify = (message, type = "success") => {
     if (type === "success") {
       toast.success(message);
+    } else if (type === "warning") {
+      toast.warning(message);
     } else {
       toast.error(message);
     }
@@ -133,7 +135,7 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
             </div>
             {isSubmitted && (
               <p
-                className={`mt-2 ${
+                className={`mt-2 text-sm ${
                   isAnswerCorrect ? "text-green-600" : "text-red-600"
                 }`}
               >

@@ -1,3 +1,54 @@
+// export const submitExercises = async (exercise_uuid, selectedAnswers) => {
+//   const userData = JSON.parse(localStorage.getItem("user"));
+//   const user_uuid = userData?.user_uuid;
+
+//   if (!user_uuid) {
+//     console.warn("No user found! Cannot submit.");
+//     return { success: false, message: "No user found!" };
+//   }
+
+//   // Ensure correct format for user_answer
+//   const user_answer = selectedAnswers.user_answer.map((answerObj) => ({
+//     q_uuid: answerObj.q_uuid, // Ensure the question UUID is included
+//     answers: answerObj.answers, // Ensure answers are properly structured
+//   }));
+
+//   console.log("Request Body:", {
+//     user_uuid,
+//     user_answer,
+//   });
+
+//   try {
+//     const response = await fetch(
+//       `https://english-club.istad.co/exercise/${exercise_uuid}/submit_answer`,
+//       {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({
+//           user_uuid,
+//           user_answer,
+//         }),
+//       }
+//     );
+
+//     if (!response.ok) {
+//       const errorText = await response.text();
+//       throw new Error(
+//         `Failed to submit exercise. Status: ${response.status}. Message: ${errorText}`
+//       );
+//     }
+
+//     const result = await response.json();
+//     console.log("Submission successful:", result);
+//     return { success: true, result };
+//   } catch (error) {
+//     console.error("Error submitting exercises:", error);
+//     return { success: false, message: "Submission failed" };
+//   }
+// };
+
 export const submitExercises = async (exercise_uuid, selectedAnswers) => {
   const userData = JSON.parse(localStorage.getItem("user"));
   const user_uuid = userData?.user_uuid;
@@ -9,8 +60,8 @@ export const submitExercises = async (exercise_uuid, selectedAnswers) => {
 
   // Ensure correct format for user_answer
   const user_answer = selectedAnswers.user_answer.map((answerObj) => ({
-    q_uuid: answerObj.q_uuid, // Ensure the question UUID is included
-    answers: answerObj.answers, // Ensure answers are properly structured
+    q_uuid: answerObj.q_uuid,
+    answers: answerObj.answers,
   }));
 
   console.log("Request Body:", {
@@ -34,9 +85,12 @@ export const submitExercises = async (exercise_uuid, selectedAnswers) => {
     );
 
     if (!response.ok) {
-      const errorText = await response.text();
+      const errorData = await response.json().catch(() => null); // Handle possible JSON parse errors
+      const errorMessage =
+        errorData?.detail || errorData?.message || "Unknown error occurred";
+
       throw new Error(
-        `Failed to submit exercise. Status: ${response.status}. Message: ${errorText}`
+        `Failed to submit exercise. Status: ${response.status}. Message: ${errorMessage}`
       );
     }
 
@@ -45,6 +99,6 @@ export const submitExercises = async (exercise_uuid, selectedAnswers) => {
     return { success: true, result };
   } catch (error) {
     console.error("Error submitting exercises:", error);
-    return { success: false, message: "Submission failed" };
+    return { success: false, message: error.message || "Submission failed" };
   }
 };
