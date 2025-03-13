@@ -38,7 +38,7 @@ export default function Section4() {
             <p className="dark:text-white text-primary-800  lg:text-des-2 md:text-des-3 sm:text-des-4 text-des-5 text-center">
               {t("desMoreVideos")}
             </p>
-            <ButtonNavigate text={t("start-learning")} link="/extra-video" onClick={""} />
+            <ButtonNavigate text={t("start-learning")} link="/extra-video" onClick={""} className="lg:text-des-2 md:text-des-3 sm:text-des-4 text-des-5 text-center" />
           </GlassCard>
         </div>
       </div>

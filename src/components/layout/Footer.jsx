@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import logolightmode from "../../../public/img/logo/logo-light-mode.png";
 import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
-import istadLogoLight from "../../../public/img/logo/istad-logo-light.webp";
+import istadLogoLight from "../../../public/img/logo/istad-logo-light.png";
 import istadLogoDark from "../../../public/img/logo/istad-logo-dark.png";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
