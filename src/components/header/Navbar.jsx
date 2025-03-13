@@ -61,8 +61,8 @@ export default function Navbar() {
                 to={item.path}
                 className={({ isActive }) =>
                   isActive
-                    ? "text-secondary-500 transition"
-                    : "text-black dark:text-white transition"
+                    ? "text-black transition"
+                    : " text-secondary-500 dark:text-white transition"
                 }
               >
                 {item.title}
@@ -78,7 +78,7 @@ export default function Navbar() {
             <ButtonLanguage />
           </div>
           {isLoggedIn ? (
-              <Profile user={user} />
+            <Profile user={user} />
           ) : (
             <li className="hidden md:flex">
               <RegisterBtn />
