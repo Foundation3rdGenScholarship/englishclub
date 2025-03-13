@@ -8,7 +8,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
-  <div className="h-full flex flex-col" data-aos="zoom-in">
+  <div
+    className="h-full flex flex-col"
+    data-aos="zoom-in"
+    data-aos-duration="600"
+  >
     <div className="p-2 flex flex-col items-center text-center flex-grow">
       <div
         className={`w-12 h-12 rounded-full flex justify-center items-center mb-6`}
@@ -67,7 +71,7 @@ const FeaturesGrid = () => {
 
   return (
     <>
-      <div>
+      <div className="max-w-7xl mx-auto mt-20">
         {/* Title Section with fade-up animation */}
         <div className="py-16">
           <div className="text-center" data-aos="fade-up">
@@ -86,7 +90,7 @@ const FeaturesGrid = () => {
         </div>
 
         {/* Features Grid with zoom-in animation */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-16">
           {features.map((feature, index) => (
             <GlassCard
               key={index}

@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import React, { useEffect } from "react";
+import emailjs from "@emailjs/browser";
 
 const AskSection = () => {
   const { t } = useTranslation("contact");
@@ -34,19 +35,30 @@ const AskSection = () => {
   });
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    console.log("Form Data:", values);
-
-    const loadingToast = toast.loading(t("submitting"));
-
-    // a delay (show the loading effect)
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    // Remove loading toast and show success message
-    toast.dismiss(loadingToast);
-    toast.success(t("submit-success"));
-
-    resetForm();
-    setSubmitting(false); // Stop loading state
+    const templateParams = {
+      name: values.name,
+      email: values.email,
+      subject: values.subject,
+      message: values.question, // This will map to {{message}} in your template
+    };
+  
+    try {
+      const response = await emailjs.send(
+        "service_fluentflow", // Replace with your actual Service ID
+        "template_fluentflow", // Replace with your actual Template ID
+        templateParams,
+        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY } // Public Key as an object
+      );
+  
+      console.log("SUCCESS!", response.status, response.text);
+      toast.success("Your question has been submitted!");
+      resetForm();
+    } catch (error) {
+      console.error("FAILED...", error);
+      toast.error("Something went wrong!");
+    } finally {
+      setSubmitting(false); // Ensure loading state stops whether success or failure
+    }
   };
 
   return (
@@ -86,14 +98,14 @@ const AskSection = () => {
                     type="text"
                     name="name"
                     placeholder={t("name-placeholder")}
-                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 ${
+                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 placeholder-gray-400 dark:placeholder-gray-500 ${
                       errors.name && touched.name ? "border-red-500" : ""
                     }`}
                   />
                   <ErrorMessage
                     name="name"
                     component="div"
-                    className="text-red-500 text-sm mb-3"
+                    className="text-red-500 text-sm mb-3 mt-2"
                   />
 
                   {/* Email  */}
@@ -104,14 +116,14 @@ const AskSection = () => {
                     type="email"
                     name="email"
                     placeholder={t("email-placeholder")}
-                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 ${
+                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 placeholder-gray-400 dark:placeholder-gray-500 ${
                       errors.email && touched.email ? "border-red-500" : ""
                     }`}
                   />
                   <ErrorMessage
                     name="email"
                     component="div"
-                    className="text-red-500 text-sm mb-3"
+                    className="text-red-500 text-sm mb-3 mt-2"
                   />
 
                   {/* Subject */}
@@ -122,14 +134,14 @@ const AskSection = () => {
                     type="text"
                     name="subject"
                     placeholder={t("subject-placeholder")}
-                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 ${
+                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 placeholder-gray-400 dark:placeholder-gray-500 ${
                       errors.subject && touched.subject ? "border-red-500" : ""
                     }`}
                   />
                   <ErrorMessage
                     name="subject"
                     component="div"
-                    className="text-red-500 text-sm mb-3"
+                    className="text-red-500 text-sm mb-3 mt-2"
                   />
 
                   {/* Question */}
@@ -140,7 +152,7 @@ const AskSection = () => {
                     as="textarea"
                     name="question"
                     placeholder={t("question-ask-placeholder")}
-                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 ${
+                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 placeholder-gray-400 dark:placeholder-gray-500 ${
                       errors.question && touched.question
                         ? "border-red-500"
                         : ""

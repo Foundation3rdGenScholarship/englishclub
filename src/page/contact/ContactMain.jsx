@@ -21,7 +21,7 @@ export function Contact() {
   };
 
   return (
-    <main>
+    <main className="overflow-x-hidden">
       {/* Section 1, card */}
       <section>
         <div className="h-0 w-full mx-auto max-w-8xl flex items-center justify-center ">

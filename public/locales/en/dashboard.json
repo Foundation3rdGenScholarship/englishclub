@@ -18,5 +18,6 @@
   "profile":"Profile",
   "learning":"History of learning",
   "sign out":"Sign out",
-  "soundTts" : "Listening to words"
+  "soundTts" : "Listening to words",
+  "search for a lesson...":"Search for a lesson..."
 }

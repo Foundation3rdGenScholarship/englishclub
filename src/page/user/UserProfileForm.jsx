@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import Typed from "typed.js";
 import Skeleton from "react-loading-skeleton"; // Import the skeleton loader
-
+import "react-loading-skeleton/dist/skeleton.css"; // Import the CSS file
 const UserProfileForm = ({
   user,
   profilePreview,
@@ -79,7 +79,7 @@ const UserProfileForm = ({
         >
           <div className="flex flex-col items-center mb-8 mt-12">
             <div className="relative w-28 h-28 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 p-1">
-              <div className="w-full h-full rounded-full overflow-hidden">
+              <div className="w-full h-full rounded-full overflow-hidden border-2 border-secondary-200">
                 {isLoading ? (
                   <Skeleton circle={true} height={160} width={160} />
                 ) : profilePreview ? (
@@ -139,7 +139,7 @@ const UserProfileForm = ({
             </div>
           </div>
 
-          <div className="max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8">
+          <div className="max-w-2xl mx-auto bg-[#f8f8f8] dark:bg-gray-800 rounded-xl shadow-md p-6 md:p-8">
             <div className="mb-6">
               <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
                 {t("name")}

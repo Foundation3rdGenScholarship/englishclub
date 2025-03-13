@@ -14,6 +14,8 @@ const videoSlice = createSlice({
       "2cpd1fsUQ1I",
       "Y3FDMiKZ7zo",
       "cSe5mwiXPT0",
+      "jNI0fiX4q4A",
+      "hSg1eZcqMio",
     ], // Initial video IDs
   },
   reducers: {

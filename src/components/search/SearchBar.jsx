@@ -56,12 +56,17 @@ const SearchBar = () => {
       >
         <div className="rounded-lg shadow-lg z-50">
           <div className="relative p-2">
+            {/* Search Icon inside the Input */}
+            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+              <IoSearch className="text-gray-500 dark:text-gray-400 text-xl" />
+            </div>
+
+            {/* Input Field */}
             <input
               type="text"
               value={searchTerm}
               onChange={handleSearchChange}
-              className="w-full p-1.5 rounded-lg bg-bg-light-mode focus:outline-none focus:ring-2 focus:ring-secondary-200 
-             focus:border-secondary-500 dark:bg-gray-800 dark:text-white order-1 text-sm md:text-md lg:text-lg"
+              className="w-full pl-10 p-1.5 rounded-lg border-1 border-gray-300 bg-bg-light-mode focus:outline-none focus:ring-2 focus:ring-secondary-200 focus:border-secondary-500 dark:bg-gray-800 dark:text-white text-sm md:text-md lg:text-lg placeholder-gray-400 dark:placeholder-gray-500"
               placeholder={t("search for a lesson...")}
               autoFocus // Automatically focus the input when it appears
             />
