@@ -32,10 +32,6 @@ const FAQSection = () => {
       answer: t("answer4"),
     },
     {
-      question: t("question5"),
-      answer: t("answer5"),
-    },
-    {
       question: t("question6"),
       answer: t("answer6"),
     },
