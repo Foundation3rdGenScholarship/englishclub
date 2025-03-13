@@ -115,7 +115,7 @@ export default function Footer() {
                 alt="ISTAD Logo"
               />
             </div>
-            <div>
+            {/* <div>
               <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode flex flex-col justify-start xl:items-start lg:items-start md:items-start sm:items-center items-center text-center col-span-2 ">
                 {t("newsLetter")}
               </h5>
@@ -127,8 +127,8 @@ export default function Footer() {
                 />
                 <AiOutlineMail className="h-8 w-8 text-primary-300" />
               </div>
+            </div> */}
               <hr className="bg-text-des-light-mode border-0 h-px" />
-            </div>
           </div>
         </div>
         <hr className="bg-text-des-light-mode dark:bg-text-des-dark-mode my-8 border-0 h-px" />
