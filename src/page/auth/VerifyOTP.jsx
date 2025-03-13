@@ -16,57 +16,44 @@ import {
   useVerifyOtpMutation,
   useLoginUserMutation,
 } from "../../redux/features/user/userSlice";
+import { storeAccessToken } from "../../lib/secureLocalStorage";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/features/user/authSlice";
 
 export default function VerifyOTP() {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const { t } = useTranslation("login");
-  const [loading, setLoading] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-  const { email, password, action } = location.state || {}; // Get email, password, and action from state
+  const { email, password, action } = location.state || {};
   const otpBoxReference = useRef([]);
   const [verifyOtp] = useVerifyOtpMutation();
   const [loginUser] = useLoginUserMutation();
 
   const handleSubmit = async (values) => {
     try {
-      // Ensure the OTP is joined into a single string
       const otp = values.otp.join("");
-
-      // Log the payload for debugging
-      console.log("Sending payload:", { email, otp });
-
-      // Call the verifyOtp mutation
       const response = await verifyOtp({ email, otp }).unwrap();
       toast.success(t("OTP verification successful!"));
-      console.log('action :>> ', action);
-      // Handle post-verification based on the action
-      if (action === "google-signin") {
-        // Auto-login for Google Sign-In
-        const loginResponse = await loginUser({
-          email,
-          password,
-        }).unwrap();
 
-        // Store token and redirect
-        localStorage.setItem("access_token", loginResponse.accessToken);
+      if (action === "google-signin") {
+        const loginResponse = await loginUser({ email, password }).unwrap();
+        storeAccessToken(loginResponse);
+        dispatch(
+          login({ user: loginResponse.user, token: loginResponse.access_token })
+        );
         toast.success("Login successful! Redirecting...");
         navigate("/dashboard");
       } else if (action === "reset-password") {
-        // Redirect to reset password page
         navigate("/resetpassword", { state: { email } });
         toast.success("OTP verified. Please reset your password.");
       }
     } catch (error) {
-      // Log the error for debugging
       console.error("OTP verification failed:", error);
-
-      // Display a user-friendly error message
-      if (error.data && error.data.message) {
-        toast.error(error.data.message); // Display the server error message
-      } else {
-        toast.error(t("Failed to verify OTP. Please try again."));
-      }
+      toast.error(
+        error.data?.message || t("Failed to verify OTP. Please try again.")
+      );
     }
   };
 
@@ -123,7 +110,7 @@ export default function VerifyOTP() {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={handleSubmit} // Use the handleSubmit function
+        onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
           <Form className="space-y-6">
@@ -143,10 +130,8 @@ export default function VerifyOTP() {
 
             <SubmitButton
               isSubmitting={isSubmitting}
-              loading={loading} // Use loading state
               label={t("verify")}
               loadingLabel={t("verifying...")}
-              disabled={false}
             />
 
             <div className="text-center mt-6">
