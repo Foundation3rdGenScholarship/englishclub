@@ -5,10 +5,29 @@ import TextAnimation from "../../../../components/progress/TextAnimation";
 import { useAllSkillQuery } from "../../../../redux/features/skill/skillSlice";
 import HeroSkillOverView from "../../../../components/heroCard/HeroSkillOverView";
 import SkillTab from "../../../../components/tab/SkillTab";
+import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
+import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
+import ServerErrorPage from "../../../err/ServerErrorPage";
 
 export const OverSkill = () => {
   const { t } = useTranslation("over-skill");
-  const { data } = useAllSkillQuery();
+  const { isLoading, error } = useAllSkillQuery();
+  if (isLoading) {
+    return (
+      <div className="mt-[88px] sm:pl-64">
+        <HeroSkeleton />
+        <CoursesSkeleton />
+      </div>
+    ); // Show loading while fetching data
+  }
+
+  if (error) {
+    return (
+      <div>
+        <ServerErrorPage />
+      </div>
+    ); // Show error if there's a problem fetching the data
+  }
   return (
     <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
       <div className="max-w-full">
@@ -81,7 +100,7 @@ export const OverSkill = () => {
           {/* OverView*/}
           <div>
             {/* <HeroSkillOverView /> */}
-            <SkillTab />
+            {/* <SkillTab /> */}
           </div>
         </div>
       </div>

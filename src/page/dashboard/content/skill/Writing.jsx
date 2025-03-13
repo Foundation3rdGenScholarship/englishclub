@@ -3,10 +3,31 @@ import { useTranslation } from "react-i18next";
 import TextAnimation from "../../../../components/progress/TextAnimation";
 import writingJson from "../../../../data/json/writingJson.json";
 import CourseCard from "../../../../components/card/CourseCard";
-import { useAllSkillQuery } from "../../../../redux/features/skill/skillSlice";
+import { useAllWritingQuery } from "../../../../redux/features/skill/writingSlice";
+import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
+import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
+import ServerErrorPage from "../../../err/ServerErrorPage";
 
 const Writing = () => {
   const { t } = useTranslation("writing");
+  const { isLoading, error } = useAllWritingQuery();
+
+  if (isLoading) {
+    return (
+      <div className="mt-[88px] sm:pl-64">
+        <HeroSkeleton />
+        <CoursesSkeleton />
+      </div>
+    ); // Show loading while fetching data
+  }
+
+  if (error) {
+    return (
+      <div>
+        <ServerErrorPage />
+      </div>
+    ); // Show error if there's a problem fetching the data
+  }
   return (
     <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
       <div className="max-w-full">

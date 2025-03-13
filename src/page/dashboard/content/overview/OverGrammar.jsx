@@ -3,8 +3,29 @@ import { useTranslation } from "react-i18next";
 import CourseCard from "../../../../components/card/CourseCard";
 import TextAnimation from "../../../../components/progress/TextAnimation";
 import grammar from "../../../../data/json/grammar.json";
+import { useAllGrammarQuery } from "../../../../redux/features/grammar/grammarSlice";
+import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
+import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
+import ServerErrorPage from "../../../err/ServerErrorPage";
 export const OverGrammar = () => {
   const { t } = useTranslation("over-grammar");
+  const { isLoading, error } = useAllGrammarQuery();
+  if (isLoading) {
+    return (
+      <div className="mt-[88px] sm:pl-64">
+        <HeroSkeleton />
+        <CoursesSkeleton />
+      </div>
+    ); // Show loading while fetching data
+  }
+
+  if (error) {
+    return (
+      <div>
+        <ServerErrorPage />
+      </div>
+    ); // Show error if there's a problem fetching the data
+  }
   return (
     <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
       <div className="max-w-full">

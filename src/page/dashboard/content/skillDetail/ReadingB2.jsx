@@ -49,7 +49,7 @@ const ReadingB2 = () => {
           <div className="rounded-lg overflow-hidden">
             <div className="relative">
               <img
-                src="https://images.theconversation.com/files/293319/original/file-20190920-22408-pnr51f.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=1000&fit=clip"
+                src="https://www.continentalpress.com/wp-content/uploads/2023/08/shutterstock_2287978891-1-min-scaled.jpg"
                 alt="People collaborating at work"
                 className="w-full h-[400px] object-cover"
               />

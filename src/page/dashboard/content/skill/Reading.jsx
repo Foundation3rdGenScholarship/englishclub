@@ -3,10 +3,32 @@ import CourseCard from "../../../../components/card/CourseCard";
 import readingJson from "../../../../data/json/reading.json";
 import TextAnimation from "../../../../components/progress/TextAnimation";
 import ButtonNavigate from "../../../../components/button/ButtonNavigate";
+import { useAllReadingQuery } from "../../../../redux/features/skill/readingSlice";
+import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
+import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
+import ServerErrorPage from "../../../err/ServerErrorPage";
 
 const Reading = () => {
   const skeleton = Array(8).fill(0);
   const { t } = useTranslation("reading");
+  const { isLoading, error } = useAllReadingQuery();
+
+  if (isLoading) {
+    return (
+      <div className="mt-[88px] sm:pl-64">
+        <HeroSkeleton />
+        <CoursesSkeleton />
+      </div>
+    ); // Show loading while fetching data
+  }
+
+  if (error) {
+    return (
+      <div>
+        <ServerErrorPage />
+      </div>
+    ); // Show error if there's a problem fetching the data
+  }
 
   return (
     <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">

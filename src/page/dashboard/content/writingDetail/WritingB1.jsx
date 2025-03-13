@@ -1,15 +1,15 @@
 import React from "react";
 import HeroLevel from "../../../../components/heroCard/HeroLevel";
 import { useTranslation } from "react-i18next";
-import { useAllWritingA1QueryQuery } from "../../../../redux/features/skill/skillSlice";
+import { useAllWritingB1QueryQuery } from "../../../../redux/features/skill/skillSlice";
 import CourseCard from "../../../../components/card/CourseCard";
 import { useNavigate } from "react-router-dom";
 import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import ServerErrorPage from "../../../err/ServerErrorPage";
 
-export const WritingA1 = () => {
-  const { data, isLoading, error } = useAllWritingA1QueryQuery();
+export const WritingB1 = () => {
+  const { data, isLoading, error } = useAllWritingB1QueryQuery();
   const { t } = useTranslation("reading");
   const navigate = useNavigate(); // Initialize navigate hook
   const exercises = data?.flatMap((item) => item.exercises) || [];
@@ -39,10 +39,10 @@ export const WritingA1 = () => {
     <div className="max-w-screen-xl sm:ml-64 mt-[88px] mb-10 container mx-auto px-4">
       <HeroLevel
         thumnail={
-          "https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/max_1300x1300/public/2021-10/RS8039_GettyImages-554489637-hig.jpg?itok=DMT6G5Yv"
+          "https://assets.entrepreneur.com/content/3x2/2000/1683118869-GettyImages-850630688.jpg"
         }
-        title={t("a1writing")}
-        description={t("writingdescription")}
+        title={t("b1writing")}
+        description={t("writingb1description")}
       />
       {/* Render Courses  */}
 

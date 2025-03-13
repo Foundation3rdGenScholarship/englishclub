@@ -6,6 +6,7 @@ import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import CourseCard from "../../../../components/card/CourseCard";
 import HeroLevel from "../../../../components/heroCard/HeroLevel";
 import { useNavigate } from "react-router";
+import ServerErrorPage from "../../../err/ServerErrorPage";
 
 const A1B2grammar = () => {
   const { t } = useTranslation("b1b2grammar");
@@ -45,7 +46,9 @@ const A1B2grammar = () => {
                 title={item.lessons[0].lesson_title}
                 img={item.lessons[0].thumbnail}
                 des={item.lessons[0].description}
-                onClick={() => navigate(`/lesson/${item.lessons[0].lesson_uuid}`)}
+                onClick={() =>
+                  navigate(`/lesson/${item.lessons[0].lesson_uuid}`)
+                }
               />
             );
           }
