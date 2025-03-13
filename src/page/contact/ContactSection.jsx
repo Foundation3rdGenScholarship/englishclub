@@ -1,4 +1,3 @@
-
 import GlassCard from "../../components/card/GlassCard";
 import contactImage from "../../../public/svg/contact.svg";
 import { useTranslation } from "react-i18next";
@@ -16,12 +15,12 @@ import React, { useEffect } from "react";
 const ContactSection = () => {
   const { t } = useTranslation("contact");
   useEffect(() => {
-        AOS.init({
-          duration: 800,
-          once: false,
-          // mirror: true,
-        });
-      }, []);
+    AOS.init({
+      duration: 800,
+      once: false,
+      // mirror: true,
+    });
+  }, []);
   return (
     <div id="contact">
       <div className="flex flex-col md:flex-row justify-center items-center gap-8 m-auto">

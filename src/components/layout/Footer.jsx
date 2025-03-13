@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import logolightmode from "../../../public/img/logo/logo-light-mode.png";
 import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
-import istadLogoLight from "../../../public/img/logo/istad-logo-light.webp";
+import istadLogoLight from "../../../public/img/logo/istad-logo-light.png";
 import istadLogoDark from "../../../public/img/logo/istad-logo-dark.png";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
@@ -103,7 +103,7 @@ export default function Footer() {
             </ul>
           </div>
           {/* Organize */}
-          <div className="col-span-2 flex flex-col justify-center items-center ">
+          <div className="col-span-2 flex flex-col">
             {/* ISTAD */}
             <div className="flex flex-col pb-8">
               <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode text-center">
@@ -114,20 +114,6 @@ export default function Footer() {
                 src={theme === "dark" ? istadLogoDark : istadLogoLight}
                 alt="ISTAD Logo"
               />
-            </div>
-            <div>
-              <h5 className="text-xl font-bold mb-6 text-text-des-light-mode dark:text-text-des-dark-mode flex flex-col justify-start xl:items-start lg:items-start md:items-start sm:items-center items-center text-center col-span-2 ">
-                {t("newsLetter")}
-              </h5>
-              <div className="flex justity-center items-center">
-                <input
-                  className=" border-none bg-[#f1f5f9] dark:bg-white/5 blur-none dark:pl-2  dark:text-white placeholder-text-des-light-mode dark:placeholder-text-des-dark-mode placeholder:text-left text-sm pl-0 w-60 focus:outline-none focus:ring-0 focus:border-transparent"
-                  placeholder="Enter your email address"
-                  type="text"
-                />
-                <AiOutlineMail className="h-8 w-8 text-primary-300" />
-              </div>
-              <hr className="bg-text-des-light-mode border-0 h-px" />
             </div>
           </div>
         </div>

@@ -7,9 +7,9 @@ export default function Section2() {
     <>
       <div className="xl:py-16 lg:py-14 md:py-12 sm:py-10 py-8">
         <p className="dark:text-text-des-dark-mode text-primary-800  lg:text-heading-4 md:text-heading-6 flex justify-center  text-center">
-          {t("whatYouFindHere")}
-          {t("special")}
-          {t("by")}
+          {t("description")}
+          {/* {t("special")}
+          {t("by")} */}
         </p>
       </div>
     </>
