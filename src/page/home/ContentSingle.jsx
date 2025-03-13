@@ -2,6 +2,7 @@ import React from "react";
 import senior from "../../../public/img/image/senior-photo.png";
 import staralign from "../../../public/svg/staralign.svg";
 import { useTranslation } from "react-i18next";
+import ButtonNavigate from "../../components/button/ButtonNavigate";
 import { NavLink } from "react-router";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -38,22 +39,27 @@ const ContentSingle = () => {
             data-aos="fade-left"
             data-aos-duration="600"
           >
-            <p class="text-heading-3 font-bold text-black dark:text-white mb-4">
+            <p class="xl:text-heading-3 lg:text-heading-4 md:text-heading-5 text-heading-5 font-bold text-black dark:text-white mb-4">
               {t("title-section-content")}
               <span class="text-primary-500">
                 {t("title-section-content-one")}{" "}
               </span>
               {t("title-section-content-two")}
             </p>
-            <p class="text-des-2 text-gray-500 dark:text-white mb-6">
+            <p class="xl:text-heading-4 lg:text-heading-5 md:text-heading-6 text-[14px] text-gray-500 dark:text-white mb-6">
               {t("des-section-content")}
             </p>
-            <NavLink
+            {/* <NavLink
               to="/Register"
               className="inline-block bg-secondary-500 text-white text-lg font-semibold py-3 px-6 rounded-full hover:bg-secondary-800 transition duration-300"
             >
               {t("btn-sign")}
-            </NavLink>
+            </NavLink> */}
+            <ButtonNavigate
+              text={t("btn-sign")}
+              link={"/Register"}
+              addMoreStyle="xl:text-heading-5 lg:text-heading-6 md:text-[14px] text-[12px]"
+            />
           </div>
         </div>
       </div>

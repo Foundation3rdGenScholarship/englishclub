@@ -98,9 +98,9 @@ const FeedbackSection = () => {
 
   return (
     <div className="py-16 dark:from-gray-900 dark:to-gray-800 mt-16">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <h2
-          className="text-4xl font-bold text-primary-500 dark:text-white text-center mb-12"
+          className="xl:text-heading-3 lg:text-heading-4 md:text-heading-5 text-heading-5 font-bold text-primary-500 dark:text-white text-center mb-12"
           data-aos="fade-up"
         >
           {t("feedback")}
@@ -110,7 +110,7 @@ const FeedbackSection = () => {
         <div
           className="overflow-hidden relative"
           style={{
-            height: "25rem", // Height for the scroll area
+            // height: "25rem", // Height for the scroll area
             cursor: "default",
             userSelect: "none",
           }}
@@ -129,17 +129,17 @@ const FeedbackSection = () => {
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
-                <GlassCard className="w-full h-[25rem] flex flex-col justify-between dark:bg-gray-800/50 rounded-xl bg-[#f5f5f5] shadow-sm transition-shadow duration-300 p-8">
+                <GlassCard className="w-full xl:h-[25rem] lg:h-96 md:h-80 sm:h-72 h-64  flex flex-col justify-between dark:bg-gray-800/50 rounded-xl bg-[#f5f5f5] shadow-sm transition-shadow duration-300 p-8">
                   <div className="text-secondary-500 flex gap-1">
                     {[...Array(feed.stars)].map((_, i) => (
                       <FaStar key={i} size={20} />
                     ))}
                   </div>
-                  <p className="my-6 text-gray-600 dark:text-gray-300 text-lg leading-relaxed line-clamp-6">
+                  <p className="my-6 text-gray-600 dark:text-gray-300 xl:text-heading-5 lg:text-heading-6 md:text-[14px] text-[12px] leading-relaxed line-clamp-6">
                     {feed.text}
                   </p>
 
-                  <div className="mt-6 flex items-center gap-4">
+                  <div className="mt-6 flex items-center xl:gap-4 lg:gap-3 gap-2">
                     <div className="h-12 w-12 overflow-hidden rounded-full shadow-md">
                       <img
                         alt={`${feed.author} profile picture`}
@@ -152,7 +152,7 @@ const FeedbackSection = () => {
                       />
                     </div>
                     <div>
-                      <p className="text-lg font-semibold text-gray-900 dark:text-white">
+                      <p className="xl:text-heading-5 lg:text-heading-6 md:text-[14px] text-[12px] font-semibold text-gray-900 dark:text-white">
                         {feed.author}
                       </p>
                       <p className="text-sm text-gray-500 dark:text-gray-400">

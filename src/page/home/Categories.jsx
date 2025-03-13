@@ -73,9 +73,9 @@ const FeaturesGrid = () => {
     <>
       <div className="max-w-7xl mx-auto mt-20">
         {/* Title Section with fade-up animation */}
-        <div className="py-16">
+        <div className="xl:py-16 lg:py-14 md:py-12 sm:py-10 py-9">
           <div className="text-center" data-aos="fade-up">
-            <span className="text-heading-3 font-bold leading-tight text-primary-500 dark:text-white">
+            <span className="xl:text-heading-3 lg:text-heading-4 md:text-heading-5 text-heading-5 font-bold leading-tight text-primary-500 dark:text-white">
               {t("des-title")}
               <span className="text-secondary-500">
                 {" "}
@@ -83,14 +83,14 @@ const FeaturesGrid = () => {
               </span>{" "}
               <span> {t("des-sub")}</span>
             </span>
-            <p className="mt-4 text-des-2 leading-7 text-gray-500 sm:mt-8">
+            <p className="mt-4 xl:text-heading-4 lg:text-heading-5 md:text-heading-6 text-[14px] leading-7 text-gray-500 sm:mt-8">
               {t("des-subtwo")}
             </p>
           </div>
         </div>
 
         {/* Features Grid with zoom-in animation */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-16 xl:text-heading-4 lg:text-heading-5 md:text-heading-6 text-[14px]">
           {features.map((feature, index) => (
             <GlassCard
               key={index}
