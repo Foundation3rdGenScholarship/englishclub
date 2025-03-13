@@ -13,14 +13,14 @@ const Hero = () => {
   // Initialize AOS
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration
+      duration: 600, // Animation duration
       easing: "ease-in-out", // Animation easing
       once: true, // Ensure the animation only happens once
     });
   }, []);
 
   return (
-    <div className="pt-14">
+    <div className="pt-14 max-w-6xl mx-auto">
       <GlassCard
         className="h-[700px] sm:h-full md:h-[500px] flex items-center rounded-[3rem_0px]"
         data-aos="fade-up" // Apply fade-up animation to the entire GlassCard

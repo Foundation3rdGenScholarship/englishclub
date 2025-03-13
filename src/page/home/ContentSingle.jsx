@@ -14,7 +14,7 @@ const ContentSingle = () => {
   }, []);
   return (
     <>
-      <div class="bg-primary-50 dark:bg-transparent flex items-center justify-center pb-12">
+      <div class="bg-primary-50 dark:bg-transparent flex items-center justify-center pb-12 mt-20">
         <div class="max-w-6xl mx-auto p-6 gap-6  rounded-lg flex flex-col md:flex-row items-center">
           <div class="relative w-full md:w-1/2 flex flex-col">
             <img
@@ -28,6 +28,7 @@ const ContentSingle = () => {
                 src={senior}
                 width="480"
                 class="object-cover"
+                data-aos-duration="600"
               />
             </div>
           </div>
@@ -35,6 +36,7 @@ const ContentSingle = () => {
           <div
             class="w-full md:w-1/2 text-center md:text-left pt-16"
             data-aos="fade-left"
+            data-aos-duration="600"
           >
             <p class="text-heading-3 font-bold text-black dark:text-white mb-4">
               {t("title-section-content")}

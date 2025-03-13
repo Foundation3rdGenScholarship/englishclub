@@ -10,7 +10,7 @@ const FAQSection = () => {
   const { t } = useTranslation("contact");
   useEffect(() => {
     AOS.init({
-      duration: 800,
+      duration: 600,
       once: false,
     });
   }, []);
@@ -48,18 +48,22 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center gap-8 py-14 m-auto">
+    <div className="flex flex-col lg:flex-row justify-center items-center gap-8 py-14 m-auto">
       {/* Left Image Section - Stays Fixed */}
       <div
-        className="w-full flex justify-center md:w-1/2 flex-shrink-0 order-1 md:order-1"
+        className="w-full flex justify-center lg:w-1/2 flex-shrink-0 order-1 md:order-1"
         data-aos="fade-right"
         data-aos-delay="100"
       >
-        <img src={Faq} alt="Contact Us" />
+        <img
+          src={Faq}
+          alt="Contact Us"
+          className="w-full md:w-[35rem] lg:w-full"
+        />
       </div>
 
       {/* FAQ Section */}
-      <div className="w-full max-w-xl rounded-xl  md:w-1/2 order-2 md:order-2">
+      <div className="w-full max-w-xl rounded-xl lg:w-1/2 order-2 md:order-2">
         {/* FAQ List */}
         <div
           className=" text-black dark:text-white"
@@ -72,7 +76,7 @@ const FAQSection = () => {
               className=" border-primary-500 border-l-4 border-b-2 border-0 rounded-lg mb-4 "
             >
               <button
-                className="w-full text-left p-4 flex justify-between items-center break-words xl:text-xl lg:text-lg md:text-lg sm:text-sm text-xs"
+                className="w-full text-left p-4 flex justify-between items-center break-words text-md sm:text-xl md:text-xl"
                 onClick={() => toggleFAQ(index)}
               >
                 {faq.question}
@@ -81,7 +85,7 @@ const FAQSection = () => {
                 </span>
               </button>
               {openIndex === index && (
-                <p className="p-4 text-gray-600 dark:text-gray-400 break-words text-left xl:text-xl lg:text-lg md:text-lg sm:text-sm text-xs">
+                <p className="p-4 text-gray-600 dark:text-gray-400 break-words text-left text-base text-md sm:text-lg md:text-xl">
                   {faq.answer}
                 </p>
               )}
