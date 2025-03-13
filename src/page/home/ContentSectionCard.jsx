@@ -12,7 +12,7 @@ export default function ContentSectionCard() {
   // Initialize AOS when component mounts
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration
+      duration: 600, // Animation duration
       once: false, // Trigger animation only once
     });
   }, []);
@@ -49,7 +49,7 @@ export default function ContentSectionCard() {
   ];
 
   return (
-    <div className="mt-32 md:mx-28 space-y-16">
+    <div className="mt-28 space-y-16 max-w-7xl mx-auto">
       <div className="text-center" data-aos="fade-up">
         <p className="text-primary-400 text-heading-3 font-bold">
           {t("title-card")}{" "}
@@ -63,8 +63,8 @@ export default function ContentSectionCard() {
       {content.map((item, index) => (
         <div
           key={index}
-          className={`flex flex-col sm:flex-col md:flex-row items-center gap-7 mx-[40px]
-          ${item.float === "right" ? "md:flex-row-reverse" : "md:flex-row"}`}
+          className={`flex flex-col sm:flex-col md:flex-row items-center gap-7  max-w-7xl mx-auto px-8
+          ${item.float === "right" ? "md:flex-row-reverse" : "lg:flex-row"}`}
         >
           {/* Image Outside the GlassCard */}
           {/* <div
@@ -86,17 +86,17 @@ export default function ContentSectionCard() {
             data-aos-duration="600"
           >
             <GlassCard
-              className="p-6 rounded-tl-[50px] rounded-br-[50px] 
+              className="rounded-tl-[50px] rounded-br-[50px] 
              backdrop-blur-md border-2 border-white dark:border-none border-white/20"
             >
-              <div className="p-5">
-                <h3 className="text-primary-500 font-bold text-heading-3 mb-4">
+              <div className="p-3">
+                <h3 className="text-primary-500 font-bold text-heading-4 lg:text-heading-3 mb-4 ">
                   {item.title}
                 </h3>
-                <p className="text-gray-500 dark:text-white text-heading-5 leading-relaxed">
+                <p className="text-gray-500 dark:text-white text-heading-6 lg:text-heading-5 leading-relaxed ">
                   {item.des}
                 </p>
-                <ul className="list-disc pl-5 text-gray-500 dark:text-white mt-4 mb-8 text-[20px]">
+                <ul className="list-disc pl-5 text-gray-500 dark:text-white mt-4 mb-8 text-heading-6 lg:text-heading-5">
                   {item.sub.map((sub, subIndex) => (
                     <li key={subIndex}>{sub}</li>
                   ))}
@@ -118,7 +118,7 @@ export default function ContentSectionCard() {
               src={item.image}
               alt={item.title}
               loading="lazy"
-              className="w-full h-auto object-cover rounded-tr-[50px] rounded-bl-[50px] shadow-lg"
+              className="w-full h-auto md:h-[25rem] md:w-full object-cover rounded-tr-[50px] rounded-bl-[50px] shadow-lg"
             />
           </div>
         </div>

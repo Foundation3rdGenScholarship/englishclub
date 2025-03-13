@@ -14,7 +14,7 @@ const ContentSingle = () => {
   }, []);
   return (
     <>
-      <div class="bg-primary-50 dark:bg-transparent flex items-center justify-center pb-12">
+      <div class="bg-primary-50 dark:bg-transparent flex items-center justify-center pb-12 mt-20">
         <div class="max-w-6xl mx-auto p-6 gap-6  rounded-lg flex flex-col md:flex-row items-center">
           <div class="relative w-full md:w-1/2 flex flex-col">
             <img

@@ -20,7 +20,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="pt-14">
+    <div className="pt-14 max-w-6xl mx-auto">
       <GlassCard
         className="h-[700px] sm:h-full md:h-[500px] flex items-center rounded-[3rem_0px]"
         data-aos="fade-up" // Apply fade-up animation to the entire GlassCard

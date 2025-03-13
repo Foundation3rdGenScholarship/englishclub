@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import Typed from "typed.js";
 import Skeleton from "react-loading-skeleton"; // Import the skeleton loader
-
+import "react-loading-skeleton/dist/skeleton.css"; // Import the CSS file
 const UserProfileForm = ({
   user,
   profilePreview,
@@ -139,7 +139,7 @@ const UserProfileForm = ({
             </div>
           </div>
 
-          <div className="max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 md:p-8">
+          <div className="max-w-2xl mx-auto bg-[#f8f8f8] dark:bg-gray-800 rounded-xl shadow-md p-6 md:p-8">
             <div className="mb-6">
               <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
                 {t("name")}

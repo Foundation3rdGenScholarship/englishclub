@@ -21,7 +21,7 @@ const HomeMain = () => {
     );
   };
   return (
-    <div>
+    <div className="overflow-hidden xl:overflow-visible relative">
       <div className="relative">
         <img
           src={shap}

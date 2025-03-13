@@ -86,14 +86,14 @@ const AskSection = () => {
                     type="text"
                     name="name"
                     placeholder={t("name-placeholder")}
-                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 ${
+                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 placeholder-gray-400 dark:placeholder-gray-500 ${
                       errors.name && touched.name ? "border-red-500" : ""
                     }`}
                   />
                   <ErrorMessage
                     name="name"
                     component="div"
-                    className="text-red-500 text-sm mb-3"
+                    className="text-red-500 text-sm mb-3 mt-2"
                   />
 
                   {/* Email  */}
@@ -104,14 +104,14 @@ const AskSection = () => {
                     type="email"
                     name="email"
                     placeholder={t("email-placeholder")}
-                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 ${
+                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 placeholder-gray-400 dark:placeholder-gray-500 ${
                       errors.email && touched.email ? "border-red-500" : ""
                     }`}
                   />
                   <ErrorMessage
                     name="email"
                     component="div"
-                    className="text-red-500 text-sm mb-3"
+                    className="text-red-500 text-sm mb-3 mt-2"
                   />
 
                   {/* Subject */}
@@ -122,14 +122,14 @@ const AskSection = () => {
                     type="text"
                     name="subject"
                     placeholder={t("subject-placeholder")}
-                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 ${
+                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 placeholder-gray-400 dark:placeholder-gray-500 ${
                       errors.subject && touched.subject ? "border-red-500" : ""
                     }`}
                   />
                   <ErrorMessage
                     name="subject"
                     component="div"
-                    className="text-red-500 text-sm mb-3"
+                    className="text-red-500 text-sm mb-3 mt-2"
                   />
 
                   {/* Question */}
@@ -140,7 +140,7 @@ const AskSection = () => {
                     as="textarea"
                     name="question"
                     placeholder={t("question-ask-placeholder")}
-                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 ${
+                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 placeholder-gray-400 dark:placeholder-gray-500 ${
                       errors.question && touched.question
                         ? "border-red-500"
                         : ""

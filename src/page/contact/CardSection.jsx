@@ -20,8 +20,12 @@ const CardSection = () => {
       <div>
         <div className="text-center">
           <h2 className="text-primary-500 text-heading-1 font-bold dark:text-primary-500 py-14">
-            <span>{t("title")}</span>{" "}
-            <span className="text-[#FBA526] font-en">FluentFlow</span>
+            <span className="text-3xl md:text-4xl lg:text-5xl">
+              {t("title")}
+            </span>{" "}
+            <span className="text-[#FBA526] font-en text-3xl md:text-4xl lg:text-5xl">
+              FluentFlow
+            </span>
           </h2>
           {/* <TextAnimation
             className="text-primary-500 text-heading-1 font-bold dark:text-primary-500 py-14 "
@@ -33,7 +37,7 @@ const CardSection = () => {
 
           <div className="flex justify-center items-center">
             <div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 pt-1"
+              className="flex flex-wrap lg:flex-nowrap justify-center items-center gap-5 lg:gap-16 pt-1"
               data-aos="fade-up"
               data-aos-delay="100"
             >
