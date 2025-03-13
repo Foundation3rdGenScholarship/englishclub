@@ -6,6 +6,7 @@ import { closeSidebar } from "./redux/features/user/visibilitySlice";
 import React from "react";
 import { useNetworkState } from "react-use";
 import NetworkStatus from "./utils/NetworkStatus";
+import SEO from "./components/SEO/SEO";
 
 function App() {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ function App() {
   }
   return (
     <>
+     <SEO/>
       <NavbarDashboard />
       <Sidebar />
       <div onClick={() => dispatch(closeSidebar())}>
