@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import { submitExercises } from "../../services/submitExercises.js";
 import { useTranslation } from "react-i18next";
-import SubmitPopup from "../popup/SubmitPopup.jsx";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
   const { t } = useTranslation("error");
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [feedbackMessage, setFeedbackMessage] = useState("");
+
+  // Initialize toast notifications
+  const notify = (message, type = "success") => {
+    if (type === "success") {
+      toast.success(message);
+    } else {
+      toast.error(message);
+    }
+  };
 
   // Function to play sound
   const playSound = (soundName) => {
@@ -46,28 +55,31 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
   const handleSubmit = async () => {
     if (isAllAnswered) {
       setIsSubmitted(true);
-
       const answers = prepareAnswers();
 
-      const result = await submitExercises(ex_uuid, answers);
+      try {
+        const result = await submitExercises(ex_uuid, answers);
 
-      if (result.success) {
-        setFeedbackMessage("Exercise submitted successfully!");
+        if (result.success) {
+          notify("Exercise submitted successfully!");
 
-        // Play the correct sound for each correct answer
-        exercises.forEach((exercise, index) => {
-          const selectedAnswer = selectedAnswers[exercise.id];
-          const isCorrect =
-            exercise.choices.find(
-              (choice) => choice.choice_uuid === selectedAnswer
-            )?.is_correct || false;
+          // Play the correct sound for each correct answer
+          exercises.forEach((exercise, index) => {
+            const selectedAnswer = selectedAnswers[exercise.id];
+            const isCorrect =
+              exercise.choices.find(
+                (choice) => choice.choice_uuid === selectedAnswer
+              )?.is_correct || false;
 
-          if (isCorrect) {
-            playSound(`correct${index + 1}`);
-          }
-        });
-      } else {
-        setFeedbackMessage(`${t("multipleChoics")}`);
+            if (isCorrect) {
+              playSound(`correct${index + 1}`);
+            }
+          });
+        } else {
+          notify(t("multipleChoics"), "error");
+        }
+      } catch (error) {
+        notify(`Error: ${error.message || "Something went wrong"}`, "error");
       }
     }
   };
@@ -133,14 +145,7 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
         Submit
       </button>
 
-      {/* Feedback message after submission */}
-      {feedbackMessage && (
-        <SubmitPopup
-          message={feedbackMessage}
-          type={feedbackMessage.includes("Error") ? "error" : "success"}
-          onClose={() => setFeedbackMessage("")}
-        />
-      )}
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 };

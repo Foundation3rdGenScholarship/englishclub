@@ -1,36 +1,36 @@
 import React, { useState } from "react";
 import { submitExercises } from "../../services/submitExercises.js";
 import { useTranslation } from "react-i18next";
-import SubmitPopup from "../popup/SubmitPopup.jsx";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
   const { t } = useTranslation("error");
   const [answers, setAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [feedbackMessage, setFeedbackMessage] = useState("");
 
-  // Handle input change
+  // Initialize toast notifications
+  const notify = (message, type = "success") => {
+    if (type === "success") {
+      toast.success(message);
+    } else {
+      toast.error(message);
+    }
+  };
+
   const handleInputChange = (exerciseId, value) => {
     if (!isSubmitted) {
       setAnswers((prev) => ({
         ...prev,
-        [exerciseId]: value.trim(), // Trim spaces to avoid accidental empty input
+        [exerciseId]: value.trim(),
       }));
     }
   };
 
-  // Check if all blanks are filled
   const isAllFilled = exercises.every(
     (exercise) => answers[exercise.id]?.length > 0
   );
 
-  // Function to play sound (assuming this is defined elsewhere)
-  const playSound = (soundId) => {
-    // Implementation for playing sound
-    console.log(`Playing sound: ${soundId}`);
-  };
-
-  // Prepare the answers object
   const prepareAnswers = () => {
     return {
       user_answer: exercises.map((exercise) => ({
@@ -40,7 +40,6 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
     };
   };
 
-  // Handle submission
   const handleSubmit = async () => {
     if (!isSubmitted && isAllFilled) {
       setIsSubmitted(true);
@@ -51,9 +50,8 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
         const result = await submitExercises(ex_uuid, formattedAnswers);
 
         if (result.success) {
-          setFeedbackMessage("Exercise submitted successfully!");
+          notify("Exercise submitted successfully!", "success");
 
-          // Play the correct sound for each correct answer
           exercises.forEach((exercise, index) => {
             const userAnswer = answers[exercise.id] || "";
             const isCorrect =
@@ -61,14 +59,14 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
               String(exercise.correct_answer?.answer || "").toLowerCase();
 
             if (isCorrect) {
-              playSound(`correct${index + 1}`);
+              console.log(`Playing correct sound: correct${index + 1}`);
             }
           });
         } else {
-          setFeedbackMessage(t("fillintheblank") || "Submission failed");
+          notify(t("fillintheblank") || "Submission failed", "error");
         }
       } catch (error) {
-        setFeedbackMessage(`Error: ${error.message || "Something went wrong"}`);
+        notify(`Error: ${error.message || "Something went wrong"}`, "error");
       }
     }
   };
@@ -82,24 +80,18 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
           String(userAnswer).toLowerCase() ===
             String(exercise.correct_answer?.answer || "").toLowerCase();
 
-        // Split the question text by the blank indicator
         const parts = exercise.question_text.split("_____");
 
         return (
           <div key={exercise.id} className="">
-            {/* <h2 className="text-xl font-bold">Question {index + 1}</h2> */}
-            {/* {index + 1} */}
-            <p
-              className="text-lg mt-3
-            "
-            >
+            <p className="text-lg mt-3">
               {parts.map((part, partIndex, array) => (
                 <span key={partIndex}>
                   {part}
                   {partIndex < array.length - 1 && (
                     <input
                       type="text"
-                      className={`dark:bg-gray-600 border-b-2 border-none focus:border-red-500 focus:ring-0 p-2 px-2 text-center w-40 mx-1 outline-none${
+                      className={`dark:bg-gray-600 border-b-2 border-none focus:ring-0 p-2 px-2 text-center w-40 mx-1 outline-none ${
                         isSubmitted
                           ? isCorrect
                             ? "border-green-500 text-green-600"
@@ -148,13 +140,8 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
         Submit
       </button>
 
-      {feedbackMessage && (
-        <SubmitPopup
-          message={feedbackMessage}
-          type={feedbackMessage.includes("Error") ? "error" : "success"}
-          onClose={() => setFeedbackMessage("")}
-        />
-      )}
+      {/* Toast Container */}
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 };

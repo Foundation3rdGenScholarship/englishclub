@@ -123,16 +123,29 @@ const ListeningExercises = () => {
     // TODO Fill in The blank
   } else if (data?.questions[0].type?.toUpperCase() === "FILL_IN_THE_BLANK") {
     // Assuming 'data' contains your original data shown in the console
-    const exercisesData = data.questions.map((question, index) => {
-      console.log("Question : ", question);
-      return {
-        id: index + 1,
-        question_text: question.question_text,
-        correct_answer: Array.isArray(question.correct_answer)
-          ? question.correct_answer[0]
-          : question.correct_answer,
-      };
-    });
+    // const exercisesData = data.questions.map((question, index) => {
+    //   console.log("Question : ", question);
+    //   return {
+    //     id: index + 1,
+    //     question_text: question.question_text,
+    //     correct_answer: Array.isArray(question.correct_answer)
+    //       ? question.correct_answer[0]
+    //       : question.correct_answer,
+    //   };
+    // });
+
+    const exercisesData = data.questions.map((item, index) => ({
+      id: index + 1,
+      question_text: item.question_text,
+      question_uuid: item.q_uuid,
+      correct_answer: item.correct_answer,
+      choices:
+        item.choices?.map((choice) => ({
+          choice_uuid: choice.choice_uuid,
+          is_correct: choice.is_correct,
+          text: choice.text,
+        })) || [],
+    }));
 
     console.log(exercisesData);
     return (
