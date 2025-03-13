@@ -17,7 +17,7 @@ const ContactSection = () => {
   const { t } = useTranslation("contact");
   useEffect(() => {
         AOS.init({
-          duration: 800,
+          duration: 600,
           once: false,
           // mirror: true,
         });
@@ -73,12 +73,15 @@ const ContactSection = () => {
               <a
                 href="https://www.facebook.com/istad.co"
                 target="_blank"
-                rel="noopener noreferrer"
                 className="text-primary-500 text-4xl cursor-pointer"
               >
                 <FaFacebook />
               </a>
-              <a href="#" className="text-primary-500 text-4xl">
+              <a
+                href="https://t.me/istadkh"
+                target="_blank"
+                className="text-primary-500 text-4xl"
+              >
                 <FaTelegramPlane />
               </a>
             </div>

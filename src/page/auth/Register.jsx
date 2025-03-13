@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { FaUser, FaLock } from "react-icons/fa";
-import { useNavigate, useLocation } from "react-router";
+import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
+import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import signupimg from "../../../public/svg/signup.svg";
@@ -16,6 +16,7 @@ import AuthLayout from "../../components/layout/AuthLayout";
 import InputField from "../../components/inputField/InputField";
 import SubmitButton from "../../components/button/SubmitButton";
 import { useRegisterUserMutation } from "../../redux/features/user/userSlice";
+import Modal from "../../components/modal/Modal"; // Import the Modal component
 
 export default function Register() {
   const navigate = useNavigate();
@@ -25,6 +26,15 @@ export default function Register() {
   const clientId = import.meta.env.VITE_GOOGLE_OAUTH_CLIENT_ID;
   const strongPasswordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[A-Za-z\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{8,}$/;
+
+  // State for modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [privacyPolicyAccepted, setPrivacyPolicyAccepted] = useState(false);
+
+  // Debug modal state
+  useEffect(() => {
+    console.log("isModalOpen:", isModalOpen);
+  }, [isModalOpen]);
 
   const initialValues = {
     username: "",
@@ -59,19 +69,32 @@ export default function Register() {
     ),
   });
 
-  const handleSubmit = async (values) => {
-    console.log("Payload:", values); // Log the payload for debugging
+  const handleSubmit = async (values, { setSubmitting }) => {
+    console.log("Form Values:", values); // Debug form values
+    console.log("Privacy Policy Checked:", values.privacyPolicy); // Debug checkbox state
+
+    
+
     try {
-      await registerUser(values).unwrap();
+      // Remove the `privacyPolicy` field from the payload
+      const { privacyPolicy, ...payload } = values;
+      if (!values.privacyPolicy) {
+        console.log("Checkbox not checked, showing modal..."); // Debug modal logic
+        setIsModalOpen(true); // Show modal if checkbox is not checked
+        setSubmitting(false); // Prevent form submission
+      }
+      await registerUser(payload).unwrap();
       toast.success(t("Sign up Successfully!"));
       navigate("/login");
     } catch (error) {
-      console.error("Error:", error); // Log the error for debugging
+      console.error("Error:", error);
       if (error.data && error.data.detail) {
-        toast.error(error.data.detail); // Show specific error message from the server
+        toast.error(error.data.detail);
       } else {
-        toast.error(t("Sign up failed. Please try again.")); // Fallback error message
+        toast.error(t("Sign up failed. Please try again."));
       }
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -100,42 +123,48 @@ export default function Register() {
           onSubmit={handleSubmit}
         >
           {({ isSubmitting }) => (
-            <Form className="space-y-6">
-              {/* Username Input */}
-              <InputField
-                label={t("username")}
-                name="username"
-                type="text"
-                placeholder={t("enter your username")}
-                icon={FaUser}
-              />
+            <Form className="space-y-[18.5px] max-h-screen">
+              {/* Username and Email in One Line */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Username Input */}
+                <InputField
+                  label={t("username")}
+                  name="username"
+                  type="text"
+                  placeholder={t("enter your username")}
+                  icon={FaUser}
+                />
 
-              {/* Email Input */}
-              <InputField
-                label={t("email")}
-                name="email"
-                type="email"
-                placeholder={t("enter your email")}
-                icon={FaUser}
-              />
+                {/* Email Input */}
+                <InputField
+                  label={t("email")}
+                  name="email"
+                  type="email"
+                  placeholder={t("enter your email")}
+                  icon={FaEnvelope}
+                />
+              </div>
 
-              {/* Password Input */}
-              <InputField
-                label={t("password")}
-                name="password"
-                type="password"
-                placeholder={t("enter your password")}
-                icon={FaLock}
-              />
+              {/* Password Inputs */}
+              <div className="space-y-4">
+                {/* Password Input */}
+                <InputField
+                  label={t("password")}
+                  name="password"
+                  type="password"
+                  placeholder={t("enter your password")}
+                  icon={FaLock}
+                />
 
-              {/* Confirm Password Input */}
-              <InputField
-                label={t("confirm password")}
-                name="confirm_password"
-                type="password"
-                placeholder={t("enter your confirm password")}
-                icon={FaLock}
-              />
+                {/* Confirm Password Input */}
+                <InputField
+                  label={t("confirm password")}
+                  name="confirm_password"
+                  type="password"
+                  placeholder={t("enter your confirm password")}
+                  icon={FaLock}
+                />
+              </div>
 
               {/* Privacy Policy Checkbox */}
               <div className="text-right">
@@ -146,8 +175,12 @@ export default function Register() {
                     type="checkbox"
                     name="privacyPolicy"
                   />
-                  <label htmlFor="privacyPolicy" className="text-[14px]">
-                    {t("I agree to the")}
+                  <label
+                    htmlFor="privacyPolicy"
+                    className="text-[14px]"
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    {t("I agree to the")}{" "}
                     <span className="text-primary-500 hover:text-primary-600 dark:text-primary-400 dark:hover:text-primary-300 underline">
                       {t("privacy policy")}
                     </span>
@@ -164,9 +197,7 @@ export default function Register() {
               />
 
               {/* Google Login Button */}
-              <GoogleLoginButton
-        
-              />
+              <GoogleLoginButton />
 
               {/* Login Link */}
               <div className="text-center mt-6">
@@ -184,6 +215,65 @@ export default function Register() {
           )}
         </Formik>
       </AuthLayout>
+      {/* Privacy Policy Modal */}
+      <Modal
+        onAccept={() => {
+          setPrivacyPolicyAccepted(true); // Mark the policy as accepted
+        }}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title={t("Privacy Policy")}
+      >
+        <p className="mb-4">
+          {t("main-description")}
+        </p>
+
+        <h4 className="text-md font-semibold mt-4 mb-2">
+          {t("main-description-1")}
+        </h4>
+        <p className="mb-4">
+          {t("description-1")}
+        </p>
+
+        <h4 className="text-md font-semibold mt-4 mb-2">
+          {t("main-description-2")}
+        </h4>
+        <p className="mb-4">
+          {t("description-2")}
+        </p>
+
+        <h4 className="text-md font-semibold mt-4 mb-2">
+          {t("main-description-3")} 
+        </h4>
+        <p className="mb-4">
+          {t("description-3")}
+        </p>
+
+        <h4 className="text-md font-semibold mt-4 mb-2">
+          {t("main-description-4")}
+        </h4>
+        <p className="mb-4">
+          {t("description-4")}
+        </p>
+
+        <h4 className="text-md font-semibold mt-4 mb-2">
+          {t("main-description-5")}
+        </h4>
+        <p className="mb-4">
+          {t("description-5")}
+        </p>
+
+        <h4 className="text-md font-semibold mt-4 mb-2">
+          {t("main-description-6")}
+        </h4>
+        <p className="mb-4">
+          {t("description-6")}
+        </p>
+
+        <p className="mt-6">
+          {t("description-7")}
+        </p>
+      </Modal>
     </GoogleOAuthProvider>
   );
 }
