@@ -53,6 +53,7 @@ import ListeningA2 from "./page/dashboard/content/listeningDetail/ListeningA2.js
 import ListeningB1 from "./page/dashboard/content/listeningDetail/ListeningB1.jsx";
 import ScrollToTop from "./components/progress/ScrollToTop.jsx";
 import VocabulariesExercises from "./page/dashboard/content/exercises/VocabulariesExercises.jsx";
+import GoogleAnalytics from "./utils/GoogleAnalytics.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -71,6 +72,7 @@ createRoot(document.getElementById("root")).render(
       <Provider store={store}>
         <ProgressBar />
         <BrowserRouter>
+          <GoogleAnalytics />
           <ScrollToTop />
           <Routes>
             <Route element={<RootLayout />}>
