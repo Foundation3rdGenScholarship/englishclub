@@ -200,11 +200,7 @@ const ExerciseStats = () => {
 
         {/* Image */}
         <div className="h-[470px] order-1" data-aos="fade-left">
-          <img
-            className="h-full"
-            src="../../../public/svg/UserProfile.svg"
-            alt="Completion"
-          />
+          <img className="h-full" src="/svg/UserProfile.svg" alt="Completion" />
         </div>
       </div>
     </div>

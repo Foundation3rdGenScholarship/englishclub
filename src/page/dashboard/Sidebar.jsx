@@ -14,7 +14,7 @@ import ButtonLanguage from "../../components/button/ButtonLanguage";
 import { TbTextGrammar, TbVocabulary } from "react-icons/tb";
 import { PiUserSoundFill } from "react-icons/pi";
 import { MdVideoLibrary } from "react-icons/md";
-
+import { SiGoogletranslate } from "react-icons/si";
 import {
   setActiveItem,
   toggleDropdown,
@@ -226,6 +226,22 @@ const Sidebar = () => {
               <MdVideoLibrary className="size-6" />
               <span className="flex-1 ms-3 whitespace-nowrap">
                 {t("extraVideo")}
+              </span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/langtranslate"
+              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
+                activeItem === "langtranslate"
+                  ? "bg-primary-100 dark:bg-primary-950 text-white"
+                  : ""
+              }`}
+              onClick={() => handleClick("langtranslate")}
+            >
+              <SiGoogletranslate className="size-6" />
+              <span className="flex-1 ms-3 whitespace-nowrap">
+                {t("translate")}
               </span>
             </NavLink>
           </li>

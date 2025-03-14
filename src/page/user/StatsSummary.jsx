@@ -78,7 +78,6 @@ const StatsSummary = () => {
 
         if (!response.ok) {
           // Handle API errors but don't show to user
-          console.error(`API error: ${response.status}`);
           // Still set empty answers for new users
           setUserAnswers([]);
           setIsLoading(false);
@@ -87,7 +86,6 @@ const StatsSummary = () => {
 
         const data = await response.json();
 
-        console.log("This is all data from submit : ", data);
 
         // Set the answers (use empty array if payload is null/undefined)
         setUserAnswers(data.payload || []);
@@ -128,7 +126,7 @@ const StatsSummary = () => {
 
         setLevelCounts(counts);
       } catch (error) {
-        console.error("Error fetching user answers:", error);
+
         // For errors, still show the UI with zero completed exercises
         setUserAnswers([]);
       }

@@ -1,0 +1,21 @@
+{
+  "Animals": "សត្វ",
+  "Fruits": "ផ្លែឈើ",
+  "Accessories": "គ្រឿង​ Accessories",
+  "Vehicles": "យានយន្ត",
+  "Clothing": "សម្លៀកបំពាក់",
+  "Sports": "កីឡា",
+  "Learning vocabularies with": "សិក្សាពាក្យជាមួយ",
+  "Sound": "សម្លេង",
+  "Language": "បកប្រែ",
+  "Translator": "ភាសា",
+  "From:": "ពី:",
+  "To:": "ទៅ:",
+  "Enter text to translate...": "បញ្ចូលអត្ថបទដើម្បីបកប្រែ...",
+  "English": "អង់គ្លេស",
+  "Khmer": "ខ្មែរ",
+  "No text to read. Please translate first!": "មិនមានអត្ថបទដើម្បីអានទេ។ សូមបកប្រែជាមុន!",
+  "Text-to-speech is already in progress.": "ការបង្ហោះអត្ថបទទៅសំឡេងកំពុងរត់រួចហើយ។",
+  "Failed to translate. Please try again!": "បរាជ័យក្នុងការបកប្រែ។ សូមព្យាយាមម្ដងទៀត!",
+  "Failed to generate speech. Try again!": "បរាជ័យក្នុងការការនិយាយ។ ព្យាយាមម្តងទៀត!"
+}

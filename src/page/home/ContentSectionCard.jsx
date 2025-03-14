@@ -64,8 +64,8 @@ export default function ContentSectionCard() {
       {content.map((item, index) => (
         <div
           key={index}
-          className={`flex flex-col xl:flex-row lg:flex-row sm:flex-col md:flex-row items-center gap-7  max-w-7xl mx-auto px-8
-          ${item.float === "right" ? "md:flex-row-reverse" : "lg:flex-row"}`}
+          className={`flex flex-col md:flex-row sm:flex-col items-center gap-7  max-w-7xl mx-auto px-8
+          ${item.float === "right" ? "lg:flex-row-reverse" : "lg:flex-row"}`}
         >
           <div
             className="flex-1"

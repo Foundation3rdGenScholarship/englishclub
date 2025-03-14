@@ -1,22 +1,226 @@
-[
-  {
-    "word": "Grapes",
-    "image": "https://m.media-amazon.com/images/I/71MQD-Dj1gL._AC_UF894,1000_QL80_.jpg"
-  },
-  {
-    "word": "Watermelon",
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaFt6Iz3D590bKd1YDJROFYTQz_H57VLft_Q&s"
-  },
-  {
-    "word": "Avocado",
-    "image": "https://domf5oio6qrcr.cloudfront.net/medialibrary/5138/h0618g16207257173805.jpg"
-  },
-  {
-    "word": "Pomegranate",
-    "image": "https://images.healthshots.com/healthshots/en/uploads/2021/09/27184641/pomegranate.jpg"
-  },
-  {
-    "word": "Passion fruit",
-    "image": "https://m.media-amazon.com/images/I/71RnIU8h-7L.jpg"
-  }
-]
+{
+  "categories": [
+    {
+      "name": "Animals",
+      "items": [
+        {
+          "word": "Dog",
+          "image": "https://www.dailypaws.com/thmb/fEDKImczuOPT5qGGkcyEDVtpQog=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/golden-retriever-133322407-2000-fbd1b13ad4704917a30e062afcb111b5.jpg"
+        },
+        {
+          "word": "Cat",
+          "image": "https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg"
+        },
+        {
+          "word": "Elephant",
+          "image": "https://images.pexels.com/photos/1054666/pexels-photo-1054666.jpeg"
+        },
+        {
+          "word": "Lion",
+          "image": "https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg"
+        },
+        {
+          "word": "Tiger",
+          "image": "https://images.pexels.com/photos/792381/pexels-photo-792381.jpeg"
+        },
+        {
+          "word": "Giraffe",
+          "image": "https://cdn.sanity.io/images/cphrnle8/production/231c6350832d857ffb4e20b9e797ad0c328ff0c9-1440x811.jpg?w=1440&q=100&fit=max"
+        },
+        {
+          "word": "Monkey",
+          "image": "https://media.istockphoto.com/id/629628952/photo/bonnet-monkey.jpg?s=612x612&w=0&k=20&c=UlCED-gnWw3fgiYQxIGEf-Fqbn-H0nJ0aH9rfj-12ac="
+        },
+        {
+          "word": "Panda",
+          "image": "https://assets.wwf.org.au/image/upload/f_auto/q_auto/v1674791331/elcom/416/img-panda-in-tree-1000px.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Fruits",
+      "items": [
+        {
+          "word": "Grapes",
+          "image": "https://m.media-amazon.com/images/I/71MQD-Dj1gL._AC_UF894,1000_QL80_.jpg"
+        },
+        {
+          "word": "Strawberry",
+          "image": "https://allmanhall.co.uk/wp-content/uploads/2019/06/Strawberries-on-white-background.jpg"
+        },
+        {
+          "word": "Apple",
+          "image": "https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg"
+        },
+        {
+          "word": "Banana",
+          "image": "https://organicmandya.com/cdn/shop/files/BananaPachabale.jpg?v=1721369894&width=1000"
+        },
+        {
+          "word": "Orange",
+          "image": "https://images.pexels.com/photos/161559/background-bitter-breakfast-bright-161559.jpeg"
+        },
+        {
+          "word": "Pineapple",
+          "image": "https://www.healthxchange.sg/sites/hexassets/Assets/food-nutrition/pineapple-health-benefits-and-ways-to-enjoy.jpg"
+        },
+        {
+          "word": "Watermelon",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaFt6Iz3D590bKd1YDJROFYTQz_H57VLft_Q&s"
+        },
+        {
+          "word": "Mango",
+          "image": "https://orchardfruit.com/cdn/shop/files/Mango-Whole-The-Orchard-Fruit-72136115.jpg?v=1722937809&width=1000"
+        }
+      ]
+    },
+    {
+      "name": "Accessories",
+      "items": [
+        {
+          "word": "Watch",
+          "image": "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg"
+        },
+        {
+          "word": "Sunglasses",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9U88cQi7S50IEkvJJNEXa3R6laouDIb_fSOWtwF6p-UpSEsxQ-mO99T5Wt0TjuOQPRYE&usqp=CAU"
+        },
+        {
+          "word": "Necklace",
+          "image": "https://images.pexels.com/photos/3266700/pexels-photo-3266700.jpeg"
+        },
+        {
+          "word": "Ring",
+          "image": "https://images.pexels.com/photos/3266703/pexels-photo-3266703.jpeg"
+        },
+        {
+          "word": "Bracelet",
+          "image": "https://www.proclamationjewelry.com/cdn/shop/files/5mmSilver_franco_bracelet_5mm_7bcbc281-0692-4dbf-9fd8-12cccbbb0cdb_1.jpg?v=1727454482"
+        },
+        {
+          "word": "Earrings",
+          "image": "https://www.candere.com/media/jewellery/images/C014248__1_1.jpeg"
+        },
+        {
+          "word": "Handbag",
+          "image": "https://images.pexels.com/photos/2905238/pexels-photo-2905238.jpeg"
+        },
+        {
+          "word": "Wallet",
+          "image": "https://m.media-amazon.com/images/I/81WIcyHQ7oL._AC_UY1100_.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Vehicles",
+      "items": [
+        {
+          "word": "Car",
+          "image": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg"
+        },
+        {
+          "word": "Bicycle",
+          "image": "https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg"
+        },
+        {
+          "word": "Motorcycle",
+          "image": "https://ridermagazine.com/wp-content/uploads/2019/08/2020-Aprilia-RS-660-3qtr-featured.jpg"
+        },
+        {
+          "word": "Bus",
+          "image": "https://assets.volvo.com/is/image/VolvoInformationTechnologyAB/volvo-8900-electric-teaser-1860x1050?size=1280,720&scl=1"
+        },
+        {
+          "word": "Truck",
+          "image": "https://www.isuzucv.com/images/us/models/6.6l_npr_gas.webp"
+        },
+        {
+          "word": "Airplane",
+          "image": "https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg"
+        },
+        {
+          "word": "Boat",
+          "image": "https://www.iims.org.uk/wp-content/uploads/2019/09/DSC_0008.jpg"
+        },
+        {
+          "word": "Train",
+          "image": "https://www.timeforkids.com/wp-content/uploads/2020/02/feature-cover_-train-k1.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Clothing",
+      "items": [
+        {
+          "word": "T-Shirt",
+          "image": "https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg"
+        },
+        {
+          "word": "Jeans",
+          "image": "https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg"
+        },
+        {
+          "word": "Dress",
+          "image": "https://www.elsijohn.com/cdn/shop/products/Red-BallGown-WeddingDress-07A-ElsiJohn_2048x.jpg"
+        },
+        {
+          "word": "Jacket",
+          "image": "https://img01.ztat.net/article/spp-media-p1/e6743c64c2c143b8a59044adbe0f2862/6ac93f730cce422db38be6e84d9f2988.jpg?imwidth=762&filter=packshot"
+        },
+        {
+          "word": "Shoes",
+          "image": "https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg"
+        },
+        {
+          "word": "Hat",
+          "image": "https://images.pexels.com/photos/35185/hats-fedora-hat-manufacture-stack.jpg"
+        },
+        {
+          "word": "Socks",
+          "image": "https://gentlegrip.co.uk/cdn/shop/files/preview_images/8829c071426441689a0dabe81309ff02.thumbnail.0000000000_850x850.jpg?v=1737465243"
+        },
+        {
+          "word": "Scarf",
+          "image": "https://lanebryant.scene7.com/is/image/lanebryantProdATG/402263_0000004051?$pdpMainImage$"
+        }
+      ]
+    },
+    {
+      "name": "Sports",
+      "items": [
+        {
+          "word": "Football",
+          "image": "https://images.pexels.com/photos/47730/the-ball-stadion-football-the-pitch-47730.jpeg"
+        },
+        {
+          "word": "Basketball",
+          "image": "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg"
+        },
+        {
+          "word": "Tennis",
+          "image": "https://images.pexels.com/photos/209977/pexels-photo-209977.jpeg"
+        },
+        {
+          "word": "Badminton",
+          "image": "https://static.zawya.com/view/acePublic/alias/contentid/ZmMyMjkxMDctODMyMi00/4/1278025290.webp"
+        },
+        {
+          "word": "Golf",
+          "image": "https://www.pgaplay.co.uk/media/4rkjsm2d/2019_pro-v1_with-driver.jpg"
+        },
+        {
+          "word": "Volleyball",
+          "image": "https://www.fivb.com/wp-content/uploads/2024/12/101767-1.jpeg"
+        },
+        {
+          "word": "Swimming",
+          "image": "https://i0.wp.com/blog.myswimpro.com/wp-content/uploads/2023/10/freestyle-stroke-breathing-technique-myswimpro.jpeg?fit=1500%2C1000&ssl=1"
+        },
+        {
+          "word": "Cycling",
+          "image": "https://images.immediate.co.uk/production/volatile/sites/30/2023/12/Cyclist-in-red-c9e267e.jpg"
+        }
+      ]
+    }
+  ]
+}

@@ -65,6 +65,7 @@ import { SpeakingA2 } from "./page/dashboard/content/speakingDetail/SpeakingA2.j
 import { SpeakingB1 } from "./page/dashboard/content/speakingDetail/SpeakingB1.jsx";
 import { SpeakingB2 } from "./page/dashboard/content/speakingDetail/SpeakingB2.jsx";
 import { SpeakingC1 } from "./page/dashboard/content/speakingDetail/SpeakingC1.jsx";
+import LangTranslate from "./page/dashboard/content/translate/Translator.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -117,6 +118,7 @@ createRoot(document.getElementById("root")).render(
                 <Route path="/a1a2vocabulary" element={<A1A2vocabulary />} />
                 <Route path="/b1b2vocanulary" element={<B1B2vocabulary />} />
                 <Route path="/soundTts" element={<ImageTTS />} />
+                <Route path="/langtranslate" element={<LangTranslate />} />
                 <Route
                   path="/courses/reading/level=a1"
                   element={<ReadingDetail />}

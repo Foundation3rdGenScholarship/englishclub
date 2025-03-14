@@ -17,7 +17,6 @@ const GoogleLoginButton = () => {
   const [loading, setLoading] = useState(false);
 
   const handleGoogleLoginFailure = (error) => {
-    console.error("Login Failed: ", error);
     toast.error(t("Google login failed. Please try again."));
   };
 
@@ -25,7 +24,7 @@ const GoogleLoginButton = () => {
     onSuccess: async (res) => {
       if (res) {
         setLoading(true);
-        toast.info(t("Processing your login... Please wait."));
+        toast.info(t("Processing your login... Please wait!"));
         const accessToken = res.access_token;
         try {
           const userData = await fetch(
@@ -40,7 +39,7 @@ const GoogleLoginButton = () => {
 
           if (userData) {
             if (!userData.verified_email) {
-              toast.error(t("Please verify your email with Google first."));
+              toast.error(t("Please verify your email first!"));
               setLoading(false);
               return;
             }
@@ -71,12 +70,10 @@ const GoogleLoginButton = () => {
                 },
               });
             } catch (error) {
-              console.error("Error signing up with Google: ", error);
               toast.error(t("Sign up failed. Please try again."));
             }
           }
         } catch (error) {
-          console.error("Error fetching user data: ", error);
           toast.error(t("Failed to fetch Google user data."));
         } finally {
           setLoading(false);
