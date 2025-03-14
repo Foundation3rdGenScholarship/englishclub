@@ -92,7 +92,6 @@ export default function ContentSectionCard() {
                   text={t("start Learning")}
                   link={item.link}
                   addMoreStyle="xl:text-heading-4 lg:text-heading-5 md:text-heading-6 text-[14px] "
-                  
                 />
               </div>
             </GlassCard>
