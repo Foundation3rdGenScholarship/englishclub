@@ -50,44 +50,42 @@ const LangTranslate = () => {
   // Speak text using Google Cloud TTS
   const speakText = async () => {
     if (!translatedText.trim()) {
-      toast.error(t("No text to read. Please translate first!"));
+      alert("No text to read. Please translate first.");
       return;
     }
+    const speech = new SpeechSynthesisUtterance(translatedText);
+    speech.lang = "en";
+    window.speechSynthesis.speak(speech);
+    
+    // setIsSpeaking(true);
 
-    if (isSpeaking) {
-      toast.info(t("Text-to-speech is already in progress."));
-      return;
-    }
+    // try {
+    //   const response = await axios.post(
+    //     `https://texttospeech.googleapis.com/v1/text:synthesize?key=${process.env.REACT_APP_GOOGLE_TTS_API_KEY}`,
+    //     {
+    //       input: { text: translatedText },
+    //       voice: {
+    //         languageCode: targetLang === "km" ? "km-KH" : targetLang,
+    //         ssmlGender: "NEUTRAL",
+    //       },
+    //       audioConfig: {
+    //         audioEncoding: "MP3",
+    //       },
+    //     }
+    //   );
 
-    setIsSpeaking(true);
+    //   if (!response.data.audioContent) {
+    //     throw new Error("No audio content received");
+    //   }
 
-    try {
-      const response = await axios.post(
-        `https://texttospeech.googleapis.com/v1/text:synthesize?key=${process.env.REACT_APP_GOOGLE_TTS_API_KEY}`,
-        {
-          input: { text: translatedText },
-          voice: {
-            languageCode: targetLang === "km" ? "km-KH" : targetLang,
-            ssmlGender: "NEUTRAL",
-          },
-          audioConfig: {
-            audioEncoding: "MP3",
-          },
-        }
-      );
-
-      if (!response.data.audioContent) {
-        throw new Error("No audio content received");
-      }
-
-      const audioContent = response.data.audioContent;
-      const audio = new Audio(`data:audio/mp3;base64,${audioContent}`);
-      audio.play();
-      audio.onended = () => setIsSpeaking(false);
-    } catch (error) {
-      toast.error(t("Failed to generate speech. Try again!"));
-      setIsSpeaking(false);
-    }
+    //   const audioContent = response.data.audioContent;
+    //   const audio = new Audio(`data:audio/mp3;base64,${audioContent}`);
+    //   audio.play();
+    //   audio.onended = () => setIsSpeaking(false);
+    // } catch (error) {
+    //   toast.error(t("Failed to generate speech. Try again!"));
+    //   setIsSpeaking(false);
+    // }
   };
 
   return (
@@ -155,7 +153,7 @@ const LangTranslate = () => {
           <div className="flex justify-center gap-6 mt-6 md:mt-8">
             <button
               onClick={swapLanguages}
-              className="p-3 md:p-4 bg-primary-500 text-white rounded-full hover:bg-blue-600 transition-transform transform hover:scale-110"
+              className="p-3 md:p-4 bg-primary-500 text-white rounded-full hover:bg-primary-600 transition-transform transform hover:scale-110"
               aria-label="Swap languages"
             >
               <IoSwapHorizontal className="text-xl" />
@@ -163,7 +161,7 @@ const LangTranslate = () => {
             <button
               onClick={speakText}
               disabled={isSpeaking}
-              className="p-3 md:p-4 bg-secondary-500 text-white rounded-full hover:bg-green-600 transition-transform transform hover:scale-110 disabled:bg-green-300"
+              className="p-3 md:p-4 bg-secondary-500 text-white rounded-full hover:bg-secondary-600 transition-transform transform hover:scale-110 disabled:bg-green-300"
               aria-label="Listen to translation"
             >
               <RiUserVoiceFill className="text-xl" />
