@@ -11,7 +11,8 @@ import ServerErrorPage from "../../../err/ServerErrorPage";
 const Reading = () => {
   const skeleton = Array(8).fill(0);
   const { t } = useTranslation("reading");
-  const { isLoading, error } = useAllReadingQuery();
+  const { data, isLoading, error } = useAllReadingQuery();
+  console.log("This is an data in reading : ", data);
 
   if (isLoading) {
     return (
@@ -66,21 +67,23 @@ const Reading = () => {
           </div>
 
           {/* Description */}
-          <div className="p-4">
+          <div className="">
             <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
               {t("description")}
             </p>
           </div>
 
           {/* Courses Section */}
-          <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {readingJson.map((items) => (
               <CourseCard
                 link={items.link}
-                key={items.level}
+                key={items.level || items.id || items.title}
                 title={items.title}
                 img={items.img}
                 des={items.description}
+                level={items.level}
+                duration={items.duration}
               />
             ))}
           </div>

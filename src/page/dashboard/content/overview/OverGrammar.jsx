@@ -7,6 +7,7 @@ import { useAllGrammarQuery } from "../../../../redux/features/grammar/grammarSl
 import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import ServerErrorPage from "../../../err/ServerErrorPage";
+import ButtonNavigate from "../../../../components/button/ButtonNavigate";
 export const OverGrammar = () => {
   const { t } = useTranslation("over-grammar");
   const { isLoading, error } = useAllGrammarQuery();
@@ -31,7 +32,7 @@ export const OverGrammar = () => {
       <div className="max-w-full">
         <div className="container mx-auto px-4">
           <div className="md:text-heading-5 text-heading-4 h-[100px] md:h-auto xl:text-heading-2 flex items-center gap-2">
-            <div className="h-[60px] flex flex-col md:flex-row items-center md:gap-2 ">
+            <div className="flex flex-col md:flex-row items-center md:gap-2 ">
               <h1 className="text-primary-500 dark:text-primary-500 md:py-5 font-bold">
                 {t("title")}
               </h1>
@@ -56,30 +57,30 @@ export const OverGrammar = () => {
                   <p className="text-primary-500 text-xl md:text-2xl font-bold mb-4">
                     {t("des")}
                   </p>
-                  <button className="dark:bg-secondary-900 bg-secondary-500 dark:hover:bg-secondary-700 hover:bg-secondary-700 text-white text-des-4 py-3 px-8 rounded-full mt-2 transition duration-300">
-                    {t("start")}
-                  </button>
+                  <ButtonNavigate text={t("start")} />
                 </div>
               </div>
             </div>
           </div>
 
           {/* Description */}
-          <div className="p-4">
-            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+          <div>
+            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10 py-5">
               {t("description")}
             </p>
           </div>
 
           {/* Courses Section */}
-          <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {grammar.map((items) => (
               <CourseCard
                 link={items.link}
-                key={items.level}
+                key={items.level || items.id || items.title}
                 title={items.title}
                 img={items.img}
                 des={items.description}
+                level={items.level}
+                lesson={items.lesson}
               />
             ))}
           </div>

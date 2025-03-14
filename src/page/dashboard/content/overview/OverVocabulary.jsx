@@ -32,7 +32,7 @@ export const OverVocabulary = () => {
       <div className="max-w-full">
         <div className="container mx-auto px-4">
           <div className="md:text-heading-5 text-heading-4 h-[100px] md:h-auto xl:text-heading-2 flex items-center gap-2">
-            <div className="h-[60px] flex flex-col md:flex-row items-center md:gap-2 ">
+            <div className="flex flex-col md:flex-row items-center md:gap-2 ">
               <h1 className="text-primary-500 dark:text-primary-500 md:py-5 font-bold">
                 {t("title")}
               </h1>
@@ -67,14 +67,14 @@ export const OverVocabulary = () => {
           </div>
 
           {/* Description */}
-          <div className="p-4">
+          <div>
             <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
               {t("description")}
             </p>
           </div>
 
           {/* Courses Section */}
-          <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {vocabularies.map((items) => (
               <CourseCard
                 link={items.link}
@@ -82,6 +82,7 @@ export const OverVocabulary = () => {
                 title={items.title}
                 img={items.img}
                 des={items.description}
+                lesson={items.lesson}
               />
             ))}
           </div>

@@ -24,7 +24,7 @@ const ProgressBar = () => {
 
   return (
     <div
-      className={`z-[1000] fixed top-0 left-0 right-0 h-2 transition-all duration-300 ${
+      className={`z-[1000] fixed top-0 left-0 right-0 h-1 transition-all duration-300 ${
         isVisible ? "block" : "hidden"
       }`}
     >

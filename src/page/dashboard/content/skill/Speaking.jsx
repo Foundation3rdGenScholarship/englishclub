@@ -47,18 +47,18 @@ const Speaking = () => {
             start={t("start")}
             description={t("description")}
           />
-        </div>
-        {/* Level Courses */}
-        <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
-          {speaking.map((items) => (
-            <CourseCard
-              link={items.link}
-              key={items.level}
-              title={items.title}
-              img={items.img}
-              des={items.description}
-            />
-          ))}
+          {/* Level Courses */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {speaking.map((items) => (
+              <CourseCard
+                link={items.link}
+                key={items.level}
+                title={items.title}
+                img={items.img}
+                des={items.description}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
