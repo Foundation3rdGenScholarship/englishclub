@@ -7,7 +7,7 @@ export const skillSlice = apiSlice.injectEndpoints({
       method: "GET",
       transformResponse: (response) => response.payload,
     }),
-    allReading: builder.query({
+    allReadingA1Query: builder.query({
       query: () => `/skills/skill_name=reading/level=a1`,
       method: "GET",
       transformResponse: (response) => response.payload,
@@ -42,8 +42,38 @@ export const skillSlice = apiSlice.injectEndpoints({
       method: "GET",
       transformResponse: (response) => response.payload,
     }),
+    allListeningB2Query: builder.query({
+      query: () => `/skills/skill_name=listening/level=b2`,
+      method: "GET",
+      transformResponse: (response) => response.payload,
+    }),
+    allListeningC1Query: builder.query({
+      query: () => `/skills/skill_name=listening/level=c1`,
+      method: "GET",
+      transformResponse: (response) => response.payload,
+    }),
     allWritingA1Query: builder.query({
       query: () => `/skills/skill_name=writing/level=a1`,
+      method: "GET",
+      transformResponse: (response) => response.payload,
+    }),
+    allWritingA2Query: builder.query({
+      query: () => `/skills/skill_name=writing/level=a2`,
+      method: "GET",
+      transformResponse: (response) => response.payload,
+    }),
+    allWritingB1Query: builder.query({
+      query: () => `/skills/skill_name=writing/level=b1`,
+      method: "GET",
+      transformResponse: (response) => response.payload,
+    }),
+    allWritingB2Query: builder.query({
+      query: () => `/skills/skill_name=writing/level=b2`,
+      method: "GET",
+      transformResponse: (response) => response.payload,
+    }),
+    allWritingC1Query: builder.query({
+      query: () => `/skills/skill_name=writing/level=c1`,
       method: "GET",
       transformResponse: (response) => response.payload,
     }),
@@ -57,13 +87,19 @@ export const skillSlice = apiSlice.injectEndpoints({
 
 export const {
   useAllSkillQuery,
-  useAllReadingQuery,
+  useAllReadingA1QueryQuery,
   useAllReadingA2QueryQuery,
   useAllReadingB1QueryQuery,
   useAllReadingB2QueryQuery,
   useAllListeningA1QueryQuery,
   useAllListeningA2QueryQuery,
   useAllListeningB1QueryQuery,
+  useAllListeningB2QueryQuery,
+  useAllListeningC1QueryQuery,
   useAllWritingA1QueryQuery,
+  useAllWritingA2QueryQuery,
+  useAllWritingB1QueryQuery,
+  useAllWritingB2QueryQuery,
+  useAllWritingC1QueryQuery,
   useAllSpeakingA1QueryQuery,
 } = skillSlice;

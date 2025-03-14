@@ -5,14 +5,31 @@ import speaking from "../../../../data/json/speaking.json";
 import TextAnimation from "../../../../components/progress/TextAnimation";
 import ButtonNavigate from "../../../../components/button/ButtonNavigate";
 import { HeroCard } from "../../../../components/heroCard/HeroCard";
+import { useAllSpeakingQuery } from "../../../../redux/features/skill/speakingSlice";
+import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
+import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
+import ServerErrorPage from "../../../err/ServerErrorPage";
+
 const Speaking = () => {
-  // const { data, isLoading, error } = useAllReadingQuery();
   const { t } = useTranslation("speaking");
+  const { isLoading, error } = useAllSpeakingQuery();
 
-  // console.log({ data, isLoading, error }); // Debugging log
+  if (isLoading) {
+    return (
+      <div className="mt-[88px] sm:pl-64">
+        <HeroSkeleton />
+        <CoursesSkeleton />
+      </div>
+    ); // Show loading while fetching data
+  }
 
-  // if (isLoading) return <p>Loading...</p>;
-  // if (error) return <p>Error: {error.message}</p>;
+  if (error) {
+    return (
+      <div>
+        <ServerErrorPage />
+      </div>
+    ); // Show error if there's a problem fetching the data
+  }
 
   return (
     <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">

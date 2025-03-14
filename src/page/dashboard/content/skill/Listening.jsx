@@ -2,12 +2,33 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import CourseCard from "../../../../components/card/CourseCard";
 import listeningJson from "../../../../data/json/listeningJson";
-
+import { useAllListeningQuery } from "../../../../redux/features/skill/listeningSlice";
 import TextAnimation from "../../../../components/progress/TextAnimation";
 import ButtonNavigate from "../../../../components/button/ButtonNavigate";
+import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
+import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
+import ServerErrorPage from "../../../err/ServerErrorPage";
 
 const Listening = () => {
   const { t } = useTranslation("listening");
+  const { isLoading, error } = useAllListeningQuery();
+
+  if (isLoading) {
+    return (
+      <div className="mt-[88px] sm:pl-64">
+        <HeroSkeleton />
+        <CoursesSkeleton />
+      </div>
+    ); // Show loading while fetching data
+  }
+
+  if (error) {
+    return (
+      <div>
+        <ServerErrorPage />
+      </div>
+    ); // Show error if there's a problem fetching the data
+  }
   return (
     <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
       <div className="max-w-full">

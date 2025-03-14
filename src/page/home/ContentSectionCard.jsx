@@ -91,7 +91,8 @@ export default function ContentSectionCard() {
                 <ButtonNavigate
                   text={t("start Learning")}
                   link={item.link}
-                  addMoreStyle="xl:text-heading-5 lg:text-heading-6 md:text-[14px] text-[12px]"
+                  addMoreStyle="xl:text-heading-4 lg:text-heading-5 md:text-heading-6 text-[14px] "
+                  
                 />
               </div>
             </GlassCard>

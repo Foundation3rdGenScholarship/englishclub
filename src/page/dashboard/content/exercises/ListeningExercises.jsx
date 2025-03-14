@@ -123,19 +123,74 @@ const ListeningExercises = () => {
     // TODO Fill in The blank
   } else if (data?.questions[0].type?.toUpperCase() === "FILL_IN_THE_BLANK") {
     // Assuming 'data' contains your original data shown in the console
-    const exercisesData = data.questions.map((question, index) => {
-      console.log("Question : ", question);
-      return {
-        id: index + 1,
-        question_text: question.question_text,
-        correct_answer: Array.isArray(question.correct_answer)
-          ? question.correct_answer[0]
-          : question.correct_answer,
-      };
-    });
+    // const exercisesData = data.questions.map((question, index) => {
+    //   console.log("Question : ", question);
+    //   return {
+    //     id: index + 1,
+    //     question_text: question.question_text,
+    //     correct_answer: Array.isArray(question.correct_answer)
+    //       ? question.correct_answer[0]
+    //       : question.correct_answer,
+    //   };
+    // });
+
+    const exercisesData = data.questions.map((item, index) => ({
+      id: index + 1,
+      question_text: item.question_text,
+      question_uuid: item.q_uuid,
+      correct_answer: item.correct_answer,
+      choices:
+        item.choices?.map((choice) => ({
+          choice_uuid: choice.choice_uuid,
+          is_correct: choice.is_correct,
+          text: choice.text,
+        })) || [],
+    }));
 
     console.log(exercisesData);
     return (
+      // <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
+      //   <div className="max-w-full">
+      //     <div className="container mx-auto px-4">
+      //       <div className="text-heading-4 h-[100px] md:h-auto md:text-heading-2 flex items-center gap-2">
+      //         <h1 className="text-primary-500 dark:text-primary-500 py-5 font-bold">
+      //           {data.title}
+      //         </h1>
+      //       </div>
+      //       {/* Hero Section */}
+      //       <div className="rounded-lg overflow-hidden">
+      //         <div className="relative">
+      //           <img
+      //             src={data.thumbnail}
+      //             alt="People collaborating at work"
+      //             className="w-full h-[400px] object-cover"
+      //           />
+      //         </div>
+      //       </div>
+      //       {/* Description */}
+      //       <div className="p-4">
+      //         <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+      //           {data.description}
+      //         </p>
+      //       </div>
+      //       <div className="max-w-[1000px] dark:text-white text-black">
+      //         <div
+      //           dangerouslySetInnerHTML={{
+      //             __html: DOMPurify.sanitize(transcript),
+      //           }}
+      //         />
+      //       </div>
+      //       <div className="max-w-[1000px]">
+      //         <div
+      //           dangerouslySetInnerHTML={{
+      //             __html: DOMPurify.sanitize(tip),
+      //           }}
+      //         />
+      //       </div>
+      //       <FillInTheBlankQuiz exercises={exercisesData} ex_uuid={ex_uuid} />
+      //     </div>
+      //   </div>
+      // </div>
       <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
         <div className="max-w-full">
           <div className="container mx-auto px-4">
@@ -145,36 +200,51 @@ const ListeningExercises = () => {
               </h1>
             </div>
             {/* Hero Section */}
-            <div className="rounded-lg overflow-hidden">
+            <div className="mb-10">
               <div className="relative">
+                {/* Image */}
                 <img
                   src={data.thumbnail}
                   alt="People collaborating at work"
                   className="w-full h-[400px] object-cover"
                 />
+
+                {/* Text Below Image */}
+                <div className="bg-white relative -mt-20 z-10 mx-auto max-w-screen-lg rounded-tl-[50px] rounded-br-[50px] shadow-lg dark:bg-bg-dark-mode dark:text-text-des-dark-mode dark:border-2 p-6 border-white/20 text-des-2">
+                  <p className="text-justify leading-10">{data.description}</p>
+                </div>
               </div>
             </div>
-            {/* Description */}
-            <div className="p-4">
-              <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
-                {data.description}
-              </p>
+            {/*  Section To learn */}
+            <div className="max-w-screen-lg m-auto">
+              {/* Reading */}
+              <h3 className="text-heading-3 text-primary-500">Reading :</h3>
+
+              <div className="text-black text-des-2 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+                {data.ex_uuid == "2a0b7199-3bbf-4fb1-a0ae-c5816e56da29" ? (
+                  <AmeesageYourAreLate />
+                ) : (
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(transcript),
+                    }}
+                  />
+                )}
+                {/* <div
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(transcript),
+                  }}
+                /> */}
+              </div>
+              <div className="dark:text-text-des-dark-mode text-des-2 text-justify leading-10 py-5">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(tip),
+                  }}
+                />
+              </div>
+              <FillInTheBlankQuiz exercises={exercisesData} ex_uuid={ex_uuid} />
             </div>
-            <div className="max-w-[1000px]">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(transcript),
-                }}
-              />
-            </div>
-            <div className="max-w-[1000px]">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(tip),
-                }}
-              />
-            </div>
-            <FillInTheBlankQuiz exercises={exercisesData} ex_uuid={ex_uuid} />
           </div>
         </div>
       </div>

@@ -5,6 +5,10 @@ import HeroLevel from "../../../../components/heroCard/HeroLevel";
 import MultipleChoiceQuiz from "../../../../components/exercises/MultipleChoiceQuiz";
 import FillInTheBlankQuiz from "../../../../components/exercises/FillInTheBlankQuiz";
 import TrueFalseQuiz from "../../../../components/exercises/TrueFalseQuiz";
+import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
+import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
+import ServerErrorPage from "../../../err/ServerErrorPage";
+
 
 export default function GrammarExercises() {
   const { lessonId } = useParams(); // Get lesson ID from URL
