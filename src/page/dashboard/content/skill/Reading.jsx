@@ -83,7 +83,7 @@ const Reading = () => {
                 img={items.img}
                 des={items.description}
                 level={items.level}
-                duration={items.duration}
+                lesson={items.lesson}
               />
             ))}
           </div>

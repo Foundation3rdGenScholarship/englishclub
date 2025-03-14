@@ -59,6 +59,10 @@ import { WritingA2 } from "./page/dashboard/content/writingDetail/WritingA2.jsx"
 import { WritingB1 } from "./page/dashboard/content/writingDetail/WritingB1.jsx";
 import { WritingB2 } from "./page/dashboard/content/writingDetail/WritingB2.jsx";
 import { WritingC1 } from "./page/dashboard/content/writingDetail/WritingC1.jsx";
+import { SpeakingA2 } from "./page/dashboard/content/speakingDetail/SpeakingA2.jsx";
+import { SpeakingB1 } from "./page/dashboard/content/speakingDetail/SpeakingB1.jsx";
+import { SpeakingB2 } from "./page/dashboard/content/speakingDetail/SpeakingB2.jsx";
+import { SpeakingC1 } from "./page/dashboard/content/speakingDetail/SpeakingC1.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -144,6 +148,22 @@ createRoot(document.getElementById("root")).render(
               <Route
                 path="/courses/speaking/level=a1"
                 element={<SpeakingA1 />}
+              />
+              <Route
+                path="/courses/speaking/level=a2"
+                element={<SpeakingA2 />}
+              />
+              <Route
+                path="/courses/speaking/level=b1"
+                element={<SpeakingB1 />}
+              />
+              <Route
+                path="/courses/speaking/level=b2"
+                element={<SpeakingB2 />}
+              />
+              <Route
+                path="/courses/speaking/level=c1"
+                element={<SpeakingC1 />}
               />
               <Route path="/skills" element={<OverSkill />} />
               <Route path="/over-grammar" element={<OverGrammar />} />

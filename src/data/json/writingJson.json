@@ -2,6 +2,7 @@
   {
     "level": "A1",
     "title": "A1 Writing",
+    "lesson": "2",
     "link": "/courses/writing/level=a1",
     "img": "https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/430x261_4/public/2021-10/RS8039_GettyImages-554489637-hig.jpg?itok=yON-REw5",
     "description": "Writing practice to help you write short, simple texts about known topics and fill in forms. Texts include messages, emails and forms."
@@ -9,6 +10,7 @@
   {
     "level": "A2",
     "title": "A2 Writing",
+    "lesson": "1",
     "link": "/courses/writing/level=a2",
     "img": "https://www.bangor.ac.uk/sites/default/files/styles/16x9_1100w/public/2020-05/shutterstock_1252112308%20Resized.jpg?h=d3aaaeb5&itok=pdlLp-Sj",
     "description": "Writing practice to help you write short, simple texts, notes and messages. Texts include messages, forum posts, personal profiles, forms and emails."
@@ -16,6 +18,7 @@
   {
     "level": "B1",
     "title": "B1 Writing",
+    "lesson": "1",
     "link": "/courses/writing/level=b1",
     "img": "https://assets.entrepreneur.com/content/3x2/2000/1683118869-GettyImages-850630688.jpg",
     "description": "Writing practice to help you write simple connected text on familiar topics that are of personal interest. Texts include forum posts, reviews, messages, short essays and emails."
@@ -23,6 +26,7 @@
   {
     "level": "B2",
     "title": "B2 Writing",
+    "lesson": "1",
     "link": "/courses/writing/level=b2",
     "img": "https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/430x261_4/public/RS8038_GettyImages-769720227-hig.jpg?itok=mAJIojJA",
     "description": "Writing practice to help you write clear, detailed text on a wide range of topics related to your interests. Texts include essays, reports, reviews, messages and emails."
@@ -30,6 +34,7 @@
   {
     "level": "C1",
     "title": "C1 Writing",
+    "lesson": "1",
     "link": "/courses/writing/level=c1",
     "img": "https://news.northeastern.edu/wp-content/uploads/2016/10/writing_1400.jpg",
     "description": "Writing practice to help you write clear, well-structured texts about complex subjects. Texts include essays, proposals, articles, reports, reviews and emails."

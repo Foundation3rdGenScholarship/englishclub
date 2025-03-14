@@ -7,6 +7,7 @@ import { useAllVocabulariesQuery } from "../../../../redux/features/vocabularies
 import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import ServerErrorPage from "../../../err/ServerErrorPage";
+import ButtonNavigate from "../../../../components/button/ButtonNavigate";
 
 export const OverVocabulary = () => {
   const { t } = useTranslation("over-vocabulary");
@@ -58,9 +59,7 @@ export const OverVocabulary = () => {
                   <p className="text-primary-500 text-xl md:text-2xl font-bold mb-4">
                     {t("des")}
                   </p>
-                  <button className="dark:bg-secondary-900 bg-secondary-500 dark:hover:bg-secondary-700 hover:bg-secondary-700 text-white text-des-4 py-3 px-8 rounded-full mt-2 transition duration-300">
-                    {t("start")}
-                  </button>
+                  <ButtonNavigate text={t("start")} />
                 </div>
               </div>
             </div>

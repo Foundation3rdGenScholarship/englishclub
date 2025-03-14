@@ -80,6 +80,7 @@ const Listening = () => {
                 title={items.title}
                 img={items.img}
                 des={items.description}
+                lesson={items.lesson}
               />
             ))}
           </div>
