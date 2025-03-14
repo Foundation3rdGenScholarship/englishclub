@@ -14,7 +14,7 @@ export default function Section1() {
             alt="img-dashboard"
             className="rounded-lg  max-h-screen"
           />
-          <div className="absolute bottom-0 flex justify-center bg-bg-light-mode dark:bg-bg-dark-mode rounded-tl-lg  rounded-tr-lg">
+          <div className="absolute bottom-0 flex opacity-90 justify-center bg-bg-light-mode dark:bg-bg-dark-mode rounded-tl-lg  rounded-tr-lg">
             <h2 className=" text-primary-500 font-bold  xl:text-heading-1 lg:text-heading-2  md:text-heading-4 sm:text-heading-5  text-heading-6 whitespace-nowrap xl:py-10 lg:py-8 md:py-6 sm:py-4 py-2 text-center xl:px-20 lg:px-12 md:px-10 sm:px-6 px-6">
               {t("learnOnline")}
               <span className="text-accents-color">{t("fluentflow")}</span>
