@@ -87,19 +87,23 @@ export const skillSlice = apiSlice.injectEndpoints({
 
 export const {
   useAllSkillQuery,
+  // Reading
   useAllReadingA1QueryQuery,
   useAllReadingA2QueryQuery,
   useAllReadingB1QueryQuery,
   useAllReadingB2QueryQuery,
+  // Listening
   useAllListeningA1QueryQuery,
   useAllListeningA2QueryQuery,
   useAllListeningB1QueryQuery,
   useAllListeningB2QueryQuery,
   useAllListeningC1QueryQuery,
+  // Writing
   useAllWritingA1QueryQuery,
   useAllWritingA2QueryQuery,
   useAllWritingB1QueryQuery,
   useAllWritingB2QueryQuery,
   useAllWritingC1QueryQuery,
+  // speaking
   useAllSpeakingA1QueryQuery,
 } = skillSlice;
