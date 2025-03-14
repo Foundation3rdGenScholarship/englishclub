@@ -57,14 +57,14 @@ const ReadingA2 = () => {
           </div>
 
           {/* Description */}
-          <div className="p-4">
+          <div className="py-5">
             <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
               {t("a2description")}
             </p>
           </div>
 
           {/* Courses Section */}
-          <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {exercises.map((item, index) => (
               <CourseCard
                 key={index}

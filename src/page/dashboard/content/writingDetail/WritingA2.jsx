@@ -36,7 +36,7 @@ export const WritingA2 = () => {
   };
 
   return (
-    <div className="max-w-screen-xl sm:ml-64 mt-[88px] mb-10 container mx-auto px-4">
+    <div className="max-w-screen-xl sm:ml-64 mt-[88px] mb-10 px-4">
       <HeroLevel
         thumnail={
           "https://www.bangor.ac.uk/sites/default/files/styles/16x9_1100w/public/2020-05/shutterstock_1252112308%20Resized.jpg?h=d3aaaeb5&itok=pdlLp-Sj"
@@ -46,7 +46,7 @@ export const WritingA2 = () => {
       />
       {/* Render Courses  */}
 
-      <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {exercises.map((item, index) => (
           <CourseCard
             key={index}

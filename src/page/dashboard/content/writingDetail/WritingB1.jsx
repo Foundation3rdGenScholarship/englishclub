@@ -36,7 +36,7 @@ export const WritingB1 = () => {
   };
 
   return (
-    <div className="max-w-screen-xl sm:ml-64 mt-[88px] mb-10 container mx-auto px-4">
+    <div className="max-w-screen-xl sm:ml-64 mt-[88px] mb-10 px-4">
       <HeroLevel
         thumnail={
           "https://assets.entrepreneur.com/content/3x2/2000/1683118869-GettyImages-850630688.jpg"

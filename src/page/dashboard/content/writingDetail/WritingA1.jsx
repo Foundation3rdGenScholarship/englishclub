@@ -36,7 +36,7 @@ export const WritingA1 = () => {
   };
 
   return (
-    <div className="max-w-screen-xl sm:ml-64 mt-[88px] mb-10 container mx-auto px-4">
+    <div className="max-w-screen-xl sm:ml-64 mt-[88px] mb-10 mx-auto px-4">
       <HeroLevel
         thumnail={
           "https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/max_1300x1300/public/2021-10/RS8039_GettyImages-554489637-hig.jpg?itok=DMT6G5Yv"

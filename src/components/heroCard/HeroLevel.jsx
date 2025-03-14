@@ -1,6 +1,6 @@
 import React from "react";
 
-const HeroLevel = ({ thumnail,title,description }) => {
+const HeroLevel = ({ thumnail, title, description }) => {
   return (
     <div className="max-w-screen-2xl">
       <div className="text-heading-4 h-[100px] md:h-auto md:text-heading-2 flex items-center gap-2">
