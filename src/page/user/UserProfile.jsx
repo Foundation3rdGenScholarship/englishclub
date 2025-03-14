@@ -36,7 +36,6 @@ const UserProfile = () => {
 
       try {
         const response = await verify({ token: accessToken }).unwrap();
-        console.log("API Response:", response); // Log the response
 
         if (response?.payload) {
           setUserData(response.payload); // Set the data to state
@@ -46,7 +45,6 @@ const UserProfile = () => {
         }
       } catch (err) {
         setError("Failed to fetch user data.");
-        console.error("Error fetching user data:", err);
       } finally {
         setLoading(false);
       }
@@ -77,14 +75,11 @@ const UserProfile = () => {
 
       try {
         const result = await uploadFile(formData).unwrap();
-        console.log("✅ Upload successful:", result);
         toast.success(result.message); // Display success message from the API
-        console.log("File URL:", result.payload.file_urls[0].file_path); // Access the file URL
         if (result?.payload?.file_urls?.length > 0) {
           setProfilePreview(result.payload.file_urls[0].file_path);
         }
       } catch (error) {
-        console.error("🚨 Upload Error:", error);
         toast.error(
           `Upload failed: ${error?.data?.message || "Unknown error"}`
         );

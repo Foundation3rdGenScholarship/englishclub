@@ -61,6 +61,7 @@ import { WritingA2 } from "./page/dashboard/content/writingDetail/WritingA2.jsx"
 import { WritingB1 } from "./page/dashboard/content/writingDetail/WritingB1.jsx";
 import { WritingB2 } from "./page/dashboard/content/writingDetail/WritingB2.jsx";
 import { WritingC1 } from "./page/dashboard/content/writingDetail/WritingC1.jsx";
+import LangTranslate from "./page/dashboard/content/translate/Translator.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -113,6 +114,7 @@ createRoot(document.getElementById("root")).render(
                 <Route path="/a1a2vocabulary" element={<A1A2vocabulary />} />
                 <Route path="/b1b2vocanulary" element={<B1B2vocabulary />} />
                 <Route path="/soundTts" element={<ImageTTS />} />
+                <Route path="/langtranslate" element={<LangTranslate />} />
                 <Route
                   path="/courses/reading/level=a1"
                   element={<ReadingDetail />}

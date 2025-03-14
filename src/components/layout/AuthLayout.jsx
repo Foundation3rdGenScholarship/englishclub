@@ -55,7 +55,7 @@ const AuthLayout = ({
 
           {/* Ellipse Image */}
           <div
-            className={`absolute w-full md:flex items-center justify-center -z-30 ${ellipse1Position}`}
+            className={`absolute w-[180px] md:flex items-center justify-center -z-30 ${ellipse1Position}`}
           >
             <img src={ellipse} alt="ellipse" />
           </div>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik"; // Import ErrorMessage
 import * as Yup from "yup";
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
 import { useNavigate } from "react-router";
@@ -31,10 +31,6 @@ export default function Register() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [privacyPolicyAccepted, setPrivacyPolicyAccepted] = useState(false);
 
-  // Debug modal state
-  useEffect(() => {
-    console.log("isModalOpen:", isModalOpen);
-  }, [isModalOpen]);
 
   const initialValues = {
     username: "",
@@ -63,31 +59,34 @@ export default function Register() {
         t("confirm Password need to be the same as Password!")
       )
       .required(t("Confirm Password is required")),
-    privacyPolicy: Yup.boolean().oneOf(
-      [true],
-      t("You must accept the privacy policy")
-    ),
+    privacyPolicy: Yup.boolean()
+      .oneOf([true], t("You must accept the privacy policy"))
+      .required(t("You must accept the privacy policy")),
   });
 
-  const handleSubmit = async (values, { setSubmitting }) => {
-    console.log("Form Values:", values); // Debug form values
-    console.log("Privacy Policy Checked:", values.privacyPolicy); // Debug checkbox state
-
-    
-
+  const handleSubmit = async (values, { setSubmitting, setTouched }) => {
     try {
-      // Remove the `privacyPolicy` field from the payload
-      const { privacyPolicy, ...payload } = values;
+      // Mark the privacyPolicy field as touched
+      setTouched({
+        privacyPolicy: true,
+      });
+
+      // Check if privacyPolicy is accepted
       if (!values.privacyPolicy) {
-        console.log("Checkbox not checked, showing modal..."); // Debug modal logic
         setIsModalOpen(true); // Show modal if checkbox is not checked
         setSubmitting(false); // Prevent form submission
+        return; // Exit the function early
       }
+
+      // Remove the `privacyPolicy` field from the payload before API call
+      const { privacyPolicy, ...payload } = values;
+
+      // Register the user
       await registerUser(payload).unwrap();
       toast.success(t("Sign up Successfully!"));
       navigate("/login");
     } catch (error) {
-      console.error("Error:", error);
+      toast.error(t("Sign up failed. Please try again."));
       if (error.data && error.data.detail) {
         toast.error(error.data.detail);
       } else {
@@ -111,10 +110,10 @@ export default function Register() {
         onGoBack={handleGoBack}
         imageSrc={signupimg}
         blobPosition="right-[-38%] top-0 md:top-[3%] md:right-[-30%] lg:right-[-45%] lg:top-[1%]"
-        ellipse1Position="top-[15%] right-[22%] lg:right-[-7%] lg:top-[27%] md:-right-[-30%] md:top-[18%]"
-        ellipse2Position="top-[54%] right-[-10%] lg:right-[2%] lg:top-[90%] md:-right-[-15%] md:top-[58%] xl:right-[9%]"
+        ellipse1Position="top-[25%] right-[88%] lg:right-[42%] lg:top-[27%] md:-right-[-77%] md:top-[25%]"
+        ellipse2Position="top-[90%] right-[-10%] lg:right-[2%] lg:top-[90%] md:-right-[-13%] md:top-[88%] xl:right-[9%]"
       >
-        <h2 className="mb-6 mt-6 text-center text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+        <h2 className="mb-6 mt-6 text-center text-2xl md:text-3xl font-bold text-primary-500 dark:text-white">
           {t("register")}
         </h2>
         <Formik
@@ -167,8 +166,8 @@ export default function Register() {
               </div>
 
               {/* Privacy Policy Checkbox */}
-              <div className="text-right">
-                <div className="flex items-center mb-4 text-gray-600 dark:text-gray-400">
+              <div>
+                <div className="flex items-center mb-2 text-gray-600 dark:text-gray-400">
                   <Field
                     id="privacyPolicy"
                     className="mr-2 cursor-pointer"
@@ -186,6 +185,12 @@ export default function Register() {
                     </span>
                   </label>
                 </div>
+                {/* Display validation error for privacyPolicy */}
+                <ErrorMessage
+                  name="privacyPolicy"
+                  component="div"
+                  className="text-red-400 text-sm"
+                />
               </div>
 
               {/* Sign up Button */}
@@ -224,55 +229,39 @@ export default function Register() {
         onClose={() => setIsModalOpen(false)}
         title={t("Privacy Policy")}
       >
-        <p className="mb-4">
-          {t("main-description")}
-        </p>
+        <p className="mb-4">{t("main-description")}</p>
 
         <h4 className="text-md font-semibold mt-4 mb-2">
           {t("main-description-1")}
         </h4>
-        <p className="mb-4">
-          {t("description-1")}
-        </p>
+        <p className="mb-4">{t("description-1")}</p>
 
         <h4 className="text-md font-semibold mt-4 mb-2">
           {t("main-description-2")}
         </h4>
-        <p className="mb-4">
-          {t("description-2")}
-        </p>
+        <p className="mb-4">{t("description-2")}</p>
 
         <h4 className="text-md font-semibold mt-4 mb-2">
-          {t("main-description-3")} 
+          {t("main-description-3")}
         </h4>
-        <p className="mb-4">
-          {t("description-3")}
-        </p>
+        <p className="mb-4">{t("description-3")}</p>
 
         <h4 className="text-md font-semibold mt-4 mb-2">
           {t("main-description-4")}
         </h4>
-        <p className="mb-4">
-          {t("description-4")}
-        </p>
+        <p className="mb-4">{t("description-4")}</p>
 
         <h4 className="text-md font-semibold mt-4 mb-2">
           {t("main-description-5")}
         </h4>
-        <p className="mb-4">
-          {t("description-5")}
-        </p>
+        <p className="mb-4">{t("description-5")}</p>
 
         <h4 className="text-md font-semibold mt-4 mb-2">
           {t("main-description-6")}
         </h4>
-        <p className="mb-4">
-          {t("description-6")}
-        </p>
+        <p className="mb-4">{t("description-6")}</p>
 
-        <p className="mt-6">
-          {t("description-7")}
-        </p>
+        <p className="mt-6">{t("description-7")}</p>
       </Modal>
     </GoogleOAuthProvider>
   );

@@ -1,0 +1,21 @@
+{
+    "Animals":"Animal",
+    "Fruits":"Fruits",
+    "Accessories":"Accessories",
+    "Vehicles":"Vehicles",
+    "Clothing":"Clothing",
+    "Sports":"Sports",
+    "Learning vocabularies with":"Learning words with",
+    "Sound":"Sound",
+    "Language":"Language",
+    "Translator":"Translate",
+    "From:": "From:",
+    "To:": "To:",
+    "Enter text to translate...":"Enter text to translate...",
+    "English":"English",
+    "Khmer":"Khmer",
+    "No text to read. Please translate first!":"No text to read. Please translate first!",
+    "Text-to-speech is already in progress.":"Text-to-speech is already in progress.",
+    "Failed to translate. Please try again!":"Failed to translate. Please try again!",
+    "Failed to generate speech. Try again!":"Failed to generate speech. Try again!"
+}

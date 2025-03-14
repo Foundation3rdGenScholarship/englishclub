@@ -18,7 +18,7 @@ export default function NewPassword() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const { t } = useTranslation("login" || "register");
+  const { t } = useTranslation("register");
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const email = location?.state?.email; // Make sure email is passed in location state
   const [loading, setLoading] = useState(false);
@@ -34,15 +34,12 @@ export default function NewPassword() {
       confirm_password: values.confirmPassword,
     };
 
-    console.log("Sending payload:", payload); // Debugging
-
     // Attempt to reset the password
     await resetPassword(payload).unwrap();
 
     toast.success(t("Password reset successfully!"));
     navigate("/login");
   } catch (error) {
-    console.error("Error details:", error);
 
     // Extract validation errors from the API response
     if (error.status === 422 && error.data?.detail) {
@@ -84,7 +81,7 @@ export default function NewPassword() {
     confirmPassword: Yup.string()
       .oneOf(
         [Yup.ref("newPassword"), null],
-        t("Confirm Password needs to be the same as Password!")
+        t("confirm Password needs to be the same as Password!")
       )
       .required(t("Confirm Password is required")),
   });
@@ -96,11 +93,11 @@ export default function NewPassword() {
       logoDarkMode={logodarkmode}
       onGoBack={handleGoBack}
       imageSrc={resetpasswordimg} // Custom image for reset password
-      blobPosition="right-[-38%] top-0 md:top-[3%] md:right-[-30%] lg:right-[-45%] lg:top-[1%]"
-      ellipse1Position="top-[15%] right-[22%] lg:right-[-7%] lg:top-[27%] md:-right-[-30%] md:top-[18%]"
+      blobPosition="right-[-38%] top-0 md:right-[-30%] lg:right-[-40%]"
+      ellipse1Position="top-[35%] right-[88%] lg:right-[42.5%] lg:top-[40%] md:-right-[-77%] md:top-[38%]"
       ellipse2Position="top-[80%] right-[-10%] lg:top-[80%] md:-right-[-12%] md:top-[85%] lg:right-[9%]"
     >
-      <h2 className="mb-6 mt-6 text-center text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+      <h2 className="mb-6 mt-6 text-center text-2xl md:text-3xl font-bold text-primary-500 dark:text-white">
         {t("Reset Password")}
       </h2>
 
@@ -121,10 +118,10 @@ export default function NewPassword() {
             />
             {/* Confirm Password Input */}
             <InputField
-              label={t("Confirm Password")}
+              label={t("confirm password")}
               name="confirmPassword"
               type="password"
-              placeholder={t("Enter your confirm password")}
+              placeholder={t("enter your confirm password")}
               icon={FaLock}
             />
 

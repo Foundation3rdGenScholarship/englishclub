@@ -9,7 +9,7 @@ const SEO = () => {
         <title>FluentFlow - English Learning Platform</title>
         <meta
           name="description"
-          content="FluentFlow is your gateway to mastering new skills with interactive online courses. Learn at your own pace with expert instructors, hands-on projects, and personalized learning paths. Start your journey today!"
+          content="FluentFlow is an English learning platform for Khmer learners with bilingual support. It offers interactive lessons, AI assistance, and engaging exercises. Users can learn through videos, infographics, and personalized experiences. Start learning English easily and effectively today!"
         />
 
         {/* OpenGraph Tags */}
@@ -19,7 +19,7 @@ const SEO = () => {
         />
         <meta
           property="og:description"
-          content="FluentFlow is your gateway to mastering new skills with interactive online courses. Learn at your own pace with expert instructors, hands-on projects, and personalized learning paths. Start your journey today!"
+          content="FluentFlow is an English learning platform for Khmer learners with bilingual support. It offers interactive lessons, AI assistance, and engaging exercises. Users can learn through videos, infographics, and personalized experiences. Start learning English easily and effectively today!"
         />
         <meta
           name="keywords"
@@ -48,7 +48,7 @@ const SEO = () => {
         />
         <meta
           name="twitter:description"
-          content="FluentFlow is your gateway to mastering new skills with interactive online courses. Learn at your own pace with expert instructors, hands-on projects, and personalized learning paths. Start your journey today!"
+          content="FluentFlow is an English learning platform for Khmer learners with bilingual support. It offers interactive lessons, AI assistance, and engaging exercises. Users can learn through videos, infographics, and personalized experiences. Start learning English easily and effectively today!"
         />
         <meta
           name="twitter:image"
