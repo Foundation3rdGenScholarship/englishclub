@@ -36,7 +36,7 @@ const A1A2vocabulary = () => {
         }
         description={t("description")}
       />
-      <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {allData?.map((item, index) => {
           if (
             item.lessons.length > 0 && // Ensure lessons array is not empty
@@ -49,7 +49,10 @@ const A1A2vocabulary = () => {
                 title={item.lessons[0].lesson_title}
                 img={item.lessons[0].thumbnail}
                 des={item.lessons[0].description}
-                onClick={() => navigate(`/vocabulary/${item.lessons[0].lesson_uuid}`)}
+                onClick={() =>
+                  navigate(`/vocabulary/${item.lessons[0].lesson_uuid}`)
+                }
+
               />
             );
           }

@@ -73,7 +73,7 @@ const Writing = () => {
           </div>
 
           {/* Courses Section */}
-          <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {writingJson.map((items) => (
               <CourseCard
                 link={items.link}
@@ -81,6 +81,7 @@ const Writing = () => {
                 title={items.title}
                 img={items.img}
                 des={items.description}
+                lesson={items.lesson}
               />
             ))}
           </div>

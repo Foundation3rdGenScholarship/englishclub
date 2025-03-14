@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import img from "../../../../../public/img/dashboard/girls.jpg";
+import CourseThumbnail from "../../../../components/heroCard/CourseThumbnail";
 
 export default function Section1() {
   const { t } = useTranslation("dashboard-overview");

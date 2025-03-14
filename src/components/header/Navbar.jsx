@@ -61,8 +61,8 @@ export default function Navbar() {
                 to={item.path}
                 className={({ isActive }) =>
                   isActive
-                    ? "text-black transition"
-                    : " text-secondary-500 dark:text-white transition"
+                    ? "text-black transition dark:text-white"
+                    : " text-secondary-500 transition"
                 }
               >
                 {item.title}

@@ -10,7 +10,7 @@ import ServerErrorPage from "../../../err/ServerErrorPage";
 
 export const SpeakingA1 = () => {
   const { data, isLoading, error } = useAllSpeakingA1QueryQuery();
-  const { t } = useTranslation("reading");
+  const { t } = useTranslation("speaking");
   const navigate = useNavigate(); // Initialize navigate hook
   const exercises = data?.flatMap((item) => item.exercises) || [];
 
@@ -41,12 +41,12 @@ export const SpeakingA1 = () => {
         thumnail={
           "https://www.nmc.org.uk/globalassets/the-code/caring-with-confidence/speaking-up-video-thumbnail.jpg"
         }
-        title={t("a1writing")}
-        description={t("description")}
+        title={t("a1speaking")}
+        description={t("a1description")}
       />
       {/* Render Courses  */}
 
-      <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {exercises.map((item, index) => (
           <CourseCard
             key={index}

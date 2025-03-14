@@ -193,13 +193,6 @@ export default function VocabulariesExercises() {
                       ex_uuid={exercise.ex_uuid}
                     />
                   )}
-                  {exercise.ex_uuid ===
-                    "00895195-49a4-4943-ba46-5128b21ca67d" && (
-                    <FillInTheBlankQuiz
-                      exercises={fillInTheBlankData}
-                      ex_uuid={"00895195-49a4-4943-ba46-5128b21ca67d"}
-                    />
-                  )}
                 </div>
               </div>
             );

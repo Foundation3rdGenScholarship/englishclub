@@ -41,7 +41,7 @@ const ListeningC1 = () => {
         <div className="container mx-auto px-4">
           <div className="text-heading-4 h-[100px] md:h-auto md:text-heading-2 flex items-center gap-2">
             <h1 className="text-primary-500 dark:text-primary-500 py-5 font-bold">
-              {t("a1listening")}
+              {t("c1listening")}
             </h1>
           </div>
 
@@ -49,7 +49,7 @@ const ListeningC1 = () => {
           <div className="rounded-lg overflow-hidden">
             <div className="relative">
               <img
-                src="https://howwelead.org/wp-content/uploads/2022/07/ken-blog-7.13.22.jpg"
+                src="https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/430x261_4/public/RS8051_GettyImages-970429194%20%281%29-hig.jpg?itok=RNdTEBrd"
                 alt="People collaborating at work"
                 className="w-full h-[400px] object-cover"
               />
@@ -57,14 +57,14 @@ const ListeningC1 = () => {
           </div>
 
           {/* Description */}
-          <div className="p-4">
+          <div className="py-5">
             <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
-              {t("description")}
+              {t("descriptionc1")}
             </p>
           </div>
 
           {/* Courses Section */}
-          <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {exercises.map((item, index) => (
               <CourseCard
                 key={index}

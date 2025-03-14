@@ -36,7 +36,7 @@ export const WritingB1 = () => {
   };
 
   return (
-    <div className="max-w-screen-xl sm:ml-64 mt-[88px] mb-10 container mx-auto px-4">
+    <div className="max-w-screen-xl sm:ml-64 mt-[88px] mb-10 px-4">
       <HeroLevel
         thumnail={
           "https://assets.entrepreneur.com/content/3x2/2000/1683118869-GettyImages-850630688.jpg"
@@ -46,7 +46,7 @@ export const WritingB1 = () => {
       />
       {/* Render Courses  */}
 
-      <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {exercises.map((item, index) => (
           <CourseCard
             key={index}

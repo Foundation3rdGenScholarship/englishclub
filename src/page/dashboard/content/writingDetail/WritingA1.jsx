@@ -36,7 +36,7 @@ export const WritingA1 = () => {
   };
 
   return (
-    <div className="max-w-screen-xl sm:ml-64 mt-[88px] mb-10 container mx-auto px-4">
+    <div className="max-w-screen-xl sm:ml-64 mt-[88px] mb-10 mx-auto px-4">
       <HeroLevel
         thumnail={
           "https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/max_1300x1300/public/2021-10/RS8039_GettyImages-554489637-hig.jpg?itok=DMT6G5Yv"
@@ -46,7 +46,7 @@ export const WritingA1 = () => {
       />
       {/* Render Courses  */}
 
-      <div className="flex flex-col gap-10 sm:pl-5 xl:pl-[100px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {exercises.map((item, index) => (
           <CourseCard
             key={index}
