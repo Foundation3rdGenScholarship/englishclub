@@ -37,7 +37,6 @@ const ForgotPassword = () => {
   });
 
 const handleSubmit = async (values, { resetForm }) => {
-  console.log("Value: ", values.email);
   try {
     // Ensure you're passing only the email string to the mutation
     await verifyEmail(values.email).unwrap(); // Pass just the email value
@@ -47,7 +46,6 @@ const handleSubmit = async (values, { resetForm }) => {
       state: { email: values.email, action: "reset-password" },
     });
   } catch (error) {
-    console.error("Verification error:", error);
     toast.error(t("failed to verify email"));
   }
 };
@@ -62,10 +60,10 @@ const handleSubmit = async (values, { resetForm }) => {
       onGoBack={() => navigate("/")}
       imageSrc={forgotpasswordimg}
       blobPosition="right-[-38%] top-0 md:right-[-30%] lg:right-[-40%]"
-      ellipse1Position="top-[15%] right-[22%] lg:right-[-7%] lg:top-[40%]"
-      ellipse2Position="top-[75%] right-[-10%] lg:top-[80%]"
+      ellipse1Position="top-[30%] right-[87%] md:right-[77%] md:top-[40%] lg:right-[42.5%] lg:top-[40%]"
+      ellipse2Position="top-[75%] right-[-10%] lg:top-[80%] md:-right-[-13%] md:top-[78%] lg:right-[9%]"
     >
-      <h2 className="mb-6 mt-6 text-center text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+      <h2 className="mb-6 mt-6 text-center text-2xl md:text-3xl font-bold text-primary-500 dark:text-white">
         {t("forgot password")}
       </h2>
 

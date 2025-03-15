@@ -42,5 +42,20 @@
   "main-description-6":"6. Changes to This Policy",
   "description-6":"We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.",
   "description-7":"By using our platform, you agree to the collection and use of information in accordance with this policy.",
-  "Accept":"Accept"
+  "Accept":"Accept",
+  "You must accept the privacy policy":"You must accept the privacy policy",
+
+  "Google login failed. Please try again.":"Google login failed. Please try again.",
+  "Processing your login... Please wait!":"Processing your login... Please wait!",
+  "Please verify your email first!":"Please verify your email first!",
+  "Registration successful! Redirecting to OTP verification...":"Registration successful! Redirecting to OTP verification...",
+  "Sign up failed. Please try again.":"Sign up failed. Please try again.",
+  "Failed to fetch Google user data.":"Failed to fetch Google user data.",
+
+  "Reset Password":"Reset Password",
+  "New Password":"New Password",
+  "Enter your new password":"Enter your new password",
+  "Resetting...":"Resetting...",
+  "Password reset successfully!":"Password reset successfully!",
+  "Failed to reset password. Please try again.":"Failed to reset password. Please try again."
 }

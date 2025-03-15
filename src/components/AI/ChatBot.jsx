@@ -52,7 +52,7 @@ const ChatBot = ({ isBackToTopVisible }) => {
   };
 
   return (
-    <div className="fixed right-5 flex flex-col items-end z-50">
+    <div className="fixed right-5 flex flex-col items-end z-50 ">
       {/* Chat Window */}
       {isOpen && (
         <div
@@ -77,7 +77,7 @@ const ChatBot = ({ isBackToTopVisible }) => {
           {/* Chat Messages */}
           <div
             ref={chatRef}
-            className="h-40 overflow-y-auto p-2 space-y-2 scrollbar-thin scrollbar-thumb-primary-500 scrollbar-track-gray-100 dark:scrollbar-track-gray-700"
+            className="h-80 overflow-y-auto p-2 space-y-2 scrollbar-thin scrollbar-thumb-primary-500 scrollbar-track-gray-100 dark:scrollbar-track-gray-700"
           >
             {messages.map((msg, index) => (
               <div

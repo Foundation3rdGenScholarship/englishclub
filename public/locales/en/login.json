@@ -37,5 +37,13 @@
   "sending...": "sending...",
   "verifying...": "Verifying...",
   "reset password": "Reset password",
-  "failed to reset password":"failed to reset password"
+  "failed to reset password":"failed to reset password",
+  "Failed to resend OTP. Please try again.":"Failed to resend OTP. Please try again.",
+  "Login successful! Redirecting...":"Login successful! Redirecting...",
+  "OTP verified. Please reset your password.":"OTP verified. Please reset your password.",
+  "Failed to verify OTP. Please try again.":"Failed to verify OTP. Please try again.",
+  "Must be a single digit":"Must be a single digit",
+  "Must be 6 digits":"Must be 6 digits",
+  "Required":"Required",
+  "OTP is required":"OTP is required"
 }

@@ -43,43 +43,17 @@ const Login = () => {
 
   const handleSubmit = async (values) => {
     try {
-      console.log("Request Payload:", values);
       const response = await loginUser(values).unwrap();
-
-      console.log("Full Response Object:", response); // Debugging
 
       if (response?.access_token) {
         storeAccessToken(response); // Store the access token
         dispatch(login({ user: response.user, token: response.access_token })); // Dispatch login action
-        navigate("/");
-      } else {
-        console.error("Access token missing in response:", response);
+        navigate("/userprofile");
       }
     } catch (error) {
-      console.error("Login Error:", error);
       toast.error(t("login failed. Please try again."));
     }
   };
-  // const handleGoogleLoginSuccess = async (response) => {
-  //   try {
-  //     const tokenId = response.tokenId;
-  //     const result = await loginUser({ tokenId }).unwrap();
-
-  //     if (result.access_token) {
-  //       storeAccessToken(result); // Store the access token
-  //       dispatch(login({ user: result.user, token: result.access_token })); // Dispatch the login action with user data
-  //       navigate("/");
-  //     }
-  //   } catch (error) {
-  //     console.error("Google Login Error:", error);
-  //     toast.error(t("Google login failed. Please try again."));
-  //   }
-  // };
-
-  // const handleGoogleLoginFailure = (error) => {
-  //   console.log("Login Failed: ", error);
-  //   toast.error(t("Google login failed. Please try again."));
-  // };
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
@@ -112,10 +86,10 @@ const Login = () => {
         onGoBack={handleGoBack}
         imageSrc={loginimg}
         blobPosition="right-[-38%]"
-        ellipse1Position="top-[15%] right-[22%] lg:right-[-7%] lg:top-[27%] md:-right-[-30%] md:top-[18%]"
-        ellipse2Position="top-[54%] right-[-10%] lg:right-[10%] lg:top-[86%] md:-right-[-15%] md:top-[60%]"
+        ellipse1Position="top-[25%] right-[88%] lg:right-[42.5%] lg:top-[30%] md:-right-[-77%] md:top-[29%]"
+        ellipse2Position="top-[88%] right-[-10%] lg:right-[10%] lg:top-[86%] md:-right-[-12%] md:top-[89%]"
       >
-        <h2 className="mb-6 mt-6 text-center text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+        <h2 className="mb-6 mt-6 text-center text-2xl md:text-3xl font-bold text-primary-500 dark:text-white">
           {t("login")}
         </h2>
         <Formik
@@ -162,9 +136,7 @@ const Login = () => {
               />
 
               {/* Google Login Button */}
-              <GoogleLoginButton
-               
-              />
+              <GoogleLoginButton />
 
               {/* Register Link */}
               <div className="text-center mt-6">

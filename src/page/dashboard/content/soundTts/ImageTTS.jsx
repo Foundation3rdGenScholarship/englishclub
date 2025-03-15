@@ -1,28 +1,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { FaVolumeUp } from "react-icons/fa";
-import soundtts from "../../../../data/vocabularies/soundtts.json";
+import categoriesData from "../../../../data/vocabularies/soundtts.json"; // Import JSON data
 import TTSinput from "../../../../components/soundtts/TTSinput";
 
-const items = [
-  {
-    word: "Dog",
-    image: "https://images.pexels.com/photos/4608106/pexels-photo-4608106.jpeg",
-  },
-  {
-    word: "Cat",
-    image: "https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg",
-  },
-  {
-    word: "Bird",
-    image:
-      "https://images.pexels.com/photos/45853/bird-blue-cristata-cyanocitta-45853.jpeg",
-  },
-];
-
-const ImageTTS = () => {
-  const { t } = useTranslation("dashboard");
-
+// Card Component
+const Card = ({ item }) => {
   const speak = (word) => {
     const utterance = new SpeechSynthesisUtterance(word);
     utterance.lang = "en-US";
@@ -30,32 +13,70 @@ const ImageTTS = () => {
   };
 
   return (
-    <div className="p-4 sm:ml-64  mt-[88px]">
-      <div>
-        <TTSinput />
+    <div className="flex flex-col items-center rounded-tl-[50px] rounded-br-[50px] bg-white/10 backdrop-blur-md shadow-lg transition-shadow duration-300 overflow-hidden">
+      {/* Image Section */}
+      <div className="w-full h-48 overflow-hidden relative">
+        <img
+          src={item.image}
+          alt={item.word}
+          className="w-full h-full object-cover transform transition-transform duration-300"
+        />
+        {/* Overlay for hover effect */}
+        {/* <div className="absolute inset-0 bg-black/10 hover:bg-black/20 transition-colors duration-300" /> */}
+        {/* Play Sound Button */}
+        <button
+          onClick={() => speak(item.word)}
+          className="absolute top-36 left-14 transform -translate-x-1/2 -translate-y-1/2 bg-secondary-500 hover:bg-secondary-600 text-white p-3 rounded-full shadow-lg transition-colors duration-300"
+        >
+          <FaVolumeUp className="text-lg" />
+        </button>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-        {soundtts.map((item, index) => (
-          <div
+
+      {/* Content Section */}
+      <div className="p-4 w-full text-center">
+        {/* Word */}
+        <p className="text-xl font-semibold text-primary-500 dark:text-white mb-3">
+          {item.word}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+// Category Component
+const Category = ({ name, items, t }) => {
+  return (
+    <div className="mt-20">
+      <h1 className="text-3xl font-bold text-primary-500 mb-4">{t(name)}</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {items.map((item, index) => (
+          <Card key={index} item={item} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// Main Component
+const ImageTTS = () => {
+  const { t } = useTranslation("soundtts");
+
+  return (
+    <div className="p-4 sm:ml-64 mt-[88px]">
+      <div className="p-4">
+        <h1 className="text-3xl md:text-4xl font-bold text-center text-primary-500 dark:text-white">
+          {t("Learning vocabularies with")}{" "}
+          <span className="text-3xl md:text-4xl text-center text-secondary-500">
+            {t("Sound")}
+          </span>
+        </h1>
+        {categoriesData.categories.map((category, index) => (
+          <Category
             key={index}
-            className="flex flex-col items-center rounded-tl-[50px] rounded-br-[50px] bg-white/10 backdrop-blur-md shadow-lg text-white"
-          >
-            <img
-              src={item.image}
-              alt={item.word}
-              className="w-full h-48 object-cover rounded-tl-[50px]"
-            />
-            <button
-              onClick={() => speak(item.word)}
-              className="bg-secondary-500 hover:bg-secondary-600 text-white py-2 px-4 rounded-[16px] mt-4 flex items-center gap-2"
-            >
-              <FaVolumeUp />
-              <p>Play Sound</p>
-            </button>
-            <p className="text-heading-4 font-semibold mt-2 text-primary-500 py-1">
-              {item.word}
-            </p>
-          </div>
+            name={category.name}
+            items={category.items}
+            t={t}
+          />
         ))}
       </div>
     </div>

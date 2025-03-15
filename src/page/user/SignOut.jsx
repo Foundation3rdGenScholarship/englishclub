@@ -15,7 +15,7 @@ const SignOut = ({ closeModal }) => {
   // Handle the logout process
   const handleLogout = () => {
     // Show toast notification before logging out
-    toast.success(t("Successfully signed out. Redirecting..."), {
+    toast.success(t("successfully signed out. Redirecting..."), {
       position: "top-right",
       autoClose: 2000, // 2 seconds before redirecting
     });

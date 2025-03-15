@@ -76,6 +76,14 @@ export const api = createApi({
     getUser: builder.query({
       query: () => "/users", // Endpoint to fetch user data
     }),
+    // Add the resendOtp endpoint
+    resendOtp: builder.mutation({
+      query: ({ email }) => ({
+        url: "/resend-otp",
+        method: "POST",
+        body: { email },
+      }),
+    }),
   }),
 });
 
@@ -88,5 +96,6 @@ export const {
   useUpdateUserInfoMutation,
   useUploadFileMutation,
   useUserVerifyMutation,
-  useGetUserQuery
+  useGetUserQuery,
+  useResendOtpMutation
 } = api;

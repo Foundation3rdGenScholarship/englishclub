@@ -32,10 +32,18 @@
   "OTP Verification": "ផ្ទៀងផ្ទាត់ OTP",
   "enter the verification code we just sent to your email": "បញ្ចូលលេខកូដផ្ទៀងផ្ទាត់ដែលយើងទើបតែផ្ញើទៅកាន់អុីម៊ែលបស់អ្នក",
   "verify": "ផ្ទៀងផ្ទាត់",
-  "failed to verify OTP":"បរាជ័យក្នុងការផ្ទៀងផ្ទាត់ OTP",
+  "failed to verify OTP": "បរាជ័យក្នុងការផ្ទៀងផ្ទាត់ OTP",
   "didn't receive code?": "មិនបានទទួលលេខកូដ?",
   "resend": " ផ្ញើឡើងវិញ",
   "verifying...": "កំពុងផ្ទៀងផ្ទាត់...",
   "reset password": "ផ្លាស់ប្តូរលេខសម្ងាត់",
-  "failed to reset password":"បរាជ័យក្នុងការកំណត់ពាក្យសម្ងាត់ឡើងវិញ"
+  "failed to reset password": "បរាជ័យក្នុងការកំណត់ពាក្យសម្ងាត់ឡើងវិញ",
+  "Failed to resend OTP. Please try again.": "ការផ្ញើ OTP ម្តងទៀតបានបរាជ័យ។ សូមព្យាយាមម្ដងទៀត។",
+  "Login successful! Redirecting...": "ការចូលបានជោគជ័យ! កំពុងបញ្ជូនបន្ត...",
+  "OTP verified. Please reset your password.": "OTP ត្រូវបានផ្ទៀងផ្ទាត់។ សូមកំណត់ពាក្យសម្ងាត់ឡើងវិញ។",
+  "Failed to verify OTP. Please try again.": "ការផ្ទៀងផ្ទាត់ OTP បានបរាជ័យ។ សូមព្យាយាមម្ដងទៀត។",
+  "Must be a single digit": "ត្រូវតែជាលេខមួយខ្ទង់",
+  "Must be 6 digits": "ត្រូវតែមាន 6 ខ្ទង់",
+  "Required": "ត្រូវតែបំពេញ",
+  "OTP is required": "OTP ត្រូវបានទាមទារ"
 }
