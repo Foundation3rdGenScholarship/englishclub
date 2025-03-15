@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useAllReadingA2QueryQuery } from "../../../../redux/features/skill/skillSlice";
+import { useAllReadingC1QueryQuery } from "../../../../redux/features/skill/skillSlice";
 import CourseCard from "../../../../components/card/CourseCard";
 import CoursesSkeleton from "../../../../components/skeleton/CoursesSkeleton";
 import { HeroSkeleton } from "../../../../components/skeleton/HeroSkeleton";
 import { useNavigate } from "react-router-dom";
 import ServerErrorPage from "../../../err/ServerErrorPage";
 
-const ReadingA2 = () => {
-  const { data, isLoading, error } = useAllReadingA2QueryQuery();
-  const { t } = useTranslation("readingA2");
+const ReadingC1 = () => {
+  const { data, isLoading, error } = useAllReadingC1QueryQuery();
+  const { t } = useTranslation("reading");
   const exercises = data?.flatMap((item) => item.exercises) || [];
   const navigate = useNavigate(); // Initialize navigate hook
-  // console.log("This is an data : ", exercises);
+  console.log("This is an data : ", exercises);
 
   if (isLoading) {
     return (
@@ -30,9 +30,9 @@ const ReadingA2 = () => {
   // Handle click on card to get exercise ID and navigate to another page
   const handleCardClick = (id) => {
     navigate(`/exercises/${id}`); // Navigate to exercise detail page
-    // console.log(id);
+    console.log(id);
     const fullUrl = `/exercises/${id}`;
-    // console.log("Full URL:", fullUrl); // This should log the full URL
+    console.log("Full URL:", fullUrl); // This should log the full URL
   };
 
   return (
@@ -41,7 +41,7 @@ const ReadingA2 = () => {
         <div className="container mx-auto px-4">
           <div className="text-heading-4 h-[100px] md:h-auto md:text-heading-2 flex items-center gap-2">
             <h1 className="text-primary-500 dark:text-primary-500 py-5 font-bold">
-              {t("a2reading")}
+              {t("c1reading")}
             </h1>
           </div>
 
@@ -49,7 +49,7 @@ const ReadingA2 = () => {
           <div className="rounded-lg overflow-hidden">
             <div className="relative">
               <img
-                src="https://www.nightzookeeper.com/static/509225fbdd22eb1e32b787eb8d245301/5af6b/Why_Are_Reading_and_Writing_Important_d94cffabe7.jpg"
+                src="https://www.continentalpress.com/wp-content/uploads/2023/08/shutterstock_2287978891-1-min-scaled.jpg"
                 alt="People collaborating at work"
                 className="w-full h-[400px] object-cover"
               />
@@ -59,7 +59,7 @@ const ReadingA2 = () => {
           {/* Description */}
           <div className="py-5">
             <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
-              {t("a2description")}
+              {t("readingc1description")}
             </p>
           </div>
 
@@ -81,4 +81,4 @@ const ReadingA2 = () => {
   );
 };
 
-export default ReadingA2;
+export default ReadingC1;

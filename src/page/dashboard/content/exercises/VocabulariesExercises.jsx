@@ -11,7 +11,7 @@ export default function VocabulariesExercises() {
   const { lessonId } = useParams(); // Get lesson ID from URL
   const { data } = useAllVocabulariesQuery();
 
-  console.log("Data query in vocabulary  : ", data);
+  // console.log("Data query in vocabulary  : ", data);
   const allData = data?.payload;
 
   // Find the lesson with the matching ID
@@ -19,13 +19,13 @@ export default function VocabulariesExercises() {
     ?.flatMap((item) => item.lessons)
     .find((l) => l.lesson_uuid === lessonId);
 
-  console.log("Lesson : ", lesson);
+  // console.log("Lesson : ", lesson);
 
   if (!lesson) return <p>Lesson not found</p>;
 
   // Get exercises directly from the found lesson instead of all exercises
   const lessonExercises = lesson?.exercises || [];
-  console.log("Lesson exercises: ", lessonExercises);
+  // console.log("Lesson exercises: ", lessonExercises);
 
   return (
     <div className="p-4 sm:ml-64 mt-[88px]">
@@ -154,7 +154,7 @@ export default function VocabulariesExercises() {
             // Get question type from the current exercise, with proper optional chaining
             // From console output, we can see type is directly in the question object
             const questionType = exercise?.questions?.[0]?.type || "";
-            console.log("Question Type for exercise", index, ":", questionType);
+            // console.log("Question Type for exercise", index, ":", questionType);
 
             return (
               <div key={index}>

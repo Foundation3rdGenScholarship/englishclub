@@ -29,7 +29,6 @@ const SpeakingExercises = () => {
       </div>
     ); // Show error if there's a problem fetching the data
   }
-  console.log("Data Video : ", data);
 
   // use for check have sound or not
   const soundExtensions = [".mp3", ".wav", ".ogg", ".flac", ".aac", ".m4a"];
@@ -45,10 +44,10 @@ const SpeakingExercises = () => {
 
   const transcript = data?.transcript || "";
   const tip = data?.tip || "";
-  console.log("Tip : ", data?.tip);
-  console.log("The Data : ", data);
-  console.log("This is an Data Of Exercises : ", data?.questions);
-  console.log("Type of exericses : ", data.voice);
+  // console.log("Tip : ", data?.tip);
+  // console.log("The Data : ", data);
+  // console.log("This is an Data Of Exercises : ", data?.questions);
+  // console.log("Type of exericses : ", data.voice);
 
   // TODO Multiple Choies
   if (data?.questions[0].type?.toUpperCase() === "MULTIPLE_CHOICES") {
@@ -150,7 +149,7 @@ const SpeakingExercises = () => {
   } else if (data?.questions[0].type?.toUpperCase() === "FILL_IN_THE_BLANK") {
     // Assuming 'data' contains your original data shown in the console
     const exercisesData = data.questions.map((question, index) => {
-      console.log("Question : ", question);
+      // console.log("Question : ", question);
       return {
         id: index + 1,
         question_text: question.question_text,
@@ -160,7 +159,7 @@ const SpeakingExercises = () => {
       };
     });
 
-    console.log(exercisesData);
+    // console.log(exercisesData);
     return (
       <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
         <div className="max-w-full">
@@ -186,14 +185,14 @@ const SpeakingExercises = () => {
                 {data.description}
               </p>
             </div>
-            <div className="max-w-[1000px]">
+            <div className="dark:text-white">
               <div
                 dangerouslySetInnerHTML={{
                   __html: DOMPurify.sanitize(transcript),
                 }}
               />
             </div>
-            <div className="max-w-[1000px]">
+            <div className="dark:text-white">
               <div
                 dangerouslySetInnerHTML={{
                   __html: DOMPurify.sanitize(tip),
@@ -207,29 +206,42 @@ const SpeakingExercises = () => {
     );
   } else if (data?.questions[0].type?.toUpperCase() === "TRUE_OR_FALSE") {
     // Assuming 'data' is your original array from the console output
-    const exercisesData = data?.questions.map((item, index) => {
-      // Find the correct answer value from the correct_answer array
-      let correctAnswerValue;
-      if (item.correct_answer && item.correct_answer.length > 0) {
-        correctAnswerValue =
-          item.correct_answer[0].answer === "string" ? true : false;
-      } else {
-        // Default fallback if correct_answer structure is different
-        // Try to find the correct choice
-        const correctChoice = item.choices?.find(
-          (choice) => choice.is_correct === true
-        );
-        correctAnswerValue = correctChoice?.text === "string" ? true : false;
-      }
+    // const exercisesData = data?.questions.map((item, index) => {
+    //   // Find the correct answer value from the correct_answer array
+    //   let correctAnswerValue;
+    //   if (item.correct_answer && item.correct_answer.length > 0) {
+    //     correctAnswerValue =
+    //       item.correct_answer[0].answer === "string" ? true : false;
+    //   } else {
+    //     // Default fallback if correct_answer structure is different
+    //     // Try to find the correct choice
+    //     const correctChoice = item.choices?.find(
+    //       (choice) => choice.is_correct === true
+    //     );
+    //     correctAnswerValue = correctChoice?.text === "string" ? true : false;
+    //   }
 
-      return {
-        id: index + 1,
-        question_text: item.question_text,
-        correct_answer: correctAnswerValue,
-      };
-    });
+    //   return {
+    //     id: index + 1,
+    //     question_text: item.question_text,
+    //     correct_answer: correctAnswerValue,
+    //   };
+    // });
 
-    console.log(exercisesData);
+    const exercisesData = data?.questions.map((item, index) => ({
+      id: index + 1,
+      question_text: item.question_text,
+      question_uuid: item.q_uuid,
+      correct_answer: item.correct_answer?.[0]?.answer || "",
+      choices:
+        item.choices?.map((choice) => ({
+          choice_uuid: choice.choice_uuid,
+          is_correct: choice.is_correct,
+          text: choice.text,
+        })) || [],
+    }));
+
+    // console.log(exercisesData);
     return (
       <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
         <div className="max-w-full">
@@ -255,34 +267,22 @@ const SpeakingExercises = () => {
                 {data.description}
               </p>
             </div>
-            <div className="max-w-[1000px]">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(transcript),
-                }}
-              />
-            </div>
-            <div className="max-w-[1000px]">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(tip),
-                }}
-              />
-            </div>
-
-            {/* <div>
-              <MultipleChoice exercise={exerciseData} />
-            </div> */}
-            <div className="">
-              {data?.questions[0].type?.toUpperCase() === "TRUE_OR_FALSE" ? (
-                <TrueFalseQuiz exercises={exercisesData} />
-              ) : // <h1>"for true and false question"</h1>
-              data?.questions[0].type?.toUpperCase() === "MULTIPLE_CHOICES" ? (
-                <MultipleChoiceQuiz exercises={exercisesData} />
-              ) : data?.questions[0].type?.toUpperCase() ===
-                "FILL_IN_THE_BLANK" ? (
-                <FillInTheBlankQuiz exercises={exercisesData} />
-              ) : null}
+            <div className="max-w-screen-lg">
+              <div className="dark:text-text-des-dark-mode px-4 leading-10 text-des-3 text-text-des-light-mode">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(transcript),
+                  }}
+                />
+              </div>
+              <div className="dark:text-text-des-dark-mode px-4 leading-10 text-des-3 text-text-des-light-mode ">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(tip),
+                  }}
+                />
+              </div>
+              <TrueFalseQuiz exercises={exercisesData} ex_uuid={ex_uuid} />
             </div>
           </div>
         </div>

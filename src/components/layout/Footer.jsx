@@ -95,10 +95,7 @@ export default function Footer() {
                 <NavLink to="/a1a2vocabulary">A1 - A2</NavLink>
               </li>
               <li>
-                <NavLink to="/a1a2vocabulary">B1 - B2</NavLink>
-              </li>
-              <li>
-                <NavLink to="">C1</NavLink>
+                <NavLink to="/b1b2vocanulary">B1 - B2</NavLink>
               </li>
             </ul>
           </div>

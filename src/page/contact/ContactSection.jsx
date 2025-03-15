@@ -53,9 +53,9 @@ const ContactSection = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <FaEnvelope className="text-primary-500 text-des-1" />
-                <a href="mailto:fluentflow@gmail.com">
+                <a href="mailto:fluentflow.istad@gmail.com">
                   <span className="text-black dark:text-white">
-                    fluentflow@gmail.com
+                    fluentflow.istad@gmail.com
                   </span>
                 </a>
               </div>

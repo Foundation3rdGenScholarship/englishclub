@@ -58,11 +58,13 @@ const Sidebar = () => {
           <li>
             <NavLink
               to="/dashboard"
-              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
-                activeItem === "dashboard"
-                  ? "bg-primary-100 dark:bg-primary-950 text-white"
-                  : ""
-              }`}
+              className={({ isActive }) =>
+                `flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
+                  isActive
+                    ? "bg-primary-100 dark:bg-primary-950 text-white"
+                    : ""
+                }`
+              }
               onClick={() => handleAction("dashboard", "dashboard")}
             >
               <FaHome className="size-6" />
@@ -78,11 +80,13 @@ const Sidebar = () => {
               type="button"
               to="/skills"
               onClick={() => handleAction("skill", "skill")}
-              className={`flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 ${
-                activeItem === "skill"
-                  ? "bg-primary-100 dark:bg-primary-950 text-white"
-                  : ""
-              }`}
+              className={({ isActive }) =>
+                `flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 ${
+                  isActive
+                    ? "bg-primary-100 dark:bg-primary-950 text-white"
+                    : ""
+                }`
+              }
             >
               <SiHyperskill />
               <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
@@ -100,12 +104,14 @@ const Sidebar = () => {
                   <li key={skillItem.text}>
                     <NavLink
                       to={skillItem.path}
-                      onClick={() => handleClick(skillItem.text)}
-                      className={`flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 cursor-pointer ${
-                        activeItem === skillItem.text
-                          ? "bg-primary-100 dark:bg-primary-950 text-white"
-                          : ""
-                      }`}
+                      // onClick={() => handleClick(skillItem.text)}
+                      className={({ isActive }) =>
+                        `flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 cursor-pointer ${
+                          isActive
+                            ? "bg-primary-100 dark:bg-primary-950 text-white"
+                            : ""
+                        }`
+                      }
                     >
                       {skillItem.title}
                     </NavLink>
@@ -120,11 +126,13 @@ const Sidebar = () => {
               type="button"
               to="/over-grammar"
               onClick={() => handleAction("grammar", "grammar")}
-              className={`flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 ${
-                activeItem === "grammar"
-                  ? "bg-primary-100 dark:bg-primary-950 text-white"
-                  : ""
-              }`}
+              className={({ isActive }) =>
+                `flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
+                  isActive
+                    ? "bg-primary-100 dark:bg-primary-950 text-white"
+                    : ""
+                }`
+              }
             >
               <TbTextGrammar />
               <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
@@ -142,12 +150,14 @@ const Sidebar = () => {
                   <li key={grammarItem.text}>
                     <NavLink
                       to={grammarItem.path}
-                      onClick={() => handleClick(grammarItem.text)}
-                      className={`flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 cursor-pointer ${
-                        activeItem === grammarItem.text
-                          ? "bg-primary-100 dark:bg-primary-950 text-white"
-                          : ""
-                      }`}
+                      // onClick={() => handleClick(grammarItem.text)}
+                      className={({ isActive }) =>
+                        `flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 cursor-pointer ${
+                          isActive
+                            ? "bg-primary-100 dark:bg-primary-950 text-white"
+                            : ""
+                        }`
+                      }
                     >
                       {grammarItem.title}
                     </NavLink>
@@ -161,11 +171,13 @@ const Sidebar = () => {
             <NavLink
               to="/over-vocabulary"
               onClick={() => handleAction("vocabulary", "vocabulary")}
-              className={`flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 ${
-                activeItem === "vocabulary"
-                  ? "bg-primary-100 dark:bg-primary-950 text-white"
-                  : ""
-              }`}
+              className={({ isActive }) =>
+                `flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
+                  isActive
+                    ? "bg-primary-100 dark:bg-primary-950 text-white"
+                    : ""
+                }`
+              }
             >
               <TbVocabulary />
               <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
@@ -183,12 +195,14 @@ const Sidebar = () => {
                   <li key={grammarItem.text}>
                     <NavLink
                       to={grammarItem.path}
-                      onClick={() => handleClick(grammarItem.text)}
-                      className={`flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 cursor-pointer ${
-                        activeItem === grammarItem.text
-                          ? "bg-primary-100 dark:bg-primary-950 text-white"
-                          : ""
-                      }`}
+                      // onClick={() => handleClick(grammarItem.text)}
+                      className={({ isActive }) =>
+                        `flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-primary-100 hover:text-white dark:text-white dark:hover:bg-primary-950 cursor-pointer ${
+                          isActive
+                            ? "bg-primary-100 dark:bg-primary-950 text-white"
+                            : ""
+                        }`
+                      }
                     >
                       {grammarItem.title}
                     </NavLink>

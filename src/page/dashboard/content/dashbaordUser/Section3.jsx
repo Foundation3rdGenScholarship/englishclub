@@ -15,8 +15,8 @@ export default function Section3() {
               className="lg:w-96 lg:h-96 md:w-80 md:h-80 sm:w-72 sm:h-64 h-60 w-64"
             />
           </div>
-          <div className="flex flex-col justify-center items-center gap-4">
-            <h3 className="dark:text-text-des-dark-mode text-primary-950 lg:text-heading-3 md:text-heading-4 text-heading-5 text-center">
+          <div className="flex flex-col justify-center items-center gap-4 ">
+            <h3 className="dark:text-text-des-dark-mode text-primary-950 lg:text-heading-3 md:text-heading-4 text-heading-5 text-center font-bold">
               {t("addmore")}
             </h3>
             <h4 className="dark:text-text-des-dark-mode text-primary-950 lg:text-heading-4 md:text-heading-5 text-heading-6 text-center">

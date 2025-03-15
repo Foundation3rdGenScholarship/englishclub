@@ -17,7 +17,7 @@ const getLevelImage = (level) => {
     case "C1":
       return "https://project-english-club.vercel.app/assets/vocabulary-C_LuEoE2.png";
     case "C2":
-      return "https://project-english-club.vercel.app/assets/vocabulary-C_LuEoE2.png";
+      return "https://cdn3d.iconscout.com/3d/premium/thumb/seo-3d-icon-download-in-png-blend-fbx-gltf-file-formats--analytics-logo-marketing-serach-optimization-analysis-digital-pack-branding-icons-4884465.png";
     default:
       return "";
   }
@@ -43,7 +43,7 @@ const StatsSummary = () => {
     B1: 0,
     B2: 0,
     C1: 0,
-    C2: 0,
+    C2: "Coming soon!",
   });
 
   // Fetch all exercises
@@ -98,7 +98,7 @@ const StatsSummary = () => {
           B1: 0,
           B2: 0,
           C1: 0,
-          C2: 0,
+          C2: t("Coming soon!"),
         };
 
         // Only process if we have data
@@ -180,7 +180,7 @@ const StatsSummary = () => {
           name: "C2",
           image: getLevelImage("C2"),
           completed: levelCounts.C2,
-          total: groupedExercises["C2"]?.length || 0,
+          total: groupedExercises["C2"]?.length || "",
         },
       ];
 
@@ -206,7 +206,7 @@ const StatsSummary = () => {
 
   return (
     <div className="bg-bg-light-mode dark:bg-gray-900 rounded-xl p-6 sm:ml-64 mt-[88px] max-w-screen-xl mb-16">
-      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+      <h2 className="text-2xl md:text-3xl font-bold text-primary-500 dark:text-white mb-6 text-center">
         {t("details about the")}{" "}
         <span className="text-secondary-500">{t("exercises")}</span>
       </h2>
@@ -245,7 +245,12 @@ const StatsSummary = () => {
                   <span className="font-medium text-secondary-500">
                     {level.completed}
                   </span>{" "}
-                  / {level.total} {t("done")}
+                  {level.total > 0 && (
+                    <>
+                      {" "}
+                      / {level.total} {t("done")}
+                    </>
+                  )}
                 </p>
 
                 {/* Progress Bar with Animation */}
@@ -269,7 +274,7 @@ const StatsSummary = () => {
       {/* Exercise Details Section - Only show if there are answers */}
       {userAnswers.length > 0 ? (
         <div className="mt-12">
-          <h2 className="text-xl font-bold text-primary-500 dark:text-white mb-4">
+          <h2 className="text-2xl font-bold text-primary-500 dark:text-white mb-4">
             {t("exercises history")}
           </h2>
           <ul className="space-y-4">

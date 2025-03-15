@@ -14,7 +14,7 @@ import HeroLevel from "../../../../components/heroCard/HeroLevel";
 const ExerciseDetail = () => {
   const { ex_uuid } = useParams(); // Extract the ex_uuid from the URL using useParams
   const { data, isLoading, error } = useFetchExerciseByIdQuery(ex_uuid); // Use the query with ex_uuid as the argument
-  console.log("Data ; ", data);
+  // console.log("Data ; ", data);
 
   if (isLoading) {
     return (
@@ -38,7 +38,7 @@ const ExerciseDetail = () => {
   const transcript = data?.transcript || "";
   const tip = data?.tip || "";
 
-  console.log(data.ex_uuid);
+  // console.log(data.ex_uuid);
 
   // TODO Multiple Choies
   if (data?.questions[0].type?.toUpperCase() === "MULTIPLE_CHOICES") {
@@ -103,7 +103,7 @@ const ExerciseDetail = () => {
   } else if (data?.questions[0].type?.toUpperCase() === "FILL_IN_THE_BLANK") {
     // Assuming 'data' contains your original data shown in the console
     const exercisesData = data.questions.map((question, index) => {
-      console.log("Question : ", question);
+      // console.log("Question : ", question);
 
       return {
         id: index + 1,
@@ -115,7 +115,7 @@ const ExerciseDetail = () => {
       };
     });
 
-    console.log(exercisesData);
+    // console.log(exercisesData);
     return (
       <div className="sm:ml-64 mt-[80px] mb-10">
         <div className="max-w-full">
@@ -190,7 +190,7 @@ const ExerciseDetail = () => {
       };
     });
 
-    console.log(exercisesData);
+    // console.log(exercisesData);
     return (
       <div className="sm:ml-64 mt-[80px] mb-10">
         <div className="max-w-full">
@@ -232,7 +232,7 @@ const ExerciseDetail = () => {
                   }}
                 />
               </div>
-              <TrueFalseQuiz exercises={exercisesData} />
+              <TrueFalseQuiz exercises={exercisesData} ex_uuid={ex_uuid}/>
             </div>
           </div>
         </div>
