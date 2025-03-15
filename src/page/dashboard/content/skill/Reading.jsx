@@ -12,7 +12,7 @@ const Reading = () => {
   const skeleton = Array(8).fill(0);
   const { t } = useTranslation("reading");
   const { data, isLoading, error } = useAllReadingQuery();
-  console.log("This is an data in reading : ", data);
+  // console.log("This is an data in reading : ", data);
 
   if (isLoading) {
     return (

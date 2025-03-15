@@ -29,7 +29,7 @@ const SpeakingExercises = () => {
       </div>
     ); // Show error if there's a problem fetching the data
   }
-  console.log("Data Video : ", data);
+  // console.log("Data Video : ", data);
 
   // use for check have sound or not
   const soundExtensions = [".mp3", ".wav", ".ogg", ".flac", ".aac", ".m4a"];
@@ -45,10 +45,10 @@ const SpeakingExercises = () => {
 
   const transcript = data?.transcript || "";
   const tip = data?.tip || "";
-  console.log("Tip : ", data?.tip);
-  console.log("The Data : ", data);
-  console.log("This is an Data Of Exercises : ", data?.questions);
-  console.log("Type of exericses : ", data.voice);
+  // console.log("Tip : ", data?.tip);
+  // console.log("The Data : ", data);
+  // console.log("This is an Data Of Exercises : ", data?.questions);
+  // console.log("Type of exericses : ", data.voice);
 
   // TODO Multiple Choies
   if (data?.questions[0].type?.toUpperCase() === "MULTIPLE_CHOICES") {
@@ -150,7 +150,7 @@ const SpeakingExercises = () => {
   } else if (data?.questions[0].type?.toUpperCase() === "FILL_IN_THE_BLANK") {
     // Assuming 'data' contains your original data shown in the console
     const exercisesData = data.questions.map((question, index) => {
-      console.log("Question : ", question);
+      // console.log("Question : ", question);
       return {
         id: index + 1,
         question_text: question.question_text,
@@ -160,7 +160,7 @@ const SpeakingExercises = () => {
       };
     });
 
-    console.log(exercisesData);
+    // console.log(exercisesData);
     return (
       <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
         <div className="max-w-full">
@@ -229,7 +229,7 @@ const SpeakingExercises = () => {
       };
     });
 
-    console.log(exercisesData);
+    // console.log(exercisesData);
     return (
       <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
         <div className="max-w-full">

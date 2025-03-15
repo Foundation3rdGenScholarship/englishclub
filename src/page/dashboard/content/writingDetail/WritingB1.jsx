@@ -30,9 +30,9 @@ export const WritingB1 = () => {
   // Handle click on card to get exercise ID and navigate to another page
   const handleCardClick = (id) => {
     navigate(`/exercises/${id}`); // Navigate to exercise detail page
-    console.log(id);
+    // console.log(id);
     const fullUrl = `/exercises/${id}`;
-    console.log("Full URL:", fullUrl); // This should log the full URL
+    // console.log("Full URL:", fullUrl); // This should log the full URL
   };
 
   return (

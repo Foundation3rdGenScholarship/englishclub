@@ -33,10 +33,10 @@ const ListeningExercises = () => {
 
   const transcript = data?.transcript || "";
   const tip = data?.tip || "";
-  console.log("Tip : ", data?.tip);
-  console.log("The Data : ", data);
-  console.log("This is an Data Of Exercises : ", data?.questions);
-  console.log("Type of exericses : ", data.voice);
+  // console.log("Tip : ", data?.tip);
+  // console.log("The Data : ", data);
+  // console.log("This is an Data Of Exercises : ", data?.questions);
+  // console.log("Type of exericses : ", data.voice);
 
   // TODO Multiple Choies
   if (data?.questions[0].type?.toUpperCase() === "MULTIPLE_CHOICES") {
@@ -147,7 +147,7 @@ const ListeningExercises = () => {
         })) || [],
     }));
 
-    console.log(exercisesData);
+    // console.log(exercisesData);
     return (
       // <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
       //   <div className="max-w-full">
@@ -273,7 +273,7 @@ const ListeningExercises = () => {
       };
     });
 
-    console.log(exercisesData);
+    // console.log(exercisesData);
     return (
       <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
         <div className="max-w-full">

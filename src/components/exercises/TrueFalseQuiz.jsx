@@ -10,7 +10,7 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
   const [userLoggedIn, setUserLoggedIn] = useState(true);
   const { t } = useTranslation("error");
 
-  console.log("Data In True False : ", exercises);
+  // console.log("Data In True False : ", exercises);
 
   // Check if user is logged in on component mount
   useEffect(() => {
