@@ -106,14 +106,6 @@ const ListeningExercises = () => {
                 />
               </div>
               <MultipleChoiceQuiz exercises={exercisesData} ex_uuid={ex_uuid} />
-              {ex_uuid === "4bef9626-22be-4b9d-9410-128dbeb65f21" && (
-                <div className="mt-5">
-                  <FillInTheBlankQuiz
-                    exercises={fillInTheBlankDataListeningB1}
-                    ex_uuid={ex_uuid}
-                  />
-                </div>
-              )}
             </div>
             {/* Description */}
           </div>
@@ -249,6 +241,7 @@ const ListeningExercises = () => {
         </div>
       </div>
     );
+    // TODO True False
   } else if (data?.questions[0].type?.toUpperCase() === "TRUE_OR_FALSE") {
     // Assuming 'data' is your original array from the console output
     const exercisesData = data?.questions.map((item, index) => {
@@ -313,6 +306,8 @@ const ListeningExercises = () => {
                 }}
               />
             </div>
+
+            <TrueFalseQuiz exercises={exercisesData} ex_uuid={ex_uuid} />
 
             {/* <div>
               <MultipleChoice exercise={exerciseData} />

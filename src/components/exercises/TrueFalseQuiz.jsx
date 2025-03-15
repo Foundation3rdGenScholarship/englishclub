@@ -9,9 +9,6 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(true);
   const { t } = useTranslation("error");
-
-  console.log("Data In True False : ", exercises);
-
   // Check if user is logged in on component mount
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("user"));

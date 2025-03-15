@@ -102,7 +102,7 @@ createRoot(document.getElementById("root")).render(
               <Route element={<Dashboard />}>
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/reading" element={<Reading />} />
-                <Route path="/listening" element={<Listening />} />
+
                 <Route path="/writing" element={<Writing />} />
                 <Route path="/speaking" element={<Speaking />} />
                 {/* <Route path="/a1a2grammar" element={<A1A2grammar />} /> */}
@@ -111,6 +111,7 @@ createRoot(document.getElementById("root")).render(
               </Route>
 
               <Route element={<App />}>
+                <Route path="/listening" element={<Listening />} />
                 <Route path="/extra-video" element={<ExtraVideo />} />
                 <Route path="/a1a2grammar" element={<A1A2grammar />} />
                 <Route path="/b1b2grammar" element={<B1B2grammar />} />
