@@ -17,6 +17,7 @@ const LangTranslate = () => {
   const [translatedText, setTranslatedText] = useState("");
   const [isSpeaking, setIsSpeaking] = useState(false);
   const { t } = useTranslation("soundtts");
+
   // Swap languages
   const swapLanguages = () => {
     setSourceLang(targetLang);
@@ -31,8 +32,11 @@ const LangTranslate = () => {
         return;
       }
 
+      // Add a period to the end of the text for translation purposes if it doesn't end with punctuation
+      const textForTranslation = addPeriodIfNeeded(inputText);
+
       const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLang}&tl=${targetLang}&dt=t&q=${encodeURIComponent(
-        inputText
+        textForTranslation
       )}`;
 
       try {
@@ -47,45 +51,37 @@ const LangTranslate = () => {
     translateText();
   }, [inputText, sourceLang, targetLang, t]);
 
-  // Speak text using Google Cloud TTS
+  // Function to add a period if the text doesn't end with punctuation
+  const addPeriodIfNeeded = (text) => {
+    const trimmedText = text.trim();
+    if (!trimmedText) return "";
+
+    // Check if the text already ends with a punctuation mark
+    const lastChar = trimmedText.slice(-1);
+    const punctuationMarks = [""];
+
+    if (punctuationMarks.includes(lastChar)) {
+      return trimmedText;
+    } else {
+      return trimmedText + ".";
+    }
+  };
+
+  // Speak text using browser's speech synthesis
   const speakText = async () => {
     if (!translatedText.trim()) {
       toast.error(t("No text to read. Please translate first!"));
       return;
     }
+    setIsSpeaking(true);
     const speech = new SpeechSynthesisUtterance(inputText);
-    speech.lang = "en";
+    speech.lang = targetLang;
+
+    speech.onend = () => {
+      setIsSpeaking(false);
+    };
+
     window.speechSynthesis.speak(speech);
-
-    // setIsSpeaking(true);
-
-    // try {
-    //   const response = await axios.post(
-    //     `https://texttospeech.googleapis.com/v1/text:synthesize?key=${process.env.REACT_APP_GOOGLE_TTS_API_KEY}`,
-    //     {
-    //       input: { text: translatedText },
-    //       voice: {
-    //         languageCode: targetLang === "km" ? "km-KH" : targetLang,
-    //         ssmlGender: "NEUTRAL",
-    //       },
-    //       audioConfig: {
-    //         audioEncoding: "MP3",
-    //       },
-    //     }
-    //   );
-
-    //   if (!response.data.audioContent) {
-    //     throw new Error("No audio content received");
-    //   }
-
-    //   const audioContent = response.data.audioContent;
-    //   const audio = new Audio(`data:audio/mp3;base64,${audioContent}`);
-    //   audio.play();
-    //   audio.onended = () => setIsSpeaking(false);
-    // } catch (error) {
-    //   toast.error(t("Failed to generate speech. Try again!"));
-    //   setIsSpeaking(false);
-    // }
   };
 
   return (

@@ -26,7 +26,6 @@ import Speaking from "./page/dashboard/content/skill/Speaking.jsx";
 import A1A2grammar from "./page/dashboard/content/grammars/A1A2grammar.jsx";
 import B1B2grammar from "./page/dashboard/content/grammars/B1B2grammar.jsx";
 import C1grammar from "./page/dashboard/content/grammars/C1grammar.jsx";
-import MoreDoc from "./page/dashboard/content/grammars/MoreDoc.jsx";
 import A1A2vocabulary from "./page/dashboard/content/vocabularies/A1A2vocabulary.jsx";
 import B1B2vocabulary from "./page/dashboard/content/vocabularies/B1B2vocabulary.jsx";
 import { ToastContainer } from "react-toastify";
@@ -66,6 +65,8 @@ import { SpeakingB1 } from "./page/dashboard/content/speakingDetail/SpeakingB1.j
 import { SpeakingB2 } from "./page/dashboard/content/speakingDetail/SpeakingB2.jsx";
 import { SpeakingC1 } from "./page/dashboard/content/speakingDetail/SpeakingC1.jsx";
 import LangTranslate from "./page/dashboard/content/translate/Translator.jsx";
+import ReadingC1 from "./page/dashboard/content/skillDetail/ReadingC1.jsx";
+// import { OverSkill } from "./page/dashboard/content/overview/OverSkill.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -101,16 +102,14 @@ createRoot(document.getElementById("root")).render(
 
               <Route element={<Dashboard />}>
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/reading" element={<Reading />} />
-                <Route path="/listening" element={<Listening />} />
-                <Route path="/writing" element={<Writing />} />
-                <Route path="/speaking" element={<Speaking />} />
-                {/* <Route path="/a1a2grammar" element={<A1A2grammar />} /> */}
-                {/* <Route path="/b1b2grammar" element={<B1B2grammar />} />
-              <Route path="/c1grammar" element={<C1grammar />} /> */}
               </Route>
 
               <Route element={<App />}>
+                <Route path="/reading" element={<Reading />} />
+                <Route path="/skills" element={<OverSkill />} />
+                <Route path="/writing" element={<Writing />} />
+                <Route path="/speaking" element={<Speaking />} />
+                <Route path="/listening" element={<Listening />} />
                 <Route path="/extra-video" element={<ExtraVideo />} />
                 <Route path="/a1a2grammar" element={<A1A2grammar />} />
                 <Route path="/b1b2grammar" element={<B1B2grammar />} />
@@ -134,6 +133,10 @@ createRoot(document.getElementById("root")).render(
                 <Route
                   path="/courses/reading/level=b2"
                   element={<ReadingB2 />}
+                />
+                <Route
+                  path="/courses/reading/level=c1"
+                  element={<ReadingC1 />}
                 />
                 <Route
                   path="/courses/listening/level=a1"

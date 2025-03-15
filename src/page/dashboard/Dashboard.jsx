@@ -9,7 +9,6 @@ import Speaking from "./content/skill/Speaking";
 import A1A2grammar from "./content/grammars/A1A2grammar";
 import B1B2grammar from "./content/grammars/B1B2grammar";
 import C1grammar from "./content/grammars/C1grammar";
-import MoreDoc from "./content/grammars/MoreDoc";
 import A1A2vocabulary from "./content/vocabularies/A1A2vocabulary";
 import B1B2vocabulary from "./content/vocabularies/B1B2vocabulary";
 import {
