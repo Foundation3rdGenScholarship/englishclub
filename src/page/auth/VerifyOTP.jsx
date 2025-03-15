@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import * as yup from "yup";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -32,7 +32,7 @@ export default function VerifyOTP() {
   const [verifyOtp] = useVerifyOtpMutation();
   const [loginUser] = useLoginUserMutation();
   const [resendOtp, { isLoading: isResending }] = useResendOtpMutation();
-    const [verifyEmail, { isLoading }] = useVerifyEmailMutation();
+  const [verifyEmail, { isLoading }] = useVerifyEmailMutation();
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
@@ -95,7 +95,7 @@ export default function VerifyOTP() {
 
   const handleResendOtp = async () => {
     try {
-     await verifyEmail(email).unwrap();
+      await verifyEmail(email).unwrap();
       toast.success(t("OTP resent successfully!"));
     } catch (error) {
       toast.error(
@@ -108,10 +108,12 @@ export default function VerifyOTP() {
     otp: Array(6).fill(""),
   };
 
-  const validationSchema = Yup.object({
-    otp: Yup.array()
+  const validationSchema = yup.object({
+    otp: yup
+      .array()
       .of(
-        Yup.string()
+        yup
+          .string()
           .length(1, t("Must be a single digit"))
           .required(t("Required"))
       )

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
+import * as yup from "yup";
 import { IoCamera } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -22,9 +22,9 @@ const UserProfileForm = ({
     ? user?.user_name[0].toUpperCase()
     : "G";
   // Validation schema
-  const validationSchema = Yup.object({
-    user_name: Yup.string().required(t("please enter your name")),
-    bio: Yup.string().required(t("please enter your bio")),
+  const validationSchema = yup.object({
+    user_name: yup.string().required(t("please enter your name")),
+    bio: yup.string().required(t("please enter your bio")),
   });
 
   const handleFileChangeWrapper = (event, setFieldValue) => {

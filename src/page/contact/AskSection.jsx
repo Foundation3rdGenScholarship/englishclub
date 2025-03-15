@@ -3,7 +3,7 @@ import questionGuy from "../../../public/svg/questioning.svg";
 import { BiSolidMessageSquareDetail } from "react-icons/bi";
 import { useTranslation } from "react-i18next";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import * as yup from "yup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AOS from "aos";
@@ -27,11 +27,11 @@ const AskSection = () => {
     subject: "",
     question: "",
   };
-  const validationSchema = Yup.object({
-    name: Yup.string().required(t("required-name")),
-    email: Yup.string().email("Invalid email").required(t("required-email")),
-    subject: Yup.string().required(t("required-subject")),
-    question: Yup.string().required(t("required-question")),
+  const validationSchema = yup.object({
+    name: yup.string().required(t("required-name")),
+    email: yup.string().email("Invalid email").required(t("required-email")),
+    subject: yup.string().required(t("required-subject")),
+    question: yup.string().required(t("required-question")),
   });
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -41,7 +41,7 @@ const AskSection = () => {
       subject: values.subject,
       message: values.question, // This will map to {{message}} in your template
     };
-  
+
     try {
       const response = await emailjs.send(
         "service_fluentflow", // Replace with your actual Service ID
@@ -49,7 +49,7 @@ const AskSection = () => {
         templateParams,
         { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY } // Public Key as an object
       );
-  
+
       console.log("SUCCESS!", response.status, response.text);
       toast.success("Your question has been submitted!");
       resetForm();

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
 import { FaLock } from "react-icons/fa";
-import * as Yup from "yup";
+import * as yup from "yup";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import resetpasswordimg from "../../../public/svg/resetpassword.svg";
@@ -25,33 +25,32 @@ export default function NewPassword() {
 
   const [resetPassword, { isLoading }] = useResetPasswordMutation();
 
- const handleSubmit = async (values) => {
-  try {
-    // Ensure correct request format
-    const payload = {
-      email: email, // Ensure email is included
-      new_password: values.newPassword, // Match server field names
-      confirm_password: values.confirmPassword,
-    };
+  const handleSubmit = async (values) => {
+    try {
+      // Ensure correct request format
+      const payload = {
+        email: email, // Ensure email is included
+        new_password: values.newPassword, // Match server field names
+        confirm_password: values.confirmPassword,
+      };
 
-    // Attempt to reset the password
-    await resetPassword(payload).unwrap();
+      // Attempt to reset the password
+      await resetPassword(payload).unwrap();
 
-    toast.success(t("Password reset successfully!"));
-    navigate("/login");
-  } catch (error) {
-
-    // Extract validation errors from the API response
-    if (error.status === 422 && error.data?.detail) {
-      const errorMessages = error.data.detail.map((err) => err.msg).join(", ");
-      toast.error(t(`Validation failed: ${errorMessages}`));
-    } else {
-      toast.error(t("Failed to reset password. Please try again."));
+      toast.success(t("Password reset successfully!"));
+      navigate("/login");
+    } catch (error) {
+      // Extract validation errors from the API response
+      if (error.status === 422 && error.data?.detail) {
+        const errorMessages = error.data.detail
+          .map((err) => err.msg)
+          .join(", ");
+        toast.error(t(`Validation failed: ${errorMessages}`));
+      } else {
+        toast.error(t("Failed to reset password. Please try again."));
+      }
     }
-  }
-};
-
-
+  };
 
   const handleGoBack = () => {
     navigate("/");
@@ -69,8 +68,9 @@ export default function NewPassword() {
     confirmPassword: "",
   };
 
-  const validationSchema = Yup.object({
-    newPassword: Yup.string()
+  const validationSchema = yup.object({
+    newPassword: yup
+      .string()
       .matches(
         strongPasswordRegex,
         t(
@@ -78,9 +78,10 @@ export default function NewPassword() {
         )
       )
       .required(t("Password is required")),
-    confirmPassword: Yup.string()
+    confirmPassword: yup
+      .string()
       .oneOf(
-        [Yup.ref("newPassword"), null],
+        [yup.ref("newPassword"), null],
         t("confirm Password needs to be the same as Password!")
       )
       .required(t("Confirm Password is required")),

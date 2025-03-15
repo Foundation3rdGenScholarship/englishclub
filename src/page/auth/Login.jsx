@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import * as yup from "yup";
 import { FaUser, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
@@ -64,11 +64,13 @@ const Login = () => {
     password: "",
   };
 
-  const validationSchema = Yup.object({
-    email: Yup.string()
+  const validationSchema = yup.object({
+    email: yup
+      .string()
       .email(t("invalid email format"))
       .required(t("email is required")),
-    password: Yup.string()
+    password: yup
+      .string()
       .min(8, t("minimum 8 characters"))
       .required(t("password is required")),
   });

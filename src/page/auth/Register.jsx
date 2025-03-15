@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik"; // Import ErrorMessage
-import * as Yup from "yup";
+import * as yup from "yup";
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
@@ -31,7 +31,6 @@ export default function Register() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [privacyPolicyAccepted, setPrivacyPolicyAccepted] = useState(false);
 
-
   const initialValues = {
     username: "",
     email: "",
@@ -40,12 +39,14 @@ export default function Register() {
     privacyPolicy: false,
   };
 
-  const validationSchema = Yup.object({
-    username: Yup.string().required(t("username is required")),
-    email: Yup.string()
+  const validationSchema = yup.object({
+    username: yup.string().required(t("username is required")),
+    email: yup
+      .string()
       .email(t("invalid email format"))
       .required(t("email is required")),
-    password: Yup.string()
+    password: yup
+      .string()
       .matches(
         strongPasswordRegex,
         t(
@@ -53,13 +54,15 @@ export default function Register() {
         )
       )
       .required(t("password is required")),
-    confirm_password: Yup.string()
+    confirm_password: yup
+      .string()
       .oneOf(
-        [Yup.ref("password"), null],
+        [yup.ref("password"), null],
         t("confirm Password need to be the same as Password!")
       )
       .required(t("Confirm Password is required")),
-    privacyPolicy: Yup.boolean()
+    privacyPolicy: yup
+      .boolean()
       .oneOf([true], t("You must accept the privacy policy"))
       .required(t("You must accept the privacy policy")),
   });
