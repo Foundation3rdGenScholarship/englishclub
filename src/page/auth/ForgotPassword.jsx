@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import * as yup from "yup";
 import { FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router";
 import { NavLink } from "react-router";
@@ -30,27 +30,26 @@ const ForgotPassword = () => {
 
   const initialValues = { email: "" };
 
-  const validationSchema = Yup.object({
-    email: Yup.string()
+  const validationSchema = yup.object({
+    email: yup
+      .string()
       .email(t("invalid email format"))
       .required(t("email is required")),
   });
 
-const handleSubmit = async (values, { resetForm }) => {
-  try {
-    // Ensure you're passing only the email string to the mutation
-    await verifyEmail(values.email).unwrap(); // Pass just the email value
-    toast.success(t("verification email sent!"));
-    resetForm();
-    navigate("/verifyotp", {
-      state: { email: values.email, action: "reset-password" },
-    });
-  } catch (error) {
-    toast.error(t("failed to verify email"));
-  }
-};
-
-
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+      // Ensure you're passing only the email string to the mutation
+      await verifyEmail(values.email).unwrap(); // Pass just the email value
+      toast.success(t("verification email sent!"));
+      resetForm();
+      navigate("/verifyotp", {
+        state: { email: values.email, action: "reset-password" },
+      });
+    } catch (error) {
+      toast.error(t("failed to verify email"));
+    }
+  };
 
   return (
     <AuthLayout
