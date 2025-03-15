@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { FaVolumeUp } from "react-icons/fa";
 import categoriesData from "../../../../data/vocabularies/soundtts.json"; // Import JSON data
-import TTSinput from "../../../../components/soundtts/TTSinput";
 
 // Card Component
 const Card = ({ item }) => {
@@ -21,8 +20,6 @@ const Card = ({ item }) => {
           alt={item.word}
           className="w-full h-full object-cover transform transition-transform duration-300"
         />
-        {/* Overlay for hover effect */}
-        {/* <div className="absolute inset-0 bg-black/10 hover:bg-black/20 transition-colors duration-300" /> */}
         {/* Play Sound Button */}
         <button
           onClick={() => speak(item.word)}
@@ -34,7 +31,6 @@ const Card = ({ item }) => {
 
       {/* Content Section */}
       <div className="p-4 w-full text-center">
-        {/* Word */}
         <p className="text-xl font-semibold text-primary-500 dark:text-white mb-3">
           {item.word}
         </p>
@@ -45,14 +41,44 @@ const Card = ({ item }) => {
 
 // Category Component
 const Category = ({ name, items, t }) => {
+  const [loading, setLoading] = useState(true);
+
+  // Simulate loading for the entire category
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Simulate a 2-second delay
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="mt-20">
       <h1 className="text-3xl font-bold text-primary-500 mb-4">{t(name)}</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {items.map((item, index) => (
-          <Card key={index} item={item} />
-        ))}
-      </div>
+      {loading ? (
+        // Skeleton for the entire category
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {Array.from({ length: 4 }).map((_, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center rounded-tl-[50px] rounded-br-[50px] bg-white/10 backdrop-blur-md shadow-lg transition-shadow duration-300 overflow-hidden"
+            >
+              {/* Skeleton for Image */}
+              <div className="w-full h-48 bg-gray-300 animate-pulse" />
+              {/* Skeleton for Word */}
+              <div className="p-4 w-full text-center">
+                <div className="h-6 w-3/4 mx-auto bg-gray-300 animate-pulse rounded mb-3" />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        // Actual content
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {items.map((item, index) => (
+            <Card key={index} item={item} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

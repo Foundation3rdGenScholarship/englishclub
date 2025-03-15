@@ -178,7 +178,7 @@ const ExerciseStats = () => {
       className="p-4 sm:ml-64 mt-[88px] max-w-screen-xl place-items-center place-content-center text-second bg-bg-light-mode dark:bg-gray-900 rounded-xl"
       data-aos="fade-up"
     >
-      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+      <h2 className="text-2xl md:text-3xl font-bold text-primary-500 dark:text-white mb-6 text-center">
         {t("rate of exercises")}{" "}
         <span className="text-secondary-500">{t("by level")}</span>
       </h2>
