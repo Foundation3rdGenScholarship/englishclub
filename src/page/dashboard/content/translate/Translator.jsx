@@ -50,7 +50,7 @@ const LangTranslate = () => {
   // Speak text using Google Cloud TTS
   const speakText = async () => {
     if (!translatedText.trim()) {
-      toast.error(t("No text to read. Please translate first."));
+      toast.error(t("No text to read. Please translate first!"));
       return;
     }
     const speech = new SpeechSynthesisUtterance(translatedText);

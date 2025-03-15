@@ -119,7 +119,7 @@ const UserProfileForm = ({
             </div>
 
             <div className="text-center mt-6">
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">
+              <h1 className="text-3xl md:text-4xl font-bold text-primary-500 dark:text-white">
                 {isLoading ? (
                   <Skeleton width={200} />
                 ) : (
