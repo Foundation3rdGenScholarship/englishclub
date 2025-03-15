@@ -232,7 +232,7 @@ const ExerciseDetail = () => {
                   }}
                 />
               </div>
-              <TrueFalseQuiz exercises={exercisesData} />
+              <TrueFalseQuiz exercises={exercisesData} ex_uuid={ex_uuid}/>
             </div>
           </div>
         </div>
