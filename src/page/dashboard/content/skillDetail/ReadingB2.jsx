@@ -41,7 +41,7 @@ const ReadingB2 = () => {
         <div className="container mx-auto px-4">
           <div className="text-heading-4 h-[100px] md:h-auto md:text-heading-2 flex items-center gap-2">
             <h1 className="text-primary-500 dark:text-primary-500 py-5 font-bold">
-              {t("b1reading")}
+              {t("b2reading")}
             </h1>
           </div>
 
@@ -59,7 +59,7 @@ const ReadingB2 = () => {
           {/* Description */}
           <div className="py-5">
             <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
-              {t("b1description")}
+              {t("b2description")}
             </p>
           </div>
 
