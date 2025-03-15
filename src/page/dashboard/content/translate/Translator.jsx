@@ -53,7 +53,7 @@ const LangTranslate = () => {
       toast.error(t("No text to read. Please translate first!"));
       return;
     }
-    const speech = new SpeechSynthesisUtterance(translatedText);
+    const speech = new SpeechSynthesisUtterance(inputText);
     speech.lang = "en";
     window.speechSynthesis.speak(speech);
 
