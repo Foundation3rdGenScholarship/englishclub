@@ -65,6 +65,7 @@ import { SpeakingB1 } from "./page/dashboard/content/speakingDetail/SpeakingB1.j
 import { SpeakingB2 } from "./page/dashboard/content/speakingDetail/SpeakingB2.jsx";
 import { SpeakingC1 } from "./page/dashboard/content/speakingDetail/SpeakingC1.jsx";
 import LangTranslate from "./page/dashboard/content/translate/Translator.jsx";
+import ReadingC1 from "./page/dashboard/content/skillDetail/ReadingC1.jsx";
 // import { OverSkill } from "./page/dashboard/content/overview/OverSkill.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
@@ -132,6 +133,10 @@ createRoot(document.getElementById("root")).render(
                 <Route
                   path="/courses/reading/level=b2"
                   element={<ReadingB2 />}
+                />
+                <Route
+                  path="/courses/reading/level=c1"
+                  element={<ReadingC1 />}
                 />
                 <Route
                   path="/courses/listening/level=a1"

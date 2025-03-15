@@ -20,44 +20,21 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
 
   // Initialize toast notifications
   const notify = (message, type = "success") => {
-    const isDarkMode =
-      document.documentElement.classList.contains("dark") ||
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-
     const colors = {
-      success: {
-        light: { background: "#fff", text: "#4CAF50", progress: "#2E7D32" },
-        dark: { background: "#1E1E1E", text: "#81C784", progress: "#66BB6A" },
-      },
-      error: {
-        light: { background: "#fff", text: "#F44336", progress: "#D32F2F" },
-        dark: { background: "#1E1E1E", text: "#E57373", progress: "#EF5350" },
-      },
-      warning: {
-        light: { background: "#fff", text: "#FFA000", progress: "#FF6F00" },
-        dark: { background: "#1E1E1E", text: "#FFB74D", progress: "#FF9800" },
-      },
-      info: {
-        light: { background: "#fff", text: "#2196F3", progress: "#0D47A1" },
-        dark: { background: "#1E1E1E", text: "#64B5F6", progress: "#42A5F5" },
-      },
-    };
-
-    const theme = isDarkMode ? "dark" : "light";
-    const colorScheme = colors[type]?.[theme] || {
-      background: isDarkMode ? "#1E1E1E" : "#fff",
-      text: isDarkMode ? "#fff" : "#000",
-      progress: isDarkMode ? "#888" : "#555",
+      success: { background: "#fff", text: "#4CAF50", progress: "#2E7D32" }, // White background, Green text
+      error: { background: "#fff", text: "#F44336", progress: "#D32F2F" }, // White background, Red text
+      warning: { background: "#fff", text: "#FFA000", progress: "#FF6F00" }, // White background, Yellow-Orange text
+      info: { background: "#fff", text: "#2196F3", progress: "#0D47A1" }, // White background, Blue text
     };
 
     toast(message, {
       style: {
-        backgroundColor: colorScheme.background,
-        color: colorScheme.text,
+        backgroundColor: colors[type]?.background || "#333", // Default to dark gray if type not found
+        color: colors[type]?.text || "#fff", // Apply the text color
         fontWeight: "bold",
       },
       progressStyle: {
-        backgroundColor: colorScheme.progress,
+        backgroundColor: colors[type]?.progress || "#555",
       },
     });
   };
