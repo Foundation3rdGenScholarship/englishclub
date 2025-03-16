@@ -44,10 +44,10 @@ const Login = () => {
   const handleSubmit = async (values) => {
     try {
       const response = await loginUser(values).unwrap();
-
       if (response?.access_token) {
         storeAccessToken(response); // Store the access token
         dispatch(login({ user: response.user, token: response.access_token })); // Dispatch login action
+        toast.success("Login successful! Redirecting...");
         navigate("/userprofile");
       }
     } catch (error) {

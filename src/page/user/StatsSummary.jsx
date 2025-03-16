@@ -190,7 +190,7 @@ const StatsSummary = () => {
   }, [isExercisesLoading, allExercises, levelCounts]);
 
   // Show loading state while waiting for data
-  if (isLoading) {
+  if (isExercisesLoading) {
     return (
       <div className="bg-bg-light-mode dark:bg-gray-900 rounded-xl p-6 sm:ml-64 max-w-screen-xl mb-16">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center">
@@ -317,10 +317,10 @@ const StatsSummary = () => {
         </div>
       ) : (
         <div className="mt-12 text-center p-8 bg-white dark:bg-gray-800 rounded-xl shadow">
-          <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3">
-            {t("no exercises completed yet")}
+          <h3 className="text-xl font-bold text-primary-500 dark:text-white mb-3">
+            {t("No exercises completed yet")}
           </h3>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-500 dark:text-gray-400">
             {t("start taking exercises to see your progress history here")}
           </p>
         </div>

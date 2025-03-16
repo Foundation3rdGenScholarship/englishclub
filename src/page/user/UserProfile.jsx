@@ -30,28 +30,39 @@ const UserProfile = () => {
   const dispatch = useDispatch();
   const [verify] = useUserVerifyMutation();
 
-  useEffect(() => {
-    const fetchUserInfo = async () => {
-      if (!accessToken) return;
+useEffect(() => {
+  const fetchUserInfo = async () => {
+    setLoading(true); // Start loading
 
-      try {
-        const response = await verify({ token: accessToken }).unwrap();
+    if (!accessToken) {
+      setError("Access token is missing. Please log in.");
+      setLoading(false);
+      return;
+    }
 
-        if (response?.payload) {
-          setUserData(response.payload); // Set the data to state
-          dispatch(updateUser(response.payload)); // Dispatch to Redux
-        } else {
-          setError("Failed to load user data.");
-        }
-      } catch (err) {
-        setError("Failed to fetch user data.");
-      } finally {
-        setLoading(false);
+    try {
+      const response = await verify({ token: accessToken }).unwrap();
+      if (response?.payload) {
+        setUserData(response.payload); // Update state first
+        dispatch(updateUser(response.payload));
+      } else {
+        setError("Failed to load user data.");
       }
-    };
+    } catch (err) {
+      setError("Failed to fetch user data.");
+    } finally {
+      setUserData((prevData) => {
+        if (prevData) {
+          setTimeout(() => setLoading(false), 1000); // Ensure skeleton stays briefly visible
+        }
+        return prevData;
+      });
+    }
+  };
 
-    fetchUserInfo();
-  }, [accessToken, verify, dispatch]);
+  fetchUserInfo();
+}, [accessToken, verify, dispatch]);
+
 
   const handleFileChange = async (event) => {
     const fileInput = event.target;
@@ -117,6 +128,11 @@ const UserProfile = () => {
     setShowSignOutModal(false);
   };
 
+
+  if (error) {
+    return <div className="text-red-500 text-center mt-8">{error}</div>; // Show error message if fetching fails
+  }
+
   return (
     <section>
       <NavbarDashboard />
@@ -132,6 +148,7 @@ const UserProfile = () => {
               profilePreview={profilePreview}
               handleFileChange={handleFileChange}
               handleUpdateProfile={handleUpdateProfile}
+              isLoading={loading} // Pass the loading state to ProfileForm
             />
           </section>
 

@@ -1,18 +1,18 @@
-"use client";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ButtonLanguage from "../button/ButtonLanguage";
 import logolightmode from "../../../public/img/logo/logo-light-mode.png";
 import logodarkmode from "../../../public/img/logo/logo-dark-mode.png";
-import { NavLink, Link } from "react-router-dom";
 import ThemeToggle from "../button/ThemeToggle";
-import { useSelector } from "react-redux";
 import Profile from "../button/Profile";
 import {
   selectIsLoginIn,
   selectUser,
 } from "../../redux/features/user/authSlice";
 import RegisterBtn from "../button/RegisterBtn";
+
 export default function Navbar() {
   const theme = useSelector((state) => state.theme.theme);
   const isLoggedIn = useSelector(selectIsLoginIn);
@@ -21,6 +21,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation("navbar");
   const [isScrolled, setIsScrolled] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > window.innerHeight * 0.05);
@@ -78,7 +79,7 @@ export default function Navbar() {
             <ButtonLanguage />
           </div>
           {isLoggedIn ? (
-            <Profile user={user} />
+            <Profile user={user} /> // User profile, will update automatically
           ) : (
             <li className="hidden md:flex">
               <RegisterBtn />

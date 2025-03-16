@@ -52,6 +52,13 @@ const Profile = () => {
     setIsOpen(false); // Close dropdown when opening modal
   };
 
+  // Sign out and reset user data
+  const handleLogout = () => {
+    dispatch(logout()); // Dispatch logout action to clear the Redux state
+    setUserData(null); // Clear user data from local state
+    localStorage.removeItem("access_token"); // Remove the token from localStorage
+  };
+
   // Close SignOut Modal
   const closeSignOutModal = () => {
     setShowSignOutModal(false);
@@ -78,19 +85,22 @@ const Profile = () => {
 
   return (
     <>
-      <div className="relative flex flex-col items-center" ref={dropdownRef}>
+      <div
+        className="relative flex flex-col items-center"
+        ref={dropdownRef}
+      >
         <button
           type="button"
-          className="flex text-sm rounded-full focus:ring-2 focus:ring-secondary-300"
+          className="flex text-sm rounded-full border-2 border-secondary-200"
           onClick={() => setIsOpen(!isOpen)}
         >
           <span className="sr-only">Open user menu</span>
           {isLoading ? (
-            <div className="w-10 h-10 rounded-full bg-gray-300 animate-pulse"></div>
+            <div className="w-10 h-10 rounded-full bg-gray-300 animate-pulse "></div>
           ) : userData ? (
             userData.profile ? (
               <img
-                className="w-10 h-10 rounded-full"
+                className="w-10 h-10 rounded-full "
                 src={userData.profile}
                 alt="user photo"
               />
@@ -126,7 +136,7 @@ const Profile = () => {
               <li>
                 <Link
                   to="/userprofile"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-100 dark:hover:bg-primary-950 dark:text-gray-300 dark:hover:text-white"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 dark:text-gray-300 dark:hover:text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   {t("dashboard")}
@@ -135,7 +145,7 @@ const Profile = () => {
               <li>
                 <button
                   onClick={handleShowSignOut} // Show modal instead of direct logout
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-primary-100 dark:hover:bg-primary-950 dark:text-gray-300 dark:hover:text-white"
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 dark:text-gray-300 dark:hover:text-white"
                 >
                   {t("sign out")}
                 </button>
