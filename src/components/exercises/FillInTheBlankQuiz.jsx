@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { submitExercises } from "../../services/submitExercises.js";
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,8 +8,18 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
   const { t } = useTranslation("error");
   const [answers, setAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [validationErrors, setValidationErrors] = useState({});
+  const [userLoggedIn, setUserLoggedIn] = useState(true);
 
   console.log("Data Exer ; ", exercises);
+
+  // Check if user is logged in on component mount
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (!userData?.user_uuid) {
+      setUserLoggedIn(false);
+    }
+  }, []);
 
   // Initialize toast notifications
   const notify = (message, type = "success") => {
@@ -17,6 +27,7 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
       success: { background: "#fff", text: "#4CAF50", progress: "#2E7D32" },
       error: { background: "#fff", text: "#F44336", progress: "#D32F2F" },
       warning: { background: "#fff", text: "#FFA000", progress: "#FF6F00" },
+      info: { background: "#fff", text: "#2196F3", progress: "#0D47A1" },
     };
 
     toast(message, {
@@ -37,6 +48,14 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
         ...prev,
         [exerciseId]: value.trim(),
       }));
+
+      // Clear validation error when user starts typing
+      if (validationErrors[exerciseId]) {
+        setValidationErrors((prev) => ({
+          ...prev,
+          [exerciseId]: false,
+        }));
+      }
     }
   };
 
@@ -53,8 +72,41 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
     };
   };
 
+  const validateAnswers = () => {
+    const errors = {};
+    let hasErrors = false;
+
+    exercises.forEach((exercise) => {
+      if (!answers[exercise.id] || answers[exercise.id].trim() === "") {
+        errors[exercise.id] = true;
+        hasErrors = true;
+      }
+    });
+
+    setValidationErrors(errors);
+    return !hasErrors;
+  };
+
+  // Handle redirection to login page
+  const handleRedirectToLogin = () => {
+    // Replace with your actual login page URL
+    window.location.href = "/login";
+  };
+
   const handleSubmit = async () => {
-    if (!isSubmitted && isAllFilled) {
+    // Validate all answers first
+    if (!validateAnswers()) {
+      notify("❌ Please fill in all blanks before submitting", "error");
+      return;
+    }
+
+    // Check if user is logged in
+    // if (!userLoggedIn) {
+    //   notify("🔒 Please log in to submit your answers.", "info");
+    //   return;
+    // }
+
+    if (!isSubmitted) {
       setIsSubmitted(true);
 
       const formattedAnswers = prepareAnswers();
@@ -64,16 +116,25 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
 
         if (result.success) {
           notify("🎉 Exercise submitted successfully!", "success");
-        } else if (
-          result.message.includes("already submitted") ||
-          result.message.includes("already done this exercise")
-        ) {
-          notify("⚠️ You've already completed this exercise!", "warning");
         } else {
-          notify(t("fillintheblank") || "❌ Submission failed", "error");
+          let errorMessage = result.message || t("fillintheblank");
+
+          if (errorMessage.includes("No user found")) {
+            notify("🔒 Please log in to submit your answers.", "info");
+            setUserLoggedIn(false);
+          } else if (
+            errorMessage.includes("already submitted") ||
+            errorMessage.includes("already done this exercise")
+          ) {
+            notify("⚠️ You've already completed this exercise!", "warning");
+          } else {
+            notify(`❌ Submission failed: ${errorMessage}`, "error");
+          }
         }
       } catch (error) {
+        console.error("Unexpected error:", error);
         notify(`❌ Error: ${error.message || "Something went wrong"}`, "error");
+        setIsSubmitted(false); // Allow resubmission on error
       }
     }
   };
@@ -91,6 +152,7 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
             isSubmitted &&
             String(userAnswer).toLowerCase() ===
               String(exercise.correct_answer?.answer || "").toLowerCase();
+          const hasError = validationErrors[exercise.id];
 
           const parts = exercise.question_text.split("_____");
 
@@ -117,6 +179,8 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
                                   ? isCorrect
                                     ? "border-green-500 bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-300"
                                     : "border-red-500 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-300"
+                                  : hasError
+                                  ? "border-red-500 dark:border-red-500"
                                   : "border-gray-300 dark:border-gray-600"
                               }`}
                               value={userAnswer}
@@ -138,6 +202,11 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
                                   </span>
                                 )}
                               </span>
+                            )}
+                            {hasError && !isSubmitted && (
+                              <p className="text-xs text-red-500 mt-1">
+                                This field is required
+                              </p>
                             )}
                           </span>
                         )}
@@ -170,7 +239,7 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
                             <span className="font-bold">Incorrect.</span>{" "}
                             Correct answer:{" "}
                             <span className="font-bold">
-                              {exercise.correct_answer || "N/A"}
+                              {exercise.correct_answer?.answer || "N/A"}
                             </span>
                           </>
                         )}
@@ -184,27 +253,29 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
         })}
       </div>
 
-      <div className="mt-8 flex justify-center">
-        <button
-          onClick={handleSubmit}
-          disabled={!isAllFilled || isSubmitted}
-          className={`px-6 py-3 rounded-lg  text-white font-medium transition-all shadow-md ${
-            isAllFilled && !isSubmitted
-              ? "bg-blue-500 hover:bg-blue-600 active:bg-blue-700"
-              : "bg-gray-400 cursor-not-allowed opacity-75"
-          }`}
-        >
-          {isSubmitted ? "Submitted" : "Submit Answers"}
-        </button>
-
-        {isSubmitted && (
+      <div className="mt-8 flex justify-end">
+        <>
           <button
-            onClick={() => window.location.reload()}
-            className="ml-4 px-6 py-3 rounded-lg border border-blue-500 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all"
+            onClick={handleSubmit}
+            disabled={isSubmitted}
+            className={`px-6 py-3 rounded-lg text-white font-medium transition-all shadow-md ${
+              !isSubmitted
+                ? "bg-secondary-400 hover:bg-secondary-600"
+                : "bg-secondary-200 cursor-not-allowed"
+            }`}
           >
-            Try Again
+            {isSubmitted ? "Submitted" : "Submit Answers"}
           </button>
-        )}
+
+          {isSubmitted && (
+            <button
+              onClick={() => window.location.reload()}
+              className="ml-4 px-6 py-3 rounded-lg border border-primary-950 text-primary-950 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all"
+            >
+              Try Again
+            </button>
+          )}
+        </>
       </div>
 
       {/* Toast Container */}
