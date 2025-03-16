@@ -27,7 +27,7 @@ const SEO = () => {
         />
         <meta
           property="og:image"
-          content="https://english-club.istad.co/files/5ab42d0b-47ec-499e-ab8b-6405e12bd297.png"
+          content="https://english-club.istad.co/files/72f17752-207f-4f59-9823-881278713c6d.png"
         />
         <meta property="og:url" content="https://fluentflow.live" />
         <meta property="og:type" content="website" />
@@ -52,7 +52,7 @@ const SEO = () => {
         />
         <meta
           name="twitter:image"
-          content="https://english-club.istad.co/files/5ab42d0b-47ec-499e-ab8b-6405e12bd297.png"
+          content="https://english-club.istad.co/files/72f17752-207f-4f59-9823-881278713c6d.png"
         />
         <meta name="twitter:site" content="@FluentFlow" />
       </Helmet>

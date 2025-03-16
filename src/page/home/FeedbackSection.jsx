@@ -218,7 +218,7 @@ const FeedbackSection = () => {
         {/* Scroll Container */}
         <div
           ref={scrollContainerRef}
-          className="overflow-x-auto scroll-smooth scrollbar-hide relative"
+          className="overflow-x-auto scroll-smooth scrollbar-hide relative overflow-y-hidden"
           style={{
             scrollBehavior: "smooth",
             cursor: "grab",
