@@ -68,19 +68,19 @@ export const OverSkill = () => {
 
           {/* Description */}
           <div className="p-4">
-            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-[29px]">
               {t("description")}
             </p>
             <h1 className="text-heading-3 text-primary-500 dark:text-primary-500 py-5 font-bold">
               {t("title2")}
             </h1>
-            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-[29px]">
               {t("description2")}
             </p>
             <h1 className="text-heading-3 text-primary-500 dark:text-primary-500 py-5 font-bold">
               {t("title3")}
             </h1>
-            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-[29px]">
               {t("description3")}
             </p>
           </div>

@@ -21,7 +21,7 @@ const HeroLevel = ({ thumnail, title, description }) => {
 
       {/* Description */}
       <div>
-        <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10 py-5">
+        <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-[29px] py-5">
           {description}
         </p>
       </div>

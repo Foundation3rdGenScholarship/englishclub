@@ -19,6 +19,7 @@ const Pagination = ({ totalItems, itemsPerPage, currentPage, paginate }) => {
       previousClassName="p-2 rounded-full bg-gray-300 dark:bg-gray-700 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600 transition"
       nextClassName="p-2 rounded-full bg-gray-300 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 dark:text-white transition"
       disabledClassName="opacity-70 cursor-not-allowed"
+      breakClassName="px-2 py-1 text-gray-500 dark:text-gray-400"
     />
   );
 };

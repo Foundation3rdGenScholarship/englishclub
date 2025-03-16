@@ -29,7 +29,7 @@ export const HeroCard = ({
       </div>
 
       {/* Hero Section */}
-      <div className="rounded-lg overflow-hidden">
+      <div className="overflow-hidden">
         <div className="relative">
           <img
             src={img}
@@ -37,7 +37,7 @@ export const HeroCard = ({
             className="w-full h-[400px] object-cover"
           />
           <div className="absolute inset-0 flex items-end justify-center">
-            <div className="bg-white dark:bg-bg-dark-mode rounded-lg p-6 mx-4 text-center shadow-lg">
+            <div className="bg-white dark:bg-bg-dark-mode rounded-tl-lg rounded-tr-lg opacity-90 p-6 mx-4 text-center shadow-lg">
               <p className="text-primary-500 text-xl md:text-2xl font-bold mb-4">
                 {des}
               </p>
@@ -49,7 +49,7 @@ export const HeroCard = ({
 
       {/* Description */}
       <div className="py-5">
-        <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+        <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-[29px]">
           {description}
         </p>
       </div>
