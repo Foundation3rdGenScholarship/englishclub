@@ -62,7 +62,7 @@ const VideoCard = ({ video }) => {
   return (
     <>
       <div
-        className="rounded-tl-[50px] rounded-br-[50px] bg-white/10 backdrop-blur-md border-2 border-white dark:border-none border-white/20 w-full dark: p-3 rounded-lg bg-white cursor-pointer"
+        className=" bg-white/10 backdrop-blur-md border-2 border-white dark:border-none border-white/20 w-full dark: p-3 rounded-lg bg-white cursor-pointer shadow-lg"
         onClick={toggleModal}
       >
         {/* Video Thumbnail */}

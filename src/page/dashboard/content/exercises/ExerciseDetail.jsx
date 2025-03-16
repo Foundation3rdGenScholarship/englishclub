@@ -68,7 +68,7 @@ const ExerciseDetail = () => {
               {/* Reading */}
               <h3 className="text-heading-3 text-primary-500">Reading :</h3>
 
-              <div className="text-black text-des-2 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+              <div className="text-black text-des-2 text-justify dark:text-text-des-dark-mode m-auto leading-[29px]">
                 {data.ex_uuid == "2a0b7199-3bbf-4fb1-a0ae-c5816e56da29" ? (
                   <AmeesageYourAreLate />
                 ) : (
@@ -86,7 +86,7 @@ const ExerciseDetail = () => {
                 />
               </div>
               <h3 className="text-heading-3 text-primary-500 pt-5">Tip :</h3>
-              <div className="dark:text-text-des-dark-mode text-des-2 text-justify leading-10 py-5">
+              <div className="dark:text-text-des-dark-mode text-des-2 text-justify leading-[29px] py-5">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(tip),
@@ -134,7 +134,7 @@ const ExerciseDetail = () => {
                 />
 
                 <div className="bg-white relative -mt-20 z-10 mx-auto rounded-tl-[50px] rounded-br-[50px] shadow-lg dark:bg-bg-dark-mode dark:text-text-des-dark-mode dark:border-2 p-6 border-white/20">
-                  <p className="text-des-3 text-justify leading-10">{data.description}</p>
+                  <p className="text-des-3 text-justify leading-[29px]">{data.description}</p>
                 </div>
               </div>
             </div> */}
@@ -145,14 +145,14 @@ const ExerciseDetail = () => {
             />
             {/* Section */}
             <div className="max-w-screen-lg m-auto">
-              <div className="text-black text-des-2 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+              <div className="text-black text-des-2 text-justify dark:text-text-des-dark-mode m-auto leading-[29px]">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(transcript),
                   }}
                 />
               </div>
-              <div className="dark:text-text-des-dark-mode text-des-2 text-justify leading-10 py-5">
+              <div className="dark:text-text-des-dark-mode text-des-2 text-justify leading-[29px] py-5">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(tip),
@@ -212,20 +212,20 @@ const ExerciseDetail = () => {
 
                 {/* Text Below Image */}
                 <div className="bg-white relative -mt-20 z-10 mx-auto max-w-screen-md rounded-tl-[50px] rounded-br-[50px] shadow-lg dark:bg-bg-dark-mode dark:text-text-des-dark-mode dark:border-2 p-6 border-white/20">
-                  <p className="text-justify leading-10">{data.description}</p>
+                  <p className="text-justify leading-[29px]">{data.description}</p>
                 </div>
               </div>
             </div>
             {/* Description */}
             <div className="max-w-screen-md m-auto">
-              <div className="text-black text-des-2 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+              <div className="text-black text-des-2 text-justify dark:text-text-des-dark-mode m-auto leading-[29px]">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(transcript),
                   }}
                 />
               </div>
-              <div className="dark:text-text-des-dark-mode text-des-2 text-justify leading-10 py-5">
+              <div className="dark:text-text-des-dark-mode text-des-2 text-justify leading-[29px] py-5">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(tip),

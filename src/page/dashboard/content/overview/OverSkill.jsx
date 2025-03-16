@@ -56,11 +56,11 @@ export const OverSkill = () => {
                 className="w-full h-[400px] object-cover"
               />
               <div className="absolute inset-0 flex items-end justify-center">
-                <div className="bg-white dark:bg-bg-dark-mode rounded-lg p-6 mx-4 text-center shadow-lg">
+                <div className="bg-white dark:bg-bg-dark-mode rounded-tl-lg rounded-tr-lg p-6 mx-4 text-center shadow-lg opacity-90">
                   <p className="text-primary-500 text-xl md:text-2xl font-bold mb-4">
                     {t("des")}
                   </p>
-                  <ButtonNavigate text={t("start")} />
+                  {/* <ButtonNavigate text={t("start")} /> */}
                 </div>
               </div>
             </div>
@@ -68,19 +68,19 @@ export const OverSkill = () => {
 
           {/* Description */}
           <div className="p-4">
-            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-[29px]">
               {t("description")}
             </p>
             <h1 className="text-heading-3 text-primary-500 dark:text-primary-500 py-5 font-bold">
               {t("title2")}
             </h1>
-            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-[29px]">
               {t("description2")}
             </p>
             <h1 className="text-heading-3 text-primary-500 dark:text-primary-500 py-5 font-bold">
               {t("title3")}
             </h1>
-            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+            <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-[29px]">
               {t("description3")}
             </p>
           </div>

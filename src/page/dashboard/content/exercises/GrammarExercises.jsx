@@ -83,7 +83,7 @@ export default function GrammarExercises() {
               <h3 className="font-semibold text-heading-4 text-primary-600 dark:text-white">
                 {section.title}
               </h3>
-              <p className="text-des-3 leading-10 text-text-des-light-mode dark:text-text-des-dark-mode">
+              <p className="text-des-3 leading-[29px] text-text-des-light-mode dark:text-text-des-dark-mode">
                 {section.description}
               </p>
               {/* This is for voice and video */}

@@ -214,11 +214,13 @@ const Sidebar = () => {
           <li>
             <NavLink
               to="/soundTts"
-              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
-                activeItem === "soundTts"
-                  ? "bg-primary-100 dark:bg-primary-950 text-white"
-                  : ""
-              }`}
+              className={({ isActive }) =>
+                `flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
+                  isActive
+                    ? "bg-primary-100 dark:bg-primary-950 text-white"
+                    : ""
+                }`
+              }
               onClick={() => handleClick("soundTts")}
             >
               <PiUserSoundFill className="size-6" />
@@ -230,11 +232,13 @@ const Sidebar = () => {
           <li>
             <NavLink
               to="/extra-video"
-              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
-                activeItem === "extraVideo"
-                  ? "bg-primary-100 dark:bg-primary-950 text-white"
-                  : ""
-              }`}
+              className={({ isActive }) =>
+                `flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
+                  isActive
+                    ? "bg-primary-100 dark:bg-primary-950 text-white"
+                    : ""
+                }`
+              }
               onClick={() => handleClick("extraVideo")}
             >
               <MdVideoLibrary className="size-6" />
@@ -246,11 +250,13 @@ const Sidebar = () => {
           <li>
             <NavLink
               to="/langtranslate"
-              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
-                activeItem === "langtranslate"
-                  ? "bg-primary-100 dark:bg-primary-950 text-white"
-                  : ""
-              }`}
+              className={({ isActive }) =>
+                `flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primary-100 hover:text-white dark:hover:bg-primary-950 group ${
+                  isActive
+                    ? "bg-primary-100 dark:bg-primary-950 text-white"
+                    : ""
+                }`
+              }
               onClick={() => handleClick("langtranslate")}
             >
               <SiGoogletranslate className="size-6" />

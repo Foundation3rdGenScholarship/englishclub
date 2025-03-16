@@ -84,7 +84,7 @@ const SpeakingExercises = () => {
             </div>
             <div className="max-w-screen-lg m-auto ">
               <div className="p-4">
-                <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+                <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-[29px]">
                   {data.description}
                 </p>
               </div>
@@ -117,7 +117,17 @@ const SpeakingExercises = () => {
                     <h3 className="text-heading-3 text-primary-500 mb-5">
                       Watching:
                     </h3>
-                    <div dangerouslySetInnerHTML={{ __html: data.video }} />
+                    <div className="w-full aspect-video">
+                      <div
+                        className="w-full h-full"
+                        dangerouslySetInnerHTML={{
+                          __html: data.video.replace(
+                            "<iframe",
+                            '<iframe style="width:100%; height:100%;"'
+                          ),
+                        }}
+                      />
+                    </div>
                   </div>
                 )
               )}
@@ -125,14 +135,14 @@ const SpeakingExercises = () => {
               {/* Reading */}
               <h3 className="p-4 text-heading-3 text-primary-500">Reading</h3>
 
-              <div className="p-4 text-black text-des-2 text-justify dark:text-white m-auto leading-10">
+              <div className="p-4 text-black text-des-2 text-justify dark:text-white m-auto leading-[29px]">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(transcript),
                   }}
                 />
               </div>
-              <div className="text-des-2 leading-10 p-4 dark:text-text-des-dark-mode">
+              <div className="text-des-2 leading-[29px] p-4 dark:text-text-des-dark-mode">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(tip),
@@ -181,7 +191,7 @@ const SpeakingExercises = () => {
             </div>
             {/* Description */}
             <div className="p-4">
-              <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+              <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-[29px]">
                 {data.description}
               </p>
             </div>
@@ -263,19 +273,19 @@ const SpeakingExercises = () => {
             </div>
             {/* Description */}
             <div className="p-4">
-              <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
+              <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-[29px]">
                 {data.description}
               </p>
             </div>
-            <div className="max-w-screen-lg">
-              <div className="dark:text-text-des-dark-mode px-4 leading-10 text-des-3 text-text-des-light-mode">
+            <div className="max-w-screen-lg m-auto">
+              <div className="dark:text-text-des-dark-mode px-4 leading-[29px] text-des-3 text-text-des-light-mode">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(transcript),
                   }}
                 />
               </div>
-              <div className="dark:text-text-des-dark-mode px-4 leading-10 text-des-3 text-text-des-light-mode ">
+              <div className="dark:text-text-des-dark-mode px-4 leading-[29px] text-des-3 text-text-des-light-mode ">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(tip),

@@ -41,8 +41,8 @@ export const SpeakingB2 = () => {
         thumnail={
           "https://www.nmc.org.uk/globalassets/the-code/caring-with-confidence/speaking-up-video-thumbnail.jpg"
         }
-        title={t("a1speaking")}
-        description={t("a1description")}
+        title={t("b2speaking")}
+        description={t("b2description")}
       />
       {/* Render Courses  */}
 
