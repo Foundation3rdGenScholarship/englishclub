@@ -96,7 +96,7 @@ export default function MentorCard() {
     <div className="flex flex-wrap justify-center">
       <div data-aos="fade-right" className="px-10">
         <div className="flex justify-center mt-12">
-          <div className="rounded-tl-[40px] rounded-br-[40px] bg-accents-color ">
+          <div className="rounded-xl bg-accents-color ">
             <p className="pt-2 pb-2 py-16 px-8 text-center font-bold text-heading-5 text-white">
               {t("cherPheng")}
             </p>
@@ -145,7 +145,7 @@ export default function MentorCard() {
 
       <div data-aos="fade-left" className="px-10">
         <div className="flex justify-center mt-12">
-          <div className="rounded-tl-[40px] rounded-br-[40px] bg-accents-color ">
+          <div className="rounded-xl bg-accents-color ">
             <p className="pt-2 pb-2 py-16 px-16 text-center font-bold text-heading-5 text-white">
               {t("cherDavan")}
             </p>
@@ -160,22 +160,28 @@ export default function MentorCard() {
           />
         </div>
         <div className="flex justify-center p-5 text-primary-950 dark:text-white">
-          <a className="p-3"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="http://linkedin.com/in/ing-davann-0617b32a3">
+          <a
+            className="p-3"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="http://linkedin.com/in/ing-davann-0617b32a3"
+          >
             <FaLinkedinIn className="size-9  hover:text-primary-100 " />
           </a>
-          <a className="p-3"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://mail.google.com/mail/u/0/#search/ingdavann4444%40gmail.com?compose=new">
+          <a
+            className="p-3"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://mail.google.com/mail/u/0/#search/ingdavann4444%40gmail.com?compose=new"
+          >
             <IoMdMail className="size-9  hover:text-primary-100" />
           </a>
-          <a className="p-3"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="http://github.com/ingdavann">
+          <a
+            className="p-3"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="http://github.com/ingdavann"
+          >
             <FaGithub className="size-9  hover:text-primary-100 " />
           </a>
         </div>

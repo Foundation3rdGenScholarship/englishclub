@@ -62,7 +62,7 @@ export default function MemberCard() {
         {teamMembers.map((member, index) => (
           <div key={index} className="flex flex-col items-center mt-5">
             {/* Name Tag */}
-            <div className="text-white font-bold text-xl px-6 py-2 rounded-tl-[25px] rounded-br-[25px] bg-accents-color mb-[15px]">
+            <div className="text-white font-bold text-xl px-6 py-2 rounded-xl bg-accents-color mb-[15px]">
               {member.name}
             </div>
 
@@ -71,7 +71,7 @@ export default function MemberCard() {
               src={member.image}
               alt={member.name}
               loading="lazy"
-              className="w-64 h-64 rounded-tl-[50px] rounded-br-[50px] object-cover shadow-lg"
+              className="w-64 h-64 rounded-xl object-cover shadow-lg"
             />
 
             {/* Social Icons */}
