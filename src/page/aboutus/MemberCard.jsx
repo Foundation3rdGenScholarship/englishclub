@@ -58,7 +58,7 @@ export default function MemberCard() {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-6 md:px-20 dark:text-white mb-96">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-6 md:px-20 dark:text-white">
         {teamMembers.map((member, index) => (
           <div key={index} className="flex flex-col items-center mt-5">
             {/* Name Tag */}

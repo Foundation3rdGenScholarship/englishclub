@@ -36,14 +36,18 @@ const AboutUsMain = () => {
                 </p>
               </div>
               <div className="flex justify-center items-center mt-3">
-                <img className="w-[200px] sm:w-[200px] md:w-[300px] xl:w-1/3" src={WorkTogether} alt="" />
+                <img
+                  className="w-[200px] sm:w-[200px] md:w-[300px] xl:w-1/3"
+                  src={WorkTogether}
+                  alt=""
+                />
               </div>
             </GlassCard>
           </AboutUsShape>
         </div>
       </section>
       <section className="container max-w-screen-xl mx-auto">
-        <div className="mt-36 md:mt-96">
+        <div className="mt-36 md:mt-72">
           <div>
             <p className="text-center text-primary-950 dark:text-primary-100 font-bold text-heading-3">
               {t("mentor")}
@@ -56,7 +60,7 @@ const AboutUsMain = () => {
         <Bubbles className="mt-36">
           <div className="relative z-10 flex flex-col gap-8 justify-center items-center h-screen">
             <div>
-            {/* data-aos="fade-up" data-aos-anchor-placement="top-bottom" */}
+              {/* data-aos="fade-up" data-aos-anchor-placement="top-bottom" */}
               <MissionCard />
             </div>
             <div>
@@ -69,7 +73,7 @@ const AboutUsMain = () => {
             {t("teammember")}
           </p>
         </div>
-        <div className="mb-12 mt-6">
+        <div className="mb-56 mt-6">
           <MemberCard />
         </div>
       </section>
