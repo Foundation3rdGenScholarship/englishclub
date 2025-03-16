@@ -81,12 +81,12 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
   // Handle submission
   const handleSubmit = async () => {
     // Check if user is logged in first
-    const userData = JSON.parse(localStorage.getItem("user"));
-    if (!userData?.user_uuid) {
-      notify("🔒 Please log in to submit your answers.", "info");
-      setUserLoggedIn(false);
-      return;
-    }
+    // const userData = JSON.parse(localStorage.getItem("user"));
+    // if (!userData?.user_uuid) {
+    //   notify("🔒 Please log in to submit your answers.", "info");
+    //   setUserLoggedIn(false);
+    //   return;
+    // }
 
     if (!isAllAnswered) {
       notify("⚠️ Please answer all questions before submitting.", "error");
@@ -137,23 +137,6 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
 
   return (
     <div className="text-black p-6 border-2 border-gray-200 dark:border-gray-600 dark:bg-bg-dark-mode dark:text-white shadow-md rounded-lg">
-      {/* {!userLoggedIn && (
-        <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg dark:bg-blue-900/30 dark:border-blue-800">
-          <h3 className="font-bold text-blue-700 dark:text-blue-300 mb-2">
-            Account Required
-          </h3>
-          <p className="text-blue-600 dark:text-blue-200 mb-4">
-            You need to log in or create an account to submit your answers and
-            track your progress.
-          </p>
-          <button
-            onClick={handleRedirectToLogin}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            Log In / Sign Up
-          </button>
-        </div>
-      )} */}
 
       {exercises.map((exercise, index) => {
         const selectedAnswer = selectedAnswers[exercise.id];
@@ -256,26 +239,28 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
         );
       })}
 
-      <button
-        onClick={handleSubmit}
-        disabled={!isAllAnswered || isSubmitted}
-        className={`px-4 py-2 rounded-lg text-white transition-colors ${
-          isAllAnswered && !isSubmitted
-            ? "bg-primary-500 hover:bg-primary-600"
-            : "bg-gray-400 cursor-not-allowed"
-        }`}
-      >
-        {isSubmitted ? "Submitted" : "Submit"}
-      </button>
-
-      {isSubmitted && (
+      <div className="flex justify-end">
         <button
-          onClick={() => window.location.reload()}
-          className="ml-3 text-primary-500 hover:text-primary-600 dark:text-primary-400 dark:hover:text-primary-300 underline"
+          onClick={handleSubmit}
+          disabled={!isAllAnswered || isSubmitted}
+          className={`px-4 py-2 rounded-lg text-white transition-colors ${
+            isAllAnswered && !isSubmitted
+              ? "bg-secondary-400 hover:bg-secondary-600"
+              : "bg-secondary-200 cursor-not-allowed"
+          }`}
         >
-          Try Again
+          {isSubmitted ? "Submitted" : "Submit"}
         </button>
-      )}
+
+        {isSubmitted && (
+          <button
+            onClick={() => window.location.reload()}
+            className="ml-3 text-primary-500 hover:text-primary-600 dark:text-primary-400 dark:hover:text-primary-300 underline"
+          >
+            Try Again
+          </button>
+        )}
+      </div>
 
       <ToastContainer position="top-right" autoClose={3000} />
     </div>

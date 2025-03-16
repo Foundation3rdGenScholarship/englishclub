@@ -77,11 +77,11 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
   const handleSubmit = async () => {
     // Check if user is logged in first
     const userData = JSON.parse(localStorage.getItem("user"));
-    if (!userData?.user_uuid) {
-      notify("🔒 Please log in to submit your answers.", "info");
-      setUserLoggedIn(false);
-      return;
-    }
+    // if (!userData?.user_uuid) {
+    //   notify("🔒 Please log in to submit your answers.", "info");
+    //   setUserLoggedIn(false);
+    //   return;
+    // }
 
     if (isAllAnswered) {
       setIsSubmitted(true);
@@ -97,9 +97,8 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
             if (result?.message?.includes("No user found")) {
               notify("🔒 Please log in to submit your answers.", "info");
               setUserLoggedIn(false);
-            } else if (
-              result?.message?.includes("already done this exercise")
-            ) {
+            } else
+            if (result?.message?.includes("already done this exercise")) {
               notify(
                 "⚠️ You've already completed this exercise. Try another one!",
                 "warning"
@@ -194,7 +193,7 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
       )} */}
 
       <h2 className="text-xl font-bold mb-6 text-center text-black dark:text-white">
-        True/False Quiz
+        Quiz
       </h2>
 
       <div className="space-y-6">
@@ -355,14 +354,14 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
         })}
       </div>
 
-      <div className="mt-8 flex justify-center">
+      <div className="mt-8 flex justify-end">
         <button
           onClick={handleSubmit}
           disabled={!isAllAnswered || isSubmitted}
           className={`px-6 py-3 rounded-lg text-white font-medium transition-all shadow-md ${
             isAllAnswered && !isSubmitted
-              ? "bg-blue-500 hover:bg-blue-600 active:bg-blue-700"
-              : "bg-gray-400 cursor-not-allowed opacity-75"
+              ? "bg-secondary-400 hover:bg-secondary-600 active:bg-blue-700"
+              : "bg-secondary-200 cursor-not-allowed opacity-75"
           }`}
         >
           {isSubmitted ? "Submitted" : "Submit Answers"}
