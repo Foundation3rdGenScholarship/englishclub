@@ -41,14 +41,14 @@ export const HeroCard = ({
               <p className="text-primary-500 text-xl md:text-2xl font-bold mb-4">
                 {des}
               </p>
-              <ButtonNavigate text={start} link={link} />
+              {/* <ButtonNavigate text={start} link={link} /> */}
             </div>
           </div>
         </div>
       </div>
 
       {/* Description */}
-      <div className="y-5">
+      <div className="py-5">
         <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
           {description}
         </p>

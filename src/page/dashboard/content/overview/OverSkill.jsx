@@ -56,11 +56,11 @@ export const OverSkill = () => {
                 className="w-full h-[400px] object-cover"
               />
               <div className="absolute inset-0 flex items-end justify-center">
-                <div className="bg-white dark:bg-bg-dark-mode rounded-lg p-6 mx-4 text-center shadow-lg">
+                <div className="bg-white dark:bg-bg-dark-mode rounded-tl-lg rounded-tr-lg p-6 mx-4 text-center shadow-lg opacity-90">
                   <p className="text-primary-500 text-xl md:text-2xl font-bold mb-4">
                     {t("des")}
                   </p>
-                  <ButtonNavigate text={t("start")} />
+                  {/* <ButtonNavigate text={t("start")} /> */}
                 </div>
               </div>
             </div>

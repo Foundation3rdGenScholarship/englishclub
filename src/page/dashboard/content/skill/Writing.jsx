@@ -57,16 +57,16 @@ const Writing = () => {
                   <p className="text-primary-500 text-xl md:text-2xl font-bold mb-4">
                     {t("des")}
                   </p>
-                  <button className="dark:bg-secondary-900 bg-secondary-500 dark:hover:bg-secondary-700 hover:bg-secondary-700 text-white text-des-4 py-3 px-8 rounded-full mt-2 transition duration-300">
+                  {/* <button className="dark:bg-secondary-900 bg-secondary-500 dark:hover:bg-secondary-700 hover:bg-secondary-700 text-white text-des-4 py-3 px-8 rounded-full mt-2 transition duration-300">
                     {t("start")}
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
           </div>
 
           {/* Description */}
-          <div className="p-4">
+          <div className="py-5">
             <p className="text-black text-des-3 text-justify dark:text-text-des-dark-mode m-auto leading-10">
               {t("description")}
             </p>
