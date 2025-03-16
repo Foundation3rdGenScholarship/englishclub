@@ -1,47 +1,26 @@
-// import React from "react";
-// import leftshape from "../../../public/img/vextor/leftshape.svg";
-// import rightshape from "../../../public/img/vextor/rightshape.svg";
-
-// export default function AboutUsShape({children , className=""}) {
-//   return (
-//     <div className={` max-w-screen-xl${className}`}>
-//       <div className="relative">
-//         <img
-//           src={leftshape}
-//           alt="shape"
-//           className="absolute top-32 left-0 -z-10 hidden md:block w-[400px] sm:w-[500px] md:w-[600px] lg:w-[700px] xl:w-[755px] "
-//         />
-//       </div>
-//       <div>
-//         <img src={rightshape}
-//         className="absolute top-32 right-0 -z-10 w-[300px] sm:w-[400px] md:w-[450px] lg:w-[500px] xl:w-[550px] sm:h-[300px] md:h-[550px] lg:h-[600px] xl:h-[700px]"
-//         alt="" />
-//       </div>
-//       {children}
-//     </div>
-//   );
-// }
-
 import React from "react";
-import leftshape from "../../../public/img/vextor/leftshape.svg";
-import rightshape from "../../../public/img/vextor/rightshape.svg";
 
 export default function AboutUsShape({ children, className = "" }) {
   return (
-    <div className={`max-w-screen-xl relative mx-auto ${className}`}>
+    <div className={`relative w-full mx-auto ${className}`}>
       {/* Left Shape */}
-      <div className="absolute top-0 -left-52 -z-10 hidden lg:block">
+      <div className="absolute top-0 -left-48 -z-10 hidden md:block md:-left-52 lg:-left-64 xl:-left-80 2xl:-left-96">
         <img
-          src={leftshape}
+          src="/img/vextor/leftshape.svg"
           alt="Left Shape"
-          className="w-[400px] fill-primary-100 sm:w-[500px] md:w-[600px] lg:w-[700px] xl:w-[755px]"
+          className="w-[400px] md:w-[500px] lg:w-[600px] xl:w-[700px] 2xl:w-[800px]"
         />
       </div>
-      <div className="absolute -top-6 -z-10 hidden lg:block  lg:-right-8 xl:-right-48">
+
+      {/* Right Shape */}
+      <div className="absolute top-0 -right-48 -z-10 hidden md:block md:-right-52 lg:-right-64 xl:-right-80 2xl:-right-96">
         <img
-        className="sm:h-[300px] md:h-[550px] lg:h-[600px] xl:h-[700px]"
-        src={rightshape} alt="" />
+          src="/img/iconSVG/Vector 20.svg"
+          alt="Right Shape"
+          className="w-[600px] md:w-[650px] lg:w-[750px] xl:w-[850px] 2xl:w-[850px]"
+        />
       </div>
+
       {children}
     </div>
   );
