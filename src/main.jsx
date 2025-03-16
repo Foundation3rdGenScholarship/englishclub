@@ -63,7 +63,6 @@ import { WritingC1 } from "./page/dashboard/content/writingDetail/WritingC1.jsx"
 import { SpeakingA2 } from "./page/dashboard/content/speakingDetail/SpeakingA2.jsx";
 import { SpeakingB1 } from "./page/dashboard/content/speakingDetail/SpeakingB1.jsx";
 import { SpeakingB2 } from "./page/dashboard/content/speakingDetail/SpeakingB2.jsx";
-import { SpeakingC1 } from "./page/dashboard/content/speakingDetail/SpeakingC1.jsx";
 import LangTranslate from "./page/dashboard/content/translate/Translator.jsx";
 import ReadingC1 from "./page/dashboard/content/skillDetail/ReadingC1.jsx";
 // import { OverSkill } from "./page/dashboard/content/overview/OverSkill.jsx";
@@ -193,10 +192,6 @@ createRoot(document.getElementById("root")).render(
                 <Route
                   path="/courses/speaking/level=b2"
                   element={<SpeakingB2 />}
-                />
-                <Route
-                  path="/courses/speaking/level=c1"
-                  element={<SpeakingC1 />}
                 />
                 <Route path="/skills" element={<OverSkill />} />
                 <Route path="/over-grammar" element={<OverGrammar />} />

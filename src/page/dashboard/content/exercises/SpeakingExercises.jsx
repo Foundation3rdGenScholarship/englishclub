@@ -117,7 +117,17 @@ const SpeakingExercises = () => {
                     <h3 className="text-heading-3 text-primary-500 mb-5">
                       Watching:
                     </h3>
-                    <div dangerouslySetInnerHTML={{ __html: data.video }} />
+                    <div className="w-full aspect-video">
+                      <div
+                        className="w-full h-full"
+                        dangerouslySetInnerHTML={{
+                          __html: data.video.replace(
+                            "<iframe",
+                            '<iframe style="width:100%; height:100%;"'
+                          ),
+                        }}
+                      />
+                    </div>
                   </div>
                 )
               )}
@@ -267,7 +277,7 @@ const SpeakingExercises = () => {
                 {data.description}
               </p>
             </div>
-            <div className="max-w-screen-lg">
+            <div className="max-w-screen-lg m-auto">
               <div className="dark:text-text-des-dark-mode px-4 leading-10 text-des-3 text-text-des-light-mode">
                 <div
                   dangerouslySetInnerHTML={{

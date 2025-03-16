@@ -36,13 +36,13 @@ export const SpeakingB1 = () => {
   };
 
   return (
-    <div className="max-w-screen-xl sm:ml-64 mt-[88px] mb-10 container mx-auto px-4">
+    <div className="max-w-screen-xl sm:ml-64 mt-[88px] mb-10 px-4">
       <HeroLevel
         thumnail={
           "https://www.nmc.org.uk/globalassets/the-code/caring-with-confidence/speaking-up-video-thumbnail.jpg"
         }
-        title={t("a1speaking")}
-        description={t("a1description")}
+        title={t("b1speaking")}
+        description={t("b1description")}
       />
       {/* Render Courses  */}
 
