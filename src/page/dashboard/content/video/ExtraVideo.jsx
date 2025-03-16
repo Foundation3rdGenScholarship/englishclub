@@ -10,7 +10,7 @@ const ExtraVideo = () => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9;
+  const itemsPerPage = 12;
 
   useEffect(() => {
     if (videoIds.length === 0) {
@@ -49,9 +49,9 @@ const ExtraVideo = () => {
 
   return (
     <div className="mt-[88px] sm:ml-64">
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 p-4">
         {loading ? (
-          Array.from({ length: 9 }).map((_, index) => (
+          Array.from({ length: 12 }).map((_, index) => (
             <div
               key={index}
               className="border rounded-lg shadow-lg overflow-hidden animate-pulse"
