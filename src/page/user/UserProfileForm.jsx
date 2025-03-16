@@ -21,8 +21,9 @@ const UserProfileForm = ({
 
   const validationSchema = null; // Set to null to remove required validation for now
 
-  const handleFileChangeWrapper = (event, setFieldValue) => {
+  const handleFileChangeWrapper = (event, setFieldValue, setTouched) => {
     handleFileChange(event, setFieldValue);
+    setTouched({ profile: true }); // Manually mark the profile field as touched
   };
 
   const typedRef = useRef(null);
@@ -72,7 +73,7 @@ const UserProfileForm = ({
       onSubmit={handleUpdateProfile}
       enableReinitialize={true}
     >
-      {({ setFieldValue, isSubmitting, values, dirty }) => (
+      {({ setFieldValue, isSubmitting, values, dirty, setTouched }) => (
         <Form
           className="p-4 sm:ml-64 mt-[60px] max-w-screen-xl"
           data-aos="fade-down"
@@ -109,7 +110,7 @@ const UserProfileForm = ({
                 id="file"
                 className="hidden"
                 onChange={(event) =>
-                  handleFileChangeWrapper(event, setFieldValue)
+                  handleFileChangeWrapper(event, setFieldValue, setTouched)
                 }
               />
               <label
@@ -187,7 +188,7 @@ const UserProfileForm = ({
                 <button
                   type="submit"
                   className="bg-secondary-500 text-white font-bold py-3 px-8 rounded-lg hover:from-primary-600 hover:to-secondary-600 transition-all disabled:opacity-50"
-                  disabled={isSubmitting || !dirty} // Enable save only if the form is dirty (has changes)
+                  disabled={isSubmitting || (!dirty && !profilePreview)} // Enable save if form is dirty or profilePreview is set
                 >
                   {isSubmitting ? t("saving...") : t("save")}
                 </button>
