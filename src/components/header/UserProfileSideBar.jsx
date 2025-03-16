@@ -13,6 +13,7 @@ const UserProfileSidebar = ({ showSignOutModal, setShowSignOutModal }) => {
   const [isAtBottom, setIsAtBottom] = useState(false); // Track if we're at the bottom of the page
   const [scrolling, setScrolling] = useState(false); // Track if we are actively scrolling
   const isVisible = useSelector((state) => state.visibility.isVisible);
+
   const handleAction = (item) => {
     dispatch(setActiveItem(item));
   };
@@ -43,6 +44,18 @@ const UserProfileSidebar = ({ showSignOutModal, setShowSignOutModal }) => {
         }
       });
     };
+
+    // Ensure the active item is set on page load (first render)
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      if (
+        rect.top <= window.innerHeight / 2 &&
+        rect.bottom >= window.innerHeight / 2
+      ) {
+        handleAction(section.id); // Set the active item on load
+      }
+    });
 
     window.addEventListener("scroll", handleScroll);
 

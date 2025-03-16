@@ -1,61 +1,3 @@
-// const feedback = [
-//   {
-//     id: 1,
-//     text: t("feedback-des-one", { ns: "homepage" }),
-//     author: t("sanom", { ns: "about" }),
-//     position: t("student"),
-//     image: "/img/image/sanom.jpg",
-//     stars: 4,
-//   },
-//   {
-//     id: 2,
-//     text: t("feedback-des-two", { ns: "homepage" }),
-//     author: t("rotana", { ns: "about" }),
-//     position: t("student"),
-//     image: "/img/teamwork-img/rotana.JPG",
-//     stars: 5,
-//   },
-//   {
-//     id: 3,
-//     text: t("feedback-des-three", { ns: "homepage" }),
-//     author: t("leaphea", { ns: "about" }),
-//     position: t("student"),
-//     image: "/img/teamwork-img/leaphea.JPG",
-//     stars: 5,
-//   },
-//   // {
-//   //   id: 4,
-//   //   text: t("feedback-des-four", { ns: "homepage" }),
-//   //   author: t("vuthy", { ns: "about" }),
-//   //   position: t("student"),
-//   //   image: "/img/teamwork-img/vuthy.JPG",
-//   //   stars: 5,
-//   // },
-//   {
-//     id: 5,
-//     text: t("feedback-des-five", { ns: "homepage" }),
-//     author: t("bora", { ns: "about" }),
-//     position: t("student"),
-//     image: "/img/teamwork-img/bora.JPG",
-//     stars: 5,
-//   },
-//   // {
-//   //   id: 6,
-//   //   text: t("feedback-des-six", { ns: "homepage" }),
-//   //   author: t("oudom", { ns: "about" }),
-//   //   position: t("student"),
-//   //   image: "/img/teamwork-img/oudom.JPG",
-//   //   stars: 5,
-//   // },
-//   {
-//     id: 7,
-//     text: t("feedback-des-seven", { ns: "homepage" }),
-//     author: t("eric", { ns: "about" }),
-//     position: t("student"),
-//     image: "/img/teamwork-img/eric.JPG",
-//     stars: 4,
-//   },
-// ];
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -212,13 +154,16 @@ const FeedbackSection = () => {
           className="xl:text-heading-3 lg:text-heading-4 md:text-heading-5 text-heading-5 font-bold text-primary-500 dark:text-white text-center mb-12"
           data-aos="fade-up"
         >
-          {t("feedback")}
+          {t("feedback")}{" "}
+          <span className="text-secondary-400 xl:text-heading-3 lg:text-heading-4 md:text-heading-5 text-heading-5 font-bold">
+            {t("students")}
+          </span>
         </h2>
 
         {/* Scroll Container */}
         <div
           ref={scrollContainerRef}
-          className="overflow-x-auto scroll-smooth scrollbar-hide relative"
+          className="overflow-x-auto scroll-smooth scrollbar-hide relative overflow-y-hidden"
           style={{
             scrollBehavior: "smooth",
             cursor: "grab",
@@ -253,13 +198,13 @@ const FeedbackSection = () => {
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
-                <GlassCard className="w-full xl:h-[25rem] lg:h-96 md:h-80 sm:h-72 h-64 flex flex-col justify-between dark:bg-gray-800/50 rounded-xl bg-[#f5f5f5] shadow-sm transition-shadow duration-300 p-8">
+                <GlassCard className="w-full xl:h-[25rem] lg:h-96 md:h-[21rem] sm:h-72 h-80 flex flex-col justify-between dark:bg-gray-800/50 rounded-xl bg-[#f5f5f5] shadow-sm transition-shadow duration-300 p-8">
                   <div className="text-secondary-500 flex gap-1">
                     {[...Array(feed.stars)].map((_, i) => (
                       <FaStar key={i} size={20} />
                     ))}
                   </div>
-                  <p className="my-6 text-gray-600 dark:text-gray-300 xl:text-heading-5 lg:text-heading-6 md:text-[14px] text-[12px] leading-relaxed line-clamp-6">
+                  <p className="my-6 text-gray-600 dark:text-gray-300 text-des-4 md:text-des-4 lg:text-des-3 xl:text-des-3 leading-relaxed line-clamp-6">
                     {feed.text}
                   </p>
 

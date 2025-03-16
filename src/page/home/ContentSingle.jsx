@@ -46,7 +46,7 @@ const ContentSingle = () => {
               </span>
               {t("title-section-content-two")}
             </p>
-            <p class="xl:text-heading-4 lg:text-heading-5 md:text-heading-6 text-[14px] text-gray-500 dark:text-white mb-6">
+            <p class="xl:text-heading-5 lg:text-heading-5 md:text-heading-6 text-[14px] text-gray-500 dark:text-gray-400 mb-6">
               {t("des-section-content")}
             </p>
             {/* <NavLink
@@ -58,7 +58,7 @@ const ContentSingle = () => {
             <ButtonNavigate
               text={t("btn-sign")}
               link={"/Register"}
-              addMoreStyle="xl:text-heading-5 lg:text-heading-6 md:text-[14px] text-[12px]"
+              addMoreStyle="xl:text-heading-6 lg:text-heading-6 md:text-heading-6 text-[14px]"
             />
           </div>
         </div>

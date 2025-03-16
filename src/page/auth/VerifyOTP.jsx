@@ -50,7 +50,7 @@ export default function VerifyOTP() {
           login({ user: loginResponse.user, token: loginResponse.access_token })
         );
         toast.success("Login successful! Redirecting...");
-        navigate("/dashboard");
+        navigate("/userprofile");
       } else if (action === "reset-password") {
         navigate("/resetpassword", { state: { email } });
         toast.success("OTP verified. Please reset your password.");

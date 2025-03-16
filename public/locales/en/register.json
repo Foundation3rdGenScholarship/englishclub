@@ -57,5 +57,7 @@
   "Enter your new password":"Enter your new password",
   "Resetting...":"Resetting...",
   "Password reset successfully!":"Password reset successfully!",
-  "Failed to reset password. Please try again.":"Failed to reset password. Please try again."
+  "Failed to reset password. Please try again.":"Failed to reset password. Please try again.",
+
+   "Processing...":"Processing..."
 }

@@ -5,61 +5,62 @@ import { IoCamera } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import Typed from "typed.js";
-import Skeleton from "react-loading-skeleton"; // Import the skeleton loader
-import "react-loading-skeleton/dist/skeleton.css"; // Import the CSS file
+
 const UserProfileForm = ({
   user,
   profilePreview,
-  setProfilePreview, // Add this prop for setting profile preview
-  handleFileChange, // Ensure handleFileChange is passed as prop
+  setProfilePreview,
+  handleFileChange,
   handleUpdateProfile,
-  isLoading, // Add an isLoading prop to conditionally show the skeleton loader
+  isLoading,
 }) => {
-  const theme = useSelector((state) => state.theme.theme); // Move inside the component
+  const theme = useSelector((state) => state.theme.theme);
   const { t } = useTranslation("userProfile");
-  // Get the first character of the username or default to "G" for Guest
   const profileFallback = user?.user_name
     ? user?.user_name[0].toUpperCase()
     : "G";
-  // Validation schema
-  const validationSchema = yup.object({
-    user_name: yup.string().required(t("please enter your name")),
-    bio: yup.string().required(t("please enter your bio")),
-  });
+
+  const validationSchema = null; // Set to null to remove required validation for now
 
   const handleFileChangeWrapper = (event, setFieldValue) => {
-    handleFileChange(event, setFieldValue); // Delegate to the parent handler
+    handleFileChange(event, setFieldValue);
   };
 
   const typedRef = useRef(null);
   const typedInstance = useRef(null);
 
   useEffect(() => {
-    if (user?.user_name) {
-      typedInstance.current = new Typed(typedRef.current, {
-        strings: [user.user_name], // Use dynamic name from API
-        typeSpeed: 130, // Typing speed
-        backSpeed: 50, // Deleting speed
-        backDelay: 2000, // Pause before deleting
-        startDelay: 500, // Delay before start
-        loop: true, // Loop animation
-        cursorChar: "|", // Custom cursor character
-        onStringTyped: () => {
-          // Dynamically change cursor color after typing starts
-          const cursor = document.querySelector(".typed-cursor");
-          if (cursor) {
-            cursor.style.color = "#fba518";
-          }
-        },
-      });
+    if (!isLoading && typedRef.current && user?.user_name) {
+      // Destroy previous instance if it exists
+      if (typedInstance.current) {
+        typedInstance.current.destroy();
+      }
+
+      if (typedRef.current) {
+        typedInstance.current = new Typed(typedRef.current, {
+          strings: [user.user_name],
+          typeSpeed: 130,
+          backSpeed: 50,
+          backDelay: 2000,
+          startDelay: 500,
+          loop: true,
+          cursorChar: "|",
+          onStringTyped: () => {
+            const cursor = document.querySelector(".typed-cursor");
+            if (cursor) {
+              cursor.style.color = "#fba518";
+            }
+          },
+        });
+      }
     }
 
     return () => {
       if (typedInstance.current) {
-        typedInstance.current.destroy(); // Cleanup on unmount
+        typedInstance.current.destroy();
       }
     };
-  }, [user?.user_name]);
+  }, [user?.user_name, isLoading]);
 
   return (
     <Formik
@@ -72,25 +73,26 @@ const UserProfileForm = ({
       onSubmit={handleUpdateProfile}
       enableReinitialize={true}
     >
-      {({ setFieldValue, isSubmitting, values }) => (
+      {({ setFieldValue, isSubmitting, values, dirty }) => (
         <Form
           className="p-4 sm:ml-64 mt-[60px] max-w-screen-xl"
           data-aos="fade-down"
         >
           <div className="flex flex-col items-center mb-8 mt-12">
+            {/* Profile Image Skeleton */}
             <div className="relative w-28 h-28 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 p-1">
               <div className="w-full h-full rounded-full overflow-hidden border-2 border-secondary-200">
                 {isLoading ? (
-                  <Skeleton circle={true} height={160} width={160} />
+                  <div className="w-full h-full bg-gray-200 animate-pulse rounded-full"></div>
                 ) : profilePreview ? (
                   <img
                     className="w-full h-full object-cover"
-                    src={profilePreview} // Display uploaded image
+                    src={profilePreview}
                     alt="user profile"
                   />
-                ) : user?.profile ? ( // <-- Fixed the condition here
+                ) : user?.profile ? (
                   <img
-                    className="ww-full h-full rounded-full"
+                    className="w-full h-full rounded-full"
                     src={user?.profile}
                     alt="user photo"
                   />
@@ -101,6 +103,7 @@ const UserProfileForm = ({
                 )}
               </div>
 
+              {/* File Input */}
               <input
                 type="file"
                 name="profile"
@@ -118,10 +121,11 @@ const UserProfileForm = ({
               </label>
             </div>
 
+            {/* Welcome Message Skeleton */}
             <div className="text-center mt-6">
               <h1 className="text-3xl md:text-4xl font-bold text-primary-500 dark:text-white">
                 {isLoading ? (
-                  <Skeleton width={200} />
+                  <div className="h-8 bg-gray-200 animate-pulse w-48 mx-auto rounded"></div>
                 ) : (
                   <>
                     {t("welcome to")}{" "}
@@ -131,7 +135,7 @@ const UserProfileForm = ({
               </h1>
               <p className="text-gray-600 dark:text-gray-400 mt-2">
                 {isLoading ? (
-                  <Skeleton width={150} />
+                  <div className="h-4 bg-gray-200 animate-pulse w-32 mx-auto rounded"></div>
                 ) : (
                   t("please update your information")
                 )}
@@ -139,13 +143,15 @@ const UserProfileForm = ({
             </div>
           </div>
 
+          {/* Form Fields Skeleton */}
           <div className="max-w-2xl mx-auto bg-[#f8f8f8] dark:bg-gray-800 rounded-xl shadow-md p-6 md:p-8">
+            {/* Name Field Skeleton */}
             <div className="mb-6">
               <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
                 {t("name")}
               </label>
               {isLoading ? (
-                <Skeleton height={40} width="100%" />
+                <div className="h-12 bg-gray-200 animate-pulse rounded-lg"></div>
               ) : (
                 <Field
                   type="text"
@@ -156,12 +162,13 @@ const UserProfileForm = ({
               )}
             </div>
 
+            {/* Bio Field Skeleton */}
             <div className="mb-6">
               <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
                 {t("bio")}
               </label>
               {isLoading ? (
-                <Skeleton height={120} width="100%" />
+                <div className="h-24 bg-gray-200 animate-pulse rounded-lg"></div>
               ) : (
                 <Field
                   as="textarea"
@@ -173,14 +180,15 @@ const UserProfileForm = ({
               )}
             </div>
 
+            {/* Save Button Skeleton */}
             <div className="flex justify-end">
               {isLoading ? (
-                <Skeleton height={50} width={150} />
+                <div className="h-12 w-32 bg-gray-200 animate-pulse rounded-lg"></div>
               ) : (
                 <button
                   type="submit"
                   className="bg-secondary-500 text-white font-bold py-3 px-8 rounded-lg hover:from-primary-600 hover:to-secondary-600 transition-all disabled:opacity-50"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !dirty} // Enable save only if the form is dirty (has changes)
                 >
                   {isSubmitting ? t("saving...") : t("save")}
                 </button>

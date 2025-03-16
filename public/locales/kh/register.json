@@ -57,5 +57,7 @@
   "Enter your new password": "បញ្ចូលពាក្យសម្ងាត់ថ្មីរបស់អ្នក",
   "Resetting...": "កំពុងផ្លាស់ប្តូរឡើងវិញ...",
   "Password reset successfully!": "ការផ្លាស់ប្តូរពាក្យសម្ងាត់ឡើងវិញជោគជ័យ!",
-  "Failed to reset password. Please try again.": "ការផ្លាស់ប្តូរពាក្យសម្ងាត់ឡើងវិញបានបរាជ័យ។ សូមព្យាយាមម្ដងទៀត។"
+  "Failed to reset password. Please try again.": "ការផ្លាស់ប្តូរពាក្យសម្ងាត់ឡើងវិញបានបរាជ័យ។ សូមព្យាយាមម្ដងទៀត។",
+
+  "Processing...":"កំពុងដំណើរការ..."
 }

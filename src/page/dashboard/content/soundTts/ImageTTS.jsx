@@ -12,26 +12,27 @@ const Card = ({ item }) => {
   };
 
   return (
-    <div className="flex flex-col items-center rounded-tl-[50px] rounded-br-[50px] bg-white/10 backdrop-blur-md shadow-lg transition-shadow duration-300 overflow-hidden">
+    <div className="flex flex-col items-center rounded-xl bg-white dark:bg-gray-800 shadow-lg transition-shadow duration-300 overflow-hidden">
       {/* Image Section */}
-      <div className="w-full h-48 overflow-hidden relative">
+      <div className="w-full h-48 overflow-hidden relative group">
         <img
           src={item.image}
           alt={item.word}
-          className="w-full h-full object-cover transform transition-transform duration-300"
+          className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110"
         />
         {/* Play Sound Button */}
         <button
           onClick={() => speak(item.word)}
-          className="absolute top-36 left-14 transform -translate-x-1/2 -translate-y-1/2 bg-secondary-500 hover:bg-secondary-600 text-white p-3 rounded-full shadow-lg transition-colors duration-300"
+          className="absolute bottom-4 left-4 bg-secondary-500 text-white p-3 rounded-full shadow-md transition-colors duration-300 flex items-center justify-center"
+          aria-label="Play sound"
         >
-          <FaVolumeUp className="text-lg" />
+          <FaVolumeUp className="text-xl" />
         </button>
       </div>
 
       {/* Content Section */}
-      <div className="p-4 w-full text-center">
-        <p className="text-xl font-semibold text-primary-500 dark:text-white mb-3">
+      <div className="p-6 w-full text-center bg-gradient-to-b from-white/10 dark:from-gray-700/10 to-transparent">
+        <p className="text-2xl font-bold text-primary-500 dark:text-white mb-2">
           {item.word}
         </p>
       </div>

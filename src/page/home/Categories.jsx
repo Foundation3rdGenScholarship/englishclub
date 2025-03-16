@@ -19,10 +19,10 @@ const FeatureCard = ({ icon: Icon, title, description }) => (
       >
         {Icon && <Icon className="text-6xl text-black dark:text-white" />}
       </div>
-      <h3 className="text-heading-4 font-bold text-primary-500 mb-4">
+      <h3 className="xl:text-heading-4 md:text-heading-4 text-heading-5 font-bold text-primary-500 mb-4">
         {title}
       </h3>
-      <p className="text-des-2 text-gray-600 dark:text-white text-center line-clamp-4">
+      <p className="text-des-4 md:text-des-4 lg:text-des-2 xl:text-des-2 text-gray-600 dark:text-white text-center">
         {description}
       </p>
     </div>
@@ -83,7 +83,7 @@ const FeaturesGrid = () => {
               </span>{" "}
               <span> {t("des-sub")}</span>
             </span>
-            <p className="mt-4 xl:text-heading-4 lg:text-heading-5 md:text-heading-6 text-[14px] leading-7 text-gray-500 sm:mt-8">
+            <p className="mt-4 xl:text-heading-4 lg:text-heading-5 md:text-heading-6 text-[14px] leading-7 text-gray-500 dark:text-gray-400sm:mt-8">
               {t("des-subtwo")}
             </p>
           </div>
