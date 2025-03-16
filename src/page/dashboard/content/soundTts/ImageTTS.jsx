@@ -61,12 +61,12 @@ const Category = ({ name, items, t }) => {
           {Array.from({ length: 4 }).map((_, index) => (
             <div
               key={index}
-              className="flex flex-col items-center rounded-tl-[50px] rounded-br-[50px] bg-white/10 backdrop-blur-md shadow-lg transition-shadow duration-300 overflow-hidden"
+              className="flex flex-col items-center rounded-xl bg-white/10 backdrop-blur-md shadow-lg transition-shadow duration-300 overflow-hidden"
             >
               {/* Skeleton for Image */}
               <div className="w-full h-48 bg-gray-300 animate-pulse" />
               {/* Skeleton for Word */}
-              <div className="p-4 w-full text-center">
+              <div className="p-6 w-full text-center">
                 <div className="h-6 w-3/4 mx-auto bg-gray-300 animate-pulse rounded mb-3" />
               </div>
             </div>
