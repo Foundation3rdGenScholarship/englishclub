@@ -16,7 +16,7 @@ import { useDispatch } from "react-redux";
 import { setUser, updateUser } from "../../redux/features/user/authSlice";
 import SignOut from "./SignOut";
 import { useLocation } from "react-router-dom";
-
+import { useTranslation } from "react-i18next";
 const UserProfile = () => {
   const [profilePreview, setProfilePreview] = useState("");
   const [userData, setUserData] = useState(null);
@@ -29,6 +29,7 @@ const UserProfile = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const [verify] = useUserVerifyMutation();
+  const { t } = useTranslation("userProfile");
 
 useEffect(() => {
   const fetchUserInfo = async () => {
@@ -73,11 +74,13 @@ useEffect(() => {
       // Validate file type and size
       if (selectedFile.size > 5 * 1024 * 1024) {
         // 5MB limit
-        toast.error("File size exceeds the limit of 5MB.");
+        toast.error(t("File size exceeds the limit of 5MB."));
         return;
       }
-      if (!["image/jpeg", "image/png"].includes(selectedFile.type)) {
-        toast.error("Invalid file type. Only JPEG and PNG files are allowed.");
+      if (
+        !["image/jpeg", "image/png", "image/jpg"].includes(selectedFile.type)
+      ) {
+        toast.error(t("Invalid file type. Only JPEG, PNG and JPG files are allowed."));
         return;
       }
 
@@ -96,7 +99,7 @@ useEffect(() => {
         );
       }
     } else {
-      toast.error("Please select a file to upload.");
+      toast.error(t("Please select a file to upload."));
     }
   };
 

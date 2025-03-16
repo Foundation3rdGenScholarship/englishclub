@@ -24,5 +24,8 @@
   "exercises history": "ប្រវត្តិនៃលំហាត់",
   "Coming soon!": "មកដល់ឆាប់ៗនេះ!",
   "No exercises completed yet": "មិនទាន់មានលំហាត់បានបញ្ចប់នៅឡើយទេ",
-  "start taking exercises to see your progress history here": "ចាប់ផ្តើមធ្វើលំហាត់ដើម្បីមើលប្រវត្តិដែលអ្នកបានធ្វើនៅទីនេះ"
+  "start taking exercises to see your progress history here": "ចាប់ផ្តើមធ្វើលំហាត់ដើម្បីមើលប្រវត្តិដែលអ្នកបានធ្វើនៅទីនេះ",
+  "File size exceeds the limit of 5MB.": "ទំហំឯកសារមិនអាចលើសពី 5MB។",
+  "Invalid file type. Only JPEG, PNG and JPG files are allowed.": "ប្រភេទឯកសារមិនត្រឹមត្រូវ អាចប្រើបានតែឯកសារ JPEG, PNG និង JPG ប៉ុណ្ណោះ។",
+  "Please select a file to upload.": "សូមជ្រើសរើសឯកសារដើម្បីផ្ទុកឡើង"
 }

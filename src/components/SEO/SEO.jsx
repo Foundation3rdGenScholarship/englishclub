@@ -5,6 +5,11 @@ const SEO = () => {
   return (
     <div>
       <Helmet>
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          href="https://english-club.istad.co/files/535f885d-a6d5-4a0e-a4e3-65d7a6a0785f.png"
+        />
         {/* Standard Meta Tags */}
         <title>FluentFlow - English Learning Platform</title>
         <meta

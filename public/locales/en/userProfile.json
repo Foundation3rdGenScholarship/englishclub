@@ -24,5 +24,8 @@
   "exercises history":"Exercises History",
   "Coming soon!":"Coming Soon!",
   "No exercises completed yet":"No exercises completed yet",
-  "start taking exercises to see your progress history here":"Start taking exercises to see your progress history here"
+  "start taking exercises to see your progress history here":"Start taking exercises to see your progress history here",
+  "File size exceeds the limit of 5MB.":"File size exceeds the limit of 5MB.",
+  "Invalid file type. Only JPEG, PNG and JPG files are allowed.":"Invalid file type. Only JPEG, PNG and JPG files are allowed.",
+  "Please select a file to upload.":"Please select a file to upload."
 }
