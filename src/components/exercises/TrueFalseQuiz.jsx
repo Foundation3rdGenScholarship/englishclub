@@ -77,11 +77,6 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
   const handleSubmit = async () => {
     // Check if user is logged in first
     const userData = JSON.parse(localStorage.getItem("user"));
-    // if (!userData?.user_uuid) {
-    //   notify("🔒 Please log in to submit your answers.", "info");
-    //   setUserLoggedIn(false);
-    //   return;
-    // }
 
     if (isAllAnswered) {
       setIsSubmitted(true);
@@ -97,8 +92,9 @@ const TrueFalseQuiz = ({ exercises, ex_uuid }) => {
             if (result?.message?.includes("No user found")) {
               notify("🔒 Please log in to submit your answers.", "info");
               setUserLoggedIn(false);
-            } else
-            if (result?.message?.includes("already done this exercise")) {
+            } else if (
+              result?.message?.includes("already done this exercise")
+            ) {
               notify(
                 "⚠️ You've already completed this exercise. Try another one!",
                 "warning"

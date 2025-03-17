@@ -33,9 +33,7 @@ const Hero = () => {
           >
             <h2 className="text-bg-dark-mode dark:text-bg-light-mode text-heading-5 sm:text-heading-4 md:text-heading-4 lg:text-heading-3 font-bold mb-1 sm:leading-tight md:leading-normal">
               {t("practice-your")}
-              <span
-                className="block text-heading-5 sm:text-heading-4 md:text-heading-4 lg:text-heading-3 font-bold mb-1 sm:leading-tight md:leading-normal"
-              >
+              <span className="block text-heading-5 sm:text-heading-4 md:text-heading-4 lg:text-heading-3 font-bold mb-1 sm:leading-tight md:leading-normal">
                 {t("practice-des")}
               </span>
             </h2>
@@ -51,7 +49,7 @@ const Hero = () => {
               className="w-full flex justify-center md:justify-start mt-4 sm:pr-0"
               data-aos="zoom-in" // Zoom-in animation for the button
             >
-              <NavLink to="/dashboard" className="w-full sm:w-auto">
+              <NavLink to="/courses" className="w-full sm:w-auto">
                 <ButtonHero
                   label={t("hero-btn")}
                   className="mt-5 w-full py-1.5 md:text-lg sm:text-sm text-white"

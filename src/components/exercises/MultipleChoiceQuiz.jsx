@@ -81,12 +81,6 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
   // Handle submission
   const handleSubmit = async () => {
     // Check if user is logged in first
-    // const userData = JSON.parse(localStorage.getItem("user"));
-    // if (!userData?.user_uuid) {
-    //   notify("🔒 Please log in to submit your answers.", "info");
-    //   setUserLoggedIn(false);
-    //   return;
-    // }
 
     if (!isAllAnswered) {
       notify("⚠️ Please answer all questions before submitting.", "error");
@@ -137,7 +131,6 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
 
   return (
     <div className="text-black p-6 border-2 border-gray-200 dark:border-gray-600 dark:bg-bg-dark-mode dark:text-white shadow-md rounded-lg">
-
       {exercises.map((exercise, index) => {
         const selectedAnswer = selectedAnswers[exercise.id];
         const isCorrect =

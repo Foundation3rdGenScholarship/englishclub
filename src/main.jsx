@@ -100,7 +100,7 @@ createRoot(document.getElementById("root")).render(
               <Route path="/forgotpassword" element={<ForgotPassword />} />
 
               <Route element={<Dashboard />}>
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/courses" element={<Dashboard />} />
               </Route>
 
               <Route element={<App />}>

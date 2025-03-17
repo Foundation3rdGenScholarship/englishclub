@@ -4,6 +4,7 @@ import { Outlet } from "react-router";
 import Footer from "./Footer";
 import { useNetworkState } from "react-use";
 import NetworkStatus from "../../utils/NetworkStatus";
+import Announcement from "../progress/Announcement";
 
 // createa a header on this page
 const RootLayout = () => {
@@ -13,6 +14,7 @@ const RootLayout = () => {
   }
   return (
     <div>
+      <Announcement />
       <Navbar />
       <Outlet />
       <Footer />
