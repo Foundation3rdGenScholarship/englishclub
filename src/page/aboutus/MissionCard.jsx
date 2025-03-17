@@ -7,7 +7,7 @@ export default function MissionCard() {
 
   return (
     <div className="flex justify-center p-4">
-      <GlassCard className="w-full max-w-[1100px] p-5 md:h-auto">
+      <GlassCard className="max-w-screen-xl p-5">
         <div className="flex flex-wrap items-center justify-center p-4 gap-6">
           {/* Image (Hidden on small screens) */}
           <img
@@ -19,10 +19,10 @@ export default function MissionCard() {
 
           {/* Text Content */}
           <div className="text-center md:text-left flex-1">
-            <h2 className="text-xl md:text-2xl font-bold text-accents-color">
+            <h2 className="font-bold xl:text-heading-4 md:text-heading-4 text-heading-5 text-accents-color">
               {t("ourmission")}
             </h2>
-            <p className="text-base md:text-lg text-[#666666] dark:text-white mt-3">
+            <p className="dark:text-white text-gray-500 text-des-4 md:text-des-4 lg:text-des-2 xl:text-des-2 mt-3">
               {t("mission-description")}
             </p>
           </div>

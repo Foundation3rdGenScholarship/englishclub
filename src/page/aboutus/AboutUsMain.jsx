@@ -22,32 +22,41 @@ const AboutUsMain = () => {
   }, []);
   const { t } = useTranslation("about");
   return (
-    <main className="mx-auto max-w-full overflow-hidden">
-      <section className="px-4 md:px-8 xl:px-16 py-10 ">
-        <div className="flex justify-center">
-          <AboutUsShape className="max-w-[1205px] flex justify-center relative z-10">
-            <GlassCard className="relative top-20 z-20 w-full  max-w-[1000px] md:max-w-[1100px] xl:max-w-[1205px] px-4 md:px-8 xl:px-12 py-6 md:py-8 xl:py-10 sm:border-stone-200 md:border-stone-200 xl:border-white">
-              <div className="text-center">
-                <h2 className="text-2xl md:text-3xl xl:text-4xl font-bold text-black dark:text-white mt-4">
-                  {t("title")}
-                </h2>
-                <p className="text-base md:text-lg xl:text-xl p-4 text-gray-600 dark:text-white">
-                  {t("description")}
-                </p>
+    <main className="mx-auto overflow-hidden">
+      <div className="px-4 md:px-8 xl:px-16 py-10 xl:mb-20 lg:mb-20 md:mb-20 sm:mb-16 mb-12">
+        <AboutUsShape className="flex justify-center relative z-10">
+          <GlassCard className="flex max-w-screen-xl relative xl:top-12 lg:top-12 md:top-12 sm:top-8 top-4 z-20 mx-auto p-5 sm:border-stone-200 md:border-stone-200 xl:border-white">
+            <div className="sm:flex items-center">
+              <div className="sm:w-1/2 p-10">
+                <div className="image object-center text-center">
+                  <img src={WorkTogether} />
+                </div>
               </div>
-              <div className="flex justify-center items-center mt-3">
-                <img
-                  className="w-[200px] sm:w-[200px] md:w-[300px] xl:w-1/3"
-                  src={WorkTogether}
-                  alt=""
-                />
+              <div className="sm:w-1/2 p-5 dark:text-white text-black">
+                <div className="text">
+                  {/* <span className="dark:text-white text-black border-b-2 border-accents-color uppercase">
+                    {t("aboutUs")}
+                  </span> */}
+                  <h2 className="my-4 font-bold text-3xl  sm:text-4xl ">
+                    {t("title")}{" "}
+                    <span className="text-accents-color">
+                      {t("fluentflow")}
+                    </span>
+                  </h2>
+                  <p className="text-accents-color xl:text-heading-4 lg:text-heading-5 md:text-heading-6 text-[14px]">
+                    {t("fluentflow")}
+                    <span className="dark:text-white text-gray-500 xl:text-heading-4 lg:text-heading-5 md:text-heading-6 text-[14px]">
+                      {t("description")}
+                    </span>
+                  </p>
+                </div>
               </div>
-            </GlassCard>
-          </AboutUsShape>
-        </div>
-      </section>
-      <section className="container max-w-screen-xl mx-auto">
-        <div className="mt-36 md:mt-72">
+            </div>
+          </GlassCard>
+        </AboutUsShape>
+      </div>
+      <div className="max-w-screen-xl mx-auto">
+        <div className="xl:mb-20 lg:mb-20 md:mb-20 sm:mb-16 mb-12">
           <div>
             <p className="text-center text-primary-950 dark:text-primary-100 font-bold text-heading-3">
               {t("mentor")}
@@ -57,8 +66,8 @@ const AboutUsMain = () => {
             <MentorCard></MentorCard>
           </div>
         </div>
-        <Bubbles className="mt-36">
-          <div className="relative z-10 flex flex-col gap-8 justify-center items-center h-screen">
+        <div className="xl:mb-20 lg:mb-20 md:mb-20 sm:mb-16 mb-12">
+          <div className="relative z-10 flex flex-col gap-8 justify-center items-center ">
             <div>
               {/* data-aos="fade-up" data-aos-anchor-placement="top-bottom" */}
               <MissionCard />
@@ -67,16 +76,16 @@ const AboutUsMain = () => {
               <VissionCard />
             </div>
           </div>
-        </Bubbles>
-        <div className="mt-36">
+        </div>
+        <div className="xl:mb-20 lg:mb-20 md:mb-20 sm:mb-16 mb-12">
           <p className="text-center text-primary-950 dark:text-primary-100  font-bold text-heading-3">
             {t("teammember")}
           </p>
         </div>
-        <div className="mb-56 mt-6">
+        <div className="xl:mb-20 lg:mb-20 md:mb-20 sm:mb-16 mb-12">
           <MemberCard />
         </div>
-      </section>
+      </div>
     </main>
   );
 };
