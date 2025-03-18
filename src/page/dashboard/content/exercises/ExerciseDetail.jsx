@@ -80,8 +80,7 @@ const ExerciseDetail = () => {
                 )}
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(data.reading_text
-                    ),
+                    __html: DOMPurify.sanitize(data.reading_text),
                   }}
                 />
               </div>
@@ -212,7 +211,9 @@ const ExerciseDetail = () => {
 
                 {/* Text Below Image */}
                 <div className="bg-white relative -mt-20 z-10 mx-auto max-w-screen-md rounded-tl-[50px] rounded-br-[50px] shadow-lg dark:bg-bg-dark-mode dark:text-text-des-dark-mode dark:border-2 p-6 border-white/20">
-                  <p className="text-justify leading-[29px]">{data.description}</p>
+                  <p className="text-justify leading-[29px]">
+                    {data.description}
+                  </p>
                 </div>
               </div>
             </div>
@@ -232,7 +233,7 @@ const ExerciseDetail = () => {
                   }}
                 />
               </div>
-              <TrueFalseQuiz exercises={exercisesData} ex_uuid={ex_uuid}/>
+              <TrueFalseQuiz exercises={exercisesData} ex_uuid={ex_uuid} />
             </div>
           </div>
         </div>

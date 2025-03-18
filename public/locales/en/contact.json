@@ -37,6 +37,7 @@
   "question-ask": "Your Question",
 
   "btn-submit": "Submit",
+  "btn-submitting":"Submitting...",
 
   "name-placeholder": "Enter your name",
   "email-placeholder": "Enter your email",

@@ -38,7 +38,7 @@ export default function Footer() {
                 <NavLink to="/">{t("home")}</NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard">{t("courses")}</NavLink>
+                <NavLink to="/courses">{t("courses")}</NavLink>
               </li>
               <li>
                 <NavLink to="/about">{t("about")}</NavLink>

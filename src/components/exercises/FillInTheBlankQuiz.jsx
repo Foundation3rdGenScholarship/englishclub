@@ -3,6 +3,8 @@ import { submitExercises } from "../../services/submitExercises.js";
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import successSound from "../../../public/sounds/correct.mp3"; // Happy sound
+import failureSound from "../../../public/sounds/failure.mp3"; // Sad sound
 
 const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
   const { t } = useTranslation("error");
@@ -93,6 +95,16 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
     window.location.href = "/login";
   };
 
+  // Function to play sound
+  const playSound = (sound) => {
+    const audio = new Audio(sound);
+    audio.play();
+  };
+
+  // playSound(failureSound);
+
+  // playSound(successSound);
+
   const handleSubmit = async () => {
     // Validate all answers first
     if (!validateAnswers()) {
@@ -100,15 +112,8 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
       return;
     }
 
-    // Check if user is logged in
-    // if (!userLoggedIn) {
-    //   notify("🔒 Please log in to submit your answers.", "info");
-    //   return;
-    // }
-
     if (!isSubmitted) {
       setIsSubmitted(true);
-
       const formattedAnswers = prepareAnswers();
 
       try {
@@ -116,25 +121,26 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
 
         if (result.success) {
           notify("🎉 Exercise submitted successfully!", "success");
-        } else {
-          let errorMessage = result.message || t("fillintheblank");
 
-          if (errorMessage.includes("No user found")) {
-            notify("🔒 Please log in to submit your answers.", "info");
-            setUserLoggedIn(false);
-          } else if (
-            errorMessage.includes("already submitted") ||
-            errorMessage.includes("already done this exercise")
-          ) {
-            notify("⚠️ You've already completed this exercise!", "warning");
+          // Check if all answers are correct
+          const allCorrect = exercises.every(
+            (exercise) =>
+              String(answers[exercise.id]?.toLowerCase()) ===
+              String(exercise.correct_answer?.answer.toLowerCase())
+          );
+
+          if (allCorrect) {
+            playSound(successSound); // 🎉 Play happy sound
           } else {
-            notify(`❌ Submission failed: ${errorMessage}`, "error");
+            playSound(failureSound); // 😢 Play sad sound
           }
+        } else {
+          notify(`⚠️ You've already completed this exercise!", "warning"`);
         }
       } catch (error) {
         console.error("Unexpected error:", error);
         notify(`❌ Error: ${error.message || "Something went wrong"}`, "error");
-        setIsSubmitted(false); // Allow resubmission on error
+        setIsSubmitted(false);
       }
     }
   };

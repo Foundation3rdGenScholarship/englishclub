@@ -9,6 +9,7 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(true);
+  const [showFlowers, setShowFlowers] = useState(false);
 
   // Check if user is logged in on component mount
   useEffect(() => {
@@ -37,12 +38,6 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
         backgroundColor: colors[type]?.progress || "#555",
       },
     });
-  };
-
-  // Function to play sound
-  const playSound = (soundName) => {
-    const audio = new Audio(`/sounds/${soundName}.mp3`);
-    // audio.play();
   };
 
   // Handle answer selection
@@ -78,16 +73,46 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
     window.location.href = "/login";
   };
 
-  // Handle submission
-  const handleSubmit = async () => {
-    // Check if user is logged in first
-    // const userData = JSON.parse(localStorage.getItem("user"));
-    // if (!userData?.user_uuid) {
-    //   notify("🔒 Please log in to submit your answers.", "info");
-    //   setUserLoggedIn(false);
-    //   return;
-    // }
+  // Function to play sound
+  const playSound = (soundName) => {
+    const audio = new Audio(`/sounds/${soundName}.mp3`);
+    audio.play(); // Uncomment this line
+  };
 
+  // Handle submission
+  // First, modify the handleSubmit function to check if all answers are correct
+  // and play the appropriate sound
+
+  const createFlowers = () => {
+    const flowerContainer = document.createElement("div");
+    flowerContainer.className = "flower-container";
+    document.body.appendChild(flowerContainer);
+
+    // Create multiple flowers
+    for (let i = 0; i < 30; i++) {
+      setTimeout(() => {
+        const flower = document.createElement("div");
+        flower.className = "flower";
+        flower.style.left = `${Math.random() * 100}vw`;
+        flower.style.animationDuration = `${Math.random() * 2 + 3}s`;
+        flower.innerHTML = "🌸"; // You can change this to any flower emoji
+        flowerContainer.appendChild(flower);
+
+        // Remove flower after animation
+        setTimeout(() => {
+          flower.remove();
+        }, 5000);
+      }, i * 100);
+    }
+
+    // Remove container after animation
+    setTimeout(() => {
+      flowerContainer.remove();
+      setShowFlowers(false);
+    }, 6000);
+  };
+
+  const handleSubmit = async () => {
     if (!isAllAnswered) {
       notify("⚠️ Please answer all questions before submitting.", "error");
       return;
@@ -102,7 +127,28 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
       if (result.success) {
         notify("🎉 Exercise submitted successfully!", "success");
 
-        // Play the correct sound for each correct answer
+        // Check if all answers are correct
+        const allCorrect = exercises.every((exercise) => {
+          const selectedAnswer = selectedAnswers[exercise.id];
+          return (
+            exercise.choices.find(
+              (choice) => choice.choice_uuid === selectedAnswer
+            )?.is_correct || false
+          );
+        });
+
+        // Play the appropriate sound based on all answers being correct or not
+        if (allCorrect) {
+          playSound("correct");
+          setShowFlowers(true);
+          createFlowers();
+        } else {
+          playSound("failure");
+          setShowFlowers(true);
+          createFlowers();
+        }
+
+        // You can still play individual sounds if you want
         exercises.forEach((exercise, index) => {
           const selectedAnswer = selectedAnswers[exercise.id];
           const isCorrect =
@@ -136,134 +182,167 @@ const MultipleChoiceQuiz = ({ exercises, ex_uuid }) => {
   };
 
   return (
-    <div className="text-black p-6 border-2 border-gray-200 dark:border-gray-600 dark:bg-bg-dark-mode dark:text-white shadow-md rounded-lg">
+    <>
+      <style jsx>{`
+        @keyframes flowerFall {
+          0% {
+            transform: translateY(-10vh) rotate(0deg);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(100vh) rotate(360deg);
+            opacity: 0;
+          }
+        }
 
-      {exercises.map((exercise, index) => {
-        const selectedAnswer = selectedAnswers[exercise.id];
-        const isCorrect =
-          exercise.choices.find(
-            (choice) => choice.choice_uuid === selectedAnswer
-          )?.is_correct || false;
-        const correctChoice = exercise.choices.find((c) => c.is_correct);
+        .flower-container {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          z-index: 9999;
+        }
 
-        return (
-          <div
-            key={exercise.id}
-            className="mb-6 p-4 border border-gray-200 dark:border-gray-700 rounded-lg"
-          >
-            <h2 className="font-bold text-heading-4 mb-3 text-primary-100">
-              {index + 1}. {exercise.question_text}
-            </h2>
-            <div className="space-y-2">
-              {exercise.choices.map((choice) => {
-                const isSelected = selectedAnswer === choice.choice_uuid;
-                const isCorrectChoice = choice.is_correct;
+        .flower {
+          position: absolute;
+          top: -20px;
+          font-size: 24px;
+          animation: flowerFall linear forwards;
+        }
+      `}</style>
+      <div className="text-black p-6 border-2 border-gray-200 dark:border-gray-600 dark:bg-bg-dark-mode dark:text-white shadow-md rounded-lg">
+        {exercises.map((exercise, index) => {
+          const selectedAnswer = selectedAnswers[exercise.id];
+          const isCorrect =
+            exercise.choices.find(
+              (choice) => choice.choice_uuid === selectedAnswer
+            )?.is_correct || false;
+          const correctChoice = exercise.choices.find((c) => c.is_correct);
 
-                let optionClass =
-                  "p-2 rounded hover:bg-gray-50 dark:hover:bg-gray-700";
+          return (
+            <div
+              key={exercise.id}
+              className="mb-6 p-4 border border-gray-200 dark:border-gray-700 rounded-lg"
+            >
+              <h2 className="font-bold text-heading-4 mb-3 text-primary-100">
+                {index + 1}. {exercise.question_text}
+              </h2>
+              <div className="space-y-2">
+                {exercise.choices.map((choice) => {
+                  const isSelected = selectedAnswer === choice.choice_uuid;
+                  const isCorrectChoice = choice.is_correct;
 
-                if (isSubmitted) {
-                  if (isSelected && isCorrectChoice) {
-                    optionClass += " bg-green-100 dark:bg-green-900/50";
-                  } else if (isSelected && !isCorrectChoice) {
-                    optionClass += " bg-red-100 dark:bg-red-900/50";
-                  } else if (isCorrectChoice) {
-                    optionClass += " bg-green-50 dark:bg-green-900/30";
+                  let optionClass =
+                    "p-2 rounded hover:bg-gray-50 dark:hover:bg-gray-700";
+
+                  if (isSubmitted) {
+                    if (isSelected && isCorrectChoice) {
+                      optionClass += " bg-green-100 dark:bg-green-900/50";
+                    } else if (isSelected && !isCorrectChoice) {
+                      optionClass += " bg-red-100 dark:bg-red-900/50";
+                    } else if (isCorrectChoice) {
+                      optionClass += " bg-green-50 dark:bg-green-900/30";
+                    }
+                  } else if (isSelected) {
+                    optionClass += " bg-blue-100 dark:bg-blue-900/50";
                   }
-                } else if (isSelected) {
-                  optionClass += " bg-blue-100 dark:bg-blue-900/50";
-                }
 
-                return (
-                  <div key={choice.choice_uuid} className={optionClass}>
-                    <label className="flex items-center gap-3 w-full cursor-pointer text-des-3 dark:text-text-des-dark-mode text-text-des-light-mode">
-                      <div
-                        className={`w-5 h-5 flex items-center justify-center rounded-full border ${
-                          isSelected
-                            ? "border-primary-500"
-                            : "border-gray-300 dark:border-gray-500"
-                        }`}
-                      >
-                        {isSelected && (
-                          <div className="w-3 h-3 rounded-full bg-primary-500" />
-                        )}
-                      </div>
-                      <span>{choice.text}</span>
-
-                      {isSubmitted && isCorrectChoice && (
-                        <svg
-                          className="w-5 h-5 text-green-500 ml-auto"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+                  return (
+                    <div key={choice.choice_uuid} className={optionClass}>
+                      <label className="flex items-center gap-3 w-full cursor-pointer text-des-3 dark:text-text-des-dark-mode text-text-des-light-mode">
+                        <div
+                          className={`w-5 h-5 flex items-center justify-center rounded-full border ${
+                            isSelected
+                              ? "border-primary-500"
+                              : "border-gray-300 dark:border-gray-500"
+                          }`}
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M5 13l4 4L19 7"
-                          ></path>
-                        </svg>
-                      )}
+                          {isSelected && (
+                            <div className="w-3 h-3 rounded-full bg-primary-500" />
+                          )}
+                        </div>
+                        <span>{choice.text}</span>
 
-                      <input
-                        type="radio"
-                        name={`exercise-${exercise.id}`}
-                        value={choice.choice_uuid}
-                        checked={selectedAnswer === choice.choice_uuid}
-                        onChange={() =>
-                          handleAnswerSelection(exercise.id, choice.choice_uuid)
-                        }
-                        disabled={isSubmitted}
-                        className="sr-only"
-                      />
-                    </label>
-                  </div>
-                );
-              })}
+                        {isSubmitted && isCorrectChoice && (
+                          <svg
+                            className="w-5 h-5 text-green-500 ml-auto"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M5 13l4 4L19 7"
+                            ></path>
+                          </svg>
+                        )}
+
+                        <input
+                          type="radio"
+                          name={`exercise-${exercise.id}`}
+                          value={choice.choice_uuid}
+                          checked={selectedAnswer === choice.choice_uuid}
+                          onChange={() =>
+                            handleAnswerSelection(
+                              exercise.id,
+                              choice.choice_uuid
+                            )
+                          }
+                          disabled={isSubmitted}
+                          className="sr-only"
+                        />
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+              {isSubmitted && (
+                <p
+                  className={`mt-3 p-2 rounded ${
+                    isCorrect
+                      ? "bg-green-50 text-green-600 dark:bg-green-900/30 dark:text-green-200"
+                      : "bg-red-50 text-red-600 dark:bg-red-900/30 dark:text-red-200"
+                  }`}
+                >
+                  {isCorrect
+                    ? "Correct!"
+                    : `Incorrect. Correct answer: ${correctChoice?.text}`}
+                </p>
+              )}
             </div>
-            {isSubmitted && (
-              <p
-                className={`mt-3 p-2 rounded ${
-                  isCorrect
-                    ? "bg-green-50 text-green-600 dark:bg-green-900/30 dark:text-green-200"
-                    : "bg-red-50 text-red-600 dark:bg-red-900/30 dark:text-red-200"
-                }`}
-              >
-                {isCorrect
-                  ? "Correct!"
-                  : `Incorrect. Correct answer: ${correctChoice?.text}`}
-              </p>
-            )}
-          </div>
-        );
-      })}
+          );
+        })}
 
-      <div className="flex justify-end">
-        <button
-          onClick={handleSubmit}
-          disabled={!isAllAnswered || isSubmitted}
-          className={`px-4 py-2 rounded-lg text-white transition-colors ${
-            isAllAnswered && !isSubmitted
-              ? "bg-secondary-400 hover:bg-secondary-600"
-              : "bg-secondary-200 cursor-not-allowed"
-          }`}
-        >
-          {isSubmitted ? "Submitted" : "Submit"}
-        </button>
-
-        {isSubmitted && (
+        <div className="flex justify-end">
           <button
-            onClick={() => window.location.reload()}
-            className="ml-3 text-primary-500 hover:text-primary-600 dark:text-primary-400 dark:hover:text-primary-300 underline"
+            onClick={handleSubmit}
+            disabled={!isAllAnswered || isSubmitted}
+            className={`px-4 py-2 rounded-lg text-white transition-colors ${
+              isAllAnswered && !isSubmitted
+                ? "bg-secondary-400 hover:bg-secondary-600"
+                : "bg-secondary-200 cursor-not-allowed"
+            }`}
           >
-            Try Again
+            {isSubmitted ? "Submitted" : "Submit"}
           </button>
-        )}
-      </div>
 
-      <ToastContainer position="top-right" autoClose={3000} />
-    </div>
+          {isSubmitted && (
+            <button
+              onClick={() => window.location.reload()}
+              className="ml-3 text-primary-500 hover:text-primary-600 dark:text-primary-400 dark:hover:text-primary-300 underline"
+            >
+              Try Again
+            </button>
+          )}
+        </div>
+
+        <ToastContainer position="top-right" autoClose={3000} />
+      </div>
+    </>
   );
 };
 

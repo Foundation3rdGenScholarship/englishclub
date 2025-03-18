@@ -66,6 +66,7 @@ import { SpeakingB2 } from "./page/dashboard/content/speakingDetail/SpeakingB2.j
 import LangTranslate from "./page/dashboard/content/translate/Translator.jsx";
 import ReadingC1 from "./page/dashboard/content/skillDetail/ReadingC1.jsx";
 // import { OverSkill } from "./page/dashboard/content/overview/OverSkill.jsx";
+import ExerciseHistoryDetail from "./page/user/ExerciseHistoryDetail.jsx";
 createRoot(document.getElementById("root")).render(
   <Suspense>
     <StrictMode>
@@ -100,7 +101,7 @@ createRoot(document.getElementById("root")).render(
               <Route path="/forgotpassword" element={<ForgotPassword />} />
 
               <Route element={<Dashboard />}>
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/courses" element={<Dashboard />} />
               </Route>
 
               <Route element={<App />}>
@@ -221,6 +222,10 @@ createRoot(document.getElementById("root")).render(
               <Route path="/verifyotp" element={<VerifyOTP />} />
               <Route path="/resetpassword" element={<NewPassword />} />
               <Route path="/userprofile" element={<UserProfile />} />
+              <Route
+                path="/exercisehistorydetail"
+                element={<ExerciseHistoryDetail />}
+              />
             </Routes>
           </BrowserRouter>
         </HelmetProvider>

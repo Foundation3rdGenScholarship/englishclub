@@ -1,191 +1,114 @@
-// import React, { useEffect } from "react";
-// import AOS from "aos";
-// import "aos/dist/aos.css";
-// import cherPheng from "../../../public/img/image/cherPheng.png";
-// import cherDavan from "../../../public/img/image/cherDavan.png";
-// import { useTranslation } from "react-i18next";
-// import { FaLinkedinIn } from "react-icons/fa";
-// import { IoMdMail } from "react-icons/io";
-// import { FaGithub } from "react-icons/fa";
-// export default function MentorCard() {
-//   useEffect(() => {
-//     AOS.init({
-//       duration: 1000, // Animation duration (in ms)
-//       easing: "ease-in-out", // Easing function
-//       once: true, // Whether animation should happen only once
-//     });
-//   }, []);
-//   const { t } = useTranslation("about");
-//   return (
-//     <div  className="flex flex-wrap justify-center">
-//       <div data-aos="fade-right"   className="px-10">
-//         <div className="flex justify-center mt-12">
-//           <div className="rounded-tl-[40px] rounded-br-[40px] bg-accents-color ">
-//             <p className="pt-2 pb-2 py-16 px-8 text-center font-bold text-heading-5 text-white">
-//               {t("cherPheng")}
-//             </p>
-//           </div>
-//         </div>
-//         <div className="flex justify-center">
-//           <img className="w-72 mt-5" src={cherPheng} alt="" />
-//         </div>
-//         <div className="flex justify-center p-5">
-//           <a
-//             className="p-3"
-//             href="http://linkedin.com/in/kim-chansokpheng-6b6513267"
-//           >
-//             <FaLinkedinIn className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
-//           </a>
-//           <a className="p-3" href="http://">
-//             <IoMdMail className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
-//           </a>
-//           <a className="p-3" href="http://">
-//             <FaGithub className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
-//           </a>
-//         </div>
-//       </div>
-//       <div data-aos="fade-left"   className="px-10">
-//         <div className="flex justify-center mt-12">
-//           <div className="rounded-tl-[40px] rounded-br-[40px] bg-accents-color ">
-//             <p className="pt-2 pb-2 py-16 px-16 text-center font-bold text-heading-5 text-white">
-//               {t("cherDavan")}
-//             </p>
-//           </div>
-//         </div>
-//         <div className="flex justify-center">
-//           <img className="w-72 mt-5" src={cherDavan} alt="" />
-//         </div>
-//         <div className="flex justify-center p-5">
-//           <a className="p-3" href="http://linkedin.com/in/ing-davann-0617b32a3">
-//             <FaLinkedinIn className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
-//           </a>
-//           <a className="p-3" href="http://">
-//             <IoMdMail className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
-//           </a>
-//           <a className="p-3" href="http://">
-//             <FaGithub className="size-9 text-primary-950 hover:text-[#1560BD] dark:text-white" />
-//           </a>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useTranslation } from "react-i18next";
+import { FaGithub } from "react-icons/fa";
+import { IoMdMail } from "react-icons/io";
+import { FaLinkedin } from "react-icons/fa";
 import cherPheng from "../../../public/img/image/LokKruPheng.png";
 import cherDavan from "../../../public/img/image/LokKruDavan.png";
-import { useTranslation } from "react-i18next";
-import { FaLinkedinIn } from "react-icons/fa";
-import { IoMdMail } from "react-icons/io";
-import { FaGithub } from "react-icons/fa";
 
-export default function MentorCard() {
+export default function TeamCard() {
+  const { t } = useTranslation("about");
+  
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration (in ms)
-      easing: "ease-in-out", // Easing function
-      once: true, // Whether animation should happen only once
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
     });
   }, []);
-
-  const { t } = useTranslation("about");
-
+  
+  const mentorDetails = [
+    {
+      name: t("cherPheng"),
+      title: "Teacher",
+      image: cherPheng,
+      linkedin: "https://linkedin.com/in/kim-chansokpheng-6b6513267",
+      email: "mailto:kimchansokpheng@gmail.com",
+      github: "https://github.com/sokpheng001",
+      borderColor: "border-accents-color",
+      animation: "fade-right"
+    },
+    {
+      name: t("cherDavan"),
+      title: "Teacher",
+      image: cherDavan,
+      linkedin: "https://linkedin.com/in/ing-davann-0617b32a3",
+      email: "mailto:ingdavann4444@gmail.com",
+      github: "https://github.com/ingdavann",
+      borderColor: "border-accents-color",
+      animation: "fade-left"
+    },
+  ];
+  
   return (
-    <div className="flex flex-wrap justify-center">
-      <div data-aos="fade-right" className="px-10">
-        <div className="flex justify-center mt-12">
-          <div className="rounded-xl bg-accents-color ">
-            <p className="pt-2 pb-2 py-16 px-8 text-center font-bold text-heading-5 text-white">
-              {t("cherPheng")}
-            </p>
+    <div className="flex flex-wrap justify-center gap-16 px-4 py-8">
+      {mentorDetails.map((member, index) => (
+        <div
+          key={index}
+          data-aos={member.animation}
+          data-aos-delay={index * 100}
+          className="w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+        >
+          <div className={`h-1 ${member.borderColor}`}></div>
+          <div className="p-6">
+            <div className="flex flex-col items-center">
+              <div
+                className={`rounded-full border-2 ${member.borderColor} p-1 mb-4`}
+              >
+                <img
+                  className="w-48 h-48 rounded-full object-cover"
+                  src={member.image}
+                  alt={member.name}
+                  loading="lazy"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
+                {member.name}
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                {member.title}
+              </p>
+            </div>
+            
+            <div className="flex justify-evenly mt-4 space-x-3 text-gray-700 dark:text-gray-300">
+              {/* LinkedIn icon */}
+              <a
+                className="hover:text-primary-600 dark:hover:text-primary-300 transition-colors"
+                href={member.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin className="w-6 h-6"/>
+              </a>
+              
+              {/* Email icon */}
+              <a
+                className="hover:text-primary-600 dark:hover:text-primary-300 transition-colors"
+                href={member.email}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Email"
+              >
+                <IoMdMail className="w-6 h-6"/>
+              </a>
+              
+              {/* GitHub icon */}
+              <a
+                className="hover:text-primary-600 dark:hover:text-primary-300 transition-colors"
+                href={member.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <FaGithub className="w-6 h-6"/>
+              </a>
+            </div>
           </div>
         </div>
-        <div className="flex justify-center">
-          <img
-            className="w-72 mt-5"
-            src={cherPheng}
-            alt="Cher Pheng"
-            loading="lazy" // Lazy loading attribute
-          />
-        </div>
-        <div className="flex justify-center p-5 text-primary-950 dark:text-white">
-          {/* LinkedIn */}
-          <a
-            className="p-3"
-            href="https://linkedin.com/in/kim-chansokpheng-6b6513267"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaLinkedinIn className="size-9 hover:text-primary-100" />
-          </a>
-
-          {/* Email */}
-          <a
-            className="p-3"
-            href="https://mail.google.com/mail/u/0/#search/kimchansokpheng123%40gmail.com?compose=new"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <IoMdMail className="size-9 hover:text-primary-100" />
-          </a>
-
-          {/* GitHub */}
-          <a
-            className="p-3"
-            href="https://github.com/sokpheng001"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaGithub className="size-9 hover:text-primary-100" />
-          </a>
-        </div>
-      </div>
-
-      <div data-aos="fade-left" className="px-10">
-        <div className="flex justify-center mt-12">
-          <div className="rounded-xl bg-accents-color ">
-            <p className="pt-2 pb-2 py-16 px-16 text-center font-bold text-heading-5 text-white">
-              {t("cherDavan")}
-            </p>
-          </div>
-        </div>
-        <div className="flex justify-center">
-          <img
-            className="w-72 mt-5"
-            src={cherDavan}
-            alt="Cher Davan"
-            loading="lazy" // Lazy loading attribute
-          />
-        </div>
-        <div className="flex justify-center p-5 text-primary-950 dark:text-white">
-          <a
-            className="p-3"
-            target="_blank"
-            rel="noopener noreferrer"
-            href="http://linkedin.com/in/ing-davann-0617b32a3"
-          >
-            <FaLinkedinIn className="size-9  hover:text-primary-100 " />
-          </a>
-          <a
-            className="p-3"
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://mail.google.com/mail/u/0/#search/ingdavann4444%40gmail.com?compose=new"
-          >
-            <IoMdMail className="size-9  hover:text-primary-100" />
-          </a>
-          <a
-            className="p-3"
-            target="_blank"
-            rel="noopener noreferrer"
-            href="http://github.com/ingdavann"
-          >
-            <FaGithub className="size-9  hover:text-primary-100 " />
-          </a>
-        </div>
-      </div>
+      ))}
     </div>
   );
 }
