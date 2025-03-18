@@ -101,6 +101,10 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
     audio.play();
   };
 
+  // playSound(failureSound);
+
+  // playSound(successSound);
+
   const handleSubmit = async () => {
     // Validate all answers first
     if (!validateAnswers()) {
@@ -131,46 +135,12 @@ const FillInTheBlankQuiz = ({ exercises, ex_uuid }) => {
             playSound(failureSound); // 😢 Play sad sound
           }
         } else {
-          notify(`❌ Submission failed: ${result.message}`, "error");
+          notify(`⚠️ You've already completed this exercise!", "warning"`);
         }
       } catch (error) {
         console.error("Unexpected error:", error);
         notify(`❌ Error: ${error.message || "Something went wrong"}`, "error");
         setIsSubmitted(false);
-      }
-    }
-
-    // Check if user is logged in
-
-    if (!isSubmitted) {
-      setIsSubmitted(true);
-
-      const formattedAnswers = prepareAnswers();
-
-      try {
-        const result = await submitExercises(ex_uuid, formattedAnswers);
-
-        if (result.success) {
-          notify("🎉 Exercise submitted successfully!", "success");
-        } else {
-          let errorMessage = result.message || t("fillintheblank");
-
-          if (errorMessage.includes("No user found")) {
-            notify("🔒 Please log in to submit your answers.", "info");
-            setUserLoggedIn(false);
-          } else if (
-            errorMessage.includes("already submitted") ||
-            errorMessage.includes("already done this exercise")
-          ) {
-            notify("⚠️ You've already completed this exercise!", "warning");
-          } else {
-            notify(`❌ Submission failed: ${errorMessage}`, "error");
-          }
-        }
-      } catch (error) {
-        console.error("Unexpected error:", error);
-        notify(`❌ Error: ${error.message || "Something went wrong"}`, "error");
-        setIsSubmitted(false); // Allow resubmission on error
       }
     }
   };
