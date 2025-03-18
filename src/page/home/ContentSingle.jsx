@@ -26,9 +26,9 @@ const ContentSingle = () => {
               <img
                 data-aos="fade-right"
                 height="500"
-                src={senior}
+                src="../../../public/img/image/FluentFlowTeam.jpg"
                 width="480"
-                class="object-cover"
+                class="object-cover rounded-[18%]"
                 data-aos-duration="600"
               />
             </div>

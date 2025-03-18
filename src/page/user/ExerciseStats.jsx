@@ -87,7 +87,7 @@ const ExerciseStats = () => {
         {
           breakpoint: 480,
           options: {
-            chart: { width: 200 },
+            chart: { width: 400 },
             legend: { position: "bottom" },
           },
         },
@@ -185,7 +185,7 @@ const ExerciseStats = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 justify-center items-center">
         {/* Donut Chart */}
         <div
-          className="w-[25rem] h-[18rem] md:w-[25rem] md:h-[25rem] lg:w-[29rem] lg:h-[29rem] chart order-2"
+          className="w-[21rem] h-[18rem] md:w-[25rem] md:h-[25rem] lg:w-[29rem] lg:h-[29rem] chart order-2"
           data-aos="fade-right"
         >
           <ReactApexChart
