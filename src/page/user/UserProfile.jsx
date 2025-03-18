@@ -137,7 +137,7 @@ useEffect(() => {
   }
 
   return (
-    <section>
+    <section className="overflow-hidden">
       <NavbarDashboard />
       <UserProfileSidebar
         showSignOutModal={showSignOutModal}

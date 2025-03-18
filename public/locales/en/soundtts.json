@@ -9,13 +9,16 @@
     "Sound":"Sound",
     "Language":"Language",
     "Translator":"Translate",
-    "From:": "From:",
-    "To:": "To:",
+    "from:": "From:",
+    "to:": "To:",
     "Enter text to translate...":"Enter text to translate...",
     "English":"English",
     "Khmer":"Khmer",
     "No text to read. Please translate first!":"No text to read. Please translate first!",
     "Text-to-speech is already in progress.":"Text-to-speech is already in progress.",
     "Failed to translate. Please try again!":"Failed to translate. Please try again!",
-    "Failed to generate speech. Try again!":"Failed to generate speech. Try again!"
+    "Failed to generate speech. Try again!":"Failed to generate speech. Try again!",
+    "Powered by Google Translate API":"Powered by Google Translate API",
+    "history":"History",
+    "Recent Translations":"Recent Translations"
 }

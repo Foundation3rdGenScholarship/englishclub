@@ -32,7 +32,7 @@ export default function Navbar() {
   }, []);
 
   const menu = [
-    { title: t("courses"), path: "/dashboard" },
+    { title: t("courses"), path: "/courses" },
     { title: t("about"), path: "/about" },
     { title: t("contact"), path: "/contact" },
   ];

@@ -170,7 +170,7 @@ export default function Register() {
 
               {/* Privacy Policy Checkbox */}
               <div>
-                <div className="flex items-center mb-2 text-gray-600 dark:text-gray-400">
+                <div className="flex items-center mb-2 text-gray-600 dark:text-gray-400 cursor-pointer">
                   <Field
                     id="privacyPolicy"
                     className="mr-2 cursor-pointer"

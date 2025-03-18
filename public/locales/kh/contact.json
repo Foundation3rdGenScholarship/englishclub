@@ -37,6 +37,7 @@
   "question-ask": "សំណួររបស់អ្នក",
 
   "btn-submit": "បញ្ជូន",
+  "btn-submitting": "កំពុងបញ្ជូន...",
 
   "name-placeholder": "បញ្ចូលឈ្មោះរបស់អ្នក",
   "email-placeholder": "បញ្ចូលអ៊ីមែលរបស់អ្នក",
@@ -55,7 +56,7 @@
 
   "required-name": "ឈ្មោះត្រូវបានទាមទារ",
   "required-email": "អ៊ីម៊ែលត្រូវបានទាមទារ",
-  "invalid-email" : "អ៊ីម៊ែលមិនត្រឹមត្រូវ",
+  "invalid-email": "អ៊ីម៊ែលមិនត្រឹមត្រូវ",
   "required-subject": "សូមបញ្ចូលប្រធានបទ",
   "required-question": "សូមបញ្ចូលសំណួរ",
 

@@ -51,7 +51,7 @@ const Hero = () => {
               className="w-full flex justify-center md:justify-start mt-4 sm:pr-0"
               data-aos="zoom-in" // Zoom-in animation for the button
             >
-              <NavLink to="/dashboard" className="w-full sm:w-auto">
+              <NavLink to="/courses" className="w-full sm:w-auto">
                 <ButtonHero
                   label={t("hero-btn")}
                   className="mt-5 w-full py-1.5 md:text-lg sm:text-sm text-white"

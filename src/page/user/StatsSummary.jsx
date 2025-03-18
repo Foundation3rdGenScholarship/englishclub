@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { useFetchExercisesQuery } from "../../redux/features/exercises/exerciseApi";
 import { BeatLoader } from "react-spinners";
 import Pagination from "./Pagination";
+import { useNavigate } from "react-router-dom";
+
 // Helper function to get level image
 const getLevelImage = (level) => {
   switch (level) {
@@ -29,11 +31,15 @@ const StatsSummary = () => {
   const [levelsData, setLevelsData] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5); // 3 answers per page
+  const [itemsPerPage] = useState(5);
+
+  const navigate = useNavigate();
+
   // Calculate paginated data
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = userAnswers.slice(indexOfFirstItem, indexOfLastItem);
+
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -58,7 +64,6 @@ const StatsSummary = () => {
       const userId = userData?.user_uuid;
 
       if (!token || !userId) {
-        // Instead of setting an error for new users, just leave the answers empty
         setUserAnswers([]);
         setIsLoading(false);
         return;
@@ -77,20 +82,14 @@ const StatsSummary = () => {
         );
 
         if (!response.ok) {
-          // Handle API errors but don't show to user
-          // Still set empty answers for new users
           setUserAnswers([]);
           setIsLoading(false);
           return;
         }
 
         const data = await response.json();
-
-
-        // Set the answers (use empty array if payload is null/undefined)
         setUserAnswers(data.payload || []);
 
-        // Count unique exercises by level
         const uniqueExercises = new Set();
         const counts = {
           A1: 0,
@@ -101,22 +100,15 @@ const StatsSummary = () => {
           C2: t("Coming soon!"),
         };
 
-        // Only process if we have data
         if (data.payload && data.payload.length > 0) {
-          // First pass: collect unique exercise IDs
           data.payload.forEach((item) => {
             uniqueExercises.add(item.ex_uuid);
           });
 
-          // Second pass: count by level for unique exercises only
           const processedIds = new Set();
           data.payload.forEach((item) => {
-            // Only count if we haven't processed this exercise ID yet
             if (!processedIds.has(item.ex_uuid)) {
-              // Add to processed set
               processedIds.add(item.ex_uuid);
-
-              // Increment the count for this level
               if (counts.hasOwnProperty(item.ex_level)) {
                 counts[item.ex_level]++;
               }
@@ -126,8 +118,6 @@ const StatsSummary = () => {
 
         setLevelCounts(counts);
       } catch (error) {
-
-        // For errors, still show the UI with zero completed exercises
         setUserAnswers([]);
       }
     };
@@ -189,21 +179,6 @@ const StatsSummary = () => {
     }
   }, [isExercisesLoading, allExercises, levelCounts]);
 
-  // Show loading state while waiting for data
-  if (isExercisesLoading) {
-    return (
-      <div className="bg-bg-light-mode dark:bg-gray-900 rounded-xl p-6 sm:ml-64 max-w-screen-xl mb-16">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center">
-          {t("details about the")}{" "}
-          <span className="text-secondary-500">{t("exercises")}</span>
-        </h2>
-        <div className="flex justify-center items-center h-64">
-          <BeatLoader color="#fba518" />
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="bg-bg-light-mode dark:bg-gray-900 rounded-xl p-6 sm:ml-64 mt-[88px] max-w-screen-xl mb-16">
       <h2 className="text-2xl md:text-3xl font-bold text-primary-500 dark:text-white mb-6 text-center">
@@ -217,7 +192,7 @@ const StatsSummary = () => {
           const progress =
             level.total > 0
               ? ((level.completed / level.total) * 100).toFixed(2)
-              : 0; // Prevent division by zero
+              : 0;
 
           return (
             <div
@@ -271,7 +246,7 @@ const StatsSummary = () => {
         })}
       </div>
 
-      {/* Exercise Details Section - Only show if there are answers */}
+      {/* Exercise Details Section */}
       {userAnswers.length > 0 ? (
         <div className="mt-12">
           <h2 className="text-2xl font-bold text-primary-500 dark:text-white mb-4">
@@ -281,7 +256,12 @@ const StatsSummary = () => {
             {currentItems.map((item, index) => (
               <li
                 key={index}
-                className="p-3 border border-gray-200 dark:border-gray-700 rounded bg-white dark:bg-gray-800"
+                className="p-3 border border-gray-200 dark:border-gray-700 rounded bg-white dark:bg-gray-800 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
+                onClick={() =>
+                  navigate("/exercisehistorydetail", {
+                    state: { exercise: item },
+                  })
+                }
               >
                 <div className="flex justify-between">
                   <h3 className="font-medium text-gray-800 dark:text-white">
