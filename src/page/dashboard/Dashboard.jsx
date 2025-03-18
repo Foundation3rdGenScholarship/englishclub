@@ -25,11 +25,11 @@ const Dashboard = () => {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div >
       <NavbarDashboard />
       <Sidebar />
 
-      <div onClick={() => dispatch(closeSidebar())}>
+      <div onClick={() => dispatch(closeSidebar())} className="max-w-screen-2xl m-auto">
         {activeItem === "dashboard" && <User />}
         {activeItem === "listening" && <Listening />}
         {activeItem === "reading" && <Reading />}

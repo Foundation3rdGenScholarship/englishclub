@@ -19,7 +19,7 @@ function App() {
      <SEO/>
       <NavbarDashboard />
       <Sidebar />
-      <div onClick={() => dispatch(closeSidebar())}>
+      <div onClick={() => dispatch(closeSidebar())} className="max-w-screen-2xl m-auto">
         <Outlet />
       </div>
     </>

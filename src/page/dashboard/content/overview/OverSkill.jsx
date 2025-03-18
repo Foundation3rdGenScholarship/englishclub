@@ -30,7 +30,7 @@ export const OverSkill = () => {
     ); // Show error if there's a problem fetching the data
   }
   return (
-    <div className="max-w-screen-xl sm:ml-64 mt-[80px] mb-10">
+    <div className="max-w-screen-2xl sm:ml-64 mt-[80px] ">
       <div className="max-w-full">
         <div className="container mx-auto px-4">
           <div className="text-heading-4 h-[100px] md:h-auto xl:text-heading-2 flex items-center gap-2">
