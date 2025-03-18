@@ -40,24 +40,28 @@ const Announcement = () => {
 
   return (
     <div
-      className={` flex items-center justify-between gap-4 bg-primary-950 px-4 py-3 text-white sticky top-0 transition-transform duration-300 ${
+      className={`bg-primary-950 px-4 py-3 text-white sticky top-0 transition-transform duration-300 ${
         isScrolled ? "-translate-y-full" : "translate-y-0"
       }`}
     >
-      <p className="text-sm font-medium">
-        {t("title")}
-        <a href="/skills" className="inline-block underline ml-1">
-          {t("link")}
-        </a>
-      </p>
+      <div className="max-w-7xl flex items-center m-auto">
+        <div className="flex-grow text-center">
+          <p className="text-sm font-medium">
+            {t("title")}
+            <a href="/skills" className="inline-block underline ml-1">
+              {t("link")}
+            </a>
+          </p>
+        </div>
 
-      <button
-        onClick={handleClose}
-        aria-label="Close"
-        className="shrink-0 rounded-lg bg-black/10 p-1 transition hover:bg-black/20"
-      >
-        <IoMdClose />
-      </button>
+        <button
+          onClick={handleClose}
+          aria-label="Close"
+          className="shrink-0 rounded-lg bg-black/10 p-1 transition hover:bg-black/20 xl:mr-4"
+        >
+          <IoMdClose />
+        </button>
+      </div>
     </div>
   );
 };

@@ -17,7 +17,7 @@ export default function AboutUsShape({ children, className = "" }) {
         <img
           src="/img/iconSVG/Vector 20.svg"
           alt="Right Shape"
-          className="w-[600px] md:w-[650px] lg:w-[750px] xl:w-[850px] 2xl:w-[850px]"
+          className="w-[500px] md:w-[550px] lg:w-[650px] xl:w-[750px] 2xl:w-[750px]"
         />
       </div>
 

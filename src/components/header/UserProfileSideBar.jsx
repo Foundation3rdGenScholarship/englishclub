@@ -5,6 +5,8 @@ import { Link } from "react-scroll"; // Import Link from react-scroll
 import { BsPerson, BsBarChartLine } from "react-icons/bs";
 import { IoIosLogOut } from "react-icons/io";
 import { setActiveItem } from "../../redux/features/user/sidebarSlice.js";
+import ThemeToggle from "../../components/button/ThemeToggle";
+import ButtonLanguage from "../../components/button/ButtonLanguage";
 
 const UserProfileSidebar = ({ showSignOutModal, setShowSignOutModal }) => {
   const { t } = useTranslation("dashboard");
@@ -90,13 +92,13 @@ const UserProfileSidebar = ({ showSignOutModal, setShowSignOutModal }) => {
   return (
     <aside
       id="logo-sidebar"
-      className={`border-r border-gray-200 dark:border-gray-700 dark:bg-bg-dark-mode fixed top-0 left-0 z-40 w-64 h-screen sm:pt-[80px] pt-[60px] transition-transform ${
+      className={`border-r text-white border-gray-200 dark:border-gray-700 dark:bg-bg-dark-mode fixed top-0 left-0 z-40 w-64 h-screen sm:pt-[80px] pt-[60px] transition-transform ${
         isVisible ? "translate-x-0" : "-translate-x-full"
       } bg-white sm:translate-x-0 sm:block`}
       aria-label="Sidebar"
     >
       <div className="h-full px-3 pb-4 overflow-y-auto dark:bg-white/5 backdrop-blur-[18px] pt-6">
-        <ul className="space-y-2 font-medium">
+        <ul className="space-y-2 font-medium cursor-pointer">
           <li>
             <Link
               to="profile-section"
@@ -153,6 +155,10 @@ const UserProfileSidebar = ({ showSignOutModal, setShowSignOutModal }) => {
           </li>
         </ul>
       </div>
+      <ul className="absolute bg-white/10 backdrop-blur-md border-2 border-white dark:border-none border-white/20 bottom-0 w-64 left-0 flex justify-between px-5 py-2 sm:hidden">
+        <ButtonLanguage />
+        <ThemeToggle />
+      </ul>
     </aside>
   );
 };

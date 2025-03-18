@@ -58,7 +58,7 @@ const Category = ({ name, items, t }) => {
       {loading ? (
         // Skeleton for the entire category
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {Array.from({ length: 4 }).map((_, index) => (
+          {Array.from({ length: 8 }).map((_, index) => (
             <div
               key={index}
               className="flex flex-col items-center rounded-xl bg-white/10 backdrop-blur-md shadow-lg transition-shadow duration-300 overflow-hidden"
