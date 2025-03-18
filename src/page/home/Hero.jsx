@@ -33,9 +33,7 @@ const Hero = () => {
           >
             <h2 className="text-bg-dark-mode dark:text-bg-light-mode text-heading-5 sm:text-heading-4 md:text-heading-4 lg:text-heading-3 font-bold mb-1 sm:leading-tight md:leading-normal">
               {t("practice-your")}
-              <span
-                className="block text-heading-5 sm:text-heading-4 md:text-heading-4 lg:text-heading-3 font-bold mb-1 sm:leading-tight md:leading-normal"
-              >
+              <span className="block text-heading-5 sm:text-heading-4 md:text-heading-4 lg:text-heading-3 font-bold mb-1 sm:leading-tight md:leading-normal">
                 {t("practice-des")}
               </span>
             </h2>
