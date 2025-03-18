@@ -450,9 +450,9 @@ const LangTranslate = () => {
   }, [swapLanguages, copyToClipboard, clearInput, isHistoryOpen]);
 
   return (
-    <div className="p-4 sm:ml-64 mt-[60px] max-w-screen-xl flex flex-col items-center justify-center">
+    <div className="p-4 sm:ml-64 mt-[60px] max-w-screen-3xl mx-auto flex flex-col items-center justify-center">
       <div className="p-6">
-        <h1 className="text-3xl font-bold relative z-10 flex items-center justify-center gap-2">
+        <h1 className="text-4xl font-bold relative z-10 flex items-center justify-center gap-2">
           {/* <SiGoogletranslate className="text-3xl text-primary-500" /> */}
           <span className="text-primary-500">{t("Language")}</span>
           <span className="text-secondary-500">{t("Translator")}</span>
@@ -513,7 +513,9 @@ const LangTranslate = () => {
                   }}
                 >
                   <span className="text-xl mr-2">🌐</span>
-                  <span className="font-medium">{t("Auto Detect")}</span>
+                  <span className="font-medium text-gray-700 dark:text-white">
+                    {t("Auto Detect")}
+                  </span>
                 </button>
 
                 {/* Languages list */}
@@ -523,7 +525,7 @@ const LangTranslate = () => {
                       key={lang.code}
                       className={`flex items-center w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-600 ${
                         !isAutoDetect && sourceLang === lang.code
-                          ? "bg-primary-50 dark:bg-primary-900/30"
+                          ? "bg-primary-50 dark:bg-primary-500 text-gray-700"
                           : ""
                       }`}
                       onClick={() => {
@@ -534,7 +536,9 @@ const LangTranslate = () => {
                       }}
                     >
                       <span className="text-xl mr-2">{lang.flag}</span>
-                      <span className="font-medium">{t(lang.name)}</span>
+                      <span className="font-medium text-gray-700 dark:text-white">
+                        {t(lang.name)}
+                      </span>
                     </button>
                   ))}
 
@@ -596,7 +600,7 @@ const LangTranslate = () => {
                       key={lang.code}
                       className={`flex items-center w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-600 ${
                         targetLang === lang.code
-                          ? "bg-secondary-50 dark:bg-secondary-900/30"
+                          ? "bg-secondary-50 dark:bg-primary-500"
                           : ""
                       }`}
                       onClick={() => {
@@ -606,7 +610,9 @@ const LangTranslate = () => {
                       }}
                     >
                       <span className="text-xl mr-2">{lang.flag}</span>
-                      <span className="font-medium">{t(lang.name)}</span>
+                      <span className="font-medium text-gray-700 dark:text-white">
+                        {t(lang.name)}
+                      </span>
                     </button>
                   ))}
 

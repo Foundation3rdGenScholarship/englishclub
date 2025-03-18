@@ -76,7 +76,7 @@ const UserProfileForm = ({
     >
       {({ setFieldValue, isSubmitting, values, dirty, setTouched }) => (
         <Form
-          className="p-4 sm:ml-64 mt-[60px] max-w-screen-xl"
+          className="p-4 sm:ml-64 mt-[60px] max-w-screen-3xl"
           data-aos="fade-down"
         >
           <div className="flex flex-col items-center mb-8 mt-12">

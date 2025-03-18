@@ -118,8 +118,8 @@ const ExerciseHistoryDetail = () => {
         setShowSignOutModal={setShowSignOutModal}
       />
       {showSignOutModal && <SignOut closeModal={closeModal} />}
-      <div className="p-6 sm:ml-64 mt-[88px] max-w-screen-xl">
-        <div className="p-6">
+      <div className="p-6 sm:ml-64 mt-[88px]">
+        <div className="p-6 max-w-screen-2xl  mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-primary-500 dark:text-white mb-6">
             {t("details of")}{" "}
             <span className="text-secondary-500">{t("exercises history")}</span>
