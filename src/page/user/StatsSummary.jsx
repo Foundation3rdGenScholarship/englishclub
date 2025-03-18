@@ -178,16 +178,28 @@ const StatsSummary = () => {
       setIsLoading(false);
     }
   }, [isExercisesLoading, allExercises, levelCounts]);
-
+  if (isExercisesLoading) {
+    return (
+      <div className="bg-bg-light-mode dark:bg-gray-900 rounded-xl p-6 sm:ml-64 max-w-screen-3xl mb-16">
+        <h2 className="text-2xl md:text-3xl font-bold text-primary-500 dark:text-white mb-6 text-center">
+          {t("details about the")}{" "}
+          <span className="text-secondary-500">{t("exercises")}</span>
+        </h2>
+        <div className="flex justify-center items-center h-64">
+          <BeatLoader color="#fba518" />
+        </div>
+      </div>
+    );
+  }
   return (
-    <div className="bg-bg-light-mode dark:bg-gray-900 rounded-xl p-6 sm:ml-64 mt-[88px] max-w-screen-xl mb-16">
+    <div className="bg-bg-light-mode dark:bg-gray-900 rounded-xl p-6 sm:ml-64 mt-[88px] max-w-screen-3xl mb-16">
       <h2 className="text-2xl md:text-3xl font-bold text-primary-500 dark:text-white mb-6 text-center">
         {t("details about the")}{" "}
         <span className="text-secondary-500">{t("exercises")}</span>
       </h2>
 
       {/* Grid Layout for Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-screen-2xl justify-center items-center mx-auto">
         {levelsData.map((level, index) => {
           const progress =
             level.total > 0
@@ -248,7 +260,7 @@ const StatsSummary = () => {
 
       {/* Exercise Details Section */}
       {userAnswers.length > 0 ? (
-        <div className="mt-12">
+        <div className="mt-12 max-w-screen-2xl justify-center items-center mx-auto">
           <h2 className="text-2xl font-bold text-primary-500 dark:text-white mb-4">
             {t("exercises history")}
           </h2>

@@ -116,7 +116,7 @@ export default function MentorCard() {
               </p>
             </div>
 
-            <div className="flex justify-evenly mt-4 space-x-3 text-gray-700 dark:text-gray-300">
+            <div className="flex justify-evenly mt-4  text-gray-700 dark:text-gray-300">
               {/* LinkedIn icon */}
               <a
                 className="hover:text-primary-600 dark:hover:text-primary-300 transition-colors"

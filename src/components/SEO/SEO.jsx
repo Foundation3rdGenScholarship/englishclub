@@ -32,7 +32,7 @@ const SEO = () => {
         <title>FluentFlow - English Learning Platform</title>
         <meta
           name="description"
-          content="Master English with AI-assisted interactive lessons, infographics, and engaging exercises for Khmer learners. Learn easily and effectively today!"
+          content="FluentFlow is an innovative English learning platform designed specifically for Khmer learners. With bilingual support (English & Khmer), interactive lessons, and AI-powered assistance, users can improve their English skills through engaging exercises, videos, and infographics. Start learning English easily and effectively today!"
         />
         <meta
           name="keywords"
@@ -62,7 +62,7 @@ const SEO = () => {
         />
         <meta
           property="og:description"
-          content="Master English with AI-assisted interactive lessons, infographics, and engaging exercises for Khmer learners. Start learning today!"
+          content="FluentFlow is an innovative English learning platform designed specifically for Khmer learners. With bilingual support (English & Khmer), interactive lessons, and AI-powered assistance, users can improve their English skills through engaging exercises, videos, and infographics. Start learning English easily and effectively today!"
         />
         <meta
           property="og:image"
@@ -87,7 +87,7 @@ const SEO = () => {
         />
         <meta
           name="twitter:description"
-          content="Master English with AI-assisted interactive lessons for Khmer learners. Learn easily and effectively today!"
+          content="FluentFlow is an innovative English learning platform designed specifically for Khmer learners. With bilingual support (English & Khmer), interactive lessons, and AI-powered assistance, users can improve their English skills through engaging exercises, videos, and infographics. Start learning English easily and effectively today!"
         />
         <meta
           name="twitter:image"
@@ -117,7 +117,7 @@ const SEO = () => {
             "@type": "WebSite",
             "name": "FluentFlow",
             "url": "https://fluentflow.live",
-            "description": "Master English with AI-assisted interactive lessons, infographics, and engaging exercises for Khmer learners.",
+            "description": "FluentFlow is an innovative English learning platform designed specifically for Khmer learners. With bilingual support (English & Khmer), interactive lessons, and AI-powered assistance, users can improve their English skills through engaging exercises, videos, and infographics. Start learning English easily and effectively today!",
             "image": "https://english-club.istad.co/files/72f17752-207f-4f59-9823-881278713c6d.png",
             "potentialAction": {
                 "@type": "SearchAction",
