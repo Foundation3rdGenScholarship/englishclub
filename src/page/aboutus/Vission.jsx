@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import Bubbles from "../../components/card/Bubble";
 
 export const Vission = () => {
   const { t } = useTranslation("about");

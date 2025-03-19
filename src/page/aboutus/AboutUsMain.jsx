@@ -27,9 +27,11 @@ const AboutUsMain = () => {
     <main className=" mx-auto overflow-hidden">
       <HeroSection />
       <div className="max-w-7xl m-auto">
-        <Vission />
-        <VissionCard />
-        <MissionCard />
+        <Bubbles>
+          <Vission />
+          <VissionCard />
+          <MissionCard />
+        </Bubbles>
         <p className="text-center text-primary-950 dark:text-primary-100 font-bold text-heading-3">
           {t("mentor")}
         </p>

@@ -2,11 +2,13 @@ import React from "react";
 import GlassCard from "../../components/card/GlassCard";
 import { useTranslation } from "react-i18next";
 import hello from "../../../public/svg/skill/video.svg";
+import Bubbles from "../../components/card/Bubble";
 export default function MissionCard() {
   const { t } = useTranslation("about");
 
   return (
     <section class="py-1 sm:py-14 px-10" data-aos="zoom-out-left">
+      
       <div class="mx-auto">
         <div class="flex flex-col-reverse md:flex-row items-center gap-6">
           {/* Image Section */}
