@@ -49,7 +49,7 @@ export default function TeamCard() {
           key={index}
           data-aos={member.animation}
           data-aos-delay={index * 100}
-          className="w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+          className="w-72 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
         >
           <div className={`h-1 ${member.borderColor}`}></div>
           <div className="p-6">

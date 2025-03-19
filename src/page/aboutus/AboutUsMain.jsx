@@ -32,13 +32,13 @@ const AboutUsMain = () => {
           <VissionCard />
           <MissionCard />
         </Bubbles>
-        <p className="text-center text-primary-950 dark:text-primary-100 font-bold text-heading-3">
+        <p className="text-center text-primary-500 font-bold text-heading-3">
           {t("mentor")}
         </p>
         <MentorCard />
         <div className="max-w-screen-xl mx-auto">
           <div className="xl:mb-20 lg:mb-20 md:mb-20 sm:mb-16 mb-12">
-            <p className="text-center text-primary-950 dark:text-primary-100  font-bold text-heading-3">
+            <p className="text-center text-primary-500  font-bold text-heading-3">
               {t("teammember")}
             </p>
           </div>

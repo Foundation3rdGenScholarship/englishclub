@@ -87,13 +87,13 @@ export default function MentorCard() {
   ];
 
   return (
-    <div className="flex flex-wrap gap-16 justify-center max-w-screen-xl">
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 max-w-screen-xl gap-10 ">
       {mentorDetails.map((member, index) => (
         <div
           key={index}
           data-aos={member.animation}
           data-aos-delay={index * 100}
-          className="w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+          className="w-72 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden m-auto"
         >
           <div className={`h-1 ${member.borderColor}`}></div>
           <div className="p-6">

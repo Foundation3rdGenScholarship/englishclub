@@ -20,16 +20,22 @@ import ImageTTS from "./content/soundTts/ImageTTS";
 import React, { useEffect, useRef } from "react";
 
 const Dashboard = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); // Runs only when the component mounts
   const { activeItem } = useSelector((state) => state.sidebar);
 
   const dispatch = useDispatch();
 
   return (
-    <div >
+    <div>
       <NavbarDashboard />
       <Sidebar />
 
-      <div onClick={() => dispatch(closeSidebar())} className="max-w-screen-2xl m-auto">
+      <div
+        onClick={() => dispatch(closeSidebar())}
+        className="max-w-screen-2xl m-auto"
+      >
         {activeItem === "dashboard" && <User />}
         {activeItem === "listening" && <Listening />}
         {activeItem === "reading" && <Reading />}

@@ -16,7 +16,9 @@
 .font-kh {
   font-family: "Suwannaphum", serif;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 /* Animate */
 
 @keyframes sliceIn {
