@@ -6,17 +6,25 @@ export default function MissionCard() {
   const { t } = useTranslation("about");
 
   return (
-    <section class="py-1 sm:py-14 px-10">
+    <section class="py-1 sm:py-14 px-10" data-aos="zoom-out-left">
       <div class="mx-auto">
-        <div class="grid items-center grid-cols-1 gap-y-6 md:grid-cols-2 md:gap-x-20">
-          <div class="relative pl-20 pr-6 sm:pl-6 md:px-0">
-            <div class="relative w-full max-w-4xl mt-4 mb-10 ml-auto">
-              <img class="ml-auto" src={hello} alt="" />
-            </div>
+        <div class="flex flex-col-reverse md:flex-row items-center gap-6">
+          {/* Image Section */}
+          <div class="relative pr-6 sm:pl-6 md:px-0 w-full md:w-1/2 flex justify-center">
+            <img
+              class="w-full max-w-xs md:max-w-md lg:max-w-lg object-contain"
+              src={hello}
+              alt="mission"
+            />
           </div>
-          <p class="mt-4 text-des-2 leading-relaxed text-text-des-light-mode dark:text-text-des-dark-mode">
-            {t("mission-description")}
-          </p>
+
+          {/* Text Section */}
+          <div class="w-full md:w-1/2 text-des-1 text-secondary-500">
+            <h1 class="text-2xl font-bold">{t("ourmission")}</h1>
+            <p class="mt-4 text-des-2 leading-relaxed text-text-des-light-mode dark:text-text-des-dark-mode">
+              {t("mission-description")}
+            </p>
+          </div>
         </div>
       </div>
     </section>

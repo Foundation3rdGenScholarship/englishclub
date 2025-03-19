@@ -7,22 +7,34 @@ export default function VissionCard() {
 
   return (
     <>
-      <section class="py-1 sm:py-16 lg:py-16 px-10">
-        <div class="mx-auto">
-          <div class="grid items-center grid-cols-1 gap-y-6 md:grid-cols-2 md:gap-x-20">
-            <p class="mt-4 text-des-2 leading-relaxed dark:text-text-des-dark-mode text-text-des-light-mode">
-              {t("vision-description")}
-            </p>
-            <div class="relative pl-20 pr-6 sm:pl-6 md:px-0">
-              <div class="relative w-full max-w-4xl mt-4 mb-10 ml-auto">
-                <img class="ml-auto" src={education} alt="" />
+      <section
+        className="py-1 sm:py-16 lg:py-16 px-10"
+        data-aos="zoom-out-right"
+      >
+        <div className="mx-auto">
+          <div className="grid items-center grid-cols-1 md:grid-cols-2 gap-y-6 md:gap-x-20">
+            {/* Text Section */}
+            <div>
+              <h1 className="text-2xl font-bold text-secondary-500">
+                {t("ourvision")}
+              </h1>
+              <p className="mt-4 text-des-2 leading-relaxed dark:text-text-des-dark-mode text-text-des-light-mode">
+                {t("vision-description")}
+              </p>
+            </div>
 
-                <img
-                  class="absolute -top-4 -left-12"
-                  src="https://cdn.rareblocks.xyz/collection/celebration/images/features/1/wavey-lines.svg"
-                  alt=""
-                />
-              </div>
+            {/* Image Section */}
+            <div className="relative w-full flex justify-center">
+              <img
+                className="w-full max-w-xs md:max-w-md lg:max-w-lg object-contain"
+                src={education}
+                alt="education"
+              />
+              <img
+                className="absolute -top-4 -left-12"
+                src="https://cdn.rareblocks.xyz/collection/celebration/images/features/1/wavey-lines.svg"
+                alt=""
+              />
             </div>
           </div>
         </div>
