@@ -43,7 +43,7 @@ export default function TeamCard() {
   ];
   
   return (
-    <div className="flex flex-wrap justify-center gap-16 px-4 py-8">
+    <div className="flex flex-wrap justify-center gap-16 px-4 py-16">
       {mentorDetails.map((member, index) => (
         <div
           key={index}

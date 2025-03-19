@@ -6,28 +6,27 @@ export default function VissionCard() {
   const { t } = useTranslation("about");
 
   return (
-    <div className="flex justify-center p-4">
-      <GlassCard className="w-full max-w-screen-xl p-5">
-        <div className="flex flex-wrap items-center justify-center p-4 gap-6">
-          {/* Text Content */}
-          <div className="text-center md:text-left flex-1">
-            <h2 className="font-bold xl:text-heading-4 md:text-heading-4 text-heading-5 text-accents-color">
-              {t("ourvision")}
-            </h2>
-            <p className="dark:text-white text-gray-500 text-des-4 md:text-des-4 lg:text-des-2 xl:text-des-2 mt-3">
+    <>
+      <section class="py-1 sm:py-16 lg:py-16 px-10">
+        <div class="mx-auto">
+          <div class="grid items-center grid-cols-1 gap-y-6 md:grid-cols-2 md:gap-x-20">
+            <p class="mt-4 text-des-2 leading-relaxed dark:text-text-des-dark-mode text-text-des-light-mode">
               {t("vision-description")}
             </p>
-          </div>
+            <div class="relative pl-20 pr-6 sm:pl-6 md:px-0">
+              <div class="relative w-full max-w-4xl mt-4 mb-10 ml-auto">
+                <img class="ml-auto" src={education} alt="" />
 
-          {/* Image (Hidden on `sm` and smaller, visible from `md`) */}
-          <img
-            className="hidden sm:hidden md:block w-full max-w-[350px] md:max-w-[400px] lg:max-w-[450px]"
-            src={education}
-            loading="lazy"
-            alt="Vision"
-          />
+                <img
+                  class="absolute -top-4 -left-12"
+                  src="https://cdn.rareblocks.xyz/collection/celebration/images/features/1/wavey-lines.svg"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
         </div>
-      </GlassCard>
-    </div>
+      </section>
+    </>
   );
 }

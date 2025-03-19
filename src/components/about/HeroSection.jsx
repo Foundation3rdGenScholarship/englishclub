@@ -57,17 +57,17 @@ const HeroSection = () => {
             {/* Description */}
             <div className="overflow-hidden mb-8">
               <p className="text-xl text-gray-600 dark:text-gray-200 animate-slice-delay-3">
-                {t("description")}
+                {t("team")}
               </p>
             </div>
 
             {/* Button with theme-aware styling */}
-            <button
+            {/* <button
               onClick={openPopup}
               className="px-8 py-4 bg-secondary-500 text-white dark:text-black font-bold rounded-md hover:bg-secondary-600 transition-all duration-300"
             >
               {t("explore")}
-            </button>
+            </button> */}
 
             {/* Text Content */}
 
