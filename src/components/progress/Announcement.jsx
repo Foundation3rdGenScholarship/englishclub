@@ -47,7 +47,7 @@ const Announcement = () => {
       <div className="max-w-7xl flex items-center m-auto">
         <div className="flex-grow md:text-center">
           <p className="text-sm font-medium">
-            {t("title")}
+            🚀 {t("title")}
             <a href="/skills" className="inline-block underline ml-1">
               {t("link")}
             </a>

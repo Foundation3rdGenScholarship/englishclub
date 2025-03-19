@@ -32,7 +32,7 @@ const HeroSection = () => {
         />
 
         {/* Overlay that changes with Tailwind's dark mode */}
-        <div className="absolute inset-0 bg-white/60 dark:bg-black/60 transition-colors duration-300"></div>
+        <div className="absolute inset-0 bg-white/50 dark:bg-black/60 transition-colors duration-300"></div>
       </div>
 
       {/* Content Container */}
@@ -41,12 +41,12 @@ const HeroSection = () => {
           <div className="max-w-lg">
             {/* Text that changes color based on Tailwind's dark mode */}
             <div className="overflow-hidden mb-4">
-              <h2 className="text-5xl sm:text-7xl font-bold text-gray-800 dark:text-white animate-slice">
+              <h2 className="text-5xl sm:text-7xl font-bold text-secondary-500 animate-slice">
                 FLUENTFLOW
               </h2>
             </div>
             <div className="overflow-hidden mb-4">
-              <h2 className="text-5xl sm:text-7xl font-bold text-gray-800 dark:text-white animate-slice-delay-1">
+              <h2 className="text-5xl sm:text-7xl font-bold text-primary-500 animate-slice-delay-1">
                 TEAM
               </h2>
             </div>
