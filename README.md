@@ -2,7 +2,7 @@
 # **FluentFlow - English Learning Platform**
 ![Logo](https://english-club.istad.co/files/1a54db6e-fcca-45ba-b843-481d4fe626b0.png)
 
-**FluentFlow** is an English learning platform for Khmer learners with bilingual support. It offers interactive lessons, AI assistance, and engaging exercises. Users can learn through videos, infographics, and personalized experiences. Start learning English easily and effectively today! 😉
+**FluentFlow** is an innovative English learning platform designed specifically for Khmer learners. With bilingual support (English & Khmer), interactive lessons, and AI-powered assistance, users can improve their English skills through engaging exercises, videos, and infographics. Start learning English easily and effectively today! 😉
 
 
 ## Demo

@@ -161,8 +161,8 @@ const ExerciseStats = () => {
   // Show loading state while waiting for data
   if (isExercisesLoading) {
     return (
-      <div className="bg-bg-light-mode dark:bg-gray-900 rounded-xl p-6 sm:ml-64 max-w-screen-xl mb-16">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+      <div className="bg-bg-light-mode dark:bg-gray-900 rounded-xl p-6 sm:ml-64 max-w-screen-3xl mb-16">
+        <h2 className="text-2xl md:text-3xl font-bold text-primary-500 dark:text-white mb-6 text-center">
           {t("rate of exercises")}{" "}
           <span className="text-secondary-500">{t("by level")}</span>
         </h2>
@@ -175,7 +175,7 @@ const ExerciseStats = () => {
 
   return (
     <div
-      className="p-4 sm:ml-64 mt-[88px] max-w-screen-xl place-items-center place-content-center text-second bg-bg-light-mode dark:bg-gray-900 rounded-xl"
+      className="p-4 sm:ml-64 mt-[88px] max-w-screen-3xl place-items-center place-content-center text-second bg-bg-light-mode dark:bg-gray-900 rounded-xl"
       data-aos="fade-up"
     >
       <h2 className="text-2xl md:text-3xl font-bold text-primary-500 dark:text-white mb-6 text-center">
