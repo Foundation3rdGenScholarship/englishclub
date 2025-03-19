@@ -5,7 +5,7 @@ import { IoMdClose } from "react-icons/io";
 const Announcement = () => {
   const { t } = useTranslation("announcement");
   const storageKey = "announcement_closed_date";
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {

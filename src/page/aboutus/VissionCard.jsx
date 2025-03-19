@@ -1,7 +1,7 @@
 import React from "react";
 import GlassCard from "../../components/card/GlassCard";
 import { useTranslation } from "react-i18next";
-import education from "../../../public/img/iconSVG/education.svg";
+import education from "../../../public/svg/vission.svg";
 export default function VissionCard() {
   const { t } = useTranslation("about");
 
