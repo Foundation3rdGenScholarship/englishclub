@@ -1,33 +1,44 @@
 import React from "react";
 import GlassCard from "../../components/card/GlassCard";
 import { useTranslation } from "react-i18next";
-import education from "../../../public/img/iconSVG/education.svg";
+import education from "../../../public/svg/vission.svg";
 export default function VissionCard() {
   const { t } = useTranslation("about");
 
   return (
-    <div className="flex justify-center p-4">
-      <GlassCard className="w-full max-w-screen-xl p-5">
-        <div className="flex flex-wrap items-center justify-center p-4 gap-6">
-          {/* Text Content */}
-          <div className="text-center md:text-left flex-1">
-            <h2 className="font-bold xl:text-heading-4 md:text-heading-4 text-heading-5 text-accents-color">
-              {t("ourvision")}
-            </h2>
-            <p className="dark:text-white text-gray-500 text-des-4 md:text-des-4 lg:text-des-2 xl:text-des-2 mt-3">
-              {t("vision-description")}
-            </p>
-          </div>
+    <>
+      <section
+        className="py-1 sm:py-16 lg:py-16 px-10"
+        data-aos="zoom-out-right"
+      >
+        <div className="mx-auto">
+          <div className="grid items-center grid-cols-1 md:grid-cols-2 gap-y-6 md:gap-x-20">
+            {/* Text Section */}
+            <div>
+              <h1 className="text-2xl font-bold text-secondary-500">
+                {t("ourvision")}
+              </h1>
+              <p className="mt-4 text-des-2 leading-relaxed dark:text-text-des-dark-mode text-text-des-light-mode">
+                {t("vision-description")}
+              </p>
+            </div>
 
-          {/* Image (Hidden on `sm` and smaller, visible from `md`) */}
-          <img
-            className="hidden sm:hidden md:block w-full max-w-[350px] md:max-w-[400px] lg:max-w-[450px]"
-            src={education}
-            loading="lazy"
-            alt="Vision"
-          />
+            {/* Image Section */}
+            <div className="relative w-full flex justify-center">
+              <img
+                className="w-full max-w-xs md:max-w-md lg:max-w-lg object-contain"
+                src={education}
+                alt="education"
+              />
+              <img
+                className="absolute -top-4 -left-12"
+                src="https://cdn.rareblocks.xyz/collection/celebration/images/features/1/wavey-lines.svg"
+                alt=""
+              />
+            </div>
+          </div>
         </div>
-      </GlassCard>
-    </div>
+      </section>
+    </>
   );
 }
