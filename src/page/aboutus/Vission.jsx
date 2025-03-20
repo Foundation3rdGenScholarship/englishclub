@@ -26,7 +26,7 @@ export const Vission = () => {
             </blockquote>
             <div className="flex items-center mt-16" data-aos="fade-up">
               <p className="text-lg font-semibold text-secondary-500">
-                {t("support")}
+                {t("organized")}
               </p>
               <p className="ml-3 text-lg text-gray-600 dark:text-white ">
                 {t("by")}{" "}
