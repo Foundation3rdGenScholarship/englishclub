@@ -27,7 +27,7 @@ const ContentSingle = () => {
               <img
                 data-aos="fade-right"
                 height="500"
-                src={teamPhoto}
+                src="https://english-club.istad.co/files/80109abc-ca6b-481f-91dc-d7d9892cb87e.jpg"
                 width="480"
                 className="object-cover rounded-[18%]"
                 data-aos-duration="600"

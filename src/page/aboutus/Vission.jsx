@@ -5,7 +5,7 @@ import Bubbles from "../../components/card/Bubble";
 export const Vission = () => {
   const { t } = useTranslation("about");
   return (
-    <section className="py-10 sm:py-16 lg:py-24 px-2">
+    <section id="learn-more" className="py-10 sm:py-16 lg:py-24 px-2">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="lg:max-w-3xl">
           <h2
@@ -28,8 +28,9 @@ export const Vission = () => {
               <p className="text-lg font-semibold text-secondary-500">
                 {t("support")}
               </p>
-              <p className="ml-3 text-lg text-gray-600 dark:text-white">
-                {t("by")} ISTAD, FluentFlow
+              <p className="ml-3 text-lg text-gray-600 dark:text-white ">
+                {t("by")}{" "}
+                <span className="font-[Poppins]">ISTAD, FluentFlow</span>
               </p>
             </div>
           </div>

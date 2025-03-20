@@ -93,7 +93,7 @@ export default function MentorCard() {
           key={index}
           data-aos={member.animation}
           data-aos-delay={index * 100}
-          className="w-72 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden m-auto"
+          className="w-72 rounded-lg shadow-md overflow-hidden m-auto"
         >
           <div className={`h-1 ${member.borderColor}`}></div>
           <div className="p-6">
@@ -111,7 +111,7 @@ export default function MentorCard() {
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
                 {member.name}
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 font-[Poppins]">
                 {member.title}
               </p>
             </div>

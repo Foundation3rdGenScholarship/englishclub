@@ -1,173 +1,163 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import { useTranslation } from "react-i18next";
-
+import Typed from "typed.js";
 const HeroSection = () => {
   const { t } = useTranslation("about");
   const [loaded, setLoaded] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const typedRef = useRef(null);
+    const [isOpen, setIsOpen] = useState(false);
+    const [isAnimating, setIsAnimating] = useState(false);
 
-  const openPopup = () => {
-    setIsOpen(true);
-    setIsAnimating(true);
-  };
+    const openPopup = () => {
+      setIsOpen(true);
+      setIsAnimating(true);
+    };
 
-  const closePopup = () => {
-    setIsAnimating(false);
-    setTimeout(() => setIsOpen(false), 300); // Match this with animation duration
-  };
+    const closePopup = () => {
+      setIsAnimating(false);
+      setTimeout(() => setIsOpen(false), 300); // Match this with animation duration
+    };
 
+    useEffect(() => {
+      setLoaded(true);
+    }, []);
   useEffect(() => {
     setLoaded(true);
   }, []);
+useEffect(() => {
+  const typed = new Typed(typedRef.current, {
+    strings: ["FLUENTFLOW"],
+    typeSpeed: 130,
+    backSpeed: 50,
+    backDelay: 2000,
+    startDelay: 200,
+    loop: true,
+    cursorChar: "|",
+    onStringTyped: () => {
+      const cursor = document.querySelector(".typed-cursor");
+      if (cursor) {
+        cursor.style.color = "#fba518";
+      }
+    },
+  });
+
+  return () => {
+    typed.destroy(); // Clean up the instance
+  };
+}, []);
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
-      {/* Background Image */}
+    <div className="relative h-screen w-full">
+      {/* Background Image with Subtle Zoom Effect */}
       <div className="absolute inset-0 z-0">
         <img
           src="https://english-club.istad.co/files/80109abc-ca6b-481f-91dc-d7d9892cb87e.jpg"
           alt="Team"
-          className="w-full h-full object-cover"
+          className={`w-full h-screen object-cover ${
+            loaded ? "scale-100" : "scale-100"
+          } transition-transform duration-800 ease-out`}
         />
-
-        {/* Overlay that changes with Tailwind's dark mode */}
-        <div className="absolute inset-0 bg-white/50 dark:bg-black/60 transition-colors duration-300"></div>
       </div>
 
-      {/* Content Container */}
+      {/* Improved Overlay for Better Text Visibility */}
+      <div className="absolute inset-0 bg-black/60 z-1"></div>
+      <div className="absolute inset-0 z-2">
+        {/* Gradient overlay specifically for text area */}
+        <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-black/80 to-transparent"></div>
+
+        {/* Additional contrast layer for text area */}
+        <div className="absolute left-0 top-0 w-3/4 h-full bg-gradient-to-b from-black/50 via-transparent to-black/40"></div>
+      </div>
+
+      {/* Accent Elements */}
+      {/* <div className="absolute left-0 top-0 h-full w-1 bg-primary-500"></div>
+      <div className="absolute left-0 bottom-0 h-2 w-48 bg-primary-400"></div> */}
+
+      {/* Content Container - Left aligned for better readability */}
       <div className="relative z-10 h-full flex items-center">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="max-w-lg">
-            {/* Text that changes color based on Tailwind's dark mode */}
-            <div className="overflow-hidden mb-4">
-              <h2 className="text-5xl sm:text-7xl font-bold text-secondary-500 animate-slice">
-                FLUENTFLOW
-              </h2>
+        <div className="">
+          <div className="w-full h-screen flex justify-center flex-col backdrop-blur-sm animate-slice-delay-1 px-[3rem] sm:px-[2rem] md:px-[4rem] lg:px-[10rem] rounded-lg border-l-4 border-primary-500 z-50">
+            {/* Brand Text with Better Contrast */}
+            <div className="mb-4">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold tracking-tight leading-none">
+                <span
+                  className="text-secondary-500 font-[Poppins]"
+                  ref={typedRef}
+                ></span>
+              </h1>
             </div>
-            <div className="overflow-hidden mb-4">
-              <h2 className="text-5xl sm:text-7xl font-bold text-primary-500 animate-slice-delay-1">
+
+            {/* Subtitle with Better Visibility */}
+            <div className="flex items-center mb-6">
+              <div className="w-12 h-1 bg-primary-400 mr-4"></div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium text-primary-500 font-[Poppins] animate-slice-delay-1">
                 TEAM
               </h2>
             </div>
-            <div className="overflow-hidden mb-8">
-              <h2 className="text-6xl sm:text-7xl font-bold text-gray-800 dark:text-white animate-slice-delay-2"></h2>
-            </div>
 
-            {/* Description */}
-            <div className="overflow-hidden mb-8">
-              <p className="text-xl text-gray-600 dark:text-gray-200 animate-slice-delay-3">
+            {/* Description with Improved Readability */}
+            <div className="mb-10">
+              <p className="text-md md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl text-gray-100 animate-slice-delay-2">
                 {t("team")}
               </p>
             </div>
 
-            {/* Button with theme-aware styling */}
-            {/* <button
-              onClick={openPopup}
-              className="px-8 py-4 bg-secondary-500 text-white dark:text-black font-bold rounded-md hover:bg-secondary-600 transition-all duration-300"
-            >
-              {t("explore")}
-            </button> */}
-
-            {/* Text Content */}
-
-            {isOpen && (
-              <div
-                className={`fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-40 transition-opacity duration-300 ease-in-out ${
-                  isAnimating ? "opacity-100" : "opacity-0 pointer-events-none"
-                }`}
-                onClick={closePopup}
+            {/* Button with Better Visibility */}
+            <div className="flex space-x-4 items-center">
+              <a
+                href="#learn-more"
+                className="group flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl hover:bg-white/20 transition-all duration-300 shadow-lg"
               >
-                {/* Popup with improved design, scale and fade animation */}
-                <div
-                  className={`bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 max-w-md mx-4 z-50 transition-all duration-300 ease-in-out ${
-                    isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-95"
-                  }`}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <div className="flex flex-col">
-                    {/* Logo and Title Section */}
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="bg-blue-600 text-white p-2 rounded-lg">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
-                          <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
-                          <path d="M18 12h-2.5a1.5 1.5 0 0 0 0 3H18"></path>
-                        </svg>
-                      </div>
-                      <h2 className="text-2xl font-bold text-gray-800 dark:text-white tracking-tight">
-                        FLUENTFLOW
-                      </h2>
-                    </div>
-
-                    {/* Main Content */}
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                      A free platform for Khmer speakers learning English.
-                      Access quality language learning resources anytime,
-                      anywhere.
-                    </p>
-
-                    {/* Project Information */}
-                    <div className="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 p-4 rounded mb-6">
-                      <p className="text-gray-700 dark:text-gray-200 text-sm">
-                        And also this website I create for final project at
-                        ISTAD that have complete Courses Foundation Generation 3
-                      </p>
-                    </div>
-
-                    {/* Feature Pills */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">
-                        Free Access
-                      </span>
-                      <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                        Khmer & English
-                      </span>
-                      <span className="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-purple-900 dark:text-purple-300">
-                        ISTAD Project
-                      </span>
-                      <span className="bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-orange-900 dark:text-orange-300">
-                        Foundation Gen 3
-                      </span>
-                    </div>
-
-                    {/* Divider with improved styling */}
-                    <div className="relative my-4">
-                      <div className="absolute inset-0 flex items-center">
-                        <div className="w-full border-t border-gray-200 dark:border-gray-700"></div>
-                      </div>
-                      <div className="relative flex justify-center">
-                        <span className="bg-white dark:bg-gray-800 px-4 text-sm text-gray-500 dark:text-gray-400">
-                          Get Started
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Call to Action Button */}
-                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-4 rounded-lg transition-colors duration-200">
-                      Join FluentFlow
-                    </button>
-
-                    {/* Footer */}
-                    <p className="text-gray-400 text-sm text-center mt-4">
-                      Helping Cambodians master English since 2025
-                    </p>
-                  </div>
+                <span className="text-white font-medium 2xl:text-2xl">
+                  {t("learn more")}
+                </span>
+                <div className="relative h-5 w-5 overflow-hidden">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="absolute top-0 left-0 h-5 w-5 text-secondary-500 transform group-hover:translate-y-10 transition-transform duration-300"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="absolute -top-10 left-0 h-5 w-5 text-secondary-500 transform group-hover:translate-y-10 transition-transform duration-300"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                    />
+                  </svg>
                 </div>
-              </div>
-            )}
+              </a>
+            </div>
           </div>
         </div>
+      </div>
+
+      {/* Badge Element */}
+      {/* <div className="absolute top-8 right-8 px-4 py-2 border border-gray-400/30 rounded-lg backdrop-blur-sm flex items-center space-x-2 z-10">
+        <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-md dark:bg-orange-900 dark:text-orange-300 text-sm font-medium">
+          ISTAD Foundation Gen 3
+        </span>
+      </div> */}
+      <div className="absolute top-8 right-8 px-4 py-2 border bg-white/10 backdrop-blur-md border-white/20 rounded-xl hover:bg-white/20  flex items-center space-x-2 z-10 animate-slice-delay-2">
+        <div className="w-2 h-2 rounded-full bg-secondary-500"></div>
+        <span className="text-gray-300 text-sm 2xl:text-xl">
+          ISTAD Foundation {t("Gen 3")}
+        </span>
       </div>
     </div>
   );
