@@ -10,7 +10,7 @@ import cherDavan from "../../../public/img/image/LokKruDavan.png";
 
 export default function TeamCard() {
   const { t } = useTranslation("about");
-  
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -18,30 +18,30 @@ export default function TeamCard() {
       once: true,
     });
   }, []);
-  
+
   const mentorDetails = [
     {
       name: t("cherPheng"),
-      title: "Teacher",
+      title: "Instructor",
       image: cherPheng,
       linkedin: "https://linkedin.com/in/kim-chansokpheng-6b6513267",
       email: "mailto:kimchansokpheng@gmail.com",
       github: "https://github.com/sokpheng001",
       borderColor: "border-accents-color",
-      animation: "fade-right"
+      animation: "fade-right",
     },
     {
       name: t("cherDavan"),
-      title: "Teacher",
+      title: "Instructor",
       image: cherDavan,
       linkedin: "https://linkedin.com/in/ing-davann-0617b32a3",
       email: "mailto:ingdavann4444@gmail.com",
       github: "https://github.com/ingdavann",
       borderColor: "border-accents-color",
-      animation: "fade-left"
+      animation: "fade-left",
     },
   ];
-  
+
   return (
     <div className="flex flex-wrap justify-center gap-16 px-4 py-16">
       {mentorDetails.map((member, index) => (
