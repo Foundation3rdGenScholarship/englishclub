@@ -97,7 +97,7 @@ useEffect(() => {
 
             {/* Description with Improved Readability */}
             <div className="mb-10">
-              <p className="text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-gray-100 animate-slice-delay-2">
+              <p className="text-md md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl text-gray-100 animate-slice-delay-2">
                 {t("team")}
               </p>
             </div>
