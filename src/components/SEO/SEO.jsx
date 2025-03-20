@@ -10,18 +10,18 @@ const SEO = () => {
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href="/favicon-32x32.png"
+          href="https://english-club.istad.co/files/535f885d-a6d5-4a0e-a4e3-65d7a6a0785f.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="16x16"
-          href="/favicon-16x16.png"
+          href="https://english-club.istad.co/files/535f885d-a6d5-4a0e-a4e3-65d7a6a0785f.png"
         />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/apple-touch-icon.png"
+          href="https://english-club.istad.co/files/535f885d-a6d5-4a0e-a4e3-65d7a6a0785f.png"
         />
         <link
           rel="shortcut icon"
@@ -185,6 +185,43 @@ const SEO = () => {
             ]
         }
     `}
+        </script>
+        <script type="application/ld+json">
+          {` {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is FluentFlow?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "FluentFlow is an English learning platform designed for Khmer learners with AI-powered lessons and bilingual support."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is FluentFlow free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, FluentFlow offers free lessons along with premium courses."
+            }
+          }
+        ]
+      }`}
+        </script>
+        <script type="application/ld+json">
+          {`{
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "English for Beginners",
+        "description": "A beginner-friendly course to improve English skills.",
+        "provider": {
+          "@type": "EducationalOrganization",
+          "name": "FluentFlow",
+          "sameAs": "https://fluentflow.live"
+        }
+      }`}
         </script>
       </Helmet>
     </div>
