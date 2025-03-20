@@ -7,6 +7,7 @@ import { NavLink } from "react-router";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import teamPhoto from "../../../public/img/image/FluentFlowTeam.jpg";
 const ContentSingle = () => {
   const { t } = useTranslation("homepage");
   // Initialize AOS when the component mounts
@@ -26,7 +27,7 @@ const ContentSingle = () => {
               <img
                 data-aos="fade-right"
                 height="500"
-                src="../../../public/img/image/FluentFlowTeam.jpg"
+                src="https://english-club.istad.co/files/80109abc-ca6b-481f-91dc-d7d9892cb87e.jpg"
                 width="480"
                 className="object-cover rounded-[18%]"
                 data-aos-duration="600"

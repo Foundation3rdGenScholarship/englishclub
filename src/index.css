@@ -5,7 +5,7 @@
 @tailwind utilities;
 /* Hide the scrollbar */
 ::-webkit-scrollbar {
-  display: none; 
+  display: none;
 }
 
 /* for dynamic font */
@@ -15,4 +15,38 @@
 
 .font-kh {
   font-family: "Suwannaphum", serif;
+}
+html {
+  scroll-behavior: smooth;
+}
+/* Animate */
+
+@keyframes sliceIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slice {
+  animation: sliceIn 0.8s ease forwards;
+}
+
+.animate-slice-delay-1 {
+  animation: sliceIn 0.8s ease 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-slice-delay-2 {
+  animation: sliceIn 0.8s ease 0.4s forwards;
+  opacity: 0;
+}
+
+.animate-slice-delay-3 {
+  animation: sliceIn 0.8s ease 0.6s forwards;
+  opacity: 0;
 }

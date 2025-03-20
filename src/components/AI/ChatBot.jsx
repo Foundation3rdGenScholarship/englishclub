@@ -56,13 +56,13 @@ const ChatBot = ({ isBackToTopVisible }) => {
       {/* Chat Window */}
       {isOpen && (
         <div
-          className={`w-96 bg-white shadow-lg rounded-lg p-4 mb-2 dark:bg-gray-800 fixed right-5 ${
+          className={`w-[21rem] sm:w-96 bg-white shadow-lg rounded-lg p-4 mb-2 dark:bg-gray-800 fixed right-5 ${
             isBackToTopVisible ? "bottom-32" : "bottom-16"
           }`}
         >
           {/* Chat Header */}
           <div className="flex justify-between items-center border-b pb-2 mb-2">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+            <h2 className="text-lg font-semibold text-primary-500 dark:text-white">
               {t("chat with AI")}
             </h2>
             <button

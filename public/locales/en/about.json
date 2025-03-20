@@ -3,9 +3,10 @@
   "aboutUs": "ABOUT US",
   "fluentflow": "FluentFlow",
   "description": " is an innovative English learning platform designed specifically for Khmer learners. With bilingual support (English & Khmer), interactive lessons, and AI-powered assistance, users can improve their English skills through engaging exercises, videos, and infographics.",
+  "team": "We are students at ISTAD, and we created this platform to help Khmer learners. Our goal is to provide quality educational resources and make learning more accessible. We believe that technology can enhance education and empower learners to achieve their goals. Through this platform, we aim to build a supportive community for Khmer students.",
   "mentor": "Our Mentor",
-  "cherPheng": "Kim Chansopheng",
-  "cherDavan": "Ing Davan",
+  "cherPheng": "Kim Chansokpheng",
+  "cherDavan": "Ing Davann",
   "ourmission": "Our Mission",
   "mission-description": "Our mission is to empower learners of all levels to master the English language through interactive, engaging, and accessible resources. We strive to provide high-quality lessons, real-life practice opportunities, and a supportive community to help learners gain confidence and fluency in English.",
   "ourvision": "Our Vision",
@@ -17,5 +18,11 @@
   "rotana": "Toch Rotana",
   "leaphea": "Lim Ansoleapehea",
   "teammember": "Our Team",
-  "sanom": "Rin Sanom"
+  "sanom": "Rin Sanom",
+  "explore": "EXPLORE NOW",
+  "question": "What is FluentFlow ?",
+  "support": "Support",
+  "by": "By",
+  "learn more": "Learn More",
+  "Gen 3":"Gen 3"
 }

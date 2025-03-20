@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import React, { useEffect } from "react";
+import { NavLink } from "react-router";
 // import TextAnimation from "../../components/progress/TextAnimation";
 
 const CardSection = () => {
@@ -103,11 +104,11 @@ const CardSection = () => {
                     {t("sub-des-name")}
                   </p>
                 </div>
-                <a href="#">
+                <NavLink to="/courses">
                   <button className="text-heading-4 text-white m-3 bg-secondary-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-secondary-200 font-medium rounded-lg text-lg px-5 py-2.5 text-center">
                     {t("btn-name")}
                   </button>
-                </a>
+                </NavLink>
               </GlassCard>
             </div>
           </div>

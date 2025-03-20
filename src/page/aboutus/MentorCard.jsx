@@ -43,13 +43,13 @@ export default function TeamCard() {
   ];
   
   return (
-    <div className="flex flex-wrap justify-center gap-16 px-4 py-8">
+    <div className="flex flex-wrap justify-center gap-16 px-4 py-16">
       {mentorDetails.map((member, index) => (
         <div
           key={index}
           data-aos={member.animation}
           data-aos-delay={index * 100}
-          className="w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+          className="w-72 rounded-lg shadow-md overflow-hidden"
         >
           <div className={`h-1 ${member.borderColor}`}></div>
           <div className="p-6">
@@ -67,11 +67,11 @@ export default function TeamCard() {
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
                 {member.name}
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 font-[Poppins]">
                 {member.title}
               </p>
             </div>
-            
+
             <div className="flex justify-evenly mt-4 text-gray-700 dark:text-gray-300">
               {/* LinkedIn icon */}
               <a
@@ -81,9 +81,9 @@ export default function TeamCard() {
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
               >
-                <FaLinkedin className="w-6 h-6"/>
+                <FaLinkedin className="w-6 h-6" />
               </a>
-              
+
               {/* Email icon */}
               <a
                 className="hover:text-primary-600 dark:hover:text-primary-300 transition-colors"
@@ -92,9 +92,9 @@ export default function TeamCard() {
                 rel="noopener noreferrer"
                 aria-label="Email"
               >
-                <IoMdMail className="w-6 h-6"/>
+                <IoMdMail className="w-6 h-6" />
               </a>
-              
+
               {/* GitHub icon */}
               <a
                 className="hover:text-primary-600 dark:hover:text-primary-300 transition-colors"
@@ -103,7 +103,7 @@ export default function TeamCard() {
                 rel="noopener noreferrer"
                 aria-label="GitHub"
               >
-                <FaGithub className="w-6 h-6"/>
+                <FaGithub className="w-6 h-6" />
               </a>
             </div>
           </div>

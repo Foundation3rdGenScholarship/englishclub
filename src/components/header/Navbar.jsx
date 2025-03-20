@@ -32,6 +32,7 @@ export default function Navbar() {
   }, []);
 
   const menu = [
+    { title: t("home"), path: "/" },
     { title: t("courses"), path: "/courses" },
     { title: t("about"), path: "/about" },
     { title: t("contact"), path: "/contact" },
@@ -55,7 +56,7 @@ export default function Navbar() {
           </NavLink>
 
           {/* Navigation for large screens */}
-          <nav className="hidden md:flex gap-6 text-heading-5">
+          <nav className="hidden md:flex gap-6 text-heading-5 font-bold">
             {menu.map((item) => (
               <NavLink
                 key={item.title}
@@ -111,7 +112,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div className={`md:hidden ${isOpen ? "block" : "hidden"} `}>
-        <ul className="flex flex-col items-left gap-6 text-heading-6 p-6">
+        <ul className="flex flex-col items-left gap-6 text-heading-6 p-6 font-bold">
           {menu.map((item) => (
             <li key={item.title}>
               <NavLink

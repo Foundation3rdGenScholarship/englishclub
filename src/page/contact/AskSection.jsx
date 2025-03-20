@@ -98,7 +98,7 @@ const AskSection = () => {
                     type="text"
                     name="name"
                     placeholder={t("name-placeholder")}
-                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 placeholder-gray-400 dark:placeholder-gray-500 ${
+                    className={`w-full text-des-3 p-3 border rounded-lg border-primary-500 dark:bg-transparent  mt-1 bg-[#F6FBFE] placeholder-gray-400 dark:placeholder-gray-500 ${
                       errors.name && touched.name ? "border-red-500" : ""
                     }`}
                   />
@@ -116,7 +116,7 @@ const AskSection = () => {
                     type="email"
                     name="email"
                     placeholder={t("email-placeholder")}
-                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 placeholder-gray-400 dark:placeholder-gray-500 ${
+                    className={`w-full text-des-3 p-3 border rounded-lg border-primary-500 dark:bg-transparent bg-[#F6FBFE] mt-1 placeholder-gray-400 dark:placeholder-gray-500 ${
                       errors.email && touched.email ? "border-red-500" : ""
                     }`}
                   />
@@ -134,7 +134,7 @@ const AskSection = () => {
                     type="text"
                     name="subject"
                     placeholder={t("subject-placeholder")}
-                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 placeholder-gray-400 dark:placeholder-gray-500 ${
+                    className={`w-full text-des-3 p-3 border rounded-lg border-primary-500 bg-[#F6FBFE] dark:bg-transparent mt-1 placeholder-gray-400 dark:placeholder-gray-500 ${
                       errors.subject && touched.subject ? "border-red-500" : ""
                     }`}
                   />
@@ -152,7 +152,7 @@ const AskSection = () => {
                     as="textarea"
                     name="question"
                     placeholder={t("question-ask-placeholder")}
-                    className={`w-full text-des-3 p-3 border rounded-lg bg-gray-200 dark:bg-transparent mt-1 placeholder-gray-400 dark:placeholder-gray-500 ${
+                    className={`w-full text-des-3 p-3 border rounded-lg border-primary-500 bg-[#F6FBFE] dark:bg-transparent mt-1 placeholder-gray-400 dark:placeholder-gray-500 ${
                       errors.question && touched.question
                         ? "border-red-500"
                         : ""
